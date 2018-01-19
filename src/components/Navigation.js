@@ -6,7 +6,7 @@ import * as routes from '../constants/routes';
 
 
 const NavigationAuth = () => {
-    return (<div>
+    return (<div className="NavigationBar">
         <ul>
             <li><Link to={routes.LANDING}>Landing</Link></li>
             <li><Link to={routes.HOME}>Home</Link></li>
@@ -17,7 +17,7 @@ const NavigationAuth = () => {
 }
 
 const NavigationNonAuth = () => {
-    return (<div>
+    return (<div className="NavigationBar">
         <ul>
             <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
             <li><Link to={routes.LANDING}>Landing</Link></li>

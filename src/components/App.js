@@ -4,6 +4,9 @@ import {
     Route,
 } from 'react-router-dom';
 import { firebase } from '../firebase/index'
+import '../assets/css/index.css'
+import '../assets/css/signin.css'
+
 
 import Navigation from './Navigation';
 import LandingPage from './LandingPage';
@@ -34,14 +37,19 @@ class App extends Component {
             // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
         });
     }
+    
 
     render() {
+
+        const bodyStyle = {
+            "backgroundColor": "#ecf0f1",
+            "height": '100vh',
+        }
+
         return (
             <Router>
-                <div>
+                <div style={bodyStyle}>
                     <Navigation authUser={this.state.authUser}/>
-
-                    <hr />
 
                     <Route
                         exact path={routes.LANDING}

@@ -5,7 +5,6 @@ import * as routes from '../constants/routes';
 
 const SignUpPage = ({ history }) =>
     <div>
-        <h1>SignUp</h1>
         <SignUpForm history={history}/>
     </div>
 
@@ -67,43 +66,58 @@ class SignUpForm extends Component {
             username === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    value={username}
-                    onChange={event => this.setState(byPropKey('username', event.target.value))}
-                    type="text"
-                    placeholder="Full Name"
-                />
-                <input
-                    value={email}
-                    onChange={event => this.setState(byPropKey('email', event.target.value))}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    value={passwordOne}
-                    onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
-                    type="password"
-                    placeholder="Password"
-                />
-                <input
-                    value={passwordTwo}
-                    onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
-                    type="password"
-                    placeholder="Confirm Password"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Sign Up
-        </button>
+            <div className="login-page">
+                <form onSubmit={this.onSubmit} className="form">
+                    <input
+                        value={username}
+                        onChange={event => this.setState(byPropKey('username', event.target.value))}
+                        type="text"
+                        placeholder="Full Name"
+                    />
+                    <input
+                        value={email}
+                        onChange={event => this.setState(byPropKey('email', event.target.value))}
+                        type="text"
+                        placeholder="Email Address"
+                    />
+                    <input
+                        value={passwordOne}
+                        onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <input
+                        value={passwordTwo}
+                        onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
+                        type="password"
+                        placeholder="Confirm Password"
+                    />
+                    <button disabled={isInvalid} type="submit">
+                        Sign Up
+            </button>
 
-                {error && <p>{error.message}</p>}
-            </form>
+                    {error && <p>{error.message}</p>}
+                </form>
+                <p style={StyleInSignUp}>
+                    Already a user?
+    {' '}
+                    <Link to={routes.SIGN_IN}>Sign in</Link>
+                </p>
+            </div>
         );
     }
 }
+const style={
+    "textAlign": "center"
+}
+
+const StyleInSignUp = {
+    "marginTop": "-45px",
+    "textAlign": "center"
+}
 
 const SignUpLink = () =>
-    <p>
+    <p style={style}>
         Don't have an account?
     {' '}
         <Link to={routes.SIGN_UP}>Sign Up</Link>
