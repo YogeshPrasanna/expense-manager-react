@@ -8,13 +8,13 @@ import '../assets/css/index.css'
 import '../assets/css/signin.css'
 
 
-import Navigation from './Navigation';
-import LandingPage from './LandingPage';
-import SignUpPage from './SignUpPage';
-import SignInPage from './SignInPage';
-import PasswordForgetPage from './PasswordForgetPage';
-import HomePage from './HomePage';
-import AccountPage from './AccountPage';
+import Navigation from './Navigation/index';
+import LandingPage from './Landing/index';
+import SignUpPage from './signUp/index';
+import SignInPage from './signIn/index';
+import PasswordForgetPage from './forgotPassword/index';
+import HomePage from './Home/index';
+import AccountPage from './Account/index';
 
 import * as routes from '../constants/routes';
 

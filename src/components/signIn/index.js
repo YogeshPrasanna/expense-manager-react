@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { SignUpLink } from './SignUpPage';
-import { auth } from '../firebase';
-import * as routes from '../constants/routes';
+import { SignUpLink } from '../signUp/index';
+import { auth } from '../../firebase';
+import * as routes from '../../constants/routes';
 
 const SignInPage = ({ history }) =>
   <div>
