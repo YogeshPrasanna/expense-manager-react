@@ -1,0 +1,33 @@
+#addExpense{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+#closePopup{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+form {
+    margin: 0;
+    display: block;
+    background: indianred;
+    padding: 15px;
+}
+
+form label{
+    display: block;
+    margin-bottom: 15px
+}
+
+form label span {
+    width: 100px;
+    display: inline-block;
+}
+
+input{
+    padding: 5px;
+    width: 250px;
+}
