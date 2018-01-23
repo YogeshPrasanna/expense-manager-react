@@ -1,22 +1,6 @@
 import React , { Component }from 'react';
-import AddExpenseForm from './AddExpenseForm';
 
-class Popup extends Component {
-    constructor(props){
-        super(props);
-    }
-
-    render(){
-        return (
-            <div className="popup">
-                <div className="popup_inner">
-                    <AddExpenseForm />
-                    <button id="closePopup" onClick={this.props.closePopup}> X </button>
-                </div>
-            </div>
-        )
-    }
-}
+import AddExpensePopup from './AddExpensePopup';
 
 class HomePage extends Component {
 
@@ -39,7 +23,7 @@ class HomePage extends Component {
         return(
             <div>
                 <button onClick={this.togglePopup.bind(this)} id="addExpense"> + Add expense </button>
-                { this.state.showPopup ? <Popup closePopup={this.togglePopup.bind(this)}/> : null }
+                { this.state.showPopup ? <AddExpensePopup closePopup={this.togglePopup.bind(this)}/> : null }
             </div>
         )
     }
