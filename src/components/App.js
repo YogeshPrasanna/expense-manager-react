@@ -4,9 +4,10 @@ import {
     Route,
 } from 'react-router-dom';
 import { firebase } from '../firebase/index'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/css/index.css'
 import '../assets/css/signin.css'
-
 
 import Navigation from './Navigation/index';
 import LandingPage from './Landing/index';

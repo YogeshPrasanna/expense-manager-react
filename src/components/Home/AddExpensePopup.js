@@ -1,22 +1,16 @@
-import React , { Component } from 'react'
+import React from 'react'
 import AddExpenseForm from './AddExpenseForm';
-import * as db from '../../firebase/db'
 
-
-export default class AddExpensePopup extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="popup">
-                <div className="popup_inner">
-                    <AddExpenseForm />
-                    <button id="closePopup" onClick={this.props.closePopup}> X </button>
-                </div>
+const AddExpensePopup = (props) => {
+    return (
+        <div className="popup">
+            <div className="popup_inner">
+                <div className="addExpenseHeader"> Add an expense </div> 
+                <AddExpenseForm />
+                <button id="closePopup" onClick={props.closePopup}> X </button>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
+export default AddExpensePopup

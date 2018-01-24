@@ -12,27 +12,6 @@ html{
   max-height: 100vh
 }
 
-.NavigationBar{
-  background:#A1887F;
-  color: #ecf0f1 !important;
-  /* float: right; */
-  display: block
-}
-.NavigationBar ul{
-  display: inline;
-}
-
-.NavigationBar ul li{
-  list-style-type: none;
-  display: inline-block;
-  background: #616161;
-  padding: 25px;
-}
-
-.NavigationBar ul li a{
-  color: #ecf0f1
-}
-
 .popup {
   position: fixed;
   width: 100%;
@@ -49,7 +28,15 @@ html{
   left: 25%;
   right: 25%;
   top: 25%;
-  bottom: 25%;
+  bottom: 15%;
   margin: auto;
   background: white;
+}
+
+.addExpenseHeader{
+  display: block;
+  padding: 15px;
+  text-align: center;
+  background: #616161;
+  color: #ecf0f1;
 }

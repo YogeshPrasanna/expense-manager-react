@@ -1,5 +1,4 @@
 import React , { Component }from 'react';
-import * as db from '../../firebase/db'
 
 import AddExpensePopup from './AddExpensePopup';
 
