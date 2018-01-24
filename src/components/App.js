@@ -27,7 +27,8 @@ class App extends Component {
 
         this.state = {
             authUser: null,
-            users: null
+            users: null,
+            expenses: null
         };
     }
 
@@ -45,7 +46,14 @@ class App extends Component {
         // get all the users in the db
         db.onceGetUsers().then(snapshot => {
             this.setState({ users: snapshot.val() })
+        });
+
+        // get all the expenses in the db
+        db.onceGetExpenses().then((data) => {
+            this.setState({ 'expenses': data.val() })
             console.log(this.state)
+        }).catch(error => {
+            console.log(error)
         });
     }
     
@@ -80,7 +88,10 @@ class App extends Component {
                     />
                     <Route
                         exact path={routes.HOME}
-                        component={() => <HomePage user={this.state.authUser}/>}
+                        component={() => <HomePage 
+                            user={this.state.authUser} 
+                            expenses={this.state.expenses}
+                        />}
                     />
                     <Route
                         exact path={routes.ACCOUNT}

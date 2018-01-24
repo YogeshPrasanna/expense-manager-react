@@ -36,7 +36,7 @@ class AddExpenseForm extends Component {
         this.setState({
             date: moment(),
             expense: '',
-            category: 'grapefruit',
+            category: 'Automobile',
             comments: '',
             uid: this.props.user.uid,
             dataSaved: true
@@ -85,10 +85,12 @@ class AddExpenseForm extends Component {
                     </label>
                     <div className="col-10">
                         <select className="form-control" name="category" value={this.state.category} onChange={this.handleChange.bind(this)}>
-                            <option value="grapefruit">Grapefruit</option>
-                            <option value="lime">Lime</option>
-                            <option value="coconut">Coconut</option>
-                            <option value="mango">Mango</option>
+                            <option value="Automobile">Automobile</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Food">Food</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Vacation">Vacation</option>                            
                         </select>
                     </div>
                 </div>

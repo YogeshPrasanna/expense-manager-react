@@ -21,4 +21,15 @@ import { db } from './firebase'
      })
  }
 
-export { doCreateUser, onceGetUsers, doCreateExpense}
+ const onceGetExpenses = () => 
+     db.ref('expenses').once('value');
+
+// const allExpenses = () => {
+//     return onceGetExpenses().then((data) => {
+//          console.log(data.val()) 
+//         }).catch(error => {
+//             console.log(error)
+//         });
+// }
+
+export { doCreateUser, onceGetUsers, doCreateExpense, onceGetExpenses}
