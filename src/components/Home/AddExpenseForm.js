@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import $ from 'jquery';
 // import bootstrap from 'bootstrap';
 
 import * as db from '../../firebase/db'
@@ -29,7 +30,7 @@ class AddExpenseForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        db.doCreateExpense(this.state.uid, this.state.expense ,this.state.category, this.state.comments)
+        db.doCreateExpense(this.state.uid, $('.date').val(), this.state.expense ,this.state.category, this.state.comments)
 
         // reset form once saved
         this.setState({
@@ -42,6 +43,7 @@ class AddExpenseForm extends Component {
         })
 
         // show a message to user when saved
+        console.log($('.date').value);
     }
 
     handleChange(e) {
@@ -66,7 +68,7 @@ class AddExpenseForm extends Component {
                         {/* <input type="text" name="date" onChange={this.handleChange.bind(this)} value={this.state.date} /> */}
                     </label>
                     <div className="col-10">
-                        <DatePicker className="form-control" name="date" selected={this.state.date} onChange={this.handelDateChange.bind(this)} />
+                        <DatePicker className="form-control date" name="date" selected={this.state.date} onChange={this.handelDateChange.bind(this)} />
                     </div>
                 </div>
                 <div className="form-group row">
