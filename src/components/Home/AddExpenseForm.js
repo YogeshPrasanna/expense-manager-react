@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 // import bootstrap from 'bootstrap';
 
+import * as db from '../../firebase/db'
+
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles/form.css'
 
@@ -15,7 +17,9 @@ class AddExpenseForm extends Component {
             date: moment(),
             expense: '',
             category: 'grapefruit',
-            comments: ''
+            comments: '',
+            uid: this.props.user.uid,
+            dataSaved: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +29,19 @@ class AddExpenseForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state)
+        db.doCreateExpense(this.state.uid, this.state.expense ,this.state.category, this.state.comments)
+
+        // reset form once saved
+        this.setState({
+            date: moment(),
+            expense: '',
+            category: 'grapefruit',
+            comments: '',
+            uid: this.props.user.uid,
+            dataSaved: true
+        })
+
+        // show a message to user when saved
     }
 
     handleChange(e) {
@@ -83,6 +99,7 @@ class AddExpenseForm extends Component {
                     </div>
                 </div>
 
+                {this.state.dataSaved ? <span className="bg-success success-msg"> Data saved successfully</span> : <span></span> }
                 <button className="btn btn-primary float-right" type="submit" >save</button>
             </form>
         )

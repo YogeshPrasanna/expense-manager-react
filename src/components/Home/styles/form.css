@@ -14,3 +14,9 @@ form {
     margin: 0;
     padding: 15px;
 }
+
+.success-msg{
+    padding: 10px;
+    color: #fff;
+    border-radius: 2px;
+}

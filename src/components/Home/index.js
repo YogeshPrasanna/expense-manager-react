@@ -11,7 +11,6 @@ class HomePage extends Component {
             showPopup: false,
             users: ''
         }
-        
     }
 
     togglePopup(){
@@ -25,7 +24,7 @@ class HomePage extends Component {
         return(
             <div>
                 <button onClick={this.togglePopup.bind(this)} id="addExpense"> + Add expense </button>
-                { this.state.showPopup ? <AddExpensePopup closePopup={this.togglePopup.bind(this)}/> : null }
+                { this.state.showPopup ? <AddExpensePopup user={this.props.user} closePopup={this.togglePopup.bind(this)}/> : null }
             </div>
         )
     }

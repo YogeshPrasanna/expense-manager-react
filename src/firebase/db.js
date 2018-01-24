@@ -15,4 +15,10 @@ import { db } from './firebase'
  const onceGetUsers = () =>
     db.ref('users').once('value');
 
-export { doCreateUser, onceGetUsers }
+ const doCreateExpense = (uid, expense , category , comments) => {
+     db.ref(`expenses/`).push().set({
+         uid, expense, category, comments 
+     })
+ }
+
+export { doCreateUser, onceGetUsers, doCreateExpense}
