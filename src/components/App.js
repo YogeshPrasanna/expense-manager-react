@@ -17,6 +17,8 @@ import HomePage from './Home/index';
 import AccountPage from './Account/index';
 
 import * as routes from '../constants/routes';
+import * as db from '../firebase/db'
+
 
 class App extends Component {
     constructor(props) {
@@ -24,19 +26,25 @@ class App extends Component {
 
         this.state = {
             authUser: null,
+            users: null
         };
-
-        console.log("state" , this.state.authUser)
     }
 
     componentDidMount(){
         firebase.auth.onAuthStateChanged(authUser => {
+            console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser ? this.setState({
                 authUser: authUser
             }) : this.setState({
                 authUser: null
             })
             // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
+        });
+
+        // get all the users in the db
+        db.onceGetUsers().then(snapshot => {
+            this.setState({ users: snapshot.val() })
+            console.log(this.state)
         });
     }
     

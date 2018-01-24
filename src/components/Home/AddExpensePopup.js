@@ -1,5 +1,7 @@
 import React , { Component } from 'react'
 import AddExpenseForm from './AddExpenseForm';
+import * as db from '../../firebase/db'
+
 
 export default class AddExpensePopup extends Component {
     constructor(props) {

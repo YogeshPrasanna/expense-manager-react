@@ -26,9 +26,6 @@ const NavigationNonAuth = () => {
 }
 
 const Navigation = ({ authUser }) => {
-
-    console.log(authUser)
-
     return (
         <div>
             {authUser ? <NavigationAuth /> : <NavigationNonAuth />}

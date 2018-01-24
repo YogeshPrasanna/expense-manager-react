@@ -1,4 +1,5 @@
 import React , { Component }from 'react';
+import * as db from '../../firebase/db'
 
 import AddExpensePopup from './AddExpensePopup';
 
@@ -8,8 +9,10 @@ class HomePage extends Component {
         super(props)
 
         this.state = {
-            showPopup: false
+            showPopup: false,
+            users: ''
         }
+        
     }
 
     togglePopup(){
