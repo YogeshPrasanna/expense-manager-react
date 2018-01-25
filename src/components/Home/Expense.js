@@ -1,5 +1,4 @@
-import React , { Component } from 'react'
-import * as db from '../../firebase/db'
+import React from 'react'
 import ExpenseRow from './ExpenseRow'
 
 const Expense = (props) => {
@@ -8,11 +7,11 @@ const Expense = (props) => {
         var currentUser = props.authUser;
 
         if(!expenses){
-            return <div> Loading ... </div>
+            return <tr><td> Loading ... </td></tr>
         }
 
         if (!currentUser) {
-            return <div> Loading ... </div>
+            return <tr><td> Loading ... </td></tr>
         }
 
         if (expenses && currentUser){
@@ -22,12 +21,8 @@ const Expense = (props) => {
 
             var thisUsersExpenses = eachExpense.filter((elem) => elem.value.uid === currentUser.uid);
 
-            var tableString = thisUsersExpenses.map((elem, i) => {
-                return `<tr id=${thisUsersExpenses[i].key}><td>${thisUsersExpenses[i].value.date}</td></tr>`
-            })
-
-            return thisUsersExpenses.map(function (elem) {
-                return <ExpenseRow expense={elem} />
+            return thisUsersExpenses.map(function (elem,i) {
+                return <ExpenseRow expense={elem} num={i} key={i} expenseId={thisUsersExpenses[i].key}/>
             })
         }
 

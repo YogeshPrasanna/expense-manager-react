@@ -14,7 +14,7 @@ const ExpenseTable = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <Expense expenses={props.expenses} authUser={props.authUser}/>
+                <Expense expenses={props.expenses} authUser={props.authUser} key={Math.random() * 100}/>
             </tbody>
         </table>
     )

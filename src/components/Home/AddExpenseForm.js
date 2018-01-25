@@ -31,7 +31,6 @@ class AddExpenseForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         db.doCreateExpense(this.state.uid, $('.date').val(), this.state.expense ,this.state.category, this.state.comments)
-
         // reset form once saved
         this.setState({
             date: moment(),
@@ -42,8 +41,8 @@ class AddExpenseForm extends Component {
             dataSaved: true
         })
 
-        // show a message to user when saved
-        console.log($('.date').value);
+        // bad practice : need to re render the parent Component
+        //window.location.reload()
     }
 
     handleChange(e) {
