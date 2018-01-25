@@ -24,7 +24,12 @@ import { db } from './firebase'
  const onceGetExpenses = () => 
      db.ref('expenses').once('value');
 
-// const allExpenses = () => {
+//  const expensesRef = db.ref('expenses')
+//     expensesRef.on('child_removed', function (data) {
+//         console.log("child_removed")
+//     });
+
+// const allExpenses = () => { 
 //     return onceGetExpenses().then((data) => {
 //          console.log(data.val()) 
 //         }).catch(error => {
@@ -32,4 +37,4 @@ import { db } from './firebase'
 //         });
 // }
 
-export { doCreateUser, onceGetUsers, doCreateExpense, onceGetExpenses}
+export { doCreateUser, onceGetUsers, doCreateExpense, onceGetExpenses }

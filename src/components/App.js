@@ -48,15 +48,22 @@ class App extends Component {
             this.setState({ users: snapshot.val() })
         });
 
-        // get all the expenses in the db
-        db.onceGetExpenses().then((data) => {
-            this.setState({ 'expenses': data.val() })
-            console.log(this.state)
-        }).catch(error => {
-            console.log(error)
+        // get and set expenses in db 
+        firebase.db.ref('expenses').on('value', (data) => {
+            if(data){
+                this.setState({ 'expenses': data.val() })
+            }
+        });
+
+        const expensesRef = firebase.db.ref('expenses')
+        expensesRef.on('child_removed', (data) => {
+            firebase.db.ref('expenses').on('value', (data) => {
+                if (data) {
+                    this.setState({ 'expenses': data.val() })
+                }
+            });
         });
     }
-    
 
     render() {
 
