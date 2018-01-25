@@ -12,7 +12,7 @@ const NavigationAuth = () => {
                     <a className="navbar-brand" href="#">Expense Manager</a>
                     <li className="nav-item"><Link className="nav-link" to={routes.HOME}>Home</Link></li>
                     <li className="nav-item"><Link className="nav-link" to={routes.ACCOUNT}>Account</Link></li>
-                    <li className="nav-item"><SignOutButton /></li>
+                    <li className="nav-item"><Link className="nav-link" to={routes.SIGN_IN}><SignOutButton /></Link></li>
                 </ul>
             </div>
         </nav>
