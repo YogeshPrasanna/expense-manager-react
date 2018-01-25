@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import { firebase } from '../firebase/index'
 
+import 'font-awesome/css/font-awesome.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/css/index.css'
 import '../assets/css/signin.css'

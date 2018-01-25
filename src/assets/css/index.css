@@ -40,3 +40,18 @@ html{
   background: #616161;
   color: #ecf0f1;
 }
+
+.delete-btn{
+  background: #212529;
+  color: #ea8c8c;
+  margin: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.addexpense-btn{
+  border-radius: 50px;
+  border-color: #25221b66;
+  outline: none !important;
+}

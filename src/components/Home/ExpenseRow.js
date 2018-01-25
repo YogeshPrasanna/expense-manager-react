@@ -22,7 +22,7 @@ class ExpenseRow  extends Component {
                 <td>{this.props.expense.value.expense}</td>
                 <td>{this.props.expense.value.category}</td>
                 <td>{this.props.expense.value.comments}</td>
-                <td><button onClick={this.handleClick}>Delete</button></td>
+                <td><button className="delete-btn" onClick={this.handleClick}><i class="fa fa-trash-o" aria-hidden="true"></i> delete</button></td>
             </tr>
         )
     }

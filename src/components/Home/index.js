@@ -26,7 +26,7 @@ class HomePage extends Component {
                 <div className="col-sm-12">
                     <ExpenseTable expenses={this.props.expenses} authUser={this.props.user}/>                    
                 </div>
-                <button onClick={this.togglePopup.bind(this)} id="addExpense"> + Add expense </button>
+                <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense"><i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i></button>
                 { this.state.showPopup ? <AddExpensePopup user={this.props.user} closePopup={this.togglePopup.bind(this)}/> : null }
             </div>
         )
