@@ -75,7 +75,7 @@ class AddExpenseForm extends Component {
                         <span>Expense</span>
                     </label>
                     <div className="col-10">
-                        <input className="form-control" type="text" name="expense" onChange={this.handleChange.bind(this)} value={this.state.expense} />
+                        <input className="form-control" required type="number" name="expense" onChange={this.handleChange.bind(this)} value={this.state.expense} />
                     </div>
                 </div>
                 <div className="form-group row">
@@ -98,7 +98,7 @@ class AddExpenseForm extends Component {
                         <span>Comments</span>
                     </label>
                     <div className="col-10">
-                        <input className="form-control" type="text" name="comments" onChange={this.handleChange.bind(this)} value={this.state.comments} />
+                        <input className="form-control" type="text" required name="comments" onChange={this.handleChange.bind(this)} value={this.state.comments} />
                     </div>
                 </div>
 
