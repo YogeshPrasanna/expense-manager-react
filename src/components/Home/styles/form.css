@@ -20,3 +20,7 @@ form {
     color: #fff;
     border-radius: 2px;
 }
+
+.signout-btn{
+    border: 1px solid orange;
+}

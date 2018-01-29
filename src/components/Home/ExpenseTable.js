@@ -3,7 +3,7 @@ import Expense from './Expense'
 
 const ExpenseTable = (props) => {
     return (
-        <table className="table table-dark">
+        <table className="table table-striped table-bordered table-dark">
             <thead>
                 <tr>
                     <th scope="col">#</th>

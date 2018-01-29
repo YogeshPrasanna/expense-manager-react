@@ -17,7 +17,7 @@ class AddExpenseForm extends Component {
         this.state = {
             date: moment(),
             expense: '',
-            category: 'grapefruit',
+            category: 'Automobile',
             comments: '',
             uid: this.props.user.uid,
             dataSaved: false
@@ -98,7 +98,7 @@ class AddExpenseForm extends Component {
                         <span>Comments</span>
                     </label>
                     <div className="col-10">
-                        <input className="form-control" type="text" required name="comments" onChange={this.handleChange.bind(this)} value={this.state.comments} />
+                        <textarea className="form-control" type="text" required name="comments" onChange={this.handleChange.bind(this)} value={this.state.comments} />
                     </div>
                 </div>
 
