@@ -1,9 +1,11 @@
 import React from 'react'
 import Expense from './Expense'
 
+import '../../assets/css/table.css'
+
 const ExpenseTable = (props) => {
     return (
-        <table className="table table-striped table-bordered table-dark">
+        <table className="table table-striped table-bordered table-dark rwd-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>

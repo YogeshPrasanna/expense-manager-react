@@ -7,7 +7,7 @@ import * as routes from '../../constants/routes';
 const NavigationAuth = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="collapse navbar-collapse">
+            <div className="navbar-collapse">
                 <ul className="navbar-nav">
                     <a className="navbar-brand" href="#">Expense Manager</a>
                 </ul>
@@ -24,7 +24,7 @@ const NavigationAuth = () => {
 const NavigationNonAuth = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="collapse navbar-collapse">
+            <div className="navbar-collapse">
                 <ul className="navbar-nav">
                     <a className="navbar-brand" href="#">Expense Manager</a>
                 </ul>

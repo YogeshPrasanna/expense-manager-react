@@ -17,12 +17,12 @@ class ExpenseRow  extends Component {
     render(){
         return (
             <tr key={this.props.expenseId} id={this.props.expenseId}>
-                <td>{this.props.num + 1}</td>
-                <td>{this.props.expense.value.date}</td>
-                <td>{this.props.expense.value.expense}</td>
-                <td>{this.props.expense.value.category}</td>
-                <td>{this.props.expense.value.comments}</td>
-                <td><button className="delete-btn" onClick={this.handleClick}><i className="fa fa-trash-o" aria-hidden="true"></i> delete</button></td>
+                <td data-th="No">{this.props.num + 1}</td>
+                <td data-th="Date">{this.props.expense.value.date}</td>
+                <td data-th="Expense">{this.props.expense.value.expense}</td>
+                <td data-th="Category">{this.props.expense.value.category}</td>
+                <td data-th="Comments">{this.props.expense.value.comments}</td>
+                <td data-th="Delete"><button className="delete-btn" onClick={this.handleClick}><i className="fa fa-trash-o" aria-hidden="true"></i> delete</button></td>
             </tr>
         )
     }
