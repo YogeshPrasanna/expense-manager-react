@@ -27,13 +27,27 @@ const Cards = (props) => {
 
         console.log("This users expenses : ", thisUsersExpensesThisMonth)
 
-        totalExpenses = thisUsersExpenses.map((elem) => {
-            return Number(elem.value.expense)
-        }).reduce((prev,cur) => prev + cur)
+        
 
-        totalExpensesThisMonth = thisUsersExpensesThisMonth.map((elem) => {
-            return Number(elem.value.expense)
-        }).reduce((prev, cur) => prev + cur)
+        if (thisUsersExpenses.length > 1) {
+            totalExpenses = thisUsersExpenses.map((elem) => {
+                return Number(elem.value.expense)
+            }).reduce((prev, cur) => prev + cur)
+        } else if (thisUsersExpenses.length === 1) {
+            totalExpenses = thisUsersExpenses[0].value.expense
+        }else{
+            totalExpenses = 0
+        }
+
+        if (thisUsersExpensesThisMonth.length > 1){
+            totalExpensesThisMonth = thisUsersExpensesThisMonth.map((elem) => {
+                return Number(elem.value.expense)
+            }).reduce((prev, cur) => prev + cur)
+        } else if (thisUsersExpensesThisMonth.length === 1) {
+            totalExpensesThisMonth = thisUsersExpensesThisMonth[0].value.expense            
+        }else{
+            totalExpensesThisMonth = 0
+        }
 
         console.log("Today ", thisUsersExpensesToday)
 
@@ -70,7 +84,7 @@ const Cards = (props) => {
                 <div className="card card3">
                     <div className="card-block">
                         <h3 className="card-title">Money Spent Today</h3>
-                        <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i>{totalExpensesToday}</p>
+                        <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpensesToday}</p>
                     </div>
                 </div>
             </div>
