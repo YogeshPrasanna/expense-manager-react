@@ -2,6 +2,7 @@ import React , { Component }from 'react';
 
 import ExpenseTable from './ExpenseTable.js'
 import AddExpensePopup from './AddExpensePopup';
+import Cards from './Cards'
 
 
 class HomePage extends Component {
@@ -24,6 +25,7 @@ class HomePage extends Component {
         return(
             <div>
                 <div className="col-sm-12">
+                    <Cards expenses={this.props.expenses} authUser={this.props.user} />
                     <ExpenseTable expenses={this.props.expenses} authUser={this.props.user}/>                    
                 </div>
                 <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense"><i className="fa fa-plus-circle fa-5x" aria-hidden="true"></i></button>

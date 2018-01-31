@@ -67,6 +67,35 @@ html{
   outline: none !important;
 }
 
+.card{
+  margin-top: 15px
+}
+
+.card1{
+  background: #616161 !important;
+  color: #ddd !important;
+}
+
+.card2{
+  background: #7F7950 !important;
+  color: #ddd !important;
+}
+
+.card3{
+  background: #CCCABD !important;
+  color: #2b2b2b !important;
+}
+
+.card .card-block .card-title {
+  padding: 15px;
+}
+
+.card .card-block .card-text{
+  padding: 15px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
 @media (max-width: 720px){
   .landing{
     text-align: center;
