@@ -1,10 +1,7 @@
 import React from 'react'
 import ExpenseRow from './ExpenseRow'
-// import moment from 'moment'
 
 const Expense = (props) => {
-
-    console.log("PROPS : " , props)
 
     var expenses = props.expenses;
     var currentUser = props.authUser;

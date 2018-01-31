@@ -18,6 +18,7 @@ import PasswordForgetPage from './forgotPassword/index';
 import HomePage from './Home/index';
 import AccountPage from './Account/index';
 import MonthViewPage from './MonthView/index'
+import DailyViewPage from './DailyView/index'
 
 import * as routes from '../constants/routes';
 import * as db from '../firebase/db'
@@ -111,6 +112,14 @@ class App extends Component {
                         exact path={routes.MONTH_VIEW}
                         component={() => <MonthViewPage 
                             user={this.state.authUser} 
+                            expenses={this.state.expenses}
+                        />}
+                    />
+
+                    <Route
+                        exact path={routes.DAILY_VIEW}
+                        component={() => <DailyViewPage
+                            user={this.state.authUser}
                             expenses={this.state.expenses}
                         />}
                     />
