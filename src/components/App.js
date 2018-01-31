@@ -17,6 +17,7 @@ import SignInPage from './signIn/index';
 import PasswordForgetPage from './forgotPassword/index';
 import HomePage from './Home/index';
 import AccountPage from './Account/index';
+import MonthViewPage from './MonthView/index'
 
 import * as routes from '../constants/routes';
 import * as db from '../firebase/db'
@@ -103,8 +104,17 @@ class App extends Component {
                     />
                     <Route
                         exact path={routes.ACCOUNT}
-                        component={() => <AccountPage />}
+                        component={() => <AccountPage user={this.state.authUser} />}
                     />
+
+                    <Route
+                        exact path={routes.MONTH_VIEW}
+                        component={() => <MonthViewPage 
+                            user={this.state.authUser} 
+                            expenses={this.state.expenses}
+                        />}
+                    />
+
                 </div>
             </Router>
         );
