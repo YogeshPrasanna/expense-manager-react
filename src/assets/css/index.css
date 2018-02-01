@@ -72,18 +72,23 @@ html{
 }
 
 .card1{
-  background: #616161 !important;
+  background: #9A4C48 !important;
   color: #ddd !important;
 }
 
 .card2{
-  background: #7F7950 !important;
+  background: #855B81 !important;
   color: #ddd !important;
 }
 
 .card3{
-  background: #CCCABD !important;
-  color: #2b2b2b !important;
+  background: #466D81 !important;
+  color: #ddd !important;
+}
+
+.card4{
+  background: #50669B !important;
+  color: #ddd !important;
 }
 
 .card .card-block .card-title {
