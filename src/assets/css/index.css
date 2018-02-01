@@ -64,11 +64,17 @@ html{
 .addexpense-btn{
   border-radius: 50px;
   border-color: #25221b66;
+  cursor: pointer;
   outline: none !important;
 }
 
 .card{
-  margin-top: 15px
+  margin-top: 15px;
+  border-left: 10px solid rgba(0,0,0,0.1) !important;
+}
+
+.card:hover{
+   border-left: 10px solid rgba(0,0,0,0.5) !important;
 }
 
 .card1{
@@ -93,6 +99,7 @@ html{
 
 .card .card-block .card-title {
   padding: 15px;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
 }
 
 .card .card-block .card-text{
@@ -102,6 +109,28 @@ html{
 }
 
 @media (max-width: 720px){
+  .navbar-nav {
+		padding-top: .425rem;
+		padding-left: 0.75rem;
+	}
+	.navbar-nav .nav-item {
+		float: none;
+	}
+	.navbar-brand {
+		float: right;
+	}
+	.navbar-brand,
+	.navbar-nav .nav-item {
+		display: block;
+	}
+	.navbar-nav .nav-item + .nav-item {
+		margin-left: 0;
+	}
+	.dropdown-menu {
+		position: relative;
+		float: none;
+  }
+  
   .landing{
     text-align: center;
     letter-spacing: 3px;
