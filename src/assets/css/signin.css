@@ -1,6 +1,6 @@
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 2% 0 0;
   margin: auto;
 }
 .form {
@@ -40,4 +40,15 @@
 }
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
+}
+
+.googleSignIn{
+  background: rgb(192, 96, 96) !important;
+  color: #ddd !important;
+  padding: 15px;
+}
+
+.googleLogo{
+  margin-right: 15px;
+  font-weight: bold;
 }

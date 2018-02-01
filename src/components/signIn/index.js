@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { SignUpLink } from '../signUp/index';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import firebase from 'firebase';
 
 const SignInPage = ({ history }) =>
   <div>
@@ -26,6 +27,42 @@ class SignInForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+  }
+
+
+  callGoogleSignIn = () => {
+
+    const {
+      history,
+    } = this.props;
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then((result) => {
+
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+
+      // The signed-in user info.
+      var user = result.user;
+
+      history.push(routes.HOME);
+
+    }).catch((error) => {
+
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      // The email of the user's account used.
+      var email = error.email;
+
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+
+      alert(errorMessage , "Retry !!!")
+      // ...
+    });
   }
 
   onSubmit = (event) => {
@@ -81,6 +118,12 @@ class SignInForm extends Component {
           <button disabled={isInvalid} type="submit">
             Sign In
           </button>
+
+          <hr />
+
+          <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
+            <span className="googleLogo"><i className="fa fa-google"></i></span> Sign in with google
+          </div>
 
           { error && <p>{error.message}</p> }
         </form>
