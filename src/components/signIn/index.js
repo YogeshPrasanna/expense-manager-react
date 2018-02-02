@@ -101,14 +101,12 @@ class SignInForm extends Component {
     return (
       <div className="login-page">
         <form onSubmit={this.onSubmit} className="form">
-          <span> Email : </span>
           <input
             value={email}
             onChange={event => this.setState(byPropKey('email', event.target.value))}
             type="text"
             placeholder="Email Address"
           />
-          <span> Password : </span>
           <input
             value={password}
             onChange={event => this.setState(byPropKey('password', event.target.value))}

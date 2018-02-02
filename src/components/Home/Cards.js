@@ -95,18 +95,18 @@ const Cards = (props) => {
                 </div>
             </div>
             <div className="col-sm-3">
-                <div className="card card3">
-                    <div className="card-block">
-                        <h3 className="card-title">Today</h3>
-                        <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpensesToday}</p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-sm-3">
                 <div className="card card4">
                     <div className="card-block">
                         <h3 className="card-title">This Week</h3>
                         <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpensesThisWeek}</p>
+                    </div>
+                </div>
+            </div>
+            <div className="col-sm-3">
+                <div className="card card3">
+                    <div className="card-block">
+                        <h3 className="card-title">Today</h3>
+                        <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpensesToday}</p>
                     </div>
                 </div>
             </div>

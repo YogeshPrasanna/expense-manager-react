@@ -46,6 +46,7 @@
   background: rgb(192, 96, 96) !important;
   color: #ddd !important;
   padding: 15px;
+  cursor: pointer;
 }
 
 .googleLogo{
