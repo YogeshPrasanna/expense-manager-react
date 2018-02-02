@@ -19,10 +19,6 @@ ul{
   margin: 0
 }
 
-html{
-  max-height: 100vh
-}
-
 .popup {
   position: fixed;
   width: 100%;
