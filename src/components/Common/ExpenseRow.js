@@ -5,12 +5,11 @@ class ExpenseRow  extends Component {
 
     constructor(props){
         super(props)
-
         this.handleClick = this.handleClick.bind(this);
     }
 
+    // deleting the expense 
     handleClick(e){
-        console.log("clicked", this.props.expenseId)
         firebase.db.ref(`expenses/${this.props.expenseId}`).remove()
     }
 

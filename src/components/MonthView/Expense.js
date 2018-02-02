@@ -1,5 +1,5 @@
 import React from 'react'
-import ExpenseRow from './ExpenseRow'
+import ExpenseRow from '../Common/ExpenseRow'
 
 const Expense = (props) => {
 

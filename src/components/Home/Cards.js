@@ -10,27 +10,21 @@ const Cards = (props) => {
     var totalExpensesToday = 0;
     var totalExpensesThisWeek = 0;
 
-    if (!expenses) {
-        return <tr><td> Loading ... </td></tr>
-    }
-
-    if (!currentUser) {
-        return <tr><td> Loading ... </td></tr>
+    if (!expenses && !currentUser) {
+        return <div> Loading ... </div>
     }
 
     if (expenses && currentUser) {
-        var eachExpense = Object.keys(expenses).map(function (key) {
+        const eachExpense = Object.keys(expenses).map(function (key) {
             return { key: key, value: expenses[key] };
         });
 
-        var thisUsersExpenses = eachExpense.filter((elem) => elem.value.uid === currentUser.uid);
-        var thisUsersExpensesThisMonth = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && new Date(elem.value.date).getMonth() === new Date().getMonth())
-        var thisUsersExpensesToday = thisUsersExpensesThisMonth.filter((elem) => new Date(elem.value.date).getDate() === new Date().getDate())          
-        var thisUsersExpensesThisWeek = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && (moment(elem.value.date , 'MM/DD/YYYY').week() === moment(moment(new Date()) , 'MM/DD/YYYY').week()))
+        const thisUsersExpenses = eachExpense.filter((elem) => elem.value.uid === currentUser.uid);
+        const thisUsersExpensesThisMonth = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && new Date(elem.value.date).getMonth() === new Date().getMonth())
+        const thisUsersExpensesToday = thisUsersExpensesThisMonth.filter((elem) => new Date(elem.value.date).getDate() === new Date().getDate())          
+        const thisUsersExpensesThisWeek = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && (moment(elem.value.date , 'MM/DD/YYYY').week() === moment(moment(new Date()) , 'MM/DD/YYYY').week()))
 
-        console.log("This users expenses this week : ", thisUsersExpensesThisWeek)
-
-
+        // Overall Expenses
         if (thisUsersExpenses.length > 1) {
             totalExpenses = thisUsersExpenses.map((elem) => {
                 return Number(elem.value.expense)
@@ -41,6 +35,7 @@ const Cards = (props) => {
             totalExpenses = 0
         }
 
+        // This month expenses
         if (thisUsersExpensesThisMonth.length > 1){
             totalExpensesThisMonth = thisUsersExpensesThisMonth.map((elem) => {
                 return Number(elem.value.expense)
@@ -51,8 +46,7 @@ const Cards = (props) => {
             totalExpensesThisMonth = 0
         }
 
-        console.log("Today ", thisUsersExpensesToday)
-
+        // Today'expenses
         if(thisUsersExpensesToday.length > 1){
             totalExpensesToday = thisUsersExpensesToday.map((elem) => {
                 return Number(elem.value.expense)
@@ -63,6 +57,7 @@ const Cards = (props) => {
             totalExpensesToday = 0
         }
 
+        // This weeks expenses
         if (thisUsersExpensesThisWeek.length > 1) {
             totalExpensesThisWeek = thisUsersExpensesThisWeek.map((elem) => {
                 return Number(elem.value.expense)
@@ -72,8 +67,6 @@ const Cards = (props) => {
         } else {
             totalExpensesThisWeek = 0
         }
-
-
     }
 
     return (

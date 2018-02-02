@@ -1,12 +1,10 @@
 import React from 'react'
-import ExpenseRow from './ExpenseRow'
+import ExpenseRow from '../Common/ExpenseRow'
 
 const Expense = (props) => {
 
         var expenses = props.expenses;
         var currentUser = props.authUser;
-
-        console.log("DAA " , props.date)
 
         if(!expenses){
             return <tr><td> Loading ... </td></tr>

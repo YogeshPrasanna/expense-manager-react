@@ -43,28 +43,30 @@ class App extends Component {
             }) : this.setState({
                 authUser: null
             })
-            // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
-        });
 
-        // get all the users in the db
-        db.onceGetUsers().then(snapshot => {
-            this.setState({ users: snapshot.val() })
-        });
+            if(this.state.authUser){
+                // get all the users in the db
+                db.onceGetUsers().then(snapshot => {
+                    this.setState({ users: snapshot.val() })
+                });
 
-        // get and set expenses in db 
-        firebase.db.ref('expenses').on('value', (data) => {
-            if(data){
-                this.setState({ 'expenses': data.val() })
+                // get and set expenses in db 
+                firebase.db.ref('expenses').on('value', (data) => {
+                    if (data) {
+                        this.setState({ 'expenses': data.val() })
+                    }
+                });
+
+                const expensesRef = firebase.db.ref('expenses')
+                expensesRef.on('child_removed', (data) => {
+                    firebase.db.ref('expenses').on('value', (data) => {
+                        if (data) {
+                            this.setState({ 'expenses': data.val() })
+                        }
+                    });
+                });
             }
-        });
-
-        const expensesRef = firebase.db.ref('expenses')
-        expensesRef.on('child_removed', (data) => {
-            firebase.db.ref('expenses').on('value', (data) => {
-                if (data) {
-                    this.setState({ 'expenses': data.val() })
-                }
-            });
+            // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
         });
     }
 
