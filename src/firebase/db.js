@@ -15,9 +15,9 @@ import { db } from './firebase'
  const onceGetUsers = () =>
     db.ref('users').once('value');
 
- const doCreateExpense = (uid, date, expense , category , comments) => {
+ const doCreateExpense = (uid, date, expense , category , comments, day) => {
      db.ref(`expenses/`).push().set({
-         uid, date, expense, category, comments 
+         uid, date, expense, category, comments , day
      })
  }
 

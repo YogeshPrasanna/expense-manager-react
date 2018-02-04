@@ -16,6 +16,7 @@ class AddExpenseForm extends Component {
 
         this.state = {
             date: moment(),
+            day: moment().day,
             expense: '',
             category: 'Automobile',
             comments: '',
@@ -30,10 +31,11 @@ class AddExpenseForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        db.doCreateExpense(this.state.uid, $('.date').val(), this.state.expense ,this.state.category, this.state.comments)
+        db.doCreateExpense(this.state.uid, $('.date').val(), this.state.expense, this.state.category, this.state.comments, moment($('.date').val()).day())
         // reset form once saved
         this.setState({
             date: moment(),
+            day:moment().day,
             expense: '',
             category: 'Automobile',
             comments: '',

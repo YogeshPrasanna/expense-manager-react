@@ -146,3 +146,10 @@ ul{
     top: 20%;
   }
 }
+
+.right{
+  /* float: right !important; */
+  /* text-align: center; */
+  margin-left: 15px;
+  color: orange;
+}
