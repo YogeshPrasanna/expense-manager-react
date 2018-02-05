@@ -25,10 +25,10 @@ class MonthViewPage extends Component {
             <div>
                 <form>
                     <div className="form-group row">
-                        <label className="col-1 col-form-label">
+                        <label className="col-sm-1 col-xs-6 col-form-label">
                             <span>Year</span>
                         </label>
-                        <div className="col-3">
+                        <div className="col-sm-3 col-xs-6">
                             <select className="form-control" name="year" value={this.state.year} onChange={this.handleChange.bind(this)}>
                                 <option value="2016">2016</option>
                                 <option value="2017">2017</option>
@@ -37,10 +37,10 @@ class MonthViewPage extends Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-1 col-form-label">
+                        <label className="col-sm-1 col-xs-6 col-form-label">
                             <span>Month</span>
                         </label>
-                        <div className="col-3">
+                        <div className="col-sm-3 col-xs-6">
                             <select className="form-control" name="month" value={this.state.month} onChange={this.handleChange.bind(this)}>
                                 <option value="0">January</option>
                                 <option value="1">February</option>
@@ -59,7 +59,7 @@ class MonthViewPage extends Component {
                     </div>
                 </form>
 
-                <div className="col-8">
+                <div className="col-sm-8">
                     <MonthExpenseTable expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />
                 </div>
 

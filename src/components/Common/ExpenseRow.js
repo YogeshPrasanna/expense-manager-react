@@ -47,12 +47,11 @@ class ExpenseRow  extends Component {
                     day = "Saturday";
             }
         }
-        
 
         return (
             <tr key={this.props.expenseId} id={this.props.expenseId}>
                 <td data-th="No">{this.props.num + 1}</td>
-                <td data-th="Date">{this.props.expense.value.date} <span className="right"> {day || "Sunday"}</span></td>
+                <td data-th="Date">{this.props.expense.value.date} <span className="expense-day"> {day || "Sunday"}</span></td>
                 <td data-th="Expense">{this.props.expense.value.expense}</td>
                 <td data-th="Category">{this.props.expense.value.category}</td>
                 <td data-th="Comments">{this.props.expense.value.comments}</td>

@@ -104,7 +104,32 @@ ul{
   font-weight: bold;
 }
 
+.expense-day{
+  margin-left: 15px;
+  color: orange;
+}
+
+#addExpense {
+  position: fixed;
+  bottom: 30px !important;
+  right: 30px !important;
+}
+
 @media (max-width: 720px){
+  .form{
+    margin: 15px !important
+  }
+
+  #addExpense {
+    bottom: 20px;
+    right: 30px;
+  }
+
+  .expense-day{
+    margin: 0 auto;
+    display: table;
+  }
+
   .navbar-nav {
 		padding-top: .425rem;
 		padding-left: 0.75rem;
@@ -141,15 +166,9 @@ ul{
 
   .popup_inner{
     width: 90vw;
+    height: 85vh;
     right: 15px;
     left: 15px;
-    top: 20%;
+    top: 15%;
   }
-}
-
-.right{
-  /* float: right !important; */
-  /* text-align: center; */
-  margin-left: 15px;
-  color: orange;
 }

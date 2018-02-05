@@ -64,27 +64,27 @@ class AddExpenseForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group row">
-                    <label className="col-2 col-form-label">
+                    <label className="col-sm-2 col-xs-6 col-form-label">
                         <span>Date</span>
                         {/* <input type="text" name="date" onChange={this.handleChange.bind(this)} value={this.state.date} /> */}
                     </label>
-                    <div className="col-10">
+                    <div className="col-sm-10 col-xs-6">
                         <DatePicker className="form-control date" name="date" selected={this.state.date} onChange={this.handelDateChange.bind(this)} />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-2 col-form-label">
+                    <label className="col-sm-2 col-xs-6 col-form-label">
                         <span>Expense</span>
                     </label>
-                    <div className="col-10">
+                    <div className="col-sm-10 col-xs-6">
                         <input className="form-control" required type="number" name="expense" onChange={this.handleChange.bind(this)} value={this.state.expense} />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-2 col-form-label">
+                    <label className="col-sm-2 col-xs-6 col-form-label">
                         <span>category</span>
                     </label>
-                    <div className="col-10">
+                    <div className="col-sm-10 col-xs-6">
                         <select className="form-control" name="category" value={this.state.category} onChange={this.handleChange.bind(this)}>
                             <option value="Automobile">Automobile</option>
                             <option value="Clothing">Clothing</option>
@@ -96,10 +96,10 @@ class AddExpenseForm extends Component {
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-2 col-form-label">
+                    <label className="col-sm-2 col-xs-6 col-form-label">
                         <span>Comments</span>
                     </label>
-                    <div className="col-10">
+                    <div className="col-sm-10 col-xs-6">
                         <textarea className="form-control" type="text" required name="comments" onChange={this.handleChange.bind(this)} value={this.state.comments} />
                     </div>
                 </div>
