@@ -5,4 +5,5 @@ export const HOME = '/home';
 export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';
 export const MONTH_VIEW = '/month-view';
-export const DAILY_VIEW = '/daily-view'
+export const DAILY_VIEW = '/daily-view';
+export const USER_VERIFICATION = '/user-vefification'

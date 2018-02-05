@@ -76,9 +76,16 @@ class SignInForm extends Component {
     } = this.props;
 
     auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
+      .then((authUser) => {
+
+        // allow signin only when user is verified
+        if (authUser && authUser.emailVerified){
+          this.setState(() => ({ ...INITIAL_STATE }));
+          history.push(routes.HOME);
+        }else{
+          history.push(routes.USER_VERIFICATION)
+        }
+
       })
       .catch(error => {
         this.setState(byPropKey('error', error));

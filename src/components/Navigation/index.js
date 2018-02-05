@@ -42,7 +42,7 @@ const NavigationNonAuth = () => {
 const Navigation = ({ authUser }) => {
     return (
         <div>
-            {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+            {authUser && authUser.emailVerified ? <NavigationAuth /> : <NavigationNonAuth />}
         </div>
     )
 }

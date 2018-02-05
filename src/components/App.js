@@ -19,6 +19,7 @@ import HomePage from './Home/index';
 import AccountPage from './Account/index';
 import MonthViewPage from './MonthView/index'
 import DailyViewPage from './DailyView/index'
+import UserVerification from './UserVerification/index'
 
 import * as routes from '../constants/routes';
 import * as db from '../firebase/db'
@@ -101,6 +102,10 @@ class App extends Component {
                     <Route
                         exact path={routes.PASSWORD_FORGET}
                         component={() => <PasswordForgetPage />}
+                    />
+                    <Route
+                        exact path={routes.USER_VERIFICATION}
+                        component={() => <UserVerification />}
                     />
                     <Route
                         exact path={routes.HOME}
