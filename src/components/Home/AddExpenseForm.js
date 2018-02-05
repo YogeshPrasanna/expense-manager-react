@@ -86,12 +86,14 @@ class AddExpenseForm extends Component {
                     </label>
                     <div className="col-sm-10 col-xs-6">
                         <select className="form-control" name="category" value={this.state.category} onChange={this.handleChange.bind(this)}>
+                            <option value="Food">Food</option>                            
                             <option value="Automobile">Automobile</option>
                             <option value="Clothing">Clothing</option>
                             <option value="Entertainment">Entertainment</option>
-                            <option value="Food">Food</option>
                             <option value="Healthcare">Healthcare</option>
-                            <option value="Vacation">Vacation</option>                            
+                            <option value="Vacation">Vacation</option>
+                            <option value="Electronics">Electronics</option>                               
+                            <option value="Others">Others</option>                                                                                  
                         </select>
                     </div>
                 </div>
