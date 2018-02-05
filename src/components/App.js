@@ -36,6 +36,10 @@ class App extends Component {
     }
 
     componentDidMount(){
+
+        document.title = "Expense Manager";
+
+
         firebase.auth.onAuthStateChanged(authUser => {
             console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser ? this.setState({
