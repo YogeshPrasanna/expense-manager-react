@@ -40,36 +40,25 @@ class SignUpForm extends Component {
 
         auth.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
-                if (authUser.emailVerified){
-                    // create a user in the firebase db too
-                    db.doCreateUser(authUser.uid, username, email)
-                        .then(() => {
-                            console.log()
-                            this.setState(() => ({ ...INITIAL_STATE }));
-                            history.push(routes.HOME);
-                        }).catch(error => {
-                            this.setState(byPropKey('error', error));
-                        });
 
+                // create a user in the firebase db too
+                db.doCreateUser(authUser.uid, username, email)
+                .then(() => {
+                    console.log()
+                    this.setState(() => ({ ...INITIAL_STATE }));
+                    history.push(routes.HOME);
+                }).catch(error => {
+                    this.setState(byPropKey('error', error));
+                });
+
+                if (!authUser.emailVerified){
                     // send a verification mail to user 
                     authUser.sendEmailVerification().then(function () {
                         history.push(routes.USER_VERIFICATION);
                     }).catch(function (error) {
                         console.log("something went wrong: ", error)
                     });
-
-                }else{
-                    authUser.sendEmailVerification().then(function () {
-                        history.push(routes.USER_VERIFICATION);
-                    }).catch(function (error) {
-                        console.log("something went wrong: ", error)
-                    });
                 }
-                
-
-                // send the user a verification mail
-                console.log("on signup athuser : ", authUser)
-                
             })
             .catch(error => {
                 this.setState(byPropKey('error', error));
