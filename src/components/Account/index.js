@@ -1,5 +1,9 @@
 import React from 'react';
 import url from "./man.png"
+import { Link, withRouter } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+
+import UpdatePassword from './UpdatePassword'
 
 const AccountPage = (props) => {
 
@@ -17,6 +21,12 @@ const AccountPage = (props) => {
     }
 
     if(props.user){
+
+        const test = {
+            "borderRadius":"10px",
+            "outline": "none"
+        }
+
         return (
             <div className="container">
                 <img src={ props.user.photoURL || url } style={userImage} alt="Problem in getting your image" />
@@ -29,6 +39,10 @@ const AccountPage = (props) => {
                                 <p className="card-title">Registered email  : {props.user.email}</p>   
                                 <hr />
                                 <p className="card-title">{props.user.emailVerified ? "User is verified" : "User not verified"}</p>
+                                <hr />
+                                <button classame="btn btn-default" style={test}>
+                                    <Link to={routes.UPDATE_PASSWORD}> update password </Link>
+                                </button>
                             </div>
                         </div>
                     </div>

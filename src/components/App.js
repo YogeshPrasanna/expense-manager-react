@@ -17,6 +17,7 @@ import SignInPage from './signIn/index';
 import PasswordForgetPage from './forgotPassword/index';
 import HomePage from './Home/index';
 import AccountPage from './Account/index';
+import UpdatePassword from './Account/UpdatePassword';
 import MonthViewPage from './MonthView/index'
 import DailyViewPage from './DailyView/index'
 import UserVerification from './UserVerification/index'
@@ -102,6 +103,10 @@ class App extends Component {
                     <Route
                         exact path={routes.PASSWORD_FORGET}
                         component={() => <PasswordForgetPage />}
+                    />
+                    <Route
+                        exact path={routes.UPDATE_PASSWORD}
+                        component={() => <UpdatePassword user={this.state.authUser} />}
                     />
                     <Route
                         exact path={routes.USER_VERIFICATION}
