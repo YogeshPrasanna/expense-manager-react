@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { SignUpLink } from '../signUp/index';
 import { auth } from '../../firebase';
@@ -60,7 +60,7 @@ class SignInForm extends Component {
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
 
-      alert(errorMessage , "Retry !!!")
+      alert(errorMessage, "Retry !!!")
       // ...
     });
   }
@@ -79,10 +79,10 @@ class SignInForm extends Component {
       .then((authUser) => {
 
         // allow signin only when user is verified
-        if (authUser && authUser.emailVerified){
+        if (authUser && authUser.emailVerified) {
           this.setState(() => ({ ...INITIAL_STATE }));
           history.push(routes.HOME);
-        }else{
+        } else {
           history.push(routes.USER_VERIFICATION)
         }
 
@@ -124,13 +124,18 @@ class SignInForm extends Component {
             Sign In
           </button>
 
+          <p>
+            {' '}
+            <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
+          </p>
+
           <hr />
 
           <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
             <span className="googleLogo"><i className="fa fa-google"></i></span> Sign in with google
           </div>
 
-          { error && <p>{error.message}</p> }
+          {error && <p>{error.message}</p>}
         </form>
       </div>
     );

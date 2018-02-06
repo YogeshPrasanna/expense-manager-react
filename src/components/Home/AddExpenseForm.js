@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import $ from 'jquery';
-// import bootstrap from 'bootstrap';
 
 import * as db from '../../firebase/db'
 
@@ -42,9 +41,6 @@ class AddExpenseForm extends Component {
             uid: this.props.user.uid,
             dataSaved: true
         })
-
-        // bad practice : need to re render the parent Component
-        //window.location.reload()
     }
 
     handleChange(e) {
@@ -66,7 +62,6 @@ class AddExpenseForm extends Component {
                 <div className="form-group row">
                     <label className="col-sm-2 col-xs-6 col-form-label">
                         <span>Date</span>
-                        {/* <input type="text" name="date" onChange={this.handleChange.bind(this)} value={this.state.date} /> */}
                     </label>
                     <div className="col-sm-10 col-xs-6">
                         <DatePicker className="form-control date" name="date" selected={this.state.date} onChange={this.handelDateChange.bind(this)} />
