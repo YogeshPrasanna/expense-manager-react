@@ -68,7 +68,7 @@ class ExpenseRow  extends Component {
             <tr key={this.props.expenseId} id={this.props.expenseId}>
                 <td data-th="No">{this.props.num + 1}{this.state.showEditPopup ? <EditExpensePopup user={this.props.user} expense={this.props.expense} closePopup={this.toggleEditPopup.bind(this)} /> : null}</td>
                 <td data-th="Date">{this.props.expense.value.date} <span className="expense-day"> {day || "Sunday"}</span></td>
-                <td data-th="Expense">{this.props.expense.value.expense}</td>
+                <td data-th="Expense"><i className="fa fa-inr" aria-hidden="true"></i> {this.props.expense.value.expense}</td>
                 <td data-th="Category">{this.props.expense.value.category}</td>
                 <td data-th="Comments">{this.props.expense.value.comments}</td>
                 <td data-th="Edit"><button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}><i className="fa fa-edit" aria-hidden="true"></i> edit</button></td>                
