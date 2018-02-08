@@ -1,5 +1,7 @@
 import React from 'react'
 
+import * as utils from '../Util'
+
 const TotalCard = (props) => {
 
     var expenses = props.expenses;
@@ -14,17 +16,12 @@ const TotalCard = (props) => {
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
-        var eachExpense = Object.keys(expenses).map(function (key) {
-            return { key: key, value: expenses[key] };
-        });
-
-        var usersExpensesInSelectedMonthAndYear = eachExpense.filter((elem) => elem.value.uid === currentUser.uid).filter((elem) => new Date(elem.value.date).getFullYear().toString() === selectedYear).filter((elem) => new Date(elem.value.date).getMonth().toString() === selectedMonth);
+        var eachExpense = utils.eachExpense(expenses);
+        var usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense, currentUser, selectedMonth, selectedYear);
 
         // Overall Expenses
         if (usersExpensesInSelectedMonthAndYear.length > 1) {
-            totalExpenses = usersExpensesInSelectedMonthAndYear.map((elem) => {
-                return Number(elem.value.expense)
-            }).reduce((prev, cur) => prev + cur)
+            totalExpenses = utils.totalExpense(usersExpensesInSelectedMonthAndYear);
         } else if (usersExpensesInSelectedMonthAndYear.length === 1) {
             totalExpenses = usersExpensesInSelectedMonthAndYear[0].value.expense
         } else {

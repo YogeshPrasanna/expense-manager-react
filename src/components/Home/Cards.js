@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 
+import * as utils from '../Util'
+
 const Cards = (props) => {
 
     var expenses = props.expenses;
@@ -15,20 +17,16 @@ const Cards = (props) => {
     }
 
     if (expenses && currentUser) {
-        const eachExpense = Object.keys(expenses).map(function (key) {
-            return { key: key, value: expenses[key] };
-        });
+        const eachExpense = utils.eachExpense(expenses)
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        const thisUsersExpenses = eachExpense.filter((elem) => elem.value.uid === currentUser.uid);
-        const thisUsersExpensesThisMonth = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && new Date(elem.value.date).getMonth() === new Date().getMonth())
-        const thisUsersExpensesToday = thisUsersExpensesThisMonth.filter((elem) => new Date(elem.value.date).getDate() === new Date().getDate())          
-        const thisUsersExpensesThisWeek = eachExpense.filter((elem) => elem.value.uid === currentUser.uid && (moment(elem.value.date , 'MM/DD/YYYY').week() === moment(moment(new Date()) , 'MM/DD/YYYY').week()))
+        const thisUsersExpensesThisMonth = utils.currentMonthExpenses(eachExpense, currentUser)
+        const thisUsersExpensesToday = utils.expensesToday(eachExpense, currentUser)      
+        const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, currentUser)
 
         // Overall Expenses
         if (thisUsersExpenses.length > 1) {
-            totalExpenses = thisUsersExpenses.map((elem) => {
-                return Number(elem.value.expense)
-            }).reduce((prev, cur) => prev + cur)
+            totalExpenses = utils.totalExpense(thisUsersExpenses)
         } else if (thisUsersExpenses.length === 1) {
             totalExpenses = thisUsersExpenses[0].value.expense
         }else{
@@ -37,20 +35,16 @@ const Cards = (props) => {
 
         // This month expenses
         if (thisUsersExpensesThisMonth.length > 1){
-            totalExpensesThisMonth = thisUsersExpensesThisMonth.map((elem) => {
-                return Number(elem.value.expense)
-            }).reduce((prev, cur) => prev + cur)
+            totalExpensesThisMonth = utils.totalExpense(thisUsersExpensesThisMonth)
         } else if (thisUsersExpensesThisMonth.length === 1) {
             totalExpensesThisMonth = thisUsersExpensesThisMonth[0].value.expense            
         }else{
             totalExpensesThisMonth = 0
         }
 
-        // Today'expenses
+        // Today's expenses
         if(thisUsersExpensesToday.length > 1){
-            totalExpensesToday = thisUsersExpensesToday.map((elem) => {
-                return Number(elem.value.expense)
-            }).reduce((prev, cur) => prev + cur)
+            totalExpensesToday = utils.totalExpense(thisUsersExpensesToday)
         } else if (thisUsersExpensesToday.length === 1){
             totalExpensesToday = thisUsersExpensesToday[0].value.expense
         } else {
@@ -59,9 +53,7 @@ const Cards = (props) => {
 
         // This weeks expenses
         if (thisUsersExpensesThisWeek.length > 1) {
-            totalExpensesThisWeek = thisUsersExpensesThisWeek.map((elem) => {
-                return Number(elem.value.expense)
-            }).reduce((prev, cur) => prev + cur)
+            totalExpensesThisWeek = utils.totalExpense(thisUsersExpensesThisWeek)
         } else if (thisUsersExpensesThisWeek.length === 1) {
             totalExpensesThisWeek = thisUsersExpensesThisWeek[0].value.expense
         } else {
