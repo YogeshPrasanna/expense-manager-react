@@ -17,7 +17,7 @@ class AddExpenseForm extends Component {
             date: moment(),
             day: moment().day,
             expense: '',
-            category: 'Automobile',
+            category: 'Food',
             comments: '',
             uid: this.props.user.uid,
             dataSaved: false
@@ -36,7 +36,7 @@ class AddExpenseForm extends Component {
             date: moment(),
             day:moment().day,
             expense: '',
-            category: 'Automobile',
+            category: 'Food',
             comments: '',
             uid: this.props.user.uid,
             dataSaved: true
@@ -81,13 +81,16 @@ class AddExpenseForm extends Component {
                     </label>
                     <div className="col-sm-10 col-xs-6">
                         <select className="form-control" name="category" value={this.state.category} onChange={this.handleChange.bind(this)}>
-                            <option value="Food">Food</option>                            
+                            <option value="Food">Food</option>
                             <option value="Automobile">Automobile</option>
-                            <option value="Clothing">Clothing</option>
                             <option value="Entertainment">Entertainment</option>
+                            <option value="Clothing">Clothing</option>
                             <option value="Healthcare">Healthcare</option>
-                            <option value="Vacation">Vacation</option>
-                            <option value="Electronics">Electronics</option>                               
+                            <option value="Travel">Travel</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="PersonalCare">Personal Care</option>
+                            <option value="Gifts & Donations">Gifts & Donations</option>
+                            <option value="Bills & Utilities">Bills & Utilities</option>
                             <option value="Others">Others</option>                                                                                  
                         </select>
                     </div>
