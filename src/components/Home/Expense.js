@@ -17,7 +17,7 @@ const Expense = (props) => {
             let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
 
             return thisUsersExpenses.map(function (elem,i) {
-                return <ExpenseRow expense={elem} num={i} key={i} expenseId={thisUsersExpenses[i].key}/>
+                return <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={thisUsersExpenses[i].key}/>
             })
         }
 

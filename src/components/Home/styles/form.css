@@ -13,6 +13,7 @@
 form {
     margin: 0;
     padding: 15px;
+    color: #000 !important;
 }
 
 .success-msg{

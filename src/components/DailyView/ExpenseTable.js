@@ -12,7 +12,8 @@ const ExpenseTable = (props) => {
                     <th scope="col">Date</th>
                     <th scope="col">Expense</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Comments</th>    
+                    <th scope="col">Comments</th>  
+                    <th scope="col">Edit</th> 
                     <th scope="col">Delete</th>                
                 </tr>
             </thead>

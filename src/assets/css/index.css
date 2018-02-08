@@ -57,6 +57,15 @@ ul{
   cursor: pointer;
 }
 
+.edit-btn {
+  background: transparent;
+  color: #FFA500;
+  margin: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 .addexpense-btn{
   border-radius: 50px;
   border-color: #25221b66;

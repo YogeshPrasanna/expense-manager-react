@@ -19,7 +19,7 @@ const Expense = (props) => {
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense,currentUser,selectedMonth,selectedYear);
 
         return usersExpensesInSelectedMonthAndYear.map(function (elem, i) {
-            return <ExpenseRow expense={elem} num={i} key={i} expenseId={usersExpensesInSelectedMonthAndYear[i].key} />
+            return <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={usersExpensesInSelectedMonthAndYear[i].key} />
         })
     }
 }
