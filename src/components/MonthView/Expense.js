@@ -1,23 +1,22 @@
 import React from 'react'
 import ExpenseRow from '../Common/ExpenseRow'
 
+import * as utils from '../Util'
+
 const Expense = (props) => {
 
-    var expenses = props.expenses;
-    var currentUser = props.authUser;
-    var selectedMonth = props.month;
-    var selectedYear = props.year
+    let expenses = props.expenses;
+    let currentUser = props.authUser;
+    let selectedMonth = props.month;
+    let selectedYear = props.year
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
         return <tr><td> Loading ... </td></tr>
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
-        var eachExpense = Object.keys(expenses).map(function (key) {
-            return { key: key, value: expenses[key] };
-        });
-
-        var usersExpensesInSelectedMonthAndYear = eachExpense.filter((elem) => elem.value.uid === currentUser.uid).filter((elem) => new Date(elem.value.date).getFullYear().toString() === selectedYear).filter((elem) => new Date(elem.value.date).getMonth().toString() === selectedMonth);
+        let eachExpense = utils.eachExpense(expenses); 
+        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense,currentUser,selectedMonth,selectedYear);
 
         return usersExpensesInSelectedMonthAndYear.map(function (elem, i) {
             return <ExpenseRow expense={elem} num={i} key={i} expenseId={usersExpensesInSelectedMonthAndYear[i].key} />
