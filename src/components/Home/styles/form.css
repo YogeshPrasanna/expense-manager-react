@@ -7,7 +7,13 @@
 #closePopup{
     position: absolute;
     right: 10px;
+    border-radius: 15px;
     top: 10px;
+    color: #ddd;
+    background: #d65757;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #d65757;
 }
 
 form {

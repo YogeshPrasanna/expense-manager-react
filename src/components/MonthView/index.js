@@ -35,11 +35,15 @@ class MonthViewPage extends Component {
             "borderRight": "2px solid rgba(0,0,0,0.2)"
         }
 
+        const form = {
+            "padding": "15px 0 0 0"
+        }
+
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-4" style={leftCol}>
-                        <form >
+                        <form style={form}>
                             <div style={Header}> View your expenses of a particular month </div>
                             <div className="form-group row">
                                 <label className="col-sm-3 col-xs-6 col-form-label">

@@ -36,11 +36,15 @@ class DailyViewPage extends Component {
             "borderRight": "2px solid rgba(0,0,0,0.2)"
         }
 
+        const form = {
+            "padding": "15px 0 0 0"
+        }
+
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-4" style={leftCol}>
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} style={form}>
                             <div style={datePickerHeader}> View your expenses on a particular date </div>
                             <div className="form-group row">
                                 <label className="col-2 col-form-label">
