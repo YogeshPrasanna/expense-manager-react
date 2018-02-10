@@ -47,8 +47,37 @@ export const totalExpense = (expenses) => {
     }).reduce((prev, cur) => prev + cur)
 }
 
-export const totalByCategory = (expenses,category) => {
-    return expenses.filter((exp) => exp.value.category === category)
-                   .map((el) => Number(el.value.expense))
-                   .reduce((prev, cur) => prev + cur)
+// Total for each category
+export const calculateTotalForAllCategories = (expenses) => {
+    const categories = ["Food", "Automobile", "Entertainment", "Clothing", "Healthcare", "Travel", "Shopping", "Personal Care", "Gifts & Donations", "Bills & Utilities", "Others"]
+
+    let categoryTotal = {
+        "Food": 0,
+        "Automobile": 0,
+        "Entertainment": 0,
+        "Clothing": 0,
+        "Healthcare": 0,
+        "Travel": 0,
+        "Shopping": 0,
+        "Personal Care": 0,
+        "Gifts & Donations": 0,
+        "Bills & Utilities": 0,
+        "Others": 0
+    }
+
+    const totalForACategory = function (expenses, category) {
+        let temp = expenses.filter((elem) => elem.value.category === category).map((el) => Number(el.value.expense))
+
+        var category = category
+        if (temp.length) {
+            return categoryTotal[category] = temp.reduce((prev, cur) => prev + cur)
+        } else {
+            return categoryTotal[category] = 0
+        }
+    }
+
+    categories.map((category) => totalForACategory(expenses, category))
+
+    return categoryTotal
 }
+

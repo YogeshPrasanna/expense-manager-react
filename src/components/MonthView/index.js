@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import MonthExpenseTable from './MonthExpenseTable'
 import TotalCard from './TotalCard'
+import CategoryTotalCard from './CategoryTotalCard'
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -79,7 +80,8 @@ class MonthViewPage extends Component {
                                 </div>
                             </div>
                         </form>
-                        <TotalCard expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />                
+                        <TotalCard expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />                                        
+                        <CategoryTotalCard expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />                
                     </div>
 
                     <div className="col-sm-8">

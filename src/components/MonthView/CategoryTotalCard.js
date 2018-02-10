@@ -1,8 +1,7 @@
 import React from 'react'
-
 import * as utils from '../Util'
 
-const TotalCard = (props) => {
+const CategoryTotalCard = (props) => {
 
     const pad0 = {
         "padding": "0"
@@ -14,6 +13,8 @@ const TotalCard = (props) => {
     let selectedYear = props.year;
 
     let totalExpenses = 0;
+    let allCategoryTotals = null;
+    let categoryList = null;
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
         return <div> Loading ... </div>
@@ -23,27 +24,31 @@ const TotalCard = (props) => {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense, currentUser, selectedMonth, selectedYear);
 
-        // Overall Expenses
-        if (usersExpensesInSelectedMonthAndYear.length > 1) {
-            totalExpenses = utils.totalExpense(usersExpensesInSelectedMonthAndYear);
-        } else if (usersExpensesInSelectedMonthAndYear.length === 1) {
-            totalExpenses = usersExpensesInSelectedMonthAndYear[0].value.expense
-        } else {
-            totalExpenses = 0
+        allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
+
+        const eachCategory = (allCategoryTotals) => {
+            return Object.keys(allCategoryTotals).map(function (key) {
+                return { key: key, value: allCategoryTotals[key] };
+            });
         }
 
+        categoryList = eachCategory(allCategoryTotals).map((el) => {
+            return <li key={el.key}> {el.key} : {el.value}</li>
+        })
     }
 
     return (
         <div className="col-sm-12" style={pad0}>
             <div className="card card1">
                 <div className="card-block">
-                    <h3 className="card-title">Total Money Spent </h3>
-                    <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpenses}</p>
+                    <h3 className="card-title"> Each Category</h3>
+                    <ul>
+                        {categoryList}
+                    </ul>
                 </div>
             </div>
         </div>
     )
 }
 
-export default TotalCard
+export default CategoryTotalCard
