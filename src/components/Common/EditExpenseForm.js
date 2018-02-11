@@ -93,7 +93,8 @@ class EditExpenseForm extends Component {
                             <option value="Healthcare">Healthcare</option>
                             <option value="Travel">Travel</option>
                             <option value="Shopping">Shopping</option>
-                            <option value="PersonalCare">Personal Care</option>
+                            <option value="Personal Care">Personal Care</option>
+                            <option value="Investment">Investment</option>
                             <option value="Gifts & Donations">Gifts & Donations</option>
                             <option value="Bills & Utilities">Bills & Utilities</option>
                             <option value="Others">Others</option>

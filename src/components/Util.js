@@ -49,7 +49,7 @@ export const totalExpense = (expenses) => {
 
 // Total for each category
 export const calculateTotalForAllCategories = (expenses) => {
-    const categories = ["Food", "Automobile", "Entertainment", "Clothing", "Healthcare", "Travel", "Shopping", "Personal Care", "Gifts & Donations", "Bills & Utilities", "Others"]
+    const categories = ["Food", "Automobile", "Entertainment", "Clothing", "Healthcare", "Travel", "Shopping", "Personal Care", "Investment", "Gifts & Donations", "Bills & Utilities", "Others"]
 
     let categoryTotal = {
         "Food": 0,
@@ -60,6 +60,7 @@ export const calculateTotalForAllCategories = (expenses) => {
         "Travel": 0,
         "Shopping": 0,
         "Personal Care": 0,
+        "Investment": 0,
         "Gifts & Donations": 0,
         "Bills & Utilities": 0,
         "Others": 0
