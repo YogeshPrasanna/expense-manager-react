@@ -118,6 +118,10 @@ ul{
   color: orange;
 }
 
+.ttt:hover {
+  border-left: 5px solid #d2c0a0 !important;
+}
+
 #addExpense {
   position: fixed;
   bottom: 30px !important;

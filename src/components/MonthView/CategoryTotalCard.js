@@ -7,6 +7,27 @@ const CategoryTotalCard = (props) => {
         "padding": "0"
     }
 
+    const category={
+        "width": "46.5%",
+        "display": "inline-block",
+        "margin": "5px",
+        "color": "#ddd",
+        "background": "#34495E",
+        "padding": "5px",
+        "borderLeft": "5px solid #34495E",
+        "borderRight": "5px solid #34495E"        
+    }
+
+    const categoryExpense = {
+        "font-size": "25px",
+        "float": "right",
+        "padding-right": "5px"
+    }
+
+    const categoryName = {
+        "borderBottom": "5px solid orange"
+    }
+
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let selectedMonth = props.month;
@@ -33,16 +54,21 @@ const CategoryTotalCard = (props) => {
         }
 
         categoryList = eachCategory(allCategoryTotals).map((el) => {
-            return <li key={el.key}> {el.key} : {el.value}</li>
+            return (
+                <span style={category} className="ttt" key={el.key}> 
+                    <div style={categoryName}>{el.key}</div>
+                    <div style={categoryExpense}>{el.value}</div>
+                </span>
+            )
         })
     }
 
     return (
         <div className="col-sm-12" style={pad0}>
-            <div className="card card1">
+            <div className="card card4">
                 <div className="card-block">
                     <h3 className="card-title"> Each Category</h3>
-                    <ul>
+                    <ul style={pad0}>
                         {categoryList}
                     </ul>
                 </div>
