@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import ExpenseTable from './ExpenseTable.js'
 import TotalCard from './TotalCard'
+import CategoryTotalCard from './CategoryTotalCard'
 
 class DailyViewPage extends Component {
     constructor(props) {
@@ -56,6 +57,7 @@ class DailyViewPage extends Component {
                             </div>
                         </form>
                         <TotalCard expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />                
+                        <CategoryTotalCard expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />                                        
                     </div>
                     <div className="col-sm-8">
                         <ExpenseTable expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />

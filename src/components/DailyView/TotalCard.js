@@ -35,7 +35,7 @@ const TotalCard = (props) => {
         <div className="col-sm-12" style={pad0}>
             <div className="card card1">
                 <div className="card-block">
-                    <h3 className="card-title">Total Money Spent </h3>
+                    <h3 className="card-title">Total Money Spent <i className="fa fa-money float-right"></i></h3>
                     <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpenses}</p>
                 </div>
             </div>
