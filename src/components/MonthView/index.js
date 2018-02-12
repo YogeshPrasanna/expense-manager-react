@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import MonthExpenseTable from './MonthExpenseTable'
 import TotalCard from './TotalCard'
 import CategoryTotalCard from './CategoryTotalCard'
+import DoughnutChart from './DoughnutChart'
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -30,6 +31,10 @@ class MonthViewPage extends Component {
             "padding": "15px",
             "margin": "0 0 15px 0",
             "borderRadius": "5px"
+        }
+
+        const pad15 ={
+            "padding": "15px"
         }
 
         const leftCol = {
@@ -85,6 +90,9 @@ class MonthViewPage extends Component {
                     </div>
 
                     <div className="col-sm-8">
+                        <div className="col-sm-12" style={pad15}>
+                            <DoughnutChart expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year}/>
+                        </div>
                         <MonthExpenseTable expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />
                     </div>
 

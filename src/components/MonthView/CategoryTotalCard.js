@@ -19,9 +19,9 @@ const CategoryTotalCard = (props) => {
     }
 
     const categoryExpense = {
-        "font-size": "25px",
+        "fontSize": "25px",
         "float": "right",
-        "padding-right": "5px"
+        "paddingRight": "5px"
     }
 
     const categoryName = {

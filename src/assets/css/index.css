@@ -185,3 +185,15 @@ ul{
     top: 15%;
   }
 }
+
+@media (orientation:portrait) {
+ .chart-container {
+   min-height: 60vh;
+ }
+}
+
+@media (orientation:landscape) {
+ .chart-container {
+   min-height: auto;
+ }
+}

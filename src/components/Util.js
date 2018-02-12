@@ -8,7 +8,7 @@ export const eachExpense = (expenses) => {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
         return new Date(b.value.date) - new Date(a.value.date);
-    });;
+    });
 }
 
 export const currentUsersExpenses = (eachExpense, currentUser) => {
@@ -85,4 +85,9 @@ export const calculateTotalForAllCategories = (expenses) => {
 
     return categoryTotal
 }
+
+// all categories
+
+export const categories = ["Food", "Automobile", "Entertainment", "Clothing", "Healthcare", "Travel", "Shopping", "Personal Care", "Investment", "Gifts & Donations", "Bills & Utilities", "Others"]
+
 
