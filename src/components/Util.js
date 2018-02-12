@@ -4,7 +4,11 @@ import moment from 'moment'
 export const eachExpense = (expenses) => {
     return Object.keys(expenses).map(function (key) {
         return { key: key, value: expenses[key] };
-    });
+    }).sort(function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.value.date) - new Date(a.value.date);
+    });;
 }
 
 export const currentUsersExpenses = (eachExpense, currentUser) => {
