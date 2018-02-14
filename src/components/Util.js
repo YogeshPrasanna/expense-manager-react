@@ -87,8 +87,36 @@ export const calculateTotalForAllCategories = (expenses) => {
 }
 
 // all categories
+export const categories = [
+    "Food", 
+    "Automobile", 
+    "Entertainment", 
+    "Clothing", 
+    "Healthcare", 
+    "Travel", 
+    "Shopping", 
+    "Personal Care", 
+    "Investment", 
+    "Gifts & Donations", 
+    "Bills & Utilities", 
+    "Others"
+]
 
-export const categories = ["Food", "Automobile", "Entertainment", "Clothing", "Healthcare", "Travel", "Shopping", "Personal Care", "Investment", "Gifts & Donations", "Bills & Utilities", "Others"]
+// colors for each category
+export const categoryColors = [
+    '#FF965D',
+    '#FFCC78',
+    '#A08E78',
+    '#8DA685',
+    '#00A3EA',
+    '#3EA75E',
+    '#16B498',
+    '#FF1945',
+    '#FF5473',
+    '#927959',
+    '#7E0332',
+    '#872AEF'
+]
 
 // retrun border color for each category - daily and monthly view 
 export const categoryName = (cat) => {

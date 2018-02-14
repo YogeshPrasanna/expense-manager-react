@@ -25,34 +25,8 @@ const DoughnutChart = (props) => {
             labels: utils.categories,
             datasets: [{
                 data: Object.values(allCategoryTotals),
-                backgroundColor: [
-                    '#FF965D',
-                    '#FFCC78',
-                    '#A08E78',
-                    '#8DA685',
-                    '#00A3EA',
-                    '#3EA75E',
-                    '#16B498',
-                    '#FF1945',
-                    '#FF5473',
-                    '#927959',
-                    '#7E0332',
-                    '#872AEF'
-                ],
-                hoverBackgroundColor: [
-                    '#FF965D',
-                    '#FFCC78',
-                    '#A08E78',
-                    '#8DA685',
-                    '#00A3EA',
-                    '#3EA75E',
-                    '#16B498',
-                    '#FF1945',
-                    '#FF5473',
-                    '#927959',
-                    '#7E0332',
-                    '#872AEF'
-                ]
+                backgroundColor: utils.categoryColors,
+                hoverBackgroundColor: utils.categoryColors
             }]
         };
 
