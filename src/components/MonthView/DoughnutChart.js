@@ -28,7 +28,7 @@ const DoughnutChart = (props) => {
                 backgroundColor: [
                     '#FF965D',
                     '#FFCC78',
-                    '#5D574B',
+                    '#A08E78',
                     '#8DA685',
                     '#00A3EA',
                     '#3EA75E',
@@ -42,7 +42,7 @@ const DoughnutChart = (props) => {
                 hoverBackgroundColor: [
                     '#FF965D',
                     '#FFCC78',
-                    '#5D574B',
+                    '#A08E78',
                     '#8DA685',
                     '#00A3EA',
                     '#3EA75E',
