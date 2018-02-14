@@ -53,12 +53,14 @@ const CategoryTotalCard = (props) => {
         }
 
         categoryList = eachCategory(allCategoryTotals).map((el) => {
-            return (
-                <span style={category} className="ttt" key={el.key}>
-                    <div style={categoryName}>{el.key}</div>
-                    <div style={categoryExpense}>{el.value}</div>
-                </span>
-            )
+            if (el.value) {
+                return (
+                    <span style={category} className="ttt" key={el.key}>
+                        <div style={categoryName}>{el.key}</div>
+                        <div style={categoryExpense}>{el.value}</div>
+                    </span>
+                )
+            }
         })
     }
 
