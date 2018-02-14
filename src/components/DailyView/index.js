@@ -6,6 +6,8 @@ import moment from 'moment';
 import ExpenseTable from './ExpenseTable.js'
 import TotalCard from './TotalCard'
 import CategoryTotalCard from './CategoryTotalCard'
+import DoughnutChart from './DoughnutChart'
+
 
 class DailyViewPage extends Component {
     constructor(props) {
@@ -41,6 +43,10 @@ class DailyViewPage extends Component {
             "padding": "15px 0 0 0"
         }
 
+        const pad15 = {
+            "padding": "15px"
+        }
+
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -60,6 +66,9 @@ class DailyViewPage extends Component {
                         <CategoryTotalCard expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />                                        
                     </div>
                     <div className="col-sm-8">
+                        <div className="col-sm-12" style={pad15}>
+                            <DoughnutChart expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />
+                        </div>
                         <ExpenseTable expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />
                     </div>
                 </div>

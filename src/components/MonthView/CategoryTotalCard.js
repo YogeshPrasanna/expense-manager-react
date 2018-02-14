@@ -24,49 +24,6 @@ const CategoryTotalCard = (props) => {
         "paddingRight": "5px"
     }
 
-    const categoryName = (cat) => {
-        switch (cat) {
-            case 'Food':
-                return { "borderBottom": "5px solid #FF965D"}
-                break;
-            case 'Automobile':
-                return { "borderBottom": "5px solid #FFCC78" }
-                break;
-            case 'Entertainment':
-                return { "borderBottom": "5px solid #A08E78" }
-                break;
-            case 'Clothing':
-                return { "borderBottom": "5px solid #8DA685" }
-                break;
-            case 'Healthcare':
-                return { "borderBottom": "5px solid #00A3EA" }
-                break;
-            case 'Travel':
-                return { "borderBottom": "5px solid #3EA75E" }
-                break;
-            case 'Shopping':
-                return { "borderBottom": "5px solid #16B498" }
-                break;
-            case 'Personal Care':
-                return { "borderBottom": "5px solid #FF1945" }
-                break;
-            case 'Investment':
-                return { "borderBottom": "5px solid #FF5473" }
-                break;
-            case 'Gifts & Donations':
-                return { "borderBottom": "5px solid #927959" }
-                break;
-            case 'Bills & Utilities':
-                return { "borderBottom": "5px solid #7E0332" }
-                break;
-            case 'Others':
-                return { "borderBottom": "5px solid #872AEF" }
-                break;
-            default:
-                return { "borderBottom": "5px solid orange" }
-        }
-    }
-
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let selectedMonth = props.month;
@@ -96,7 +53,7 @@ const CategoryTotalCard = (props) => {
             if (el.value) {
                 return (
                         <span style={category} className="ttt" key={el.key}>
-                            <div style={categoryName(el.key)}>{el.key}</div>
+                            <div style={utils.categoryName(el.key)}>{el.key}</div>
                             <div style={categoryExpense}>{el.value}</div>
                         </span>
                 )

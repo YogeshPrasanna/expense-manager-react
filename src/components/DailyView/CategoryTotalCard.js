@@ -56,7 +56,7 @@ const CategoryTotalCard = (props) => {
             if (el.value) {
                 return (
                     <span style={category} className="ttt" key={el.key}>
-                        <div style={categoryName}>{el.key}</div>
+                        <div style={utils.categoryName(el.key)}>{el.key}</div>
                         <div style={categoryExpense}>{el.value}</div>
                     </span>
                 )
