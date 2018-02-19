@@ -20,6 +20,7 @@ import AccountPage from './Account/index';
 import UpdatePassword from './Account/UpdatePassword';
 import MonthViewPage from './MonthView/index'
 import DailyViewPage from './DailyView/index'
+import FilterViewPage from './FilterView/index'
 import UserVerification from './UserVerification/index'
 
 import * as routes from '../constants/routes';
@@ -135,6 +136,14 @@ class App extends Component {
                     <Route
                         exact path={routes.DAILY_VIEW}
                         component={() => <DailyViewPage
+                            user={this.state.authUser}
+                            expenses={this.state.expenses}
+                        />}
+                    />
+
+                    <Route
+                        exact path={routes.FILTER_VIEW}
+                        component={() => <FilterViewPage
                             user={this.state.authUser}
                             expenses={this.state.expenses}
                         />}
