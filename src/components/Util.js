@@ -1,4 +1,3 @@
-
 import moment from 'moment'
 
 export const eachExpense = (expenses) => {
@@ -160,4 +159,33 @@ export const categoryName = (cat) => {
         default:
             return { "borderBottom": "5px solid orange" }
     }
+}
+
+
+export const filterExpensesByCriteria = (startDate, endDate, category, expenseFrom,expenseTo,thisUsersExpenses) => {
+    var start = new Date(startDate);
+    var end = new Date(endDate);
+    var currentDate = new Date(start);
+    var between = [];
+    var filteredExpenses = [];
+
+    while (currentDate <= end) {
+        between.push(moment(new Date(currentDate)).format("MM/DD/YYYY"));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    between.forEach(function (elem) {
+        return thisUsersExpenses.filter(function (el) {
+            return elem === el.value.date ? filteredExpenses.push(el) : ''
+        })
+    })
+
+    filteredExpenses = filteredExpenses.filter((elem) => {
+        return elem.value.category === category
+    }).filter((elem) => {
+        return Number(elem.value.expense) >= Number(expenseFrom) &&
+            Number(elem.value.expense) <= Number(expenseTo)
+    })
+
+    return filteredExpenses
 }

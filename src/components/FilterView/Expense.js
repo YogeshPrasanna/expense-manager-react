@@ -21,43 +21,12 @@ const Expense = (props) => {
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
         let eachExpense = utils.eachExpense(expenses)
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
-
-        console.log("PROPS ", props.expense)
-
-        var start = new Date(startDate);
-        var end = new Date(endDate);
-        var currentDate = new Date(start);
-        var between = [];
-        var filteredExpenses = [];
-
-        while (currentDate <= end) {
-            between.push(moment(new Date(currentDate)).format("MM/DD/YYYY"));
-            //between.push(new Date(currentDate));
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-
-        console.log("Between ",between, eachExpense)
-
-        between.forEach(function (elem) {
-            return thisUsersExpenses.filter(function (el) {
-                return elem === el.value.date ? filteredExpenses.push(el) : ''
-            })
-        })
-
-        filteredExpenses = filteredExpenses.filter((elem) => {
-            return elem.value.category === category
-        }).filter((elem) => {
-            return Number(elem.value.expense) >= Number(expenseFrom) && 
-                                    Number(elem.value.expense) <= Number(expenseTo)
-        })
-
-        console.log("Filtered dates ", filteredExpenses)
+        let filteredExpenses = utils.filterExpensesByCriteria(startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses)
 
         return filteredExpenses.map(function (elem, i) {
             return <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={filteredExpenses[i].key} />
         })
     }
-
 }
 
 

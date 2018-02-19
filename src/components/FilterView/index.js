@@ -10,8 +10,13 @@ class FilterViewPage extends Component {
     constructor(props) {
         super(props)
 
+        // current year's first day
+        const thisYear = (new Date()).getFullYear();
+        const start = new Date("1/1/" + thisYear);
+        const defaultStart = moment(start.valueOf());
+
         this.state = {
-            fromdate: moment("01/01/2018"),
+            fromdate: defaultStart,
             todate: moment(),
             category: 'Food',
             expensefrom: '00',
@@ -78,10 +83,7 @@ class FilterViewPage extends Component {
                 <div className="row">
                     <div className="col-sm-4" style={leftCol}>
                         <form onSubmit={this.handleSubmit} style={form}>
-                            <div style={datePickerHeader}> View your expenses on a particular date </div>
-                            <div className="form-group row">
-                                
-                            </div>
+                            <div style={datePickerHeader}> Filter out your expenses </div>
                             <div className="form-group row">
                                 <div class="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-form-label">
@@ -140,13 +142,17 @@ class FilterViewPage extends Component {
                                 </div>
                             </div>
                         </form>
-                        {/* <TotalCard expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} /> */}
-                        {/* <CategoryTotalCard expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} /> */}
+                        <TotalCard 
+                            expenses={this.props.expenses}
+                            expensefrom={this.state.expensefrom}
+                            expenseto={this.state.expenseto}
+                            fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                            todate={this.state.todate.format("MM/DD/YYYY")}
+                            category={this.state.category}
+                            authUser={this.props.user}  
+                        />
                     </div>
                     <div className="col-sm-8">
-                        <div className="col-sm-12" style={pad15}>
-                            {/* <DoughnutChart expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} /> */}
-                        </div>
                         <ExpenseTable 
                             expenses={this.props.expenses} 
                             expensefrom={this.state.expensefrom} 

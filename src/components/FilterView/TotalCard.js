@@ -9,7 +9,11 @@ const TotalCard = (props) => {
 
     let expenses = props.expenses;
     let currentUser = props.authUser;
-    let selectedDate = props.date;
+    let startDate = props.fromdate;
+    let endDate = props.todate;
+    let expenseFrom = props.expensefrom;
+    let expenseTo = props.expenseto;
+    let category = props.category;
 
     let totalExpenses = 0;
 
@@ -17,15 +21,17 @@ const TotalCard = (props) => {
         return <tr><td> Loading ... </td></tr>
     }
 
-    if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense,currentUser,selectedDate)
+    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
+        let eachExpense = utils.eachExpense(expenses)
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
+        let filteredExpenses = utils.filterExpensesByCriteria(startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses)
+
 
         // Overall Expenses
-        if (thisUsersExpenses.length > 1) {
-            totalExpenses = utils.totalExpense(thisUsersExpenses)
-        } else if (thisUsersExpenses.length === 1) {
-            totalExpenses = thisUsersExpenses[0].value.expense
+        if (filteredExpenses.length > 1) {
+            totalExpenses = utils.totalExpense(filteredExpenses)
+        } else if (filteredExpenses.length === 1) {
+            totalExpenses = filteredExpenses[0].value.expense
         } else {
             totalExpenses = 0
         }
@@ -35,7 +41,7 @@ const TotalCard = (props) => {
         <div className="col-sm-12" style={pad0}>
             <div className="card card1">
                 <div className="card-block">
-                    <h3 className="card-title">Total Money Spent <i className="fa fa-money float-right"></i></h3>
+                    <h3 className="card-title">Total<i className="fa fa-money float-right"></i></h3>
                     <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpenses}</p>
                 </div>
             </div>
