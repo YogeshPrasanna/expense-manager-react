@@ -3,8 +3,8 @@
   "name": "Expense Manager",
   "icons": [
     {
-      "src": "./android-icon-72x72.png",
-      "sizes": "48x48",
+      "src": "./android-icon-192x192.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ],
