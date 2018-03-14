@@ -14,9 +14,10 @@ const NavigationAuth = () => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item"><Link className="nav-link" to={routes.HOME}>Home</Link></li>
                     <li className="nav-item"><Link className="nav-link" to={routes.ACCOUNT}>Account</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to={routes.MONTH_VIEW}>Month View</Link></li>                    
-                    <li className="nav-item"><Link className="nav-link" to={routes.DAILY_VIEW}>Daily View</Link></li>                                        
-                    <li className="nav-item"><Link className="nav-link" to={routes.FILTER_VIEW}>filter View</Link></li>                                                            
+                    <li className="nav-item"><Link className="nav-link" to={routes.MONTH_VIEW}>Monthly</Link></li>                    
+                    <li className="nav-item"><Link className="nav-link" to={routes.DAILY_VIEW}>Daily</Link></li>                                        
+                    <li className="nav-item"><Link className="nav-link" to={routes.FILTER_VIEW}>filter</Link></li>                                                            
+                    <li className="nav-item"><Link className="nav-link" to={routes.STATISTICS_VIEW}>Stats</Link></li>                                                                                
                     <li className="nav-item signout-btn"><Link className="nav-link" to={routes.SIGN_IN}><SignOutButton /></Link></li>
                 </ul>
             </div>

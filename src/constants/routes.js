@@ -9,3 +9,4 @@ export const MONTH_VIEW = '/month-view';
 export const DAILY_VIEW = '/daily-view';
 export const FILTER_VIEW = '/filter-view';
 export const USER_VERIFICATION = '/user-vefification'
+export const STATISTICS_VIEW = '/statistics'
