@@ -151,7 +151,10 @@ class App extends Component {
                     />
                     <Route
                         exact path={routes.STATISTICS_VIEW}
-                        component={() => <StatisticsPage />}
+                        component={() => <StatisticsPage 
+                            user={this.state.authUser}
+                            expenses={this.state.expenses}
+                        />}
                     />
 
                 </div>
