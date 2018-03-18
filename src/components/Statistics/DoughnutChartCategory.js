@@ -17,6 +17,9 @@ const DoughnutChartCategory = (props) => {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
+        console.log("Expenses in all months of a year : ", utils.totalExpensesInEachMonthOfThisYear(expenses, eachExpense, currentUser))
+        
+
         allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses);
 
         let data = {

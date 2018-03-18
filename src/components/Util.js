@@ -17,7 +17,7 @@ export const currentUsersExpenses = (eachExpense, currentUser) => {
 // expenses in selected month and year
 export const expensesinMonthAndYear = (eachExpense,currentUser,selectedMonth,selectedYear) => {
     return eachExpense.filter((elem) => elem.value.uid === currentUser.uid)
-                      .filter((elem) => new Date(elem.value.date).getFullYear().toString() === selectedYear)
+                      .filter((elem) => new Date(elem.value.date).getFullYear().toString() === new Date(elem.value.date).getFullYear().toString())
                       .filter((elem) => new Date(elem.value.date).getMonth().toString() === selectedMonth);
 }
 
@@ -30,6 +30,13 @@ export const expensesInDate = (eachExpense, currentUser,date) => {
 export const currentMonthExpenses = (eachExpense, currentUser) => {
     return eachExpense.filter((elem) => elem.value.uid === currentUser.uid 
                                         && new Date(elem.value.date).getMonth() === new Date().getMonth())
+}
+
+// expenses in a particular month of this year
+const expensesinMonth = (eachExpense, currentUser, MonthNumber) => {
+    return eachExpense.filter((elem) => elem.value.uid === currentUser.uid)
+        .filter((elem) => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
+        .filter((elem) => new Date(elem.value.date).getMonth().toString() === MonthNumber);
 }
 
 // expense today
@@ -45,9 +52,24 @@ export const expensesThisWeek = (eachExpense, currentUser) => {
 
 // expenses Total 
 export const totalExpense = (expenses) => {
-    return expenses.map((elem) => {
-        return Number(elem.value.expense)
-    }).reduce((prev, cur) => prev + cur)
+    if(expenses.length){
+        return expenses.map((elem) => {
+            return Number(elem.value.expense)
+        }).reduce((prev, cur) => prev + cur)
+    }else{
+        return 0
+    }
+    
+}
+
+// Total expenses in Each month 
+export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser) => {
+    let expensesOfAllMonthsInThisYear = []
+
+    for (var i = 0; i <= 11; i++) {
+        expensesOfAllMonthsInThisYear.push(totalExpense(expensesinMonth(eachExpense, currentUser, String(i))));
+    }
+    return expensesOfAllMonthsInThisYear
 }
 
 // Total for each category

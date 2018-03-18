@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import DoughnutChartCategory from './DoughnutChartCategory'
+import BarChartAllMonths from './BarChartAllMonths'
 
 class StatisticsPage extends Component {
     constructor(props){
@@ -15,7 +16,8 @@ class StatisticsPage extends Component {
                         <span className="badge badge-info">Total Expense for each category</span>
                     </div>
                     <div className="col-sm-6">
-                        
+                        <BarChartAllMonths expenses={this.props.expenses} authUser={this.props.user} />
+                        <span className="badge badge-info">Monthly expenses for this year</span>
                     </div>
                 </div>
             </div>
