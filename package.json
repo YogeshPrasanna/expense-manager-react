@@ -12,6 +12,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-chartjs-2": "^2.7.0",
+    "react-data-export": "^0.3.2",
     "react-datepicker": "^1.0.4",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
