@@ -7,6 +7,7 @@ import ExpenseTable from './ExpenseTable.js'
 import TotalCard from './TotalCard'
 import CategoryTotalCard from './CategoryTotalCard'
 import DoughnutChart from './DoughnutChart'
+import ExportToExcel from './ExportToExcel'
 
 
 class DailyViewPage extends Component {
@@ -69,6 +70,7 @@ class DailyViewPage extends Component {
                         <div className="col-sm-12" style={pad15}>
                             <DoughnutChart expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />
                         </div>
+                        <ExportToExcel expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />
                         <ExpenseTable expenses={this.props.expenses} date={this.state.date.format("MM/DD/YYYY")} authUser={this.props.user} />
                     </div>
                 </div>
