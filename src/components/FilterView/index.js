@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker';
 import ExpenseTable from './ExpenseTable.js'
 import TotalCard from './TotalCard.js'
-import moment from 'moment';
+import moment from 'moment'
+import ExportToExcel from './ExportToExcel'
 
 
 class FilterViewPage extends Component {
@@ -153,6 +154,15 @@ class FilterViewPage extends Component {
                         />
                     </div>
                     <div className="col-sm-8">
+                        <ExportToExcel 
+                            expenses={this.props.expenses}
+                            expensefrom={this.state.expensefrom}
+                            expenseto={this.state.expenseto}
+                            fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                            todate={this.state.todate.format("MM/DD/YYYY")}
+                            category={this.state.category}
+                            authUser={this.props.user} 
+                        />
                         <ExpenseTable 
                             expenses={this.props.expenses} 
                             expensefrom={this.state.expensefrom} 
