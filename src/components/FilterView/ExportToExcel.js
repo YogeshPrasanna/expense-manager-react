@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { default as ExcelFile, ExcelSheet, ExcelColumn} from "react-data-export"
+import GenerateExcel from './../Common/GenerateExcel'
 
 import * as utils from '../Util'
 
@@ -39,15 +39,7 @@ class ExportToExcel extends Component {
 
             return (
                 <div className="col-sm-12" style={exportArea}>
-                    <span>Export to excel </span>
-                    <ExcelFile>
-                        <ExcelSheet data={excelDataObject} name="Expenses">
-                            <ExcelColumn label="Date" value="date" />
-                            <ExcelColumn label="Category" value="category" />
-                            <ExcelColumn label="Expense" value="expense" />
-                            <ExcelColumn label="Comments" value="comments" />
-                        </ExcelSheet>
-                    </ExcelFile>
+                    <GenerateExcel excelDataObject={excelDataObject} />
                 </div>
             )
         }
