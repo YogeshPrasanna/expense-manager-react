@@ -9,7 +9,16 @@ const Expense = (props) => {
         let currentUser = props.authUser;
 
         if (!expenses || !currentUser){
-            return <tr><td> Loading ... </td></tr>
+            return <tr>
+                        <td>
+                            <div class="loader" id="loader-6">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
         }
 
         if (expenses && currentUser){

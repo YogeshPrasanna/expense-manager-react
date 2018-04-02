@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import '../../assets/css/loader.css'
 
 import * as utils from '../Util'
 
@@ -13,7 +14,14 @@ const Cards = (props) => {
     var totalExpensesThisWeek = 0;
 
     if (!expenses && !currentUser) {
-        return <div> Loading ... </div>
+        return (
+            <div class="loader" id="loader-6">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        )
     }
 
     if (expenses && currentUser) {
