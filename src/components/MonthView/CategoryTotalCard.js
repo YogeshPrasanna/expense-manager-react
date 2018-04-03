@@ -29,7 +29,6 @@ const CategoryTotalCard = (props) => {
     let selectedMonth = props.month;
     let selectedYear = props.year;
 
-    let totalExpenses = 0;
     let allCategoryTotals = null;
     let categoryList = null;
 
@@ -56,6 +55,10 @@ const CategoryTotalCard = (props) => {
                             <div style={utils.categoryName(el.key)}>{el.key}</div>
                             <div style={categoryExpense}>{el.value}</div>
                         </span>
+                )
+            }else{
+                return (
+                    <span key={el.key}></span>
                 )
             }
         })

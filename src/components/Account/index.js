@@ -1,9 +1,7 @@
 import React from 'react';
 import url from "./man.png"
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-
-import UpdatePassword from './UpdatePassword'
 
 const AccountPage = (props) => {
 

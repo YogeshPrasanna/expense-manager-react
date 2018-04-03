@@ -11,8 +11,8 @@ const UserVerification = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12" style={style}>
-                        <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">A verification mail has been sent to your email id</h4>
+                        <div className="alert alert-success" role="alert">
+                            <h4 className="alert-heading">A verification mail has been sent to your email id</h4>
                             <p>Please verify your email - and then login to manage your expenses</p>
                         </div>
                     </div>

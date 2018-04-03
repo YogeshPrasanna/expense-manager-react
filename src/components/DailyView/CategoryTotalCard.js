@@ -19,20 +19,15 @@ const CategoryTotalCard = (props) => {
     }
 
     const categoryExpense = {
-        "font-size": "25px",
+        "fontSize": "25px",
         "float": "right",
-        "padding-right": "5px"
-    }
-
-    const categoryName = {
-        "borderBottom": "5px solid orange"
+        "paddingRight": "5px"
     }
 
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let dateSelected = props.date;
 
-    let totalExpenses = 0;
     let allCategoryTotals = null;
     let categoryList = null;
 
@@ -59,6 +54,10 @@ const CategoryTotalCard = (props) => {
                         <div style={utils.categoryName(el.key)}>{el.key}</div>
                         <div style={categoryExpense}>{el.value}</div>
                     </span>
+                )
+            }else{
+                return (
+                    <span key={el.key}></span>
                 )
             }
         })

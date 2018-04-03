@@ -17,7 +17,7 @@ export const currentUsersExpenses = (eachExpense, currentUser) => {
 // expenses in selected month and year
 export const expensesinMonthAndYear = (eachExpense,currentUser,selectedMonth,selectedYear) => {
     return eachExpense.filter((elem) => elem.value.uid === currentUser.uid)
-                      .filter((elem) => new Date(elem.value.date).getFullYear().toString() === new Date(elem.value.date).getFullYear().toString())
+                      .filter((elem) => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
                       .filter((elem) => new Date(elem.value.date).getMonth().toString() === selectedMonth);
 }
 
@@ -33,7 +33,7 @@ export const currentMonthExpenses = (eachExpense, currentUser) => {
 }
 
 // expenses in a particular month of this year
-const expensesinMonth = (eachExpense, currentUser, MonthNumber) => {
+export const expensesinMonth = (eachExpense, currentUser, MonthNumber) => {
     return eachExpense.filter((elem) => elem.value.uid === currentUser.uid)
         .filter((elem) => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
         .filter((elem) => new Date(elem.value.date).getMonth().toString() === MonthNumber);

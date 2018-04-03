@@ -18,7 +18,7 @@ const TotalCard = (props) => {
     let totalExpenses = 0;
 
     if (!expenses || !currentUser) {
-        return <tr><td> Loading ... </td></tr>
+        return <div> Loading ... </div>
     }
 
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {

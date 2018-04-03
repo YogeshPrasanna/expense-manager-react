@@ -61,6 +61,9 @@ class ExpenseRow  extends Component {
                     break;
                 case 6:
                     day = "Saturday";
+                    break;
+                default : 
+                    day = "sunday";
             }
         }
 

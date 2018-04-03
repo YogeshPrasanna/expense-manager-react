@@ -33,7 +33,7 @@ class FilterViewPage extends Component {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
         var change = {}
         console.log("changes" , e.target.value)
-        change[e.target.name] = e.target.value.length == 1 ? "00" : e.target.value
+        change[e.target.name] = e.target.value.length === 1 ? "00" : e.target.value
         this.setState(change)
     }
 
@@ -70,10 +70,6 @@ class FilterViewPage extends Component {
             "padding": "15px 0 0 0"
         }
 
-        const pad15 = {
-            "padding": "15px"
-        }
-
         const pad0 = {
             "padding" : "0px"
         }
@@ -85,7 +81,7 @@ class FilterViewPage extends Component {
                         <form onSubmit={this.handleSubmit} style={form}>
                             <div style={datePickerHeader}> Filter out your expenses </div>
                             <div className="form-group row">
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-form-label">
                                         <span>From Date</span>
                                     </label>
@@ -93,7 +89,7 @@ class FilterViewPage extends Component {
                                         <DatePicker className="form-control date" name="fromdate" selected={this.state.fromdate} onSelect={this.handleFromDateSelect.bind(this)} />
                                     </div>
                                 </div>
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-form-label">
                                         <span>To Date</span>
                                     </label>
@@ -103,7 +99,7 @@ class FilterViewPage extends Component {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-xs-6 col-form-label">
                                         <span>From Expense</span>
                                     </label>
@@ -111,7 +107,7 @@ class FilterViewPage extends Component {
                                         <input className="form-control" required type="number" name="expensefrom" onChange={this.handleChange.bind(this)} value={this.state.expensefrom} />
                                     </div>
                                 </div>
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-xs-6 col-form-label">
                                         <span>To Expense</span>
                                     </label>

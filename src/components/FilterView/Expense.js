@@ -1,6 +1,5 @@
 import React from 'react'
 import ExpenseRow from '../Common/ExpenseRow'
-import moment from 'moment'
 
 import * as utils from '../Util'
 
