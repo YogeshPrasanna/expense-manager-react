@@ -1,6 +1,6 @@
 import React from 'react'
 import * as utils from '../Util'
-
+import Loader from '../Common/Loader'
 const TotalCard = (props) => {
 
     const pad0 = {
@@ -18,7 +18,7 @@ const TotalCard = (props) => {
     let totalExpenses = 0;
 
     if (!expenses || !currentUser) {
-        return <div> Loading ... </div>
+        return <div><Loader /></div>
     }
 
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {

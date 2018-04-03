@@ -1,6 +1,6 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
-
+import Loader from '../Common/Loader'
 import * as utils from '../Util'
 
 const DoughnutChartCategory = (props) => {
@@ -10,7 +10,7 @@ const DoughnutChartCategory = (props) => {
     let allCategoryTotals = null;
 
     if (!expenses || !currentUser) {
-        return <div> Loading ... </div>
+        return <div><Loader /></div>
     }
 
     if (expenses && currentUser) {

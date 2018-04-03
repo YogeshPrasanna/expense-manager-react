@@ -1,6 +1,6 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2'
-
+import Loader from '../Common/Loader'
 import * as utils from '../Util'
 
 const BarChartAllMonths = (props) => {
@@ -8,7 +8,7 @@ const BarChartAllMonths = (props) => {
     let currentUser = props.authUser;
 
     if (!expenses || !currentUser) {
-        return <div> Loading ... </div>
+        return <div><Loader /></div>
     }
 
     if (expenses && currentUser) {

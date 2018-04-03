@@ -1,6 +1,6 @@
 import React from 'react'
 import ExpenseRow from '../Common/ExpenseRow'
-
+import Loader from '../Common/Loader'
 import * as utils from '../Util'
 
 const Expense = (props) => {
@@ -10,7 +10,7 @@ const Expense = (props) => {
         let dateSelected = props.date;
 
         if (!expenses || !currentUser){
-            return <tr><td> Loading ... </td></tr>
+            return <tr><td><Loader /></td></tr>
         }
 
         if (expenses && currentUser){

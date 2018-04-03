@@ -1,6 +1,6 @@
 import React from 'react'
 import * as utils from '../Util'
-
+import Loader from '../Common/Loader'
 const CategoryTotalCard = (props) => {
 
     const pad0 = {
@@ -33,7 +33,7 @@ const CategoryTotalCard = (props) => {
     let categoryList = null;
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
-        return <div> Loading ... </div>
+        return <div><Loader /></div>
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {

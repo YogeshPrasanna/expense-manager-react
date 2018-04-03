@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Loader from '../Common/Loader'
 import * as utils from '../Util'
 
 const Cards = (props) => {
@@ -12,7 +12,7 @@ const Cards = (props) => {
     var totalExpensesThisWeek = 0;
 
     if (!expenses && !currentUser) {
-        return <div> Loading ... </div>
+        return <div><Loader /></div>
     }
 
     if (expenses && currentUser) {
