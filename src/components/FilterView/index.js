@@ -86,7 +86,7 @@ class FilterViewPage extends Component {
                         <form onSubmit={this.handleSubmit} style={form}>
                             <div style={datePickerHeader}> Filter out your expenses </div>
                             <div className="form-group row">
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-form-label">
                                         <span>From Date</span>
                                     </label>
@@ -94,7 +94,7 @@ class FilterViewPage extends Component {
                                         <DatePicker className="form-control date" name="fromdate" selected={this.state.fromdate} onSelect={this.handleFromDateSelect.bind(this)} />
                                     </div>
                                 </div>
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-form-label">
                                         <span>To Date</span>
                                     </label>
@@ -104,7 +104,7 @@ class FilterViewPage extends Component {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-xs-6 col-form-label">
                                         <span>From Expense</span>
                                     </label>
@@ -112,7 +112,7 @@ class FilterViewPage extends Component {
                                         <input className="form-control" required type="number" name="expensefrom" onChange={this.handleChange.bind(this)} value={this.state.expensefrom} />
                                     </div>
                                 </div>
-                                <div class="col-sm-6" style={pad0}>
+                                <div className="col-sm-6" style={pad0}>
                                     <label className="col-sm-12 col-xs-6 col-form-label">
                                         <span>To Expense</span>
                                     </label>

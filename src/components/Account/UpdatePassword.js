@@ -9,8 +9,8 @@ const Message = (props) => {
     return (
         <div className="row">
             <div className="col-sm-12" style={style}>
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">{props.message}</h4>
+                <div clasNames="alert alert-success" role="alert">
+                    <h4 className="alert-heading">{props.message}</h4>
                 </div>
             </div>
         </div>

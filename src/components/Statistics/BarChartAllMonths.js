@@ -7,16 +7,12 @@ const BarChartAllMonths = (props) => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
 
-    let allCategoryTotals = null;
-
     if (!expenses || !currentUser) {
         return <div> Loading ... </div>
     }
 
     if (expenses && currentUser) {
         let eachExpense = utils.eachExpense(expenses);
-        let usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
-
         let allMonthsTotals = utils.totalExpensesInEachMonthOfThisYear(expenses, eachExpense, currentUser);
 
         let data = {

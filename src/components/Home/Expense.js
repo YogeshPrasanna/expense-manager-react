@@ -11,7 +11,7 @@ const Expense = (props) => {
         if (!expenses || !currentUser){
             return <tr>
                         <td>
-                            <div class="loader" id="loader-6">
+                            <div className="loader" id="loader-6">
                                 <span></span>
                                 <span></span>
                                 <span></span>

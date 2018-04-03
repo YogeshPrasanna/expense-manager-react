@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import '../../assets/css/loader.css'
 
 import * as utils from '../Util'
@@ -15,7 +14,7 @@ const Cards = (props) => {
 
     if (!expenses && !currentUser) {
         return (
-            <div class="loader" id="loader-6">
+            <div className="loader" id="loader-6">
                 <span></span>
                 <span></span>
                 <span></span>

@@ -16,7 +16,7 @@ class ExportToExcel extends Component {
 
         if (!expenses || !currentUser) {
             return (
-                <div class="loader" id="loader-6">
+                <div className="loader" id="loader-6">
                     <span></span>
                     <span></span>
                     <span></span>
