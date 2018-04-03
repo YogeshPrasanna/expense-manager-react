@@ -1,10 +1,10 @@
 import React from 'react'
-//import { default as ExcelFile, ExcelSheet, ExcelColumn } from "react-data-export"
-import ReactExport from "react-data-export";
+import { default as ExcelFile, ExcelSheet, ExcelColumn } from "react-data-export"
+// import ReactExport from "react-data-export";
 
-const ExcelFile = ReactExport.ExcelFile;
-const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+// const ExcelFile = ReactExport.ExcelFile;
+// const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+// const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const GenerateExcel = (props) => {
 
