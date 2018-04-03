@@ -1,43 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GenerateExcel from './../Common/GenerateExcel'
 
 import * as utils from '../Util'
 
-class ExportToExcel extends Component {
-    constructor(props){
-        super(props)
+const ExportToExcel = (props) => {
+
+    let expenses = props.expenses;
+    let currentUser = props.authUser;
+    let selectedMonth = props.month;
+    let selectedYear = props.year
+
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+        return <div> Loading ... </div>
     }
 
-    render() {
+    if (expenses && currentUser && selectedMonth && selectedYear) {
+        let eachExpense = utils.eachExpense(expenses);
+        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense, currentUser, selectedMonth, selectedYear);
 
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let selectedMonth = this.props.month;
-        let selectedYear = this.props.year
+        var excelDataObject = usersExpensesInSelectedMonthAndYear.map((exp) => exp.value);
 
-        if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
-            return <div> Loading ... </div>
+        let exportArea = {
+            "backgroundColor": "#324858",
+            "color": "#DEDA54",
+            "padding": "10px",
+            "borderRadius": "5px"
         }
 
-        if (expenses && currentUser && selectedMonth && selectedYear) {
-            let eachExpense = utils.eachExpense(expenses);
-            let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense, currentUser, selectedMonth, selectedYear);
-
-            var excelDataObject = usersExpensesInSelectedMonthAndYear.map((exp) => exp.value);
-
-            let exportArea = {
-                "backgroundColor": "#324858",
-                "color": "#DEDA54",
-                "padding": "10px",
-                "borderRadius": "5px"
-            }
-
-            return (
-                <div className="col-sm-12" style={exportArea}>
-                    <GenerateExcel excelDataObject={excelDataObject} />
-                </div>
-            )
-        }
+        return (
+            <div className="col-sm-12" style={exportArea}>
+                <GenerateExcel excelDataObject={excelDataObject} />
+            </div>
+        )
     }
 }
 

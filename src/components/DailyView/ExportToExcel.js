@@ -1,42 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GenerateExcel from './../Common/GenerateExcel'
 
 import * as utils from '../Util'
 
-class ExportToExcel extends Component {
-    constructor(props){
-        super(props)
+
+const ExportToExcel = (props) => {
+
+    let expenses = props.expenses;
+    let currentUser = props.authUser;
+    let dateSelected = props.date;
+
+    if (!expenses || !currentUser) {
+        return <div> Loading ... </div>
     }
 
-    render() {
+    if (expenses && currentUser) {
+        let eachExpense = utils.eachExpense(expenses);
+        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected)
 
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let dateSelected = this.props.date;
+        var excelDataObject = thisUsersExpenses.map((exp) => exp.value);
 
-        if (!expenses || !currentUser) {
-            return <div> Loading ... </div>
+        let exportArea = {
+            "backgroundColor": "#324858",
+            "color": "#DEDA54",
+            "padding": "10px",
+            "borderRadius": "5px"
         }
 
-        if (expenses && currentUser) {
-            let eachExpense = utils.eachExpense(expenses);
-            let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected)
-
-            var excelDataObject = thisUsersExpenses.map((exp) => exp.value);
-
-            let exportArea = {
-                "backgroundColor": "#324858",
-                "color": "#DEDA54",
-                "padding": "10px",
-                "borderRadius": "5px"
-            }
-
-            return (
-                <div className="col-sm-12" style={exportArea}>
-                    <GenerateExcel excelDataObject={excelDataObject} />
-                </div>
-            )
-        }
+        return (
+            <div className="col-sm-12" style={exportArea}>
+                <GenerateExcel excelDataObject={excelDataObject} />
+            </div>
+        )
     }
 }
 

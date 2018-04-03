@@ -1,48 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GenerateExcel from './../Common/GenerateExcel'
 
 import * as utils from '../Util'
 
-class ExportToExcel extends Component {
-    constructor(props){
-        super(props)
+const ExportToExcel = (props) =>  {
+
+    let expenses = props.expenses;
+    let currentUser = props.authUser;
+    let startDate = props.fromdate;
+    let endDate = props.todate;
+    let expenseFrom = props.expensefrom;
+    let expenseTo = props.expenseto;
+    let category = props.category;
+
+    if (!expenses || !currentUser) {
+        return <div> Loading ... </div>
     }
 
-    render() {
+    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
+        let eachExpense = utils.eachExpense(expenses)
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
+        let filteredExpenses = utils.filterExpensesByCriteria(startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses)
 
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let startDate = this.props.fromdate;
-        let endDate = this.props.todate;
-        let expenseFrom = this.props.expensefrom;
-        let expenseTo = this.props.expenseto;
-        let category = this.props.category;
+        var excelDataObject = filteredExpenses.map((exp) => exp.value);
 
-        if (!expenses || !currentUser) {
-            return <div> Loading ... </div>
+        let exportArea = {
+            "backgroundColor": "#324858",
+            "color": "#DEDA54",
+            "padding": "10px",
+            "borderRadius": "5px",
+            "marginTop": "15px"
         }
 
-        if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
-            let eachExpense = utils.eachExpense(expenses)
-            let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
-            let filteredExpenses = utils.filterExpensesByCriteria(startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses)
-
-            var excelDataObject = filteredExpenses.map((exp) => exp.value);
-
-            let exportArea = {
-                "backgroundColor": "#324858",
-                "color": "#DEDA54",
-                "padding": "10px",
-                "borderRadius": "5px",
-                "marginTop": "15px"
-            }
-
-            return (
-                <div className="col-sm-12" style={exportArea}>
-                    <GenerateExcel excelDataObject={excelDataObject} />
-                </div>
-            )
-        }
+        return (
+            <div className="col-sm-12" style={exportArea}>
+                <GenerateExcel excelDataObject={excelDataObject} />
+            </div>
+        )
     }
 }
 

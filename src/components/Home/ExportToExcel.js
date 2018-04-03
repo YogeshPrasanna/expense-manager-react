@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GenerateExcel from './../Common/GenerateExcel'
 import '../../assets/css/loader.css'
 
 import * as utils from '../Util'
 
-class ExportToExcel extends Component {
-    constructor(props){
-        super(props)
-    }
+const ExportToExcel = (props) => {
 
-    render() {
-
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
+        let expenses = props.expenses;
+        let currentUser = props.authUser;
 
         if (!expenses || !currentUser) {
             return (
@@ -44,7 +39,6 @@ class ExportToExcel extends Component {
                 </div>
             )
         }
-    }
 }
 
 export default ExportToExcel
