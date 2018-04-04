@@ -4,6 +4,7 @@ import MonthExpenseTable from './MonthExpenseTable'
 import TotalCard from './TotalCard'
 import CategoryTotalCard from './CategoryTotalCard'
 import DoughnutChart from './DoughnutChart'
+import GenerateExcel from './GenerateExcel'
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -93,6 +94,7 @@ class MonthViewPage extends Component {
                         <div className="col-sm-12" style={pad15}>
                             <DoughnutChart expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year}/>
                         </div>
+                        <GenerateExcel expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />                        
                         <MonthExpenseTable expenses={this.props.expenses} authUser={this.props.user} month={this.state.month} year={this.state.year} />
                     </div>
 
