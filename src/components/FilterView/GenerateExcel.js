@@ -1,5 +1,6 @@
 import React from "react";
 import ExportToExcel from "./../Common/ExportToExcel";
+import Loader from "./../Common/Loader";
 
 import * as utils from "../Util";
 
@@ -13,7 +14,11 @@ const GenerateExcel = props => {
     let category = props.category;
 
     if (!expenses || !currentUser) {
-        return <div> Loading ... </div>;
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
     }
 
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {

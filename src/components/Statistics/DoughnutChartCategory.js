@@ -1,50 +1,53 @@
-import React from 'react'
-import { Doughnut } from 'react-chartjs-2'
-import Loader from '../Common/Loader'
-import * as utils from '../Util'
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import Loader from "../Common/Loader";
+import * as utils from "../Util";
 
-const DoughnutChartCategory = (props) => {
+const DoughnutChartCategory = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
 
     let allCategoryTotals = null;
 
     if (!expenses || !currentUser) {
-        return <div><Loader /></div>
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
     }
 
     if (expenses && currentUser) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        console.log("Expenses in all months of a year : ", utils.totalExpensesInEachMonthOfThisYear(expenses, eachExpense, currentUser))
-        
-
         allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses);
 
         let data = {
             labels: utils.categories,
-            datasets: [{
-                data: Object.values(allCategoryTotals),
-                backgroundColor: utils.categoryColors,
-                hoverBackgroundColor: utils.categoryColors
-            }]
+            datasets: [
+                {
+                    data: Object.values(allCategoryTotals),
+                    backgroundColor: utils.categoryColors,
+                    hoverBackgroundColor: utils.categoryColors
+                }
+            ]
         };
 
         const options = {
             legend: {
                 display: true,
-                position: 'top',
+                position: "top",
                 fullWidth: true,
-                reverse: false,
+                reverse: false
             }
-        }
+        };
 
         const optionsMobile = {
             legend: {
                 display: false
             }
-        }
+        };
 
         return (
             <div>
@@ -52,6 +55,6 @@ const DoughnutChartCategory = (props) => {
             </div>
         );
     }
-}
+};
 
-export default DoughnutChartCategory
+export default DoughnutChartCategory;

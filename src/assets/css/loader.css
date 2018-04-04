@@ -32,7 +32,7 @@
 }
 
 #loader-6 span:nth-child(3) {
-    animation: grow 1s ease-in-out 0.30s infinite;
+    animation: grow 1s ease-in-out 0.3s infinite;
 }
 
 #loader-6 span:nth-child(4) {
