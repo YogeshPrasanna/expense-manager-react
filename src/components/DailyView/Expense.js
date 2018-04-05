@@ -40,11 +40,29 @@ const Expense = props => {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
-        return thisUsersExpenses.map(function(elem, i) {
+        if (thisUsersExpenses.length) {
+            return thisUsersExpenses.map((elem, i) => {
+                return (
+                    <ExpenseRow
+                        user={props.authUser}
+                        expense={elem}
+                        num={i}
+                        key={i}
+                        expenseId={thisUsersExpenses[i].key}
+                    />
+                );
+            });
+        } else {
             return (
-                <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={thisUsersExpenses[i].key} />
+                <tr>
+                    <td>
+                        <div class="alert alert-info" role="alert">
+                            You have'nt spent a penny on {props.date}{" "}
+                        </div>
+                    </td>
+                </tr>
             );
-        });
+        }
     }
 };
 

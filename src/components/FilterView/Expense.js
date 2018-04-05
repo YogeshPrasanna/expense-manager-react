@@ -52,11 +52,29 @@ const Expense = props => {
             thisUsersExpenses
         );
 
-        return filteredExpenses.map(function(elem, i) {
+        if (filteredExpenses.length) {
+            return filteredExpenses.map(function(elem, i) {
+                return (
+                    <ExpenseRow
+                        user={props.authUser}
+                        expense={elem}
+                        num={i}
+                        key={i}
+                        expenseId={filteredExpenses[i].key}
+                    />
+                );
+            });
+        } else {
             return (
-                <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={filteredExpenses[i].key} />
+                <tr>
+                    <td>
+                        <div class="alert alert-info" role="alert">
+                            Filter Resulted in no records
+                        </div>
+                    </td>
+                </tr>
             );
-        });
+        }
     }
 };
 

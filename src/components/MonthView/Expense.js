@@ -46,17 +46,29 @@ const Expense = props => {
             selectedYear
         );
 
-        return usersExpensesInSelectedMonthAndYear.map(function(elem, i) {
+        if (usersExpensesInSelectedMonthAndYear.length) {
+            return usersExpensesInSelectedMonthAndYear.map(function(elem, i) {
+                return (
+                    <ExpenseRow
+                        user={props.authUser}
+                        expense={elem}
+                        num={i}
+                        key={i}
+                        expenseId={usersExpensesInSelectedMonthAndYear[i].key}
+                    />
+                );
+            });
+        } else {
             return (
-                <ExpenseRow
-                    user={props.authUser}
-                    expense={elem}
-                    num={i}
-                    key={i}
-                    expenseId={usersExpensesInSelectedMonthAndYear[i].key}
-                />
+                <tr>
+                    <td>
+                        <div class="alert alert-info" role="alert">
+                            You have'nt spent a penny on the selected month
+                        </div>
+                    </td>
+                </tr>
             );
-        });
+        }
     }
 };
 

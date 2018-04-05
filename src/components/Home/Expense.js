@@ -39,11 +39,30 @@ const Expense = props => {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        return thisUsersExpenses.map(function(elem, i) {
+        if (thisUsersExpenses.length) {
+            return thisUsersExpenses.map(function(elem, i) {
+                return (
+                    <ExpenseRow
+                        user={props.authUser}
+                        expense={elem}
+                        num={i}
+                        key={i}
+                        expenseId={thisUsersExpenses[i].key}
+                    />
+                );
+            });
+        } else {
             return (
-                <ExpenseRow user={props.authUser} expense={elem} num={i} key={i} expenseId={thisUsersExpenses[i].key} />
+                <tr>
+                    <td>
+                        <div class="alert alert-info" role="alert">
+                            Start logging your expenses to see your expenses here , add an expense by clicking on the +
+                            Button on the bottom right corner of this page
+                        </div>
+                    </td>
+                </tr>
             );
-        });
+        }
     }
 };
 
