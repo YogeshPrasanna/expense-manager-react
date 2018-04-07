@@ -1,199 +1,200 @@
-@import url('https://fonts.googleapis.com/css?family=Dhurjati');
+@import url("https://fonts.googleapis.com/css?family=Dhurjati");
 
-.landing{
-  font-family: 'Dhurjati', sans-serif;
-  font-size: 40px;
-  text-align: center;
-  position: fixed;
-  top: 250px;
-  left: 220px;
+.landing {
+    font-family: "Dhurjati", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    position: fixed;
+    top: 250px;
+    left: 220px;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
-ul{
-  margin: 0
+ul {
+    margin: 0;
 }
 
 .popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0,0,0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .popup_inner {
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 15%;
-  margin: auto;
-  background: white;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 15%;
+    margin: auto;
+    background: white;
 }
 
-.addExpenseHeader{
-  display: block;
-  padding: 15px;
-  text-align: center;
-  background: #616161;
-  color: #ecf0f1;
+.addExpenseHeader {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    background: #616161;
+    color: #ecf0f1;
 }
 
-.delete-btn{
-  background: transparent;
-  color: #ea8c8c;
-  margin: 0;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+.delete-btn {
+    background: transparent;
+    color: #ea8c8c;
+    margin: 0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .edit-btn {
-  background: transparent;
-  color: #FFA500;
-  margin: 0;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+    background: transparent;
+    color: #ffa500;
+    margin: 0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
-.addexpense-btn{
-  border-radius: 50px;
-  border-color: #25221b66;
-  cursor: pointer;
-  outline: none !important;
+.addexpense-btn {
+    border-radius: 50px;
+    border-color: #25221b66;
+    cursor: pointer;
+    outline: none !important;
 }
 
-.card{
-  margin-top: 15px;
-  border-left: 10px solid rgba(0,0,0,0.1) !important;
+.card {
+    margin-top: 15px;
+    border-left: 10px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-.card:hover{
-   border-left: 10px solid rgba(0,0,0,0.5) !important;
+.card:hover {
+    border-left: 10px solid rgba(0, 0, 0, 0.5) !important;
 }
 
-.card1{
-  background: #9A4C48 !important;
-  color: #ddd !important;
+.card1 {
+    background: #9a4c48 !important;
+    color: #ddd !important;
 }
 
-.card2{
-  background: #855B81 !important;
-  color: #ddd !important;
+.card2 {
+    background: #855b81 !important;
+    color: #ddd !important;
 }
 
-.card3{
-  background: #50669B !important;
-  color: #ddd !important;
+.card3 {
+    background: #50669b !important;
+    color: #ddd !important;
 }
 
-.card4{
-  background: #466D81 !important;
-  color: #ddd !important;
+.card4 {
+    background: #466d81 !important;
+    color: #ddd !important;
 }
 
 .card .card-block .card-title {
-  padding: 15px;
-  border-bottom: 2px solid rgba(0,0,0,0.1);
+    padding: 15px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.card .card-block .card-text{
-  padding: 15px;
-  font-size: 35px;
-  font-weight: bold;
+.card .card-block .card-text {
+    padding: 15px;
+    font-size: 35px;
+    font-weight: bold;
 }
 
-.expense-day{
-  margin-left: 15px;
-  color: orange;
+.expense-day {
+    margin-left: 15px;
+    color: orange;
 }
 
 .ttt:hover {
-  border-left: 5px solid #d2c0a0 !important;
+    border-left: 5px solid #d2c0a0 !important;
 }
 
 #addExpense {
-  position: fixed;
-  bottom: 30px !important;
-  right: 30px !important;
-}
-
-@media (max-width: 720px){
-  .form{
-    margin: 15px !important
-  }
-
-  #addExpense {
-    bottom: 20px;
-    right: 30px;
-  }
-
-  .expense-day{
-    margin: 0 auto;
-    display: table;
-  }
-
-  .navbar-nav {
-		padding-top: .425rem;
-		padding-left: 0.75rem;
-	}
-	.navbar-nav .nav-item {
-		float: none;
-	}
-	.navbar-brand {
-		float: right;
-	}
-	.navbar-brand,
-	.navbar-nav .nav-item {
-		display: block;
-	}
-	.navbar-nav .nav-item + .nav-item {
-		margin-left: 0;
-	}
-	.dropdown-menu {
-		position: relative;
-		float: none;
-  }
-  
-  .landing{
-    text-align: center;
-    letter-spacing: 3px;
     position: fixed;
-    top: 30vh;
-    left: auto;
-  }
-
-  .navbar-collapse{
-    text-align: center
-  }
-
-  .popup_inner{
-    width: 90vw;
-    height: 85vh;
-    right: 15px;
-    left: 15px;
-    top: 15%;
-  }
+    bottom: 30px !important;
+    right: 30px !important;
 }
 
-@media (orientation:portrait) {
- .chart-container {
-   min-height: 60vh;
- }
+@media (max-width: 720px) {
+    .form {
+        margin: 15px !important;
+    }
+
+    #addExpense {
+        bottom: 20px;
+        right: 30px;
+    }
+
+    .expense-day {
+        margin: 0 auto;
+        display: table;
+    }
+
+    .navbar-nav {
+        padding-top: 0.425rem;
+        padding-left: 0.75rem;
+    }
+    .navbar-nav .nav-item {
+        float: none;
+    }
+    .navbar-brand {
+        float: right;
+    }
+    .navbar-brand,
+    .navbar-nav .nav-item {
+        display: block;
+    }
+    .navbar-nav .nav-item + .nav-item {
+        margin-left: 0;
+    }
+    .dropdown-menu {
+        position: relative;
+        float: none;
+    }
+
+    .landing {
+        text-align: center;
+        letter-spacing: 3px;
+        position: fixed;
+        top: 30vh;
+        left: auto;
+    }
+
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .popup_inner {
+        width: 90vw;
+        height: 80vh;
+        overflow-y: scroll;
+        right: 15px;
+        left: 15px;
+        top: 15px;
+    }
 }
 
-@media (orientation:landscape) {
- .chart-container {
-   min-height: auto;
- }
+@media (orientation: portrait) {
+    .chart-container {
+        min-height: 60vh;
+    }
+}
+
+@media (orientation: landscape) {
+    .chart-container {
+        min-height: auto;
+    }
 }
