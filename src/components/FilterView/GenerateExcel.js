@@ -35,6 +35,8 @@ const GenerateExcel = props => {
 
         let excelDataObject = filteredExpenses.map(exp => exp.value);
 
+        let pageTitle = `Filtered expenses Start date : ${startDate} End date : ${endDate} category: ${category} expenses Amount From : ${expenseFrom} expenses Amount To : ${expenseTo}`;
+
         let exportArea = {
             backgroundColor: "#324858",
             color: "#DEDA54",
@@ -45,7 +47,7 @@ const GenerateExcel = props => {
 
         return (
             <div className="col-sm-12" style={exportArea}>
-                <ExportToExcel excelDataObject={excelDataObject} />
+                <ExportToExcel excelDataObject={excelDataObject} pageTitle={pageTitle} />
             </div>
         );
     }

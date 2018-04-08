@@ -26,7 +26,8 @@ const GenerateExcel = props => {
             selectedYear
         );
 
-        var excelDataObject = usersExpensesInSelectedMonthAndYear.map(exp => exp.value);
+        let excelDataObject = usersExpensesInSelectedMonthAndYear.map(exp => exp.value);
+        let pageTitle = `Expenses in ${selectedMonth}'rd month of ${selectedYear}`;
 
         let exportArea = {
             backgroundColor: "#324858",
@@ -37,7 +38,7 @@ const GenerateExcel = props => {
 
         return (
             <div className="col-sm-12" style={exportArea}>
-                <ExportToExcel excelDataObject={excelDataObject} />
+                <ExportToExcel excelDataObject={excelDataObject} pageTitle={pageTitle} />
             </div>
         );
     }

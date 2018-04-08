@@ -1,42 +1,41 @@
-import React from 'react'
-import ExportToExcel from './../Common/ExportToExcel'
-import * as utils from './../Util'
+import React from "react";
+import ExportToExcel from "./../Common/ExportToExcel";
+import * as utils from "./../Util";
 
-const GenerateExcel = (props) => {
-
+const GenerateExcel = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
 
     if (!expenses || !currentUser) {
         return (
             <div className="loader" id="loader-6">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <span />
+                <span />
+                <span />
+                <span />
             </div>
-        )
+        );
     }
 
     if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses)
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
-        var excelDataObject = thisUsersExpenses.map((exp) => exp.value);
+        let eachExpense = utils.eachExpense(expenses);
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        var excelDataObject = thisUsersExpenses.map(exp => exp.value);
 
         let exportArea = {
-            "backgroundColor": "#324858",
-            "color": "#DEDA54",
-            "padding": "10px",
-            "borderRadius": "5px",
-            "marginTop": "15px"
-        }
+            backgroundColor: "#324858",
+            color: "#DEDA54",
+            padding: "10px",
+            borderRadius: "5px",
+            marginTop: "15px"
+        };
 
         return (
             <div className="col-sm-12" style={exportArea}>
-                <ExportToExcel excelDataObject={excelDataObject} />
+                <ExportToExcel excelDataObject={excelDataObject} pageTitle="Expenses - all" />
             </div>
-        )
+        );
     }
-}
+};
 
-export default GenerateExcel
+export default GenerateExcel;

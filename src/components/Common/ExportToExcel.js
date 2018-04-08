@@ -89,7 +89,7 @@ class ExportToExcel extends Component {
             document.body.removeChild(link);
         };
 
-        return JSONToCSVConvertor(CSVData, "Expenses Report", true);
+        return JSONToCSVConvertor(CSVData, this.props.pageTitle, true);
     }
 
     render() {
