@@ -1,149 +1,136 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import { SignUpLink } from '../signUp/index';
-import { auth } from '../../firebase';
-import * as routes from '../../constants/routes';
-import firebase from 'firebase';
+import { SignUpLink } from "../signUp/index";
+import { auth } from "../../firebase";
+import * as routes from "../../constants/routes";
+import firebase from "firebase";
 
-const SignInPage = ({ history }) =>
-  <div>
-    <SignInForm history={history} />
-    <SignUpLink />
-  </div>
+const SignInPage = ({ history }) => (
+    <div>
+        <SignInForm history={history} />
+        <SignUpLink />
+    </div>
+);
 
 const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
+    [propertyName]: value
 });
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
+    email: "",
+    password: "",
+    error: null
 };
 
 class SignInForm extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = { ...INITIAL_STATE };
-  }
+        this.state = { ...INITIAL_STATE };
+    }
 
+    callGoogleSignIn = () => {
+        const { history } = this.props;
 
-  callGoogleSignIn = () => {
+        let provider = new firebase.auth.GoogleAuthProvider();
 
-    const {
-      history,
-    } = this.props;
+        firebase
+            .auth()
+            .signInWithPopup(provider)
+            .then(result => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                let token = result.credential.accessToken;
 
-    var provider = new firebase.auth.GoogleAuthProvider();
+                // The signed-in user info.
+                let user = result.user;
 
-    firebase.auth().signInWithPopup(provider).then((result) => {
+                history.push(routes.HOME);
+            })
+            .catch(error => {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
 
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
+                // The email of the user's account used.
+                let email = error.email;
 
-      // The signed-in user info.
-      var user = result.user;
+                // The firebase.auth.AuthCredential type that was used.
+                let credential = error.credential;
 
-      history.push(routes.HOME);
+                alert(errorMessage, "Retry !!!");
+                // ...
+            });
+    };
 
-    }).catch((error) => {
+    onSubmit = event => {
+        const { email, password } = this.state;
 
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+        const { history } = this.props;
 
-      // The email of the user's account used.
-      var email = error.email;
+        auth
+            .doSignInWithEmailAndPassword(email, password)
+            .then(authUser => {
+                // allow signin only when user is verified
+                if (authUser && authUser.emailVerified) {
+                    this.setState(() => ({ ...INITIAL_STATE }));
+                    history.push(routes.HOME);
+                } else {
+                    history.push(routes.USER_VERIFICATION);
+                }
+            })
+            .catch(error => {
+                this.setState(byPropKey("error", error));
+            });
 
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+        event.preventDefault();
+    };
 
-      alert(errorMessage, "Retry !!!")
-      // ...
-    });
-  }
+    render() {
+        const { email, password, error } = this.state;
 
-  onSubmit = (event) => {
-    const {
-      email,
-      password,
-    } = this.state;
+        const isInvalid = password === "" || email === "";
 
-    const {
-      history,
-    } = this.props;
+        return (
+            <div className="login-page">
+                <form onSubmit={this.onSubmit} className="form">
+                    <input
+                        value={email}
+                        onChange={event => this.setState(byPropKey("email", event.target.value))}
+                        type="text"
+                        placeholder="Email Address"
+                    />
+                    <input
+                        value={password}
+                        onChange={event => this.setState(byPropKey("password", event.target.value))}
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <button disabled={isInvalid} type="submit">
+                        Sign In
+                    </button>
 
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then((authUser) => {
+                    <p>
+                        {" "}
+                        <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
+                    </p>
 
-        // allow signin only when user is verified
-        if (authUser && authUser.emailVerified) {
-          this.setState(() => ({ ...INITIAL_STATE }));
-          history.push(routes.HOME);
-        } else {
-          history.push(routes.USER_VERIFICATION)
-        }
+                    <hr />
 
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error));
-      });
+                    <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
+                        <span className="googleLogo">
+                            <i className="fa fa-google" />
+                        </span>{" "}
+                        Sign in with google
+                    </div>
 
-    event.preventDefault();
-  }
-
-  render() {
-    const {
-      email,
-      password,
-      error,
-    } = this.state;
-
-    const isInvalid =
-      password === '' ||
-      email === '';
-
-    return (
-      <div className="login-page">
-        <form onSubmit={this.onSubmit} className="form">
-          <input
-            value={email}
-            onChange={event => this.setState(byPropKey('email', event.target.value))}
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            value={password}
-            onChange={event => this.setState(byPropKey('password', event.target.value))}
-            type="password"
-            placeholder="Password"
-          />
-          <button disabled={isInvalid} type="submit">
-            Sign In
-          </button>
-
-          <p>
-            {' '}
-            <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
-          </p>
-
-          <hr />
-
-          <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
-            <span className="googleLogo"><i className="fa fa-google"></i></span> Sign in with google
-          </div>
-
-          {error && <p>{error.message}</p>}
-        </form>
-      </div>
-    );
-  }
+                    {error && <p>{error.message}</p>}
+                </form>
+            </div>
+        );
+    }
 }
 
 export default withRouter(SignInPage);
 
-export {
-  SignInForm,
-};
+export { SignInForm };

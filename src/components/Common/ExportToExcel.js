@@ -19,9 +19,9 @@ class ExportToExcel extends Component {
 
         const JSONToCSVConvertor = (JSONData, ReportTitle, ShowLabel) => {
             //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-            var arrData = typeof JSONData !== "object" ? JSON.parse(JSONData) : JSONData;
+            const arrData = typeof JSONData !== "object" ? JSON.parse(JSONData) : JSONData;
 
-            var CSV = "";
+            let CSV = "";
             //Set Report title in first row or line
 
             CSV += ReportTitle + "\r\n\n";
@@ -31,7 +31,7 @@ class ExportToExcel extends Component {
                 let row = "";
 
                 //This loop will extract the label from 1st index of on array
-                for (var index in arrData[0]) {
+                for (let index in arrData[0]) {
                     //Now convert each value to string and comma-seprated
                     row += index + ",";
                 }
@@ -47,7 +47,7 @@ class ExportToExcel extends Component {
                 let row = "";
 
                 //2nd loop will extract each column and convert it in string comma-seprated
-                for (var index in arrData[i]) {
+                for (let index in arrData[i]) {
                     row += '"' + arrData[i][index] + '",';
                 }
 
@@ -63,7 +63,7 @@ class ExportToExcel extends Component {
             }
 
             //Generate a file name
-            var fileName = "MyReport_";
+            let fileName = "MyReport_";
             //this will remove the blank-spaces from the title and replace it with an underscore
             fileName += ReportTitle.replace(/ /g, "_");
 
@@ -76,7 +76,7 @@ class ExportToExcel extends Component {
             // or you will not get the correct file extension
 
             //this trick will generate a temp <a /> tag
-            var link = document.createElement("a");
+            let link = document.createElement("a");
             link.href = uri;
 
             //set the visibility hidden so it will not effect on your web-layout

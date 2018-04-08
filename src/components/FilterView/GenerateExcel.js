@@ -33,7 +33,7 @@ const GenerateExcel = props => {
             thisUsersExpenses
         );
 
-        var excelDataObject = filteredExpenses.map(exp => exp.value);
+        let excelDataObject = filteredExpenses.map(exp => exp.value);
 
         let exportArea = {
             backgroundColor: "#324858",

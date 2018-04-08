@@ -68,7 +68,7 @@ const Expense = props => {
             return (
                 <tr>
                     <td>
-                        <div class="alert alert-info" role="alert">
+                        <div className="alert alert-info" role="alert">
                             Filter Resulted in no records
                         </div>
                     </td>

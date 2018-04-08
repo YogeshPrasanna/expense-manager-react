@@ -1,42 +1,42 @@
-import React from 'react';
-import url from "./man.png"
-import { Link } from 'react-router-dom';
-import * as routes from '../../constants/routes';
+import React from "react";
+import url from "./man.png";
+import { Link } from "react-router-dom";
+import * as routes from "../../constants/routes";
 
-const AccountPage = (props) => {
-
+const AccountPage = props => {
     const userImage = {
-        "width": "200px",
-        "height": "200px",
-        "borderRadius": "15px",
-        "margin": "2% auto 0 auto",
-        "display": "block"
-    }
+        width: "200px",
+        height: "200px",
+        borderRadius: "15px",
+        margin: "2% auto 0 auto",
+        display: "block"
+    };
 
     const center = {
-        "margin": "0 auto",
-        "display": "block"
-    }
+        margin: "0 auto",
+        display: "block"
+    };
 
-    if(props.user){
-
+    if (props.user) {
         const test = {
-            "borderRadius":"10px",
-            "outline": "none"
-        }
+            borderRadius: "10px",
+            outline: "none"
+        };
 
         return (
             <div className="container">
-                <img src={ props.user.photoURL || url } style={userImage} alt="Problem in getting your image" />
+                <img src={props.user.photoURL || url} style={userImage} alt="something's wrong" />
                 <div className="row">
                     <div className="col-sm-5" style={center}>
                         <div className="card card3">
                             <div className="card-body">
                                 <h5 className="card-title">Hello {props.user.displayName || props.user.email}</h5>
                                 <hr />
-                                <p className="card-title">Registered email  : {props.user.email}</p>   
+                                <p className="card-title">Registered email : {props.user.email}</p>
                                 <hr />
-                                <p className="card-title">{props.user.emailVerified ? "User is verified" : "User not verified"}</p>
+                                <p className="card-title">
+                                    {props.user.emailVerified ? "User is verified" : "User not verified"}
+                                </p>
                                 <hr />
                                 <button classame="btn btn-default" style={test}>
                                     <Link to={routes.UPDATE_PASSWORD}> update password </Link>
@@ -46,11 +46,11 @@ const AccountPage = (props) => {
                     </div>
                 </div>
             </div>
-        )
-    }else{
+        );
+    } else {
         return (
             <div className="container">
-                <img src={url} style={userImage} />
+                <img src={url} style={userImage} alt="somethig's wrong" />
                 <div className="row">
                     <div className="col-sm-5" style={center}>
                         <div className="card card3">
@@ -65,8 +65,8 @@ const AccountPage = (props) => {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-}
+};
 
 export default AccountPage;

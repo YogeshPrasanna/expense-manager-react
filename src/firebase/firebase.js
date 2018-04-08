@@ -1,6 +1,6 @@
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
-var config = {
+const config = {
     apiKey: "AIzaSyCLgp-lM7vLypzhkakWCt4FD2nh7pd4W08",
     authDomain: "expense-manager-react.firebaseapp.com",
     databaseURL: "https://expense-manager-react.firebaseio.com",
@@ -16,6 +16,4 @@ if (!firebase.apps.length) {
 const db = firebase.database();
 const auth = firebase.auth();
 
-export {
-    auth, db
-};
+export { auth, db };

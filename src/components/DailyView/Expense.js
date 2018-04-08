@@ -56,7 +56,7 @@ const Expense = props => {
             return (
                 <tr>
                     <td>
-                        <div class="alert alert-info" role="alert">
+                        <div className="alert alert-info" role="alert">
                             You have'nt spent a penny on {props.date}{" "}
                         </div>
                     </td>

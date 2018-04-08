@@ -55,7 +55,7 @@ const Expense = props => {
             return (
                 <tr>
                     <td>
-                        <div class="alert alert-info" role="alert">
+                        <div className="alert alert-info" role="alert">
                             Start logging your expenses to see your expenses here , add an expense by clicking on the +
                             Button on the bottom right corner of this page
                         </div>
