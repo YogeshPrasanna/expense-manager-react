@@ -143,23 +143,6 @@ ul {
         display: table;
     }
 
-    .navbar-nav {
-        padding-top: 0.425rem;
-        padding-left: 0.75rem;
-    }
-    .navbar-nav .nav-item {
-        float: none;
-    }
-    .navbar-brand {
-        float: right;
-    }
-    .navbar-brand,
-    .navbar-nav .nav-item {
-        display: block;
-    }
-    .navbar-nav .nav-item + .nav-item {
-        margin-left: 0;
-    }
     .dropdown-menu {
         position: relative;
         float: none;
@@ -171,10 +154,6 @@ ul {
         position: fixed;
         top: 30vh;
         left: auto;
-    }
-
-    .navbar-collapse {
-        text-align: center;
     }
 
     .popup_inner {
@@ -196,5 +175,70 @@ ul {
 @media (orientation: landscape) {
     .chart-container {
         min-height: auto;
+    }
+}
+
+nav {
+    background-color: #f8f9fa;
+    overflow: hidden;
+    padding: 1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+nav a {
+    color: #000;
+}
+nav a:visited {
+    color: #000;
+}
+nav .navWide {
+    display: none;
+    margin: 0 auto;
+}
+nav .navWide .wideDiv {
+    text-align: right;
+}
+
+nav .navWide .navbar-nav {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+}
+
+nav .navWide .wideDiv a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px;
+}
+nav .navNarrow i {
+    float: left;
+    cursor: pointer;
+    color: #000;
+}
+nav .navNarrow .narrowLinks {
+    display: none;
+}
+nav .navNarrow .narrowLinks a {
+    text-decoration: none;
+    display: block;
+    float: left;
+    clear: left;
+    padding: 0.5em 0;
+}
+
+nav .navNarrow .navbar-nav {
+    position: absolute;
+    top: 13px;
+    left: 55px;
+}
+
+@media (min-width: 480px) {
+    nav .navWide {
+        display: block;
+    }
+    nav .navNarrow {
+        display: none;
     }
 }
