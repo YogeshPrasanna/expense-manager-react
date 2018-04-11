@@ -188,10 +188,10 @@ nav {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
 nav a {
-    color: #000;
+    color: #808080;
 }
 nav a:visited {
-    color: #000;
+    color: #808080;
 }
 nav .navWide {
     display: none;
