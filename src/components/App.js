@@ -20,6 +20,7 @@ import DailyViewPage from "./DailyView/index";
 import FilterViewPage from "./FilterView/index";
 import UserVerification from "./UserVerification/index";
 import StatisticsPage from "./Statistics/index";
+import LoanPage from "./Loan/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
@@ -124,6 +125,7 @@ class App extends Component {
                         path={routes.STATISTICS_VIEW}
                         component={() => <StatisticsPage user={this.state.authUser} expenses={this.state.expenses} />}
                     />
+                    <Route exact path={routes.LOAN_VIEW} component={() => <LoanPage />} />
                 </div>
             </Router>
         );

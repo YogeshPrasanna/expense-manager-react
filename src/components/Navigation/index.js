@@ -39,6 +39,9 @@ const NavigationAuth = () => {
                     <Link className="nav-link" to={routes.STATISTICS_VIEW}>
                         Stats
                     </Link>
+                    <Link className="nav-link" to={routes.LOAN_VIEW}>
+                        Loan
+                    </Link>
                     <Link className="nav-link" to={routes.SIGN_IN}>
                         <SignOutButton />
                     </Link>
@@ -67,6 +70,9 @@ const NavigationAuth = () => {
                     </Link>
                     <Link className="nav-link" to={routes.STATISTICS_VIEW} onClick={burgerToggle}>
                         Stats
+                    </Link>
+                    <Link className="nav-link" to={routes.LOAN_VIEW} onClick={burgerToggle}>
+                        Loan
                     </Link>
                     <Link className="nav-link" to={routes.SIGN_IN} onClick={burgerToggle}>
                         <SignOutButton />
