@@ -40,6 +40,16 @@ ul {
     background: white;
 }
 
+.popup_inner_loan {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 9% !important;
+    bottom: 12% !important;
+    margin: auto;
+    background: white;
+}
+
 .addExpenseHeader {
     display: block;
     padding: 15px;
@@ -133,6 +143,25 @@ ul {
     position: fixed;
     bottom: 30px !important;
     right: 30px !important;
+}
+
+.loan-given-taken,
+.loan-status-icon {
+    float: right;
+    font-size: 22px !important;
+}
+
+.loan-given,
+.loan-settled {
+    color: lightgreen
+}
+
+.loan-taken {
+    color: lightcoral;
+}
+
+.loan-pending {
+    color: #FFB74D;
 }
 
 @media (max-width: 720px) {

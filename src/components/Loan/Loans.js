@@ -31,6 +31,12 @@ const Loans = props => {
                 <td>
                     <Loader />
                 </td>
+                <td>
+                    <Loader />
+                </td>
+                <td>
+                    <Loader />
+                </td>
             </tr>
         );
     }
@@ -48,7 +54,7 @@ const Loans = props => {
                 <tr>
                     <td>
                         <div className="alert alert-info" role="alert">
-                            Start logging your expenses to see your expenses here , add an expense by clicking on the +
+                            Good that you haven't made any loans / given any loans , add a loan by clicking on the +
                             Button on the bottom right corner of this page
                         </div>
                     </td>

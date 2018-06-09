@@ -99,7 +99,7 @@ class ExportToExcel extends Component {
 
         return (
             <span onClick={this.handleClick} style={clickIcon}>
-                <i className="fa fa-table" />
+                <i className="fa fa-file-excel-o" /> Export as excel
             </span>
         );
     }

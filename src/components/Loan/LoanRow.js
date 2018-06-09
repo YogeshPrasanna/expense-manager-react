@@ -60,10 +60,12 @@ class LoanRow extends Component {
             }
         }
 
-        const loanStatusStyle = { background: this.props.loan.value.status === "Pending" ? "#FFB74D" : "#689F38" };
+        const loanStatusStyle = {
+            borderLeft: this.props.loan.value.status === "Pending" ? "25px solid #FFB74D" : "25px solid #689F38"
+        };
 
         return (
-            <tr key={this.props.loanId} id={this.props.loanId}>
+            <tr key={this.props.loanId} id={this.props.loanId} style={loanStatusStyle}>
                 <td data-th="No">
                     {this.props.num + 1}
                     {this.state.showEditPopup ? (
@@ -80,11 +82,23 @@ class LoanRow extends Component {
                 <td data-th="Amount">
                     <i className="fa fa-inr" aria-hidden="true" /> {this.props.loan.value.amount}
                 </td>
-                <td data-th="loanType">{this.props.loan.value.loanType}</td>
+                <td data-th="loanType">
+                    {this.props.loan.value.loanType}
+                    {this.props.loan.value.loanType === "Given" ? (
+                        <i className="fa fa-arrow-right loan-given-taken loan-given" />
+                    ) : (
+                        <i className="fa fa-arrow-left loan-given-taken loan-taken" />
+                    )}
+                </td>
                 <td data-th="person">{this.props.loan.value.person}</td>
                 <td data-th="reason">{this.props.loan.value.reason}</td>
-                <td data-th="status" style={loanStatusStyle}>
+                <td data-th="status">
                     {this.props.loan.value.status}
+                    {this.props.loan.value.status === "Settled" ? (
+                        <i className="fa fa-check loan-status-icon loan-settled" />
+                    ) : (
+                        <i className="fa fa-clock-o loan-status-icon loan-pending" />
+                    )}
                 </td>
                 <td data-th="Edit">
                     <button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}>
