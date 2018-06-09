@@ -32,7 +32,8 @@ class App extends Component {
         this.state = {
             authUser: null,
             users: null,
-            expenses: null
+            expenses: null,
+            loans: null
         };
     }
 
@@ -62,11 +63,26 @@ class App extends Component {
                     }
                 });
 
+                firebase.db.ref("loans").on("value", data => {
+                    if (data) {
+                        this.setState({ loans: data.val() });
+                    }
+                });
+
                 const expensesRef = firebase.db.ref("expenses");
                 expensesRef.on("child_removed", data => {
                     firebase.db.ref("expenses").on("value", data => {
                         if (data) {
                             this.setState({ expenses: data.val() });
+                        }
+                    });
+                });
+
+                const loansRef = firebase.db.ref("expenses");
+                loansRef.on("child_removed", data => {
+                    firebase.db.ref("loans").on("value", data => {
+                        if (data) {
+                            this.setState({ loans: data.val() });
                         }
                     });
                 });
@@ -125,7 +141,17 @@ class App extends Component {
                         path={routes.STATISTICS_VIEW}
                         component={() => <StatisticsPage user={this.state.authUser} expenses={this.state.expenses} />}
                     />
-                    <Route exact path={routes.LOAN_VIEW} component={() => <LoanPage />} />
+                    <Route
+                        exact
+                        path={routes.LOAN_VIEW}
+                        component={() => (
+                            <LoanPage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                loans={this.state.loans}
+                            />
+                        )}
+                    />
                 </div>
             </Router>
         );

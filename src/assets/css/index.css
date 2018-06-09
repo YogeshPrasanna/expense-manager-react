@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Dhurjati");
-
 .landing {
     font-family: "Dhurjati", sans-serif;
     font-size: 40px;
@@ -30,6 +29,7 @@ ul {
     margin: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .popup_inner {
     position: absolute;
     left: 25%;
@@ -67,6 +67,13 @@ ul {
 }
 
 .addexpense-btn {
+    border-radius: 50px;
+    border-color: #25221b66;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.addloan-btn {
     border-radius: 50px;
     border-color: #25221b66;
     cursor: pointer;
@@ -132,22 +139,18 @@ ul {
     .form {
         margin: 15px !important;
     }
-
     #addExpense {
         bottom: 20px;
         right: 30px;
     }
-
     .expense-day {
         margin: 0 auto;
         display: table;
     }
-
     .dropdown-menu {
         position: relative;
         float: none;
     }
-
     .landing {
         text-align: center;
         letter-spacing: 3px;
@@ -155,7 +158,6 @@ ul {
         top: 30vh;
         left: auto;
     }
-
     .popup_inner {
         width: 90vw;
         height: 80vh;
@@ -187,16 +189,20 @@ nav {
     -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
+
 nav a {
     color: #808080;
 }
+
 nav a:visited {
     color: #808080;
 }
+
 nav .navWide {
     display: none;
     margin: 0 auto;
 }
+
 nav .navWide .wideDiv {
     text-align: right;
 }
@@ -212,14 +218,17 @@ nav .navWide .wideDiv a {
     display: inline-block;
     padding: 0 10px;
 }
+
 nav .navNarrow i {
     float: left;
     cursor: pointer;
     color: #000;
 }
+
 nav .navNarrow .narrowLinks {
     display: none;
 }
+
 nav .navNarrow .narrowLinks a {
     text-decoration: none;
     display: block;

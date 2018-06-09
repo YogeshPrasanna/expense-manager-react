@@ -1,0 +1,33 @@
+#addLoan {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+#closePopup {
+    position: absolute;
+    right: 10px;
+    border-radius: 15px;
+    top: 10px;
+    color: #ddd;
+    background: #d65757;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #d65757;
+}
+
+form {
+    margin: 0;
+    padding: 15px;
+    color: #000 !important;
+}
+
+.success-msg {
+    padding: 10px;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.signout-btn {
+    border: 1px solid orange;
+}
