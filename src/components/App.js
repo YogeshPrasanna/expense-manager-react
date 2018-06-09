@@ -144,13 +144,7 @@ class App extends Component {
                     <Route
                         exact
                         path={routes.LOAN_VIEW}
-                        component={() => (
-                            <LoanPage
-                                user={this.state.authUser}
-                                expenses={this.state.expenses}
-                                loans={this.state.loans}
-                            />
-                        )}
+                        component={() => <LoanPage user={this.state.authUser} loans={this.state.loans} />}
                     />
                 </div>
             </Router>

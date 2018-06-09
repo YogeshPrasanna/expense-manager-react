@@ -1,12 +1,12 @@
 import React from "react";
-import AddLoanForm from "./AddLoanForm";
+import EditLoanForm from "./EditLoanForm";
 
-const AddLoanPopup = props => {
+const EditLoanPopup = props => {
     return (
         <div className="popup">
             <div className="popup_inner">
-                <div className="addExpenseHeader"> Add an loan </div>
-                <AddLoanForm user={props.user} />
+                <div className="addExpenseHeader"> Edit Loan </div>
+                <EditLoanForm user={props.user} loan={props.loan} />
                 <button id="closePopup" onClick={props.closePopup}>
                     {" "}
                     X{" "}
@@ -16,4 +16,4 @@ const AddLoanPopup = props => {
     );
 };
 
-export default AddLoanPopup;
+export default EditLoanPopup;

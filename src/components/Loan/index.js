@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AddLoanPopup from "./AddLoanPopup";
+import LoanTable from "./LoanTable";
 
 class LoanPage extends Component {
     constructor(props) {
@@ -18,14 +19,13 @@ class LoanPage extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-sm-6">
-                        <h2>This Feature is under development ..</h2>
+                    <div className="col-sm-12">
+                        <LoanTable loans={this.props.loans} authUser={this.props.user} />
                     </div>
-                    <div className="col-sm-6" />
                 </div>
 
-                {this.props.expenses ? (
-                    <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
+                {this.props.loans ? (
+                    <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addLoan">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
                 ) : null}
