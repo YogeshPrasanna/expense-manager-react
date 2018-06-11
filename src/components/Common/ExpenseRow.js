@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
+import * as utils from "../Util";
+
 import moment from "moment";
 
 import EditExpensePopup from "./EditExpensePopup";
@@ -60,6 +62,8 @@ class ExpenseRow extends Component {
             }
         }
 
+        const lessFont = { fontSize: "15px", float: "right", marginTop: "5px", color: "rgba(255,255,255,.45)" };
+
         return (
             <tr key={this.props.expenseId} id={this.props.expenseId}>
                 <td data-th="No">
@@ -78,8 +82,15 @@ class ExpenseRow extends Component {
                 <td data-th="Expense">
                     <i className="fa fa-inr" aria-hidden="true" /> {this.props.expense.value.expense}
                 </td>
-                <td data-th="Category">{this.props.expense.value.category}</td>
-                <td data-th="Comments">{this.props.expense.value.comments}</td>
+                <td data-th="Category">
+                    {this.props.expense.value.category}{" "}
+                    <i
+                        className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}
+                        style={lessFont}
+                        aria-hidden="true"
+                    />
+                </td>
+                <td data-th="Comments">{this.props.expense.value.comments} </td>
                 <td data-th="Edit">
                     <button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}>
                         <i className="fa fa-edit" aria-hidden="true" /> edit

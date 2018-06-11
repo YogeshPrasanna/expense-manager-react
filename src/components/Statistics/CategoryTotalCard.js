@@ -24,6 +24,14 @@ const CategoryTotalCard = props => {
         paddingRight: "5px"
     };
 
+    const lessFont = {
+        fontSize: "15px",
+        float: "left",
+        marginTop: "10px",
+        marginLeft: "5px",
+        color: "rgba(255,255,255,.45)"
+    };
+
     let expenses = props.expenses;
     let currentUser = props.authUser;
 
@@ -51,6 +59,7 @@ const CategoryTotalCard = props => {
                 return (
                     <span style={category} className="ttt" key={el.key}>
                         <div style={utils.categoryName(el.key)}>{el.key}</div>
+                        <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
                         <div style={categoryExpense}>{el.value}</div>
                     </span>
                 );

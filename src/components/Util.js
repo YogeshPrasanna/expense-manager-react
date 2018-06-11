@@ -193,6 +193,37 @@ export const categoryName = cat => {
     }
 };
 
+export const categoryIcon = category => {
+    switch (category) {
+        case "Food":
+            return "cutlery";
+        case "Automobile":
+            return "motorcycle";
+        case "Entertainment":
+            return "film";
+        case "Clothing":
+            return "shopping-bag";
+        case "Healthcare":
+            return "medkit";
+        case "Travel":
+            return "plane";
+        case "Shopping":
+            return "shopping-cart";
+        case "Personal Care":
+            return "user-md";
+        case "Investment":
+            return "get-pocket";
+        case "Gifts & Donations":
+            return "gift";
+        case "Bills & Utilities":
+            return "columns";
+        case "Others":
+            return "circle-o";
+        default:
+            return "bars";
+    }
+};
+
 export const filterExpensesByCriteria = (startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses) => {
     var start = new Date(startDate);
     var end = new Date(endDate);
