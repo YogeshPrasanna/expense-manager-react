@@ -21,11 +21,9 @@ const Cards = props => {
         const thisUsersLoans = utils.currentUsersExpenses(eachExpense, currentUser);
 
         // You need to get
-        //loanType == "given" && status == "pending"
         loanToPay = utils.loanTakenOrGivenAmt(thisUsersLoans, "Taken");
 
         // You need to give
-        // loanType == "taken" && status == "pending"
         loanToGet = utils.loanTakenOrGivenAmt(thisUsersLoans, "Given");
     }
 

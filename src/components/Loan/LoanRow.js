@@ -61,7 +61,11 @@ class LoanRow extends Component {
         }
 
         const loanStatusStyle = {
-            borderLeft: this.props.loan.value.status === "Pending" ? "25px solid #FFB74D" : "25px solid #689F38"
+            borderLeft: this.props.loan.value.status === "Pending" ? "25px solid #FFB74D" : "25px solid #689F38",
+            backgroundImage:
+                this.props.loan.value.status === "Pending"
+                    ? "none"
+                    : "repeating-linear-gradient(145deg, transparent, transparent 1px, rgba(238, 238, 238, 0.198039) 3px, rgba(238, 238, 238, 0.198039) 5px)"
         };
 
         return (

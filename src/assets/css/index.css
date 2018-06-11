@@ -139,7 +139,8 @@ ul {
     border-left: 5px solid #d2c0a0 !important;
 }
 
-#addExpense {
+#addExpense,
+#addLoan {
     position: fixed;
     bottom: 30px !important;
     right: 30px !important;
@@ -153,7 +154,7 @@ ul {
 
 .loan-given,
 .loan-settled {
-    color: lightgreen
+    color: lightgreen;
 }
 
 .loan-taken {
@@ -161,14 +162,25 @@ ul {
 }
 
 .loan-pending {
-    color: #FFB74D;
+    color: #ffb74d;
+}
+
+.loan-settled-row-bg {
+    background-image: repeating-linear-gradient(
+        145deg,
+        transparent,
+        transparent 1px,
+        rgba(238, 238, 238, 0.298039) 3px,
+        rgba(238, 238, 238, 0.298039) 5px
+    );
 }
 
 @media (max-width: 720px) {
     .form {
         margin: 15px !important;
     }
-    #addExpense {
+    #addExpense,
+    #addLoan {
         bottom: 20px;
         right: 30px;
     }
