@@ -186,7 +186,8 @@ ul {
     }
     .expense-day {
         margin: 0 auto;
-        display: table;
+        /* display: table; */
+        margin-left: 15px;
     }
     .dropdown-menu {
         position: relative;

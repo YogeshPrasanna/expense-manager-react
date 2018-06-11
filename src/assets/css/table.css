@@ -83,6 +83,15 @@ h1 {
         padding: 12px !important;
     }
 }
+
+@media (min-width: 260px) and (max-width: 639px) {
+    .rwd-table tr {
+        border-bottom: 5px solid #f0b852;
+    }
+    .rwd-table td {
+        margin: 0.5em;
+    }
+}
 .rwd-table th,
 .rwd-table td:before {
     color: #dd5;
