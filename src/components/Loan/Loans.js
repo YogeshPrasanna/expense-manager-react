@@ -43,11 +43,13 @@ const Loans = props => {
 
     if (loans && currentUser) {
         let eachExpense = utils.eachExpense(loans);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        let thisUsersLoan = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        if (thisUsersExpenses.length) {
-            return thisUsersExpenses.map(function(elem, i) {
-                return <LoanRow user={props.authUser} loan={elem} num={i} key={i} loanId={thisUsersExpenses[i].key} />;
+        console.log(" This users loans : ", thisUsersLoan);
+
+        if (thisUsersLoan.length) {
+            return thisUsersLoan.map(function(elem, i) {
+                return <LoanRow user={props.authUser} loan={elem} num={i} key={i} loanId={thisUsersLoan[i].key} />;
             });
         } else {
             return (

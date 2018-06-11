@@ -221,3 +221,16 @@ export const filterExpensesByCriteria = (startDate, endDate, category, expenseFr
 
     return filteredExpenses;
 };
+
+// Total loan amount that you need to pay or get paid
+export const loanTakenOrGivenAmt = (thisUsersLoans, takenOrGiven) => {
+    if (thisUsersLoans.length && takenOrGiven) {
+        let loans = thisUsersLoans.filter(
+            elem => elem.value.loanType === takenOrGiven && elem.value.status === "Pending"
+        );
+
+        return loans.length ? loans.map(elem => Number(elem.value.amount)).reduce((prev, cur) => prev + cur) : 0;
+    } else {
+        return 0;
+    }
+};

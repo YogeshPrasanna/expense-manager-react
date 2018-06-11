@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddLoanPopup from "./AddLoanPopup";
 import LoanTable from "./LoanTable";
+import Cards from "./Cards";
 
 class LoanPage extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class LoanPage extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12">
+                        <Cards loans={this.props.loans} authUser={this.props.user} />
                         <LoanTable loans={this.props.loans} authUser={this.props.user} />
                     </div>
                 </div>
