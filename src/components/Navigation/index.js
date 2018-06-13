@@ -21,25 +21,46 @@ const NavigationAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="wideDiv">
-                    <Link className="nav-link" to={routes.HOME}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/home" ? "active" : "inactive"}`}
+                        to={routes.HOME}
+                    >
                         Home
                     </Link>
-                    <Link className="nav-link" to={routes.ACCOUNT}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
+                        to={routes.ACCOUNT}
+                    >
                         Account
                     </Link>
-                    <Link className="nav-link" to={routes.MONTH_VIEW}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}
+                        to={routes.MONTH_VIEW}
+                    >
                         Monthly
                     </Link>
-                    <Link className="nav-link" to={routes.DAILY_VIEW}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/daily-view" ? "active" : "inactive"}`}
+                        to={routes.DAILY_VIEW}
+                    >
                         Daily
                     </Link>
-                    <Link className="nav-link" to={routes.FILTER_VIEW}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/filter-view" ? "active" : "inactive"}`}
+                        to={routes.FILTER_VIEW}
+                    >
                         filter
                     </Link>
-                    <Link className="nav-link" to={routes.STATISTICS_VIEW}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/statistics" ? "active" : "inactive"}`}
+                        to={routes.STATISTICS_VIEW}
+                    >
                         Stats
                     </Link>
-                    <Link className="nav-link" to={routes.LOAN_VIEW}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/loan" ? "active" : "inactive"}`}
+                        to={routes.LOAN_VIEW}
+                    >
                         Loan
                     </Link>
                     <Link className="nav-link" to={routes.SIGN_IN}>
@@ -53,25 +74,54 @@ const NavigationAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="narrowLinks">
-                    <Link className="nav-link" to={routes.HOME} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/home" ? "active" : "inactive"}`}
+                        to={routes.HOME}
+                        onClick={burgerToggle}
+                    >
                         Home
                     </Link>
-                    <Link className="nav-link" to={routes.ACCOUNT} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
+                        to={routes.ACCOUNT}
+                        onClick={burgerToggle}
+                    >
                         Account
                     </Link>
-                    <Link className="nav-link" to={routes.MONTH_VIEW} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}
+                        to={routes.MONTH_VIEW}
+                        onClick={burgerToggle}
+                    >
                         Monthly
                     </Link>
-                    <Link className="nav-link" to={routes.DAILY_VIEW} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/daily-view" ? "active" : "inactive"}`}
+                        to={routes.DAILY_VIEW}
+                        onClick={burgerToggle}
+                    >
                         Daily
                     </Link>
-                    <Link className="nav-link" to={routes.FILTER_VIEW} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/filter-view" ? "active" : "inactive"}`}
+                        to={routes.FILTER_VIEW}
+                        onClick={burgerToggle}
+                    >
                         filter
                     </Link>
-                    <Link className="nav-link" to={routes.STATISTICS_VIEW} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/statistics" ? "active" : "inactive"}`}
+                        to={routes.STATISTICS_VIEW}
+                        onClick={burgerToggle}
+                    >
                         Stats
                     </Link>
-                    <Link className="nav-link" to={routes.LOAN_VIEW} onClick={burgerToggle}>
+
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/loan" ? "active" : "inactive"}`}
+                        to={routes.LOAN_VIEW}
+                        onClick={burgerToggle}
+                    >
                         Loan
                     </Link>
                     <Link className="nav-link" to={routes.SIGN_IN} onClick={burgerToggle}>
@@ -100,11 +150,17 @@ const NavigationNonAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="wideDiv">
-                    <Link className="nav-link" to={routes.SIGN_IN}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/signin" ? "active" : "inactive"}`}
+                        to={routes.SIGN_IN}
+                    >
                         Sign In
                     </Link>
 
-                    <Link className="nav-link" to={routes.LANDING}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
+                        to={routes.LANDING}
+                    >
                         Landing
                     </Link>
                 </div>
@@ -115,11 +171,19 @@ const NavigationNonAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="narrowLinks">
-                    <Link className="nav-link" to={routes.SIGN_IN} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/signin" ? "active" : "inactive"}`}
+                        to={routes.SIGN_IN}
+                        onClick={burgerToggle}
+                    >
                         Sign In
                     </Link>
 
-                    <Link className="nav-link" to={routes.LANDING} onClick={burgerToggle}>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
+                        to={routes.LANDING}
+                        onClick={burgerToggle}
+                    >
                         Landing
                     </Link>
                 </div>

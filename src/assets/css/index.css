@@ -276,13 +276,19 @@ nav .navNarrow .narrowLinks a {
     display: block;
     float: left;
     clear: left;
-    padding: 0.5em 0;
+    padding: 0.5em 80% 8px 8px;
 }
 
 nav .navNarrow .navbar-nav {
     position: absolute;
     top: 13px;
     left: 55px;
+}
+
+.active {
+    background: #f0b852;
+    color: white !important;
+    border-radius: 5px;
 }
 
 @media (min-width: 480px) {
