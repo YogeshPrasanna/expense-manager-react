@@ -33,12 +33,10 @@ class SignUpForm extends Component {
 
         const { history } = this.props;
 
-        auth
-            .doCreateUserWithEmailAndPassword(email, passwordOne)
+        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 // create a user in the firebase db too
-                db
-                    .doCreateUser(authUser.uid, username, email)
+                db.doCreateUser(authUser.uid, username, email)
                     .then(() => {
                         this.setState(() => ({ ...INITIAL_STATE }));
                         history.push(routes.HOME);
@@ -116,7 +114,7 @@ const style = {
 };
 
 const StyleInSignUp = {
-    marginTop: "-45px",
+    marginTop: "-10px",
     textAlign: "center"
 };
 

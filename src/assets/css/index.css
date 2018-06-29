@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Dhurjati");
 .landing {
     font-family: "Dhurjati", sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
-    position: fixed;
-    top: 250px;
-    left: 220px;
+    position: absolute;
+    top: 30%;
+    padding: 0px 25px;
+    /* left: 220px; */
 }
 
 body {
@@ -178,6 +179,7 @@ ul {
 @media (max-width: 720px) {
     .form {
         margin: 15px !important;
+        margin-left: 0px !important;
     }
     #addExpense,
     #addLoan {
@@ -199,6 +201,7 @@ ul {
         position: fixed;
         top: 30vh;
         left: auto;
+        display: none;
     }
     .popup_inner {
         width: 90vw;

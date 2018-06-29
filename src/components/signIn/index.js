@@ -9,7 +9,6 @@ import firebase from "firebase";
 const SignInPage = ({ history }) => (
     <div>
         <SignInForm history={history} />
-        <SignUpLink />
     </div>
 );
 
@@ -68,8 +67,7 @@ class SignInForm extends Component {
 
         const { history } = this.props;
 
-        auth
-            .doSignInWithEmailAndPassword(email, password)
+        auth.doSignInWithEmailAndPassword(email, password)
             .then(authUser => {
                 // allow signin only when user is verified
                 if (authUser && authUser.emailVerified) {
@@ -92,40 +90,53 @@ class SignInForm extends Component {
         const isInvalid = password === "" || email === "";
 
         return (
-            <div className="login-page">
-                <form onSubmit={this.onSubmit} className="form">
-                    <input
-                        value={email}
-                        onChange={event => this.setState(byPropKey("email", event.target.value))}
-                        type="text"
-                        placeholder="Email Address"
-                    />
-                    <input
-                        value={password}
-                        onChange={event => this.setState(byPropKey("password", event.target.value))}
-                        type="password"
-                        placeholder="Password"
-                    />
-                    <button disabled={isInvalid} type="submit">
-                        Sign In
-                    </button>
-
-                    <p>
-                        {" "}
-                        <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
-                    </p>
-
-                    <hr />
-
-                    <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
-                        <span className="googleLogo">
-                            <i className="fa fa-google" />
-                        </span>{" "}
-                        Sign in with google
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-6">
+                        <div className="landing">
+                            <span>" Expense Manager which takes note of all your daily expenses "</span>
+                            <p> Sign up to create an account - and start managing your expenses </p>
+                        </div>
                     </div>
+                    <div className="col-sm-6">
+                        <div className="login-page">
+                            <form onSubmit={this.onSubmit} className="form">
+                                <input
+                                    value={email}
+                                    onChange={event => this.setState(byPropKey("email", event.target.value))}
+                                    type="text"
+                                    placeholder="Email Address"
+                                />
+                                <input
+                                    value={password}
+                                    onChange={event => this.setState(byPropKey("password", event.target.value))}
+                                    type="password"
+                                    placeholder="Password"
+                                />
+                                <button disabled={isInvalid} type="submit">
+                                    Sign In
+                                </button>
 
-                    {error && <p>{error.message}</p>}
-                </form>
+                                <p>
+                                    {" "}
+                                    <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
+                                </p>
+
+                                <hr />
+
+                                <div type="button" onClick={this.callGoogleSignIn} className="googleSignIn">
+                                    <span className="googleLogo">
+                                        <i className="fa fa-google" />
+                                    </span>{" "}
+                                    Sign in with google
+                                </div>
+
+                                {error && <p>{error.message}</p>}
+                            </form>
+                            <SignUpLink />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

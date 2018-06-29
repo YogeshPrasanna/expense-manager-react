@@ -150,18 +150,18 @@ const NavigationNonAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="wideDiv">
-                    <Link
+                    {/* <Link
                         className={`nav-link ${window.location.pathname === "/signin" ? "active" : "inactive"}`}
                         to={routes.SIGN_IN}
                     >
                         Sign In
-                    </Link>
+                    </Link> */}
 
                     <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
-                        to={routes.LANDING}
+                        to={routes.SIGN_IN}
                     >
-                        Landing
+                        Sign In
                     </Link>
                 </div>
             </div>
@@ -171,20 +171,20 @@ const NavigationNonAuth = () => {
                     <h2 className="navbar-brand">Expense Manager</h2>
                 </ul>
                 <div className="narrowLinks">
-                    <Link
+                    {/* <Link
                         className={`nav-link ${window.location.pathname === "/signin" ? "active" : "inactive"}`}
                         to={routes.SIGN_IN}
                         onClick={burgerToggle}
                     >
                         Sign In
-                    </Link>
+                    </Link> */}
 
                     <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
-                        to={routes.LANDING}
+                        to={routes.SIGN_IN}
                         onClick={burgerToggle}
                     >
-                        Landing
+                        Sign In
                     </Link>
                 </div>
             </div>

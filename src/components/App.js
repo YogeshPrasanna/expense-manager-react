@@ -8,7 +8,7 @@ import "../assets/css/index.css";
 import "../assets/css/signin.css";
 
 import Navigation from "./Navigation/index";
-import LandingPage from "./Landing/index";
+//import LandingPage from "./Landing/index";
 import SignUpPage from "./signUp/index";
 import SignInPage from "./signIn/index";
 import PasswordForgetPage from "./forgotPassword/index";
@@ -102,7 +102,7 @@ class App extends Component {
                 <div style={bodyStyle}>
                     <Navigation authUser={this.state.authUser} />
 
-                    <Route exact path={routes.LANDING} component={() => <LandingPage />} />
+                    {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
                     <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
                     <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
                     <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
