@@ -42,6 +42,8 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 ## Demo Account
 
+*_In case you need to have a quick look at the app without creating an account, use the below credentials_*
+
 `Username : yogi15moto@gmail.com`
 `password: yogesh`
 
