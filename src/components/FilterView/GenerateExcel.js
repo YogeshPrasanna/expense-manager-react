@@ -38,7 +38,7 @@ const GenerateExcel = props => {
         let pageTitle = `Filtered expenses Start date : ${startDate} End date : ${endDate} category: ${category} expenses Amount From : ${expenseFrom} expenses Amount To : ${expenseTo}`;
 
         let exportArea = {
-            backgroundColor: "#324858",
+            backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",
             color: "#DEDA54",
             padding: "10px",
             borderRadius: "5px",

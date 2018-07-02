@@ -90,11 +90,13 @@ class DailyViewPage extends Component {
                             expenses={this.props.expenses}
                             date={this.state.date.format("MM/DD/YYYY")}
                             authUser={this.props.user}
+                            settings={this.props.settings}
                         />
                         <ExpenseTable
                             expenses={this.props.expenses}
                             date={this.state.date.format("MM/DD/YYYY")}
                             authUser={this.props.user}
+                            settings={this.props.settings}
                         />
                     </div>
                 </div>

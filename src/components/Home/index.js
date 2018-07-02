@@ -30,8 +30,16 @@ class HomePage extends Component {
             <div>
                 <div className="col-sm-12" style={styleFromSettings}>
                     <Cards expenses={this.props.expenses} authUser={this.props.user} />
-                    <GenerateExcel expenses={this.props.expenses} authUser={this.props.user} />
-                    <ExpenseTable expenses={this.props.expenses} authUser={this.props.user} />
+                    <GenerateExcel
+                        expenses={this.props.expenses}
+                        authUser={this.props.user}
+                        settings={this.props.settings}
+                    />
+                    <ExpenseTable
+                        expenses={this.props.expenses}
+                        authUser={this.props.user}
+                        settings={this.props.settings}
+                    />
                 </div>
                 <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
                     <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />

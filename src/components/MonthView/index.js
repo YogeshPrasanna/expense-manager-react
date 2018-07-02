@@ -127,12 +127,14 @@ class MonthViewPage extends Component {
                             authUser={this.props.user}
                             month={this.state.month}
                             year={this.state.year}
+                            settings={this.props.settings}
                         />
                         <MonthExpenseTable
                             expenses={this.props.expenses}
                             authUser={this.props.user}
                             month={this.state.month}
                             year={this.state.year}
+                            settings={this.props.settings}
                         />
                     </div>
                 </div>

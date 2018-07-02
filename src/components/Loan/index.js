@@ -24,7 +24,7 @@ class LoanPage extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <Cards loans={this.props.loans} authUser={this.props.user} />
-                        <LoanTable loans={this.props.loans} authUser={this.props.user} />
+                        <LoanTable loans={this.props.loans} authUser={this.props.user} settings={this.props.settings} />
                     </div>
                 </div>
 

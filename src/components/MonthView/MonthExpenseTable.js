@@ -1,11 +1,13 @@
-import React from 'react'
-import Expense from './Expense'
+import React from "react";
+import Expense from "./Expense";
 
-import '../../assets/css/table.css'
+import "../../assets/css/table.css";
 
-const MonthExpenseTable = (props) => {
+const MonthExpenseTable = props => {
+    const nightMode = { background: props.settings ? (props.settings.mode === "night" ? "#212529" : "auto") : "auto" };
+
     return (
-        <table className="table table-striped table-bordered table-dark rwd-table">
+        <table className="table table-striped table-bordered table-dark rwd-table" style={nightMode}>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -18,10 +20,16 @@ const MonthExpenseTable = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <Expense expenses={props.expenses} authUser={props.authUser} month={props.month} year={props.year} key={Math.random() * 100} />
+                <Expense
+                    expenses={props.expenses}
+                    authUser={props.authUser}
+                    month={props.month}
+                    year={props.year}
+                    key={Math.random() * 100}
+                />
             </tbody>
         </table>
-    )
-}
+    );
+};
 
 export default MonthExpenseTable;

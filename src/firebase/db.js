@@ -46,9 +46,10 @@ const doCreateLoan = (uid, date, amount, loanType, reason, person, day, status) 
         });
 };
 
-const doCreateSettingsForUser = (uid, font) =>
+const doCreateSettingsForUser = (uid, font, mode) =>
     db.ref(`settings/${uid}`).set({
-        font
+        font,
+        mode
     });
 
 //  const expensesRef = db.ref('expenses')

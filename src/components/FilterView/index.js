@@ -182,6 +182,7 @@ class FilterViewPage extends Component {
                             todate={this.state.todate.format("MM/DD/YYYY")}
                             category={this.state.category}
                             authUser={this.props.user}
+                            settings={this.props.settings}
                         />
                         <ExpenseTable
                             expenses={this.props.expenses}
@@ -191,6 +192,7 @@ class FilterViewPage extends Component {
                             todate={this.state.todate.format("MM/DD/YYYY")}
                             category={this.state.category}
                             authUser={this.props.user}
+                            settings={this.props.settings}
                         />
                     </div>
                 </div>
