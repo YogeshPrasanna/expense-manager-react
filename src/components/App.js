@@ -21,6 +21,7 @@ import FilterViewPage from "./FilterView/index";
 import UserVerification from "./UserVerification/index";
 import StatisticsPage from "./Statistics/index";
 import LoanPage from "./Loan/index";
+import SettingsPage from "./Settings/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
@@ -33,7 +34,9 @@ class App extends Component {
             authUser: null,
             users: null,
             expenses: null,
-            loans: null
+            loans: null,
+            defaultCategoriesNames: null,
+            defaultCategoriesColors: null
         };
     }
 
@@ -63,9 +66,18 @@ class App extends Component {
                     }
                 });
 
+                // get all the loan details
                 firebase.db.ref("loans").on("value", data => {
                     if (data) {
                         this.setState({ loans: data.val() });
+                    }
+                });
+
+                // get all the defaultCategories
+                firebase.db.ref("defaultCategories").on("value", data => {
+                    if (data) {
+                        this.setState({ defaultCategoriesNames: Object.keys(data.val()) });
+                        this.setState({ defaultCategoriesColors: Object.values(data.val()) });
                     }
                 });
 
@@ -145,6 +157,12 @@ class App extends Component {
                         exact
                         path={routes.LOAN_VIEW}
                         component={() => <LoanPage user={this.state.authUser} loans={this.state.loans} />}
+                    />
+
+                    <Route
+                        exact
+                        path={routes.SETTINGS_VIEW}
+                        component={() => <SettingsPage user={this.state.authUser} />}
                     />
                 </div>
             </Router>

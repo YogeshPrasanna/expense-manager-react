@@ -63,6 +63,12 @@ const NavigationAuth = () => {
                     >
                         Loan
                     </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
+                        to={routes.SETTINGS_VIEW}
+                    >
+                        Settings
+                    </Link>
                     <Link className="nav-link" to={routes.SIGN_IN}>
                         <SignOutButton />
                     </Link>
@@ -123,6 +129,13 @@ const NavigationAuth = () => {
                         onClick={burgerToggle}
                     >
                         Loan
+                    </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
+                        to={routes.SETTINGS_VIEW}
+                        onClick={burgerToggle}
+                    >
+                        Settings
                     </Link>
                     <Link className="nav-link" to={routes.SIGN_IN} onClick={burgerToggle}>
                         <SignOutButton />
