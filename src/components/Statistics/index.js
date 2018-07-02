@@ -9,8 +9,10 @@ const marB15 = {
 };
 
 const StatisticsPage = props => {
+    const styleFromSettings = { fontFamily: props.settings ? props.settings.font : "sans-serif" };
+
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={styleFromSettings}>
             <div className="row">
                 <div className="col-sm-6" style={marB15}>
                     <DoughnutChartCategory expenses={props.expenses} authUser={props.user} />

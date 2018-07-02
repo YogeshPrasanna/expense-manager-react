@@ -17,8 +17,10 @@ class LoanPage extends Component {
     }
 
     render() {
+        const styleFromSettings = { fontFamily: this.props.settings ? this.props.settings.font : "sans-serif" };
+
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" style={styleFromSettings}>
                 <div className="row">
                     <div className="col-sm-12">
                         <Cards loans={this.props.loans} authUser={this.props.user} />

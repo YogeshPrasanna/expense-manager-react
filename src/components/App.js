@@ -36,7 +36,8 @@ class App extends Component {
             expenses: null,
             loans: null,
             defaultCategoriesNames: null,
-            defaultCategoriesColors: null
+            defaultCategoriesColors: null,
+            settings: null
         };
     }
 
@@ -56,28 +57,45 @@ class App extends Component {
             if (this.state.authUser) {
                 // get all the users in the db
                 db.onceGetUsers().then(snapshot => {
-                    this.setState({ users: snapshot.val() });
+                    this.setState({
+                        users: snapshot.val()
+                    });
                 });
 
                 // get and set expenses in db
                 firebase.db.ref("expenses").on("value", data => {
                     if (data) {
-                        this.setState({ expenses: data.val() });
+                        this.setState({
+                            expenses: data.val()
+                        });
                     }
                 });
 
-                // get all the loan details
-                firebase.db.ref("loans").on("value", data => {
+                // get all the settings
+                firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
                     if (data) {
-                        this.setState({ loans: data.val() });
+                        this.setState({
+                            settings: data.val()
+                        });
                     }
                 });
 
                 // get all the defaultCategories
                 firebase.db.ref("defaultCategories").on("value", data => {
                     if (data) {
-                        this.setState({ defaultCategoriesNames: Object.keys(data.val()) });
-                        this.setState({ defaultCategoriesColors: Object.values(data.val()) });
+                        this.setState({
+                            defaultCategoriesNames: Object.keys(data.val()),
+                            defaultCategoriesColors: Object.values(data.val())
+                        });
+                    }
+                });
+
+                // get all the loan details
+                firebase.db.ref("loans").on("value", data => {
+                    if (data) {
+                        this.setState({
+                            loans: data.val()
+                        });
                     }
                 });
 
@@ -85,7 +103,9 @@ class App extends Component {
                 expensesRef.on("child_removed", data => {
                     firebase.db.ref("expenses").on("value", data => {
                         if (data) {
-                            this.setState({ expenses: data.val() });
+                            this.setState({
+                                expenses: data.val()
+                            });
                         }
                     });
                 });
@@ -94,11 +114,14 @@ class App extends Component {
                 loansRef.on("child_removed", data => {
                     firebase.db.ref("loans").on("value", data => {
                         if (data) {
-                            this.setState({ loans: data.val() });
+                            this.setState({
+                                loans: data.val()
+                            });
                         }
                     });
                 });
             }
+
             // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
         });
     }
@@ -127,42 +150,82 @@ class App extends Component {
                     <Route
                         exact
                         path={routes.HOME}
-                        component={() => <HomePage user={this.state.authUser} expenses={this.state.expenses} />}
+                        component={() => (
+                            <HomePage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
-                    <Route exact path={routes.ACCOUNT} component={() => <AccountPage user={this.state.authUser} />} />
+                    <Route
+                        exact
+                        path={routes.ACCOUNT}
+                        component={() => <AccountPage user={this.state.authUser} settings={this.state.settings} />}
+                    />
 
                     <Route
                         exact
                         path={routes.MONTH_VIEW}
-                        component={() => <MonthViewPage user={this.state.authUser} expenses={this.state.expenses} />}
+                        component={() => (
+                            <MonthViewPage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path={routes.DAILY_VIEW}
-                        component={() => <DailyViewPage user={this.state.authUser} expenses={this.state.expenses} />}
+                        component={() => (
+                            <DailyViewPage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path={routes.FILTER_VIEW}
-                        component={() => <FilterViewPage user={this.state.authUser} expenses={this.state.expenses} />}
+                        component={() => (
+                            <FilterViewPage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
                     <Route
                         exact
                         path={routes.STATISTICS_VIEW}
-                        component={() => <StatisticsPage user={this.state.authUser} expenses={this.state.expenses} />}
+                        component={() => (
+                            <StatisticsPage
+                                user={this.state.authUser}
+                                expenses={this.state.expenses}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
                     <Route
                         exact
                         path={routes.LOAN_VIEW}
-                        component={() => <LoanPage user={this.state.authUser} loans={this.state.loans} />}
+                        component={() => (
+                            <LoanPage
+                                user={this.state.authUser}
+                                loans={this.state.loans}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path={routes.SETTINGS_VIEW}
-                        component={() => <SettingsPage user={this.state.authUser} />}
+                        component={() => <SettingsPage user={this.state.authUser} settings={this.state.settings} />}
                     />
                 </div>
             </Router>

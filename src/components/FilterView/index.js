@@ -68,8 +68,10 @@ class FilterViewPage extends Component {
             padding: "0px"
         };
 
+        const styleFromSettings = { fontFamily: this.props.settings ? this.props.settings.font : "sans-serif" };
+
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" style={styleFromSettings}>
                 <div className="row">
                     <div className="col-sm-4" style={leftCol}>
                         <form onSubmit={this.handleSubmit} style={form}>

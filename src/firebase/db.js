@@ -46,6 +46,11 @@ const doCreateLoan = (uid, date, amount, loanType, reason, person, day, status) 
         });
 };
 
+const doCreateSettingsForUser = (uid, font) =>
+    db.ref(`settings/${uid}`).set({
+        font
+    });
+
 //  const expensesRef = db.ref('expenses')
 //     expensesRef.on('child_removed', function (data) {
 //         console.log("child_removed")
@@ -59,4 +64,12 @@ const doCreateLoan = (uid, date, amount, loanType, reason, person, day, status) 
 //         });
 // }
 
-export { doCreateUser, onceGetUsers, doCreateExpense, onceGetExpenses, onceGetLoans, doCreateLoan };
+export {
+    doCreateUser,
+    onceGetUsers,
+    doCreateExpense,
+    onceGetExpenses,
+    onceGetLoans,
+    doCreateLoan,
+    doCreateSettingsForUser
+};

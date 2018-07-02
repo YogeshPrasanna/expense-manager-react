@@ -14,7 +14,8 @@ const AccountPage = props => {
 
     const center = {
         margin: "0 auto",
-        display: "block"
+        display: "block",
+        fontFamily: props.settings ? props.settings.font : "sans-serif"
     };
 
     if (props.user) {
