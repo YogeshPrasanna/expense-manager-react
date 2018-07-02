@@ -40,3 +40,32 @@ By default, the generated project uses the latest version of React.
 
 You can refer [to the React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
 
+## Demo Account
+
+*_In case you need to have a quick look at the app without creating an account, use the below credentials_*
+
+`Username : yogi15moto@gmail.com`
+`password: yogesh`
+
+## Screenshots
+
+#### Login Screen
+[![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Home Page
+[![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Monthly View
+[![Monthly View](https://s25.postimg.cc/i3vmm1sr3/monthly.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Daily View
+[![Daily View](https://s25.postimg.cc/6208rwbsv/daily.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Filter
+[![Filter Page](https://s25.postimg.cc/uiiemdrz3/filter.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Statistics
+[![Statistics](https://s25.postimg.cc/lnhkbvawf/statistics.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Loan Page
+[![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
