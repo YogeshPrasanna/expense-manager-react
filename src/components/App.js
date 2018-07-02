@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { firebase } from "../firebase/index";
+import { defaults } from "react-chartjs-2";
 
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -77,6 +78,9 @@ class App extends Component {
                         this.setState({
                             settings: data.val()
                         });
+
+                        // setting the font family to chart.js
+                        defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
                     }
                 });
 
