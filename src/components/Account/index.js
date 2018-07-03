@@ -2,6 +2,7 @@ import React from "react";
 import url from "./man.png";
 import { Link } from "react-router-dom";
 import * as routes from "../../constants/routes";
+import Loader from "./../Common/Loader";
 
 const AccountPage = props => {
     const userImage = {
@@ -24,30 +25,38 @@ const AccountPage = props => {
             outline: "none"
         };
 
-        return (
-            <div className="container">
-                <img src={props.user.photoURL || url} style={userImage} alt="something's wrong" />
-                <div className="row">
-                    <div className="col-sm-5" style={center}>
-                        <div className="card card3">
-                            <div className="card-body">
-                                <h5 className="card-title">Hello {props.user.displayName || props.user.email}</h5>
-                                <hr />
-                                <p className="card-title">Registered email : {props.user.email}</p>
-                                <hr />
-                                <p className="card-title">
-                                    {props.user.emailVerified ? "User is verified" : "User not verified"}
-                                </p>
-                                <hr />
-                                <button classame="btn btn-default" style={test}>
-                                    <Link to={routes.UPDATE_PASSWORD}> update password </Link>
-                                </button>
+        if (props.settings) {
+            return (
+                <div className="container">
+                    <img src={props.user.photoURL || url} style={userImage} alt="something's wrong" />
+                    <div className="row">
+                        <div className="col-sm-5" style={center}>
+                            <div className="card card3">
+                                <div className="card-body">
+                                    <h5 className="card-title">Hello {props.user.displayName || props.user.email}</h5>
+                                    <hr />
+                                    <p className="card-title">Registered email : {props.user.email}</p>
+                                    <hr />
+                                    <p className="card-title">
+                                        {props.user.emailVerified ? "User is verified" : "User not verified"}
+                                    </p>
+                                    <hr />
+                                    <button classame="btn btn-default" style={test}>
+                                        <Link to={routes.UPDATE_PASSWORD}> update password </Link>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <Loader />
+                </div>
+            );
+        }
     } else {
         return (
             <div className="container">

@@ -5,6 +5,7 @@ import TotalCard from "./TotalCard";
 import CategoryTotalCard from "./CategoryTotalCard";
 import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
+import Loader from "./../Common/Loader";
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -48,98 +49,105 @@ class MonthViewPage extends Component {
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif"
         };
-
-        return (
-            <div className="container-fluid" style={styleFromSettings}>
-                <div className="row">
-                    <div className="col-sm-4" style={leftCol}>
-                        <form style={form}>
-                            <div style={Header}> View your expenses of a particular month </div>
-                            <div className="form-group row">
-                                <label className="col-sm-3 col-xs-6 col-form-label">
-                                    <span>Year</span>
-                                </label>
-                                <div className="col-sm-9 col-xs-6">
-                                    <select
-                                        className="form-control"
-                                        name="year"
-                                        value={this.state.year}
-                                        onChange={this.handleChange.bind(this)}
-                                    >
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                    </select>
+        if (this.props.settings) {
+            return (
+                <div className="container-fluid" style={styleFromSettings}>
+                    <div className="row">
+                        <div className="col-sm-4" style={leftCol}>
+                            <form style={form}>
+                                <div style={Header}> View your expenses of a particular month </div>
+                                <div className="form-group row">
+                                    <label className="col-sm-3 col-xs-6 col-form-label">
+                                        <span>Year</span>
+                                    </label>
+                                    <div className="col-sm-9 col-xs-6">
+                                        <select
+                                            className="form-control"
+                                            name="year"
+                                            value={this.state.year}
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="form-group row">
-                                <label className="col-sm-3 col-xs-6 col-form-label">
-                                    <span>Month</span>
-                                </label>
-                                <div className="col-sm-9 col-xs-6">
-                                    <select
-                                        className="form-control"
-                                        name="month"
-                                        value={this.state.month}
-                                        onChange={this.handleChange.bind(this)}
-                                    >
-                                        <option value="0">January</option>
-                                        <option value="1">February</option>
-                                        <option value="2">March</option>
-                                        <option value="3">April</option>
-                                        <option value="4">May</option>
-                                        <option value="5">June</option>
-                                        <option value="6">July</option>
-                                        <option value="7">August</option>
-                                        <option value="8">September</option>
-                                        <option value="9">October</option>
-                                        <option value="10">November</option>
-                                        <option value="11">December</option>
-                                    </select>
+                                <div className="form-group row">
+                                    <label className="col-sm-3 col-xs-6 col-form-label">
+                                        <span>Month</span>
+                                    </label>
+                                    <div className="col-sm-9 col-xs-6">
+                                        <select
+                                            className="form-control"
+                                            name="month"
+                                            value={this.state.month}
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option value="0">January</option>
+                                            <option value="1">February</option>
+                                            <option value="2">March</option>
+                                            <option value="3">April</option>
+                                            <option value="4">May</option>
+                                            <option value="5">June</option>
+                                            <option value="6">July</option>
+                                            <option value="7">August</option>
+                                            <option value="8">September</option>
+                                            <option value="9">October</option>
+                                            <option value="10">November</option>
+                                            <option value="11">December</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <TotalCard
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            month={this.state.month}
-                            year={this.state.year}
-                        />
-                        <CategoryTotalCard
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            month={this.state.month}
-                            year={this.state.year}
-                        />
-                    </div>
-
-                    <div className="col-sm-8">
-                        <div className="col-sm-12" style={pad15}>
-                            <DoughnutChart
+                            </form>
+                            <TotalCard
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                month={this.state.month}
+                                year={this.state.year}
+                            />
+                            <CategoryTotalCard
                                 expenses={this.props.expenses}
                                 authUser={this.props.user}
                                 month={this.state.month}
                                 year={this.state.year}
                             />
                         </div>
-                        <GenerateExcel
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            month={this.state.month}
-                            year={this.state.year}
-                            settings={this.props.settings}
-                        />
-                        <MonthExpenseTable
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            month={this.state.month}
-                            year={this.state.year}
-                            settings={this.props.settings}
-                        />
+
+                        <div className="col-sm-8">
+                            <div className="col-sm-12" style={pad15}>
+                                <DoughnutChart
+                                    expenses={this.props.expenses}
+                                    authUser={this.props.user}
+                                    month={this.state.month}
+                                    year={this.state.year}
+                                />
+                            </div>
+                            <GenerateExcel
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                month={this.state.month}
+                                year={this.state.year}
+                                settings={this.props.settings}
+                            />
+                            <MonthExpenseTable
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                month={this.state.month}
+                                year={this.state.year}
+                                settings={this.props.settings}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <Loader />
+                </div>
+            );
+        }
     }
 }
 

@@ -8,6 +8,7 @@ import TotalCard from "./TotalCard";
 import CategoryTotalCard from "./CategoryTotalCard";
 import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
+import Loader from "./../Common/Loader";
 
 class DailyViewPage extends Component {
     constructor(props) {
@@ -46,62 +47,69 @@ class DailyViewPage extends Component {
         };
 
         const styleFromSettings = { fontFamily: this.props.settings ? this.props.settings.font : "sans-serif" };
-
-        return (
-            <div className="container-fluid" style={styleFromSettings}>
-                <div className="row">
-                    <div className="col-sm-4" style={leftCol}>
-                        <form onSubmit={this.handleSubmit} style={form}>
-                            <div style={datePickerHeader}> View your expenses on a particular date </div>
-                            <div className="form-group row">
-                                <label className="col-2 col-form-label">
-                                    <span>Date</span>
-                                </label>
-                                <div className="col-10">
-                                    <DatePicker
-                                        className="form-control date"
-                                        name="date"
-                                        selected={this.state.date}
-                                        onSelect={this.handelDateSelect.bind(this)}
-                                    />
+        if (this.props.settings) {
+            return (
+                <div className="container-fluid" style={styleFromSettings}>
+                    <div className="row">
+                        <div className="col-sm-4" style={leftCol}>
+                            <form onSubmit={this.handleSubmit} style={form}>
+                                <div style={datePickerHeader}> View your expenses on a particular date </div>
+                                <div className="form-group row">
+                                    <label className="col-2 col-form-label">
+                                        <span>Date</span>
+                                    </label>
+                                    <div className="col-10">
+                                        <DatePicker
+                                            className="form-control date"
+                                            name="date"
+                                            selected={this.state.date}
+                                            onSelect={this.handelDateSelect.bind(this)}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <TotalCard
-                            expenses={this.props.expenses}
-                            date={this.state.date.format("MM/DD/YYYY")}
-                            authUser={this.props.user}
-                        />
-                        <CategoryTotalCard
-                            expenses={this.props.expenses}
-                            date={this.state.date.format("MM/DD/YYYY")}
-                            authUser={this.props.user}
-                        />
-                    </div>
-                    <div className="col-sm-8">
-                        <div className="col-sm-12" style={pad15}>
-                            <DoughnutChart
+                            </form>
+                            <TotalCard
+                                expenses={this.props.expenses}
+                                date={this.state.date.format("MM/DD/YYYY")}
+                                authUser={this.props.user}
+                            />
+                            <CategoryTotalCard
                                 expenses={this.props.expenses}
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
                             />
                         </div>
-                        <GenerateExcel
-                            expenses={this.props.expenses}
-                            date={this.state.date.format("MM/DD/YYYY")}
-                            authUser={this.props.user}
-                            settings={this.props.settings}
-                        />
-                        <ExpenseTable
-                            expenses={this.props.expenses}
-                            date={this.state.date.format("MM/DD/YYYY")}
-                            authUser={this.props.user}
-                            settings={this.props.settings}
-                        />
+                        <div className="col-sm-8">
+                            <div className="col-sm-12" style={pad15}>
+                                <DoughnutChart
+                                    expenses={this.props.expenses}
+                                    date={this.state.date.format("MM/DD/YYYY")}
+                                    authUser={this.props.user}
+                                />
+                            </div>
+                            <GenerateExcel
+                                expenses={this.props.expenses}
+                                date={this.state.date.format("MM/DD/YYYY")}
+                                authUser={this.props.user}
+                                settings={this.props.settings}
+                            />
+                            <ExpenseTable
+                                expenses={this.props.expenses}
+                                date={this.state.date.format("MM/DD/YYYY")}
+                                authUser={this.props.user}
+                                settings={this.props.settings}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <Loader />
+                </div>
+            );
+        }
     }
 }
 

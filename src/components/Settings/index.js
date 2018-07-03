@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loader from "./../Common/Loader";
 
 import * as db from "../../firebase/db";
 
@@ -37,69 +38,72 @@ class SettingsPage extends Component {
     }
 
     render() {
-        const marR15 = {
-            marginRight: "15px"
-        };
-        const marR5 = { marginRight: "5px" };
-
-        return (
-            <div className="container">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-xs-6 col-form-label">
-                            <span>Font</span>
-                        </label>
-                        <div className="col-sm-10 col-xs-6">
-                            <select
-                                className="form-control"
-                                name="font"
-                                value={this.state.font}
-                                onChange={this.handleChange.bind(this)}
-                            >
-                                <option value="Dhurjati">Dhurjati</option>
-                                <option value="sans-serif">sans-serif</option>
-                                <option value="Roboto">Roboto</option>
-                                <option value="Ubuntu">Ubuntu</option>
-                                <option value="Exo 2">Exo 2</option>
-                                <option value="Lobster">Lobster</option>
-                            </select>
+        if (this.props.settings) {
+            return (
+                <div className="container">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-xs-6 col-form-label">
+                                <span>Font</span>
+                            </label>
+                            <div className="col-sm-10 col-xs-6">
+                                <select
+                                    className="form-control"
+                                    name="font"
+                                    value={this.state.font}
+                                    onChange={this.handleChange.bind(this)}
+                                >
+                                    <option value="Dhurjati">Dhurjati</option>
+                                    <option value="sans-serif">sans-serif</option>
+                                    <option value="Roboto">Roboto</option>
+                                    <option value="Ubuntu">Ubuntu</option>
+                                    <option value="Exo 2">Exo 2</option>
+                                    <option value="Lobster">Lobster</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-xs-6 col-form-label">
-                            <span>Mode</span>
-                        </label>
-                        <div className="col-sm-10 col-xs-6" onChange={this.handleChange.bind(this)}>
-                            <input
-                                type="radio"
-                                name="mode"
-                                value="day"
-                                defaultChecked={this.state.mode === "day"}
-                                style={marR5}
-                            />
-                            <label style={marR15}>Day</label>
-                            <input
-                                type="radio"
-                                name="mode"
-                                value="night"
-                                defaultChecked={this.state.mode === "night"}
-                                style={marR5}
-                            />
-                            <label style={marR15}>Night</label>{" "}
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-xs-6 col-form-label">
+                                <span>Mode</span>
+                            </label>
+                            <div className="col-sm-10 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
+                                <input
+                                    type="radio"
+                                    name="mode"
+                                    value="day"
+                                    defaultChecked={this.state.mode === "day"}
+                                    id="switch_left"
+                                />
+                                <label for="switch_left">Day</label>
+                                <input
+                                    type="radio"
+                                    name="mode"
+                                    value="night"
+                                    defaultChecked={this.state.mode === "night"}
+                                    id="switch_right"
+                                />
+                                <label for="switch_right">Night</label>{" "}
+                            </div>
                         </div>
-                    </div>
 
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
-                    <button className="btn btn-primary float-right" type="submit">
-                        save
-                    </button>
-                </form>
-            </div>
-        );
+                        {this.state.dataSaved ? (
+                            <span className="bg-success success-msg"> Data saved successfully</span>
+                        ) : (
+                            <span />
+                        )}
+                        <button className="btn btn-primary float-right" type="submit">
+                            save
+                        </button>
+                    </form>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Loader />
+                </div>
+            );
+        }
     }
 }
 
