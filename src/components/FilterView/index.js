@@ -83,6 +83,14 @@ class FilterViewPage extends Component {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
 
+        const inputNightMode = {
+            background: "#2c2b2b",
+            color: "#a9a0a0",
+            border: "1px solid #9b8c8cc7"
+        };
+
+        const inputDayMode = { background: "#fff", color: "#495057" };
+
         if (this.props.settings) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
@@ -97,7 +105,12 @@ class FilterViewPage extends Component {
                                         </label>
                                         <div className="col-sm-12">
                                             <DatePicker
-                                                className="form-control date"
+                                                className={
+                                                    "form-control date " +
+                                                    (this.props.settings.mode === "night"
+                                                        ? "inputNightMode"
+                                                        : "inputDayMode")
+                                                }
                                                 name="fromdate"
                                                 selected={this.state.fromdate}
                                                 onSelect={this.handleFromDateSelect.bind(this)}
@@ -110,7 +123,12 @@ class FilterViewPage extends Component {
                                         </label>
                                         <div className="col-sm-12">
                                             <DatePicker
-                                                className="form-control date"
+                                                className={
+                                                    "form-control date " +
+                                                    (this.props.settings.mode === "night"
+                                                        ? "inputNightMode"
+                                                        : "inputDayMode")
+                                                }
                                                 name="todate"
                                                 selected={this.state.todate}
                                                 onSelect={this.handleToDateSelect.bind(this)}
@@ -131,6 +149,9 @@ class FilterViewPage extends Component {
                                                 name="expensefrom"
                                                 onChange={this.handleChange.bind(this)}
                                                 value={this.state.expensefrom}
+                                                style={
+                                                    this.props.settings.mode === "night" ? inputNightMode : inputDayMode
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -146,6 +167,9 @@ class FilterViewPage extends Component {
                                                 name="expenseto"
                                                 onChange={this.handleChange.bind(this)}
                                                 value={this.state.expenseto}
+                                                style={
+                                                    this.props.settings.mode === "night" ? inputNightMode : inputDayMode
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -160,6 +184,7 @@ class FilterViewPage extends Component {
                                             name="category"
                                             value={this.state.category}
                                             onChange={this.handleChange.bind(this)}
+                                            style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
                                             <option value="Food">Food</option>
                                             <option value="Automobile">Automobile</option>

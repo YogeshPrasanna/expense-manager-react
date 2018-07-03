@@ -62,12 +62,21 @@ class MonthViewPage extends Component {
                     ? "#ddd"
                     : "#EDF0EF"
                 : "#EDF0EF",
-            padding: "35px"
+            padding: "35px",
+            margin: "15px 0"
         };
 
         const white = {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
+
+        const inputNightMode = {
+            background: "#2c2b2b",
+            color: "#a9a0a0",
+            border: "1px solid #9b8c8cc7"
+        };
+
+        const inputDayMode = { background: "#fff", color: "#495057" };
 
         if (this.props.settings) {
             return (
@@ -86,6 +95,7 @@ class MonthViewPage extends Component {
                                             name="year"
                                             value={this.state.year}
                                             onChange={this.handleChange.bind(this)}
+                                            style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
                                             <option value="2016">2016</option>
                                             <option value="2017">2017</option>
@@ -103,6 +113,7 @@ class MonthViewPage extends Component {
                                             name="month"
                                             value={this.state.month}
                                             onChange={this.handleChange.bind(this)}
+                                            style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
                                             <option value="0">January</option>
                                             <option value="1">February</option>

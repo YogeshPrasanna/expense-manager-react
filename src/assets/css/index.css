@@ -171,13 +171,7 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient(
-        145deg,
-        transparent,
-        transparent 1px,
-        rgba(238, 238, 238, 0.298039) 3px,
-        rgba(238, 238, 238, 0.298039) 5px
-    );
+    background-image: repeating-linear-gradient( 145deg, transparent, transparent 1px, rgba(238, 238, 238, 0.298039) 3px, rgba(238, 238, 238, 0.298039) 5px);
 }
 
 /* Switch type radio button  */
@@ -229,7 +223,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked + label {
+.switch-field input:checked+label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -371,4 +365,15 @@ nav .navNarrow .navbar-nav {
     nav .navNarrow {
         display: none;
     }
+}
+
+.inputNightMode {
+    background: #2c2b2b !important;
+    color: #a9a0a0 !important;
+    border: 1px solid #9b8c8cc7 !important;
+}
+
+.inputDayMode {
+    background: #fff;
+    color: #495057
 }

@@ -62,7 +62,8 @@ class DailyViewPage extends Component {
                     ? "#ddd"
                     : "#EDF0EF"
                 : "#EDF0EF",
-            padding: "35px"
+            padding: "35px",
+            margin: "15px 0"
         };
 
         const white = {
@@ -82,7 +83,12 @@ class DailyViewPage extends Component {
                                     </label>
                                     <div className="col-10">
                                         <DatePicker
-                                            className="form-control date"
+                                            className={
+                                                "form-control date " +
+                                                (this.props.settings.mode === "night"
+                                                    ? "inputNightMode"
+                                                    : "inputDayMode")
+                                            }
                                             name="date"
                                             selected={this.state.date}
                                             onSelect={this.handelDateSelect.bind(this)}

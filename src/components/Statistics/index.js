@@ -18,7 +18,8 @@ const StatisticsPage = props => {
 
     const nmBgForCharts = {
         backgroundColor: props.settings ? (props.settings.mode === "night" ? "#ddd" : "#EDF0EF") : "#EDF0EF",
-        padding: "35px"
+        padding: "10px",
+        border: "15px solid #484842"
     };
 
     if (props.settings) {
