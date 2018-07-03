@@ -22,7 +22,12 @@ const LoanTable = props => {
                 </tr>
             </thead>
             <tbody>
-                <Loans loans={props.loans} authUser={props.authUser} key={Math.random() * 100} />
+                <Loans
+                    loans={props.loans}
+                    authUser={props.authUser}
+                    key={Math.random() * 100}
+                    settings={props.settings}
+                />
             </tbody>
         </table>
     );

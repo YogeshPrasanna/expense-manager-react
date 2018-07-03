@@ -53,7 +53,11 @@ class HomePage extends Component {
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
                     {this.state.showPopup ? (
-                        <AddExpensePopup user={this.props.user} closePopup={this.togglePopup.bind(this)} />
+                        <AddExpensePopup
+                            user={this.props.user}
+                            closePopup={this.togglePopup.bind(this)}
+                            settings={this.props.settings}
+                        />
                     ) : null}
                 </div>
             );

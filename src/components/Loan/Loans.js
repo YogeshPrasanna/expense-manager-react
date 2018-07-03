@@ -6,8 +6,9 @@ import * as utils from "../Util";
 const Loans = props => {
     let loans = props.loans;
     let currentUser = props.authUser;
+    let settings = props.settings;
 
-    if (!loans || !currentUser) {
+    if (!loans || !currentUser || !settings) {
         return (
             <tr>
                 <td>
@@ -41,7 +42,7 @@ const Loans = props => {
         );
     }
 
-    if (loans && currentUser) {
+    if (loans && currentUser && settings) {
         let eachExpense = utils.eachExpense(loans);
         let thisUsersLoan = utils.currentUsersExpenses(eachExpense, currentUser);
 
@@ -49,7 +50,16 @@ const Loans = props => {
 
         if (thisUsersLoan.length) {
             return thisUsersLoan.map(function(elem, i) {
-                return <LoanRow user={props.authUser} loan={elem} num={i} key={i} loanId={thisUsersLoan[i].key} />;
+                return (
+                    <LoanRow
+                        user={props.authUser}
+                        loan={elem}
+                        num={i}
+                        key={i}
+                        loanId={thisUsersLoan[i].key}
+                        settings={props.settings}
+                    />
+                );
             });
         } else {
             return (

@@ -49,7 +49,11 @@ class LoanPage extends Component {
                     ) : null}
 
                     {this.state.showPopup ? (
-                        <AddLoanPopup user={this.props.user} closePopup={this.togglePopup.bind(this)} />
+                        <AddLoanPopup
+                            user={this.props.user}
+                            closePopup={this.togglePopup.bind(this)}
+                            settings={this.props.settings}
+                        />
                     ) : null}
                 </div>
             );

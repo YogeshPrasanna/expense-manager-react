@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import $ from "jquery";
 
+import Loader from "./../Common/Loader";
+
 import * as firebase from "../../firebase/firebase";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -63,109 +65,129 @@ class EditLoanForm extends Component {
     }
 
     render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Date</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <DatePicker
-                            className="form-control date"
-                            name="date"
-                            selected={this.state.date}
-                            onChange={this.handelDateChange.bind(this)}
-                        />
-                    </div>
-                </div>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Amount</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <input
-                            className="form-control"
-                            required
-                            type="number"
-                            name="amount"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.amount}
-                        />
-                    </div>
-                </div>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Loan Type</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <select
-                            className="form-control"
-                            name="loanType"
-                            value={this.state.loanType}
-                            onChange={this.handleChange.bind(this)}
-                        >
-                            <option value="Given">Given</option>
-                            <option value="Taken">Taken</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Person</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <input
-                            className="form-control"
-                            required
-                            type="text"
-                            name="person"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.person}
-                        />
-                    </div>
-                </div>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Status</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <select
-                            className="form-control"
-                            name="status"
-                            value={this.state.status}
-                            onChange={this.handleChange.bind(this)}
-                        >
-                            <option value="Pending">Pending</option>
-                            <option value="Settled">Settled</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="form-group row">
-                    <label className="col-sm-2 col-xs-6 col-form-label">
-                        <span>Reason</span>
-                    </label>
-                    <div className="col-sm-10 col-xs-6">
-                        <textarea
-                            className="form-control"
-                            type="text"
-                            required
-                            name="reason"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.reason}
-                        />
-                    </div>
-                </div>
+        if (this.props.settings) {
+            const inputNightMode = { background: "#2c2b2b", color: "#a9a0a0", border: "1px solid #9b8c8cc7" };
 
-                {this.state.dataSaved ? (
-                    <span className="bg-success success-msg"> You did not update anything</span>
-                ) : (
-                    <span />
-                )}
-                <button className="btn btn-primary float-right" type="submit">
-                    save
-                </button>
-            </form>
-        );
+            const inputDayMode = { background: "#fff", color: "#495057" };
+
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Date</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <DatePicker
+                                className={
+                                    "form-control date " +
+                                    (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
+                                }
+                                name="date"
+                                selected={this.state.date}
+                                onChange={this.handelDateChange.bind(this)}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Amount</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <input
+                                className="form-control"
+                                required
+                                type="number"
+                                name="amount"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.amount}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Loan Type</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <select
+                                className="form-control"
+                                name="loanType"
+                                value={this.state.loanType}
+                                onChange={this.handleChange.bind(this)}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            >
+                                <option value="Given">Given</option>
+                                <option value="Taken">Taken</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Person</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <input
+                                className="form-control"
+                                required
+                                type="text"
+                                name="person"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.person}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Status</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <select
+                                className="form-control"
+                                name="status"
+                                value={this.state.status}
+                                onChange={this.handleChange.bind(this)}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            >
+                                <option value="Pending">Pending</option>
+                                <option value="Settled">Settled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-xs-6 col-form-label">
+                            <span>Reason</span>
+                        </label>
+                        <div className="col-sm-10 col-xs-6">
+                            <textarea
+                                className="form-control"
+                                type="text"
+                                required
+                                name="reason"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.reason}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                        </div>
+                    </div>
+
+                    {this.state.dataSaved ? (
+                        <span className="bg-success success-msg"> You did not update anything</span>
+                    ) : (
+                        <span />
+                    )}
+                    <button className="btn btn-primary float-right" type="submit">
+                        save
+                    </button>
+                </form>
+            );
+        } else {
+            return (
+                <div>
+                    <Loader />
+                </div>
+            );
+        }
     }
 }
 

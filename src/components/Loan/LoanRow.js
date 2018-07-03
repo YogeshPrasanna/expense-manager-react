@@ -77,6 +77,7 @@ class LoanRow extends Component {
                             user={this.props.user}
                             loan={this.props.loan}
                             closePopup={this.toggleEditPopup.bind(this)}
+                            settings={this.props.settings}
                         />
                     ) : null}
                 </td>
