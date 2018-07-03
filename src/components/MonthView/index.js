@@ -47,8 +47,28 @@ class MonthViewPage extends Component {
         };
 
         const styleFromSettings = {
-            fontFamily: this.props.settings ? this.props.settings.font : "sans-serif"
+            fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
+            backgroundColor: this.props.settings
+                ? this.props.settings.mode === "night"
+                    ? "#484842"
+                    : "#EDF0EF"
+                : "#EDF0EF",
+            minHeight: "91vh"
         };
+
+        const nmBgForCharts = {
+            backgroundColor: this.props.settings
+                ? this.props.settings.mode === "night"
+                    ? "#ddd"
+                    : "#EDF0EF"
+                : "#EDF0EF",
+            padding: "35px"
+        };
+
+        const white = {
+            color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
+        };
+
         if (this.props.settings) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
@@ -57,7 +77,7 @@ class MonthViewPage extends Component {
                             <form style={form}>
                                 <div style={Header}> View your expenses of a particular month </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-3 col-xs-6 col-form-label">
+                                    <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
                                         <span>Year</span>
                                     </label>
                                     <div className="col-sm-9 col-xs-6">
@@ -74,7 +94,7 @@ class MonthViewPage extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-3 col-xs-6 col-form-label">
+                                    <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
                                         <span>Month</span>
                                     </label>
                                     <div className="col-sm-9 col-xs-6">
@@ -115,7 +135,10 @@ class MonthViewPage extends Component {
                         </div>
 
                         <div className="col-sm-8">
-                            <div className="col-sm-12" style={pad15}>
+                            <div
+                                className="col-sm-12"
+                                style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
+                            >
                                 <DoughnutChart
                                     expenses={this.props.expenses}
                                     authUser={this.props.user}

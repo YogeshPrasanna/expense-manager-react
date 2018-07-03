@@ -69,7 +69,19 @@ class FilterViewPage extends Component {
             padding: "0px"
         };
 
-        const styleFromSettings = { fontFamily: this.props.settings ? this.props.settings.font : "sans-serif" };
+        const styleFromSettings = {
+            fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
+            backgroundColor: this.props.settings
+                ? this.props.settings.mode === "night"
+                    ? "#484842"
+                    : "#EDF0EF"
+                : "#EDF0EF",
+            minHeight: "91vh"
+        };
+
+        const white = {
+            color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
+        };
 
         if (this.props.settings) {
             return (
@@ -80,7 +92,7 @@ class FilterViewPage extends Component {
                                 <div style={datePickerHeader}> Filter out your expenses </div>
                                 <div className="form-group row">
                                     <div className="col-sm-6" style={pad0}>
-                                        <label className="col-sm-12 col-form-label">
+                                        <label className="col-sm-12 col-form-label" style={white}>
                                             <span>From Date</span>
                                         </label>
                                         <div className="col-sm-12">
@@ -93,7 +105,7 @@ class FilterViewPage extends Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-6" style={pad0}>
-                                        <label className="col-sm-12 col-form-label">
+                                        <label className="col-sm-12 col-form-label" style={white}>
                                             <span>To Date</span>
                                         </label>
                                         <div className="col-sm-12">
@@ -108,7 +120,7 @@ class FilterViewPage extends Component {
                                 </div>
                                 <div className="form-group row">
                                     <div className="col-sm-6" style={pad0}>
-                                        <label className="col-sm-12 col-xs-6 col-form-label">
+                                        <label className="col-sm-12 col-xs-6 col-form-label" style={white}>
                                             <span>From Expense</span>
                                         </label>
                                         <div className="col-sm-12 col-xs-6">
@@ -123,7 +135,7 @@ class FilterViewPage extends Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-6" style={pad0}>
-                                        <label className="col-sm-12 col-xs-6 col-form-label">
+                                        <label className="col-sm-12 col-xs-6 col-form-label" style={white}>
                                             <span>To Expense</span>
                                         </label>
                                         <div className="col-sm-12 col-xs-6">
@@ -139,7 +151,7 @@ class FilterViewPage extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-12 col-xs-6 col-form-label">
+                                    <label className="col-sm-12 col-xs-6 col-form-label" style={white}>
                                         <span>category</span>
                                     </label>
                                     <div className="col-sm-12 col-xs-6">

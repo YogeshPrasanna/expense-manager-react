@@ -132,7 +132,11 @@ class App extends Component {
 
     render() {
         const bodyStyle = {
-            backgroundColor: "#ecf0f1",
+            backgroundColor: this.state.settings
+                ? this.state.settings.mode === "night"
+                    ? "#484842 !important"
+                    : "auto"
+                : "auto",
             height: "100vh"
         };
 

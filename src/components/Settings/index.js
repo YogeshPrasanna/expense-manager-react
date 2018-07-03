@@ -39,11 +39,25 @@ class SettingsPage extends Component {
 
     render() {
         if (this.props.settings) {
+            const styleFromSettings = {
+                fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
+                backgroundColor: this.props.settings
+                    ? this.props.settings.mode === "night"
+                        ? "#484842"
+                        : "#EDF0EF"
+                    : "#EDF0EF",
+                minHeight: "91vh"
+            };
+
+            const white = {
+                color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
+            };
+
             return (
-                <div className="container">
+                <div className="container" style={styleFromSettings}>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group row">
-                            <label className="col-sm-2 col-xs-6 col-form-label">
+                            <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
                                 <span>Font</span>
                             </label>
                             <div className="col-sm-10 col-xs-6">
@@ -63,7 +77,7 @@ class SettingsPage extends Component {
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label className="col-sm-2 col-xs-6 col-form-label">
+                            <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
                                 <span>Mode</span>
                             </label>
                             <div className="col-sm-10 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
