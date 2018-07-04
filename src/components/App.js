@@ -143,7 +143,7 @@ class App extends Component {
         return (
             <Router>
                 <div style={bodyStyle}>
-                    <Navigation authUser={this.state.authUser} />
+                    <Navigation authUser={this.state.authUser} settings={this.state.settings} />
 
                     {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
                     <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
