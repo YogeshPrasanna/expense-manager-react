@@ -54,7 +54,7 @@ class SettingsPage extends Component {
             };
 
             return (
-                <div className="container" style={styleFromSettings}>
+                <div className="container-fluid" style={styleFromSettings}>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group row">
                             <label className="col-sm-2 col-xs-6 col-form-label" style={white}>

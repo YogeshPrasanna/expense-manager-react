@@ -15,8 +15,14 @@ const AccountPage = props => {
 
     const center = {
         margin: "0 auto",
-        display: "block",
-        fontFamily: props.settings ? props.settings.font : "sans-serif"
+        display: "block"
+    };
+
+    const styleFromSettings = {
+        fontFamily: props.settings ? props.settings.font : "sans-serif",
+        backgroundColor: props.settings ? (props.settings.mode === "night" ? "#484842" : "#EDF0EF") : "#EDF0EF",
+        minHeight: "91vh",
+        padding: "2.33%"
     };
 
     if (props.user) {
@@ -27,7 +33,7 @@ const AccountPage = props => {
 
         if (props.settings) {
             return (
-                <div className="container">
+                <div className="container-fluid" style={props.settings.mode === "night" ? styleFromSettings : center}>
                     <img src={props.user.photoURL || url} style={userImage} alt="something's wrong" />
                     <div className="row">
                         <div className="col-sm-5" style={center}>
