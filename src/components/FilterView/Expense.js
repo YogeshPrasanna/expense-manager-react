@@ -61,6 +61,7 @@ const Expense = props => {
                         num={i}
                         key={i}
                         expenseId={filteredExpenses[i].key}
+                        settings={props.settings}
                     />
                 );
             });

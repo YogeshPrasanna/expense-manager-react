@@ -25,6 +25,7 @@ const ExpenseTable = props => {
                     date={props.date}
                     authUser={props.authUser}
                     key={Math.random() * 100}
+                    settings={props.settings}
                 />
             </tbody>
         </table>

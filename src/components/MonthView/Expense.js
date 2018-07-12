@@ -55,6 +55,7 @@ const Expense = props => {
                         num={i}
                         key={i}
                         expenseId={usersExpensesInSelectedMonthAndYear[i].key}
+                        settings={props.settings}
                     />
                 );
             });

@@ -49,6 +49,7 @@ const Expense = props => {
                         num={i}
                         key={i}
                         expenseId={thisUsersExpenses[i].key}
+                        settings={props.settings}
                     />
                 );
             });

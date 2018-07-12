@@ -29,6 +29,7 @@ const ExpenseTable = props => {
                     category={props.category}
                     authUser={props.authUser}
                     key={Math.random() * 100}
+                    settings={props.settings}
                 />
             </tbody>
         </table>
