@@ -74,13 +74,17 @@ class App extends Component {
 
                 // get all the settings
                 firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
-                    if (data) {
+                    if (data.val() !== null) {
                         this.setState({
                             settings: data.val()
                         });
 
-                        // setting the font family to chart.js
-                        defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
+                        if (this.state.settings) {
+                            //setting the font family to chart.js
+                            defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
+                        }
+                    } else {
+                        db.doCreateSettingsForUser(this.state.authUser.uid, "sans-serif", "day");
                     }
                 });
 
