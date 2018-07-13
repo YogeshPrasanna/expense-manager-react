@@ -171,7 +171,13 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient( 145deg, transparent, transparent 1px, rgba(238, 238, 238, 0.298039) 3px, rgba(238, 238, 238, 0.298039) 5px);
+    background-image: repeating-linear-gradient(
+        145deg,
+        transparent,
+        transparent 1px,
+        rgba(238, 238, 238, 0.298039) 3px,
+        rgba(238, 238, 238, 0.298039) 5px
+    );
 }
 
 /* Switch type radio button  */
@@ -223,7 +229,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked+label {
+.switch-field input:checked + label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -375,5 +381,18 @@ nav .navNarrow .navbar-nav {
 
 .inputDayMode {
     background: #fff;
-    color: #495057
+    color: #495057;
+}
+
+/* Print Styles */
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+
+    .addexpense-btn,
+    .addloan-btn {
+        display: none;
+    }
 }

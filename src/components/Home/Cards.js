@@ -68,7 +68,7 @@ const Cards = props => {
             <div className="col-sm-3">
                 <div className="card card1">
                     <div className="card-block">
-                        <h3 className="card-title">Overall Money Spent</h3>
+                        <h3 className="card-title">Overall Spent</h3>
                         <p className="card-text">
                             <i className="fa fa-inr" aria-hidden="true" /> {totalExpenses}
                         </p>

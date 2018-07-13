@@ -96,3 +96,36 @@ h1 {
 .rwd-table td:before {
     color: #dd5;
 }
+
+@media print {
+    body {
+        background-color: #34495e;
+        -webkit-print-color-adjust: exact;
+    }
+
+    * {
+        color: auto;
+        background: auto;
+    }
+
+    .rwd-table,
+    table {
+        color: #000;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .rwd-table th {
+        color: #fff !important;
+        letter-spacing: 2px;
+        background: #2b3335 !important;
+        border: 1px solid #232b2c !important;
+    }
+
+    .rwd-table tr td,
+    table tr td {
+        background-color: #232b2c !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        border: 1px solid #2b3335 !important;
+    }
+}
