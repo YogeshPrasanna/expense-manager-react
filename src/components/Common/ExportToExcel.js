@@ -6,6 +6,10 @@ class ExportToExcel extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    print() {
+        window.print();
+    }
+
     handleClick(event) {
         const expenseData = this.props.excelDataObject;
         const CSVData = expenseData.map(expense => {
@@ -97,10 +101,21 @@ class ExportToExcel extends Component {
             cursor: "pointer"
         };
 
+        const clickIconPrint = {
+            cursor: "pointer",
+            marginLeft: "25px"
+        };
+
         return (
-            <span onClick={this.handleClick} style={clickIcon}>
-                <i className="fa fa-file-excel-o" /> Export as excel
-            </span>
+            <div>
+                <span onClick={this.handleClick} style={clickIcon}>
+                    <i className="fa fa-file-excel-o" /> Export as excel
+                </span>
+
+                <span onClick={this.print} style={clickIconPrint}>
+                    <i className="fa fa-print" /> Print
+                </span>
+            </div>
         );
     }
 }
