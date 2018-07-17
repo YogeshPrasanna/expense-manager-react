@@ -46,7 +46,7 @@ const GenerateExcel = props => {
         };
 
         return (
-            <div className="col-sm-12" style={exportArea}>
+            <div className="col-sm-12 export-print-bar" style={exportArea}>
                 <ExportToExcel excelDataObject={excelDataObject} pageTitle={pageTitle} />
             </div>
         );

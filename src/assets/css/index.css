@@ -392,7 +392,8 @@ nav .navNarrow .navbar-nav {
     }
 
     .addexpense-btn,
-    .addloan-btn {
+    .addloan-btn,
+    .export-print-bar {
         display: none;
     }
 }
