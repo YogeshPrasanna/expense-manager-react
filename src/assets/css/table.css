@@ -2,38 +2,47 @@
     margin: 1em 0;
     min-width: 300px;
 }
+
 .rwd-table tr {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
 .rwd-table th {
     display: none;
 }
+
 .rwd-table td {
     display: block;
 }
+
 .rwd-table td:first-child {
     padding-top: 0.5em;
 }
+
 .rwd-table td:last-child {
     padding-bottom: 0.5em;
 }
+
 .rwd-table td:before {
     content: attr(data-th) ": ";
     font-weight: bold;
     width: 6.5em;
     display: inline-block;
 }
-@media (min-width: 480px) {
+
+@media (min-width: 767px) {
     .rwd-table td:before {
         display: none;
     }
 }
+
 .rwd-table th,
 .rwd-table td {
     text-align: left;
 }
-@media (min-width: 480px) {
+
+@media (min-width: 767px) {
     .rwd-table th,
     .rwd-table td {
         display: table-cell;
@@ -70,13 +79,16 @@ h1 {
     border-radius: 0.4em;
     overflow: hidden;
 }
+
 .rwd-table tr {
     border-color: #46637f;
 }
+
 .rwd-table th,
 .rwd-table td {
     margin: 0.5em 1em;
 }
+
 @media (min-width: 480px) {
     .rwd-table th,
     .rwd-table td {
@@ -84,7 +96,7 @@ h1 {
     }
 }
 
-@media (min-width: 260px) and (max-width: 639px) {
+@media (min-width: 260px) and (max-width: 767px) {
     .rwd-table tr {
         border-bottom: 5px solid #f0b852;
     }
@@ -92,6 +104,14 @@ h1 {
         margin: 0.5em;
     }
 }
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .rwd-table th,
+    .rwd-table td {
+        padding: 5px !important;
+    }
+}
+
 .rwd-table th,
 .rwd-table td:before {
     color: #dd5;
@@ -102,25 +122,21 @@ h1 {
         background-color: #34495e;
         -webkit-print-color-adjust: exact;
     }
-
     * {
         color: auto;
         background: auto;
     }
-
     .rwd-table,
     table {
         color: #000;
         -webkit-print-color-adjust: exact;
     }
-
     .rwd-table th {
         color: #fff !important;
         letter-spacing: 2px;
         background: #2b3335 !important;
         border: 1px solid #232b2c !important;
     }
-
     .rwd-table tr td,
     table tr td {
         background-color: #232b2c !important;

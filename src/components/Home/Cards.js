@@ -65,7 +65,7 @@ const Cards = props => {
 
     return (
         <div className="row">
-            <div className="col-sm-3">
+            <div className="col-sm-6 col-md-6 col-lg-3">
                 <div className="card card1">
                     <div className="card-block">
                         <h3 className="card-title">Overall Spent</h3>
@@ -75,7 +75,7 @@ const Cards = props => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-6 col-md-6 col-lg-3">
                 <div className="card card2">
                     <div className="card-block">
                         <h3 className="card-title">This Month</h3>
@@ -85,7 +85,7 @@ const Cards = props => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-6 col-md-6 col-lg-3">
                 <div className="card card4">
                     <div className="card-block">
                         <h3 className="card-title">This Week</h3>
@@ -95,7 +95,7 @@ const Cards = props => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-6 col-md-6 col-lg-3">
                 <div className="card card3">
                     <div className="card-block">
                         <h3 className="card-title">Today</h3>

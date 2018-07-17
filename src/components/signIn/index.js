@@ -92,13 +92,13 @@ class SignInForm extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-6 ">
                         <div className="landing">
                             <span>" Expense Manager which takes note of all your daily expenses "</span>
                             <p> Sign up to create an account - and start managing your expenses </p>
                         </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-sm-12 col-md-6 ">
                         <div className="login-page">
                             <form onSubmit={this.onSubmit} className="form">
                                 <input

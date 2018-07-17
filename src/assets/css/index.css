@@ -171,13 +171,7 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient(
-        145deg,
-        transparent,
-        transparent 1px,
-        rgba(238, 238, 238, 0.298039) 3px,
-        rgba(238, 238, 238, 0.298039) 5px
-    );
+    background-image: repeating-linear-gradient( 145deg, transparent, transparent 1px, rgba(238, 238, 238, 0.298039) 3px, rgba(238, 238, 238, 0.298039) 5px);
 }
 
 /* Switch type radio button  */
@@ -229,7 +223,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked + label {
+.switch-field input:checked+label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -364,7 +358,7 @@ nav .navNarrow .navbar-nav {
     border-radius: 5px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 1023px) {
     nav .navWide {
         display: block;
     }
@@ -390,23 +384,19 @@ nav .navNarrow .navbar-nav {
     body {
         -webkit-print-color-adjust: exact;
     }
-
     .addexpense-btn,
     .addloan-btn,
     .export-print-bar {
         display: none;
     }
-
     table td[data-th="Edit"],
     table td[data-th="Delete"] {
         display: none;
     }
-
     .expense-table thead tr th:nth-child(6),
     .expense-table thead tr th:nth-child(7) {
         display: none;
     }
-
     .loan-table thead tr th:nth-child(8),
     .loan-table thead tr th:nth-child(9) {
         display: none;
