@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddLoanPopup from "./AddLoanPopup";
 import LoanTable from "./LoanTable";
+import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 
@@ -34,6 +35,11 @@ class LoanPage extends Component {
                     <div className="row">
                         <div className="col-sm-12">
                             <Cards loans={this.props.loans} authUser={this.props.user} />
+                            <GenerateExcel
+                                loans={this.props.loans}
+                                authUser={this.props.user}
+                                settings={this.props.settings}
+                            />
                             <LoanTable
                                 loans={this.props.loans}
                                 authUser={this.props.user}
