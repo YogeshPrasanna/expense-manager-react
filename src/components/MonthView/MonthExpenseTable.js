@@ -7,7 +7,7 @@ const MonthExpenseTable = props => {
     const nightMode = { background: props.settings ? (props.settings.mode === "night" ? "#212529" : "auto") : "auto" };
 
     return (
-        <table className="table table-striped table-bordered table-dark rwd-table" style={nightMode}>
+        <table className="table table-striped table-bordered table-dark rwd-table expense-table" style={nightMode}>
             <thead>
                 <tr>
                     <th scope="col">#</th>

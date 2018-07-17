@@ -396,4 +396,19 @@ nav .navNarrow .navbar-nav {
     .export-print-bar {
         display: none;
     }
+
+    table td[data-th="Edit"],
+    table td[data-th="Delete"] {
+        display: none;
+    }
+
+    .expense-table thead tr th:nth-child(6),
+    .expense-table thead tr th:nth-child(7) {
+        display: none;
+    }
+
+    .loan-table thead tr th:nth-child(8),
+    .loan-table thead tr th:nth-child(9) {
+        display: none;
+    }
 }
