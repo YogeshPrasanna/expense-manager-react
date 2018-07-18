@@ -118,6 +118,10 @@ h1 {
 }
 
 @media print {
+    @page {
+        size: A4 landscape;
+    }
+
     body {
         background-color: #34495e;
         -webkit-print-color-adjust: exact;
