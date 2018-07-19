@@ -22,7 +22,6 @@ class HomePage extends Component {
     }
 
     render() {
-        console.log("PROPS from home : ", this.props);
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
             backgroundColor: this.props.settings

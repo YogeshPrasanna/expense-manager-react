@@ -46,8 +46,6 @@ const Loans = props => {
         let eachExpense = utils.eachExpense(loans);
         let thisUsersLoan = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        console.log(" This users loans : ", thisUsersLoan);
-
         if (thisUsersLoan.length) {
             return thisUsersLoan.map(function(elem, i) {
                 return (

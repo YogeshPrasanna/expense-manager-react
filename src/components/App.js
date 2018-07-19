@@ -94,8 +94,6 @@ class App extends Component {
                 // get all the expenses from new table
                 firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
                     if (data.val() !== null) {
-                        console.log("Found Expense Table : ", data.val());
-
                         this.setState({
                             expenses: data.val()
                         });
@@ -105,12 +103,6 @@ class App extends Component {
                             if (data) {
                                 let eachExpense = utils.eachExpense(data.val());
                                 let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
-
-                                console.log(
-                                    "There was no data to show from expenseTable",
-                                    data.val(),
-                                    thisUsersExpenses
-                                );
 
                                 thisUsersExpenses.map(elem => {
                                     db.doCreateExpenseTable(
@@ -138,11 +130,42 @@ class App extends Component {
                     }
                 });
 
-                // get all the loan details
-                firebase.db.ref("loans").on("value", data => {
-                    if (data) {
+                // // get all the loan details
+                // firebase.db.ref("loans").on("value", data => {
+                //     if (data) {
+                //         this.setState({
+                //             loans: data.val()
+                //         });
+                //     }
+                // });
+
+                // get all the expenses from new table
+                firebase.db.ref(`loanTable/${this.state.authUser.uid}`).on("value", data => {
+                    if (data.val() !== null) {
                         this.setState({
                             loans: data.val()
+                        });
+                    } else {
+                        // get and set expenses in db from old expenses table to new expenseTable
+                        firebase.db.ref("loans").on("value", data => {
+                            if (data) {
+                                let eachExpense = utils.eachExpense(data.val());
+                                let thisUsersLoans = utils.currentUsersExpenses(eachExpense, this.state.authUser);
+
+                                thisUsersLoans.map(elem => {
+                                    db.doCreateLoanTable(
+                                        elem.value.uid,
+                                        elem.value.date,
+                                        elem.value.amount,
+                                        elem.value.loanType,
+                                        elem.value.reason,
+                                        elem.value.person,
+                                        elem.value.day,
+                                        elem.value.status,
+                                        elem.key
+                                    );
+                                });
+                            }
                         });
                     }
                 });
@@ -158,9 +181,9 @@ class App extends Component {
                     });
                 });
 
-                const loansRef = firebase.db.ref("loans");
+                const loansRef = firebase.db.ref(`loanTable/${this.state.authUser}`);
                 loansRef.on("child_removed", data => {
-                    firebase.db.ref("loans").on("value", data => {
+                    firebase.db.ref(`loanTable/${this.state.authUSer}`).on("value", data => {
                         if (data) {
                             this.setState({
                                 loans: data.val()

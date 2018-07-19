@@ -19,7 +19,6 @@ class ExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        console.log("onm delete", this.props);
         firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
     }
 

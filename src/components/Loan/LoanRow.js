@@ -17,7 +17,7 @@ class LoanRow extends Component {
 
     // deleting the loan
     handleClick(e) {
-        firebase.db.ref(`loans/${this.props.loanId}`).remove();
+        firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loanId}`).remove();
     }
 
     toggleEditPopup(e) {

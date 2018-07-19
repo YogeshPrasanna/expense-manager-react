@@ -39,8 +39,6 @@ const Expense = props => {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
-        console.log("Thsi users expenses from home : ", thisUsersExpenses);
-
         if (thisUsersExpenses.length) {
             return thisUsersExpenses.map(function(elem, i) {
                 return (

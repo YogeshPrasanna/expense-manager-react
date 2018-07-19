@@ -37,7 +37,7 @@ const onceGetExpenses = () => db.ref("expenses").once("value");
 const onceGetLoans = () => db.ref("loans").once("value");
 
 const doCreateLoan = (uid, date, amount, loanType, reason, person, day, status) => {
-    db.ref(`loans/`)
+    db.ref(`loanTable/${uid}`)
         .push()
         .set({
             uid,
@@ -49,6 +49,10 @@ const doCreateLoan = (uid, date, amount, loanType, reason, person, day, status) 
             day,
             status
         });
+};
+
+const doCreateLoanTable = (uid, date, amount, loanType, reason, person, day, status, key) => {
+    db.ref(`loanTable/${uid}/${key}`).set({ uid, date, amount, loanType, reason, person, day, status });
 };
 
 const doCreateSettingsForUser = (uid, font, mode) =>
@@ -78,5 +82,6 @@ export {
     onceGetExpenses,
     onceGetLoans,
     doCreateLoan,
+    doCreateLoanTable,
     doCreateSettingsForUser
 };
