@@ -26,6 +26,7 @@ import SettingsPage from "./Settings/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
+import * as utils from "./Util";
 
 class App extends Component {
     constructor(props) {
@@ -64,13 +65,15 @@ class App extends Component {
                 });
 
                 // get and set expenses in db
-                firebase.db.ref("expenses").on("value", data => {
-                    if (data) {
-                        this.setState({
-                            expenses: data.val()
-                        });
-                    }
-                });
+                //  firebase.db
+                //      .ref("expenses")
+                //      .on("value", data => {
+                //          if (data) {
+                //              this.setState({
+                //                  expenses: data.val()
+                //              });
+                //          }
+                //      });
 
                 // get all the settings
                 firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
@@ -85,6 +88,43 @@ class App extends Component {
                         }
                     } else {
                         db.doCreateSettingsForUser(this.state.authUser.uid, "sans-serif", "day");
+                    }
+                });
+
+                // get all the expenses from new table
+                firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
+                    if (data.val() !== null) {
+                        console.log("Found Expense Table : ", data.val());
+
+                        this.setState({
+                            expenses: data.val()
+                        });
+                    } else {
+                        // get and set expenses in db from old expenses table to new expenseTable
+                        firebase.db.ref("expenses").on("value", data => {
+                            if (data) {
+                                let eachExpense = utils.eachExpense(data.val());
+                                let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
+
+                                console.log(
+                                    "There was no data to show from expenseTable",
+                                    data.val(),
+                                    thisUsersExpenses
+                                );
+
+                                thisUsersExpenses.map(elem => {
+                                    db.doCreateExpenseTable(
+                                        elem.value.uid,
+                                        elem.value.date,
+                                        elem.value.expense,
+                                        elem.value.category,
+                                        elem.value.comments,
+                                        elem.value.day,
+                                        elem.key
+                                    );
+                                });
+                            }
+                        });
                     }
                 });
 
@@ -107,9 +147,9 @@ class App extends Component {
                     }
                 });
 
-                const expensesRef = firebase.db.ref("expenses");
+                const expensesRef = firebase.db.ref(`expenseTable/${this.state.authUser}`);
                 expensesRef.on("child_removed", data => {
-                    firebase.db.ref("expenses").on("value", data => {
+                    firebase.db.ref(`expenseTable/${this.state.authUSer}`).on("value", data => {
                         if (data) {
                             this.setState({
                                 expenses: data.val()
@@ -118,7 +158,7 @@ class App extends Component {
                     });
                 });
 
-                const loansRef = firebase.db.ref("expenses");
+                const loansRef = firebase.db.ref("loans");
                 loansRef.on("child_removed", data => {
                     firebase.db.ref("loans").on("value", data => {
                         if (data) {

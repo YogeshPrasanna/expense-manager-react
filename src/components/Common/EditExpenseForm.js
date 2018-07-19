@@ -35,7 +35,7 @@ class EditExpenseForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        firebase.db.ref(`expenses/${this.props.expense.key}`).update({
+        firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expense.key}`).update({
             date: this.state.date.format("MM/DD/YYYY"),
             day: moment(this.state.date.format("MM/DD/YYYY")).day(),
             expense: this.state.expense,

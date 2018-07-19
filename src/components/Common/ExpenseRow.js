@@ -19,7 +19,8 @@ class ExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        firebase.db.ref(`expenses/${this.props.expenseId}`).remove();
+        console.log("onm delete", this.props);
+        firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
     }
 
     toggleEditPopup(e) {

@@ -15,16 +15,21 @@ const doCreateUser = (id, username, email) =>
 const onceGetUsers = () => db.ref("users").once("value");
 
 const doCreateExpense = (uid, date, expense, category, comments, day) => {
-    db.ref(`expenses/`)
+    db.ref(`expenseTable/${uid}`)
         .push()
-        .set({
-            uid,
-            date,
-            expense,
-            category,
-            comments,
-            day
-        });
+        .set({ uid, date, expense, category, comments, day });
+};
+
+// Create an expense table , this happens for first time
+const doCreateExpenseTable = (uid, date, expense, category, comments, day, key) => {
+    db.ref(`expenseTable/${uid}/${key}`).set({
+        uid,
+        date,
+        expense,
+        category,
+        comments,
+        day
+    });
 };
 
 const onceGetExpenses = () => db.ref("expenses").once("value");
@@ -69,6 +74,7 @@ export {
     doCreateUser,
     onceGetUsers,
     doCreateExpense,
+    doCreateExpenseTable,
     onceGetExpenses,
     onceGetLoans,
     doCreateLoan,
