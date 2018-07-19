@@ -170,9 +170,9 @@ class App extends Component {
                     }
                 });
 
-                const expensesRef = firebase.db.ref(`expenseTable/${this.state.authUser}`);
+                const expensesRef = firebase.db.ref(`expenseTable/${this.state.authUser.uid}`);
                 expensesRef.on("child_removed", data => {
-                    firebase.db.ref(`expenseTable/${this.state.authUSer}`).on("value", data => {
+                    firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
                         if (data) {
                             this.setState({
                                 expenses: data.val()
@@ -181,9 +181,9 @@ class App extends Component {
                     });
                 });
 
-                const loansRef = firebase.db.ref(`loanTable/${this.state.authUser}`);
+                const loansRef = firebase.db.ref(`loanTable/${this.state.authUser.uid}`);
                 loansRef.on("child_removed", data => {
-                    firebase.db.ref(`loanTable/${this.state.authUSer}`).on("value", data => {
+                    firebase.db.ref(`loanTable/${this.state.authUser.uid}`).on("value", data => {
                         if (data) {
                             this.setState({
                                 loans: data.val()
