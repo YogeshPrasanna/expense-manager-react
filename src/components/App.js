@@ -50,11 +50,11 @@ class App extends Component {
             // console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser
                 ? this.setState({
-                      authUser: authUser
-                  })
+                    authUser: authUser
+                })
                 : this.setState({
-                      authUser: null
-                  });
+                    authUser: null
+                });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -93,6 +93,7 @@ class App extends Component {
 
                 // get all the expenses from new table
                 firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
+                    console.log("DATA : ", data)
                     if (data.val() !== null) {
                         this.setState({
                             expenses: data.val()
@@ -114,6 +115,16 @@ class App extends Component {
                                         elem.value.day,
                                         elem.key
                                     );
+                                });
+                                thisUsersExpenses.map(elem => {
+                                    firebase.db.ref(`expenses/${elem.key}`).remove();
+                                })
+
+                                // need to set empty state once deleting all records in legacy table
+                                // or else it will always be loading
+
+                                this.setState({
+                                    expenses: data.val()
                                 });
                             }
                         });
