@@ -7,6 +7,8 @@ import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics"
+
 class MonthViewPage extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +25,11 @@ class MonthViewPage extends Component {
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     render() {

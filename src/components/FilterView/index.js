@@ -7,6 +7,8 @@ import moment from "moment";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics"
+
 class FilterViewPage extends Component {
     constructor(props) {
         super(props);
@@ -46,6 +48,11 @@ class FilterViewPage extends Component {
         this.setState({
             todate: todate
         });
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     render() {

@@ -2,6 +2,7 @@ import React from "react";
 import url from "./man.png";
 import { Link } from "react-router-dom";
 import * as routes from "../../constants/routes";
+import * as analytics from "./../../analytics/analytics"
 import Loader from "./../Common/Loader";
 
 const AccountPage = props => {
@@ -26,6 +27,11 @@ const AccountPage = props => {
     };
 
     if (props.user) {
+
+        analytics.initGA();
+        analytics.logPageView();
+
+
         const test = {
             borderRadius: "10px",
             outline: "none"

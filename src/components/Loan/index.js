@@ -5,6 +5,8 @@ import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics"
+
 class LoanPage extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,11 @@ class LoanPage extends Component {
         this.setState({
             showPopup: !this.state.showPopup
         });
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     render() {

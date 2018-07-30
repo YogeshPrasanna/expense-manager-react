@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Loader from "./../Common/Loader";
 
 import * as db from "../../firebase/db";
+import * as analytics from "./../../analytics/analytics"
 
 class SettingsPage extends Component {
     constructor(props) {
@@ -35,6 +36,11 @@ class SettingsPage extends Component {
         this.setState(change);
 
         console.log("state from change : ", this.state);
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     render() {
@@ -103,8 +109,8 @@ class SettingsPage extends Component {
                         {this.state.dataSaved ? (
                             <span className="bg-success success-msg"> Data saved successfully</span>
                         ) : (
-                            <span />
-                        )}
+                                <span />
+                            )}
                         <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>

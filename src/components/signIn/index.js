@@ -4,6 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import { SignUpLink } from "../signUp/index";
 import { auth } from "../../firebase";
 import * as routes from "../../constants/routes";
+import * as analytics from "./../../analytics/analytics"
+
 import firebase from "firebase";
 
 const SignInPage = ({ history }) => (
@@ -27,6 +29,11 @@ class SignInForm extends Component {
         super(props);
 
         this.state = { ...INITIAL_STATE };
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     callGoogleSignIn = () => {

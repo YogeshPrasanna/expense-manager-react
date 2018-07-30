@@ -1,4 +1,3 @@
-import ReactGA from "react-ga";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { firebase } from "../firebase/index";
@@ -28,6 +27,7 @@ import SettingsPage from "./Settings/index";
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
 import * as utils from "./Util";
+import * as analytics from "./../analytics/analytics"
 
 class App extends Component {
     constructor(props) {
@@ -43,24 +43,24 @@ class App extends Component {
             settings: null
         };
 
-        // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
-        ReactGA.initialize("UA-123071607-1");
-        // This just needs to be called once since we have no routes in this case.
-        ReactGA.pageview(window.location.pathname);
+
     }
 
     componentDidMount() {
         document.title = "Expense Manager";
 
+        analytics.initGA();
+        analytics.logPageView();
+
         firebase.auth.onAuthStateChanged(authUser => {
             // console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser
                 ? this.setState({
-                      authUser: authUser
-                  })
+                    authUser: authUser
+                })
                 : this.setState({
-                      authUser: null
-                  });
+                    authUser: null
+                });
 
             if (this.state.authUser) {
                 // get all the users in the db

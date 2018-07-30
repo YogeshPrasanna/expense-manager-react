@@ -10,6 +10,8 @@ import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics"
+
 class DailyViewPage extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +25,11 @@ class DailyViewPage extends Component {
         this.setState({
             date: date
         });
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     render() {

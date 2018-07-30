@@ -4,6 +4,8 @@ import BarChartAllMonths from "./BarChartAllMonths";
 import CategoryTotalCard from "./CategoryTotalCard";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics"
+
 const marB15 = {
     marginBottom: "15px",
     marginTop: "15px"
@@ -23,6 +25,10 @@ const StatisticsPage = props => {
     };
 
     if (props.settings) {
+
+        analytics.initGA();
+        analytics.logPageView();
+
         return (
             <div className="container-fluid" style={styleFromSettings}>
                 <div className="row">
