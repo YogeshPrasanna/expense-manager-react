@@ -1,3 +1,4 @@
+import ReactGA from "react-ga";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { firebase } from "../firebase/index";
@@ -41,6 +42,11 @@ class App extends Component {
             defaultCategoriesColors: null,
             settings: null
         };
+
+        // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
+        ReactGA.initialize("UA-123071607-1");
+        // This just needs to be called once since we have no routes in this case.
+        ReactGA.pageview(window.location.pathname);
     }
 
     componentDidMount() {
@@ -50,11 +56,11 @@ class App extends Component {
             // console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser
                 ? this.setState({
-                    authUser: authUser
-                })
+                      authUser: authUser
+                  })
                 : this.setState({
-                    authUser: null
-                });
+                      authUser: null
+                  });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -93,7 +99,7 @@ class App extends Component {
 
                 // get all the expenses from new table
                 firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
-                    console.log("DATA : ", data)
+                    console.log("DATA : ", data);
                     if (data.val() !== null) {
                         this.setState({
                             expenses: data.val()
@@ -118,7 +124,7 @@ class App extends Component {
                                 });
                                 thisUsersExpenses.map(elem => {
                                     firebase.db.ref(`expenses/${elem.key}`).remove();
-                                })
+                                });
 
                                 // need to set empty state once deleting all records in legacy table
                                 // or else it will always be loading
