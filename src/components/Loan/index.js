@@ -5,7 +5,7 @@ import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 class LoanPage extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class LoanPage extends Component {
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
                         <div className="col-sm-12">
-                            <Cards loans={this.props.loans} authUser={this.props.user} />
+                            <Cards loans={this.props.loans} authUser={this.props.user} settings={this.props.settings} />
                             <GenerateExcel
                                 loans={this.props.loans}
                                 authUser={this.props.user}

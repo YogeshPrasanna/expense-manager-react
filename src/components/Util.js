@@ -224,6 +224,23 @@ export const categoryIcon = category => {
     }
 };
 
+export const setCurrencyIcon = currency => {
+    switch (currency) {
+        case "Indian Rupees":
+            return "fa-rupee";
+        case "US Dollars":
+            return "fa-dollar";
+        case "Pounds":
+            return "fa-gbp";
+        case "Yen":
+            return "fa-yen";
+        case "Euro":
+            return "fa-euro";
+        default:
+            return "fa-rupee";
+    }
+};
+
 export const filterExpensesByCriteria = (startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses) => {
     var start = new Date(startDate);
     var end = new Date(endDate);

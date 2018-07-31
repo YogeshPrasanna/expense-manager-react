@@ -81,7 +81,8 @@ class ExpenseRow extends Component {
                     {this.props.expense.value.date} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Expense">
-                    <i className="fa fa-inr" aria-hidden="true" /> {this.props.expense.value.expense}
+                    <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
+                    {this.props.expense.value.expense}
                 </td>
                 <td data-th="Category">
                     {this.props.expense.value.category}{" "}

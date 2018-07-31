@@ -10,7 +10,7 @@ import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 class DailyViewPage extends Component {
     constructor(props) {
@@ -107,6 +107,7 @@ class DailyViewPage extends Component {
                                 expenses={this.props.expenses}
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
+                                settings={this.props.settings}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}

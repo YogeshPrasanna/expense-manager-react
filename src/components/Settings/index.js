@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Loader from "./../Common/Loader";
 
 import * as db from "../../firebase/db";
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 class SettingsPage extends Component {
     constructor(props) {
@@ -11,6 +11,11 @@ class SettingsPage extends Component {
         this.state = {
             font: this.props.settings ? this.props.settings.font : "sans-serif",
             dataSaved: false,
+            currency: this.props.settings
+                ? this.props.settings.currency
+                    ? this.props.settings.currency
+                    : "Indian Rupees"
+                : "Indian Rupees",
             mode: this.props.settings ? this.props.settings.mode : "day"
         };
 
@@ -21,7 +26,7 @@ class SettingsPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        db.doCreateSettingsForUser(this.props.user.uid, this.state.font, this.state.mode);
+        db.doCreateSettingsForUser(this.props.user.uid, this.state.font, this.state.mode, this.state.currency);
 
         console.log("state from submit : ", this.state);
 
@@ -84,6 +89,25 @@ class SettingsPage extends Component {
                         </div>
                         <div className="form-group row">
                             <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
+                                <span>Select Currency</span>
+                            </label>
+                            <div className="col-sm-10 col-xs-6">
+                                <select
+                                    className="form-control"
+                                    name="currency"
+                                    value={this.state.currency}
+                                    onChange={this.handleChange.bind(this)}
+                                >
+                                    <option value="Indian Rupees">Indian Rupees</option>
+                                    <option value="US Dollars">US Dollars</option>
+                                    <option value="Pounds">Pounds</option>
+                                    <option value="Yen">Yen</option>
+                                    <option value="Euro">Euro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
                                 <span>Mode</span>
                             </label>
                             <div className="col-sm-10 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
@@ -109,8 +133,8 @@ class SettingsPage extends Component {
                         {this.state.dataSaved ? (
                             <span className="bg-success success-msg"> Data saved successfully</span>
                         ) : (
-                                <span />
-                            )}
+                            <span />
+                        )}
                         <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>

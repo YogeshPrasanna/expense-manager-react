@@ -1,11 +1,10 @@
-import React from 'react'
-import * as utils from '../Util'
-import Loader from '../Common/Loader'
-const TotalCard = (props) => {
-
+import React from "react";
+import * as utils from "../Util";
+import Loader from "../Common/Loader";
+const TotalCard = props => {
     const pad0 = {
-        "padding": "0"
-    }
+        padding: "0"
+    };
 
     let expenses = props.expenses;
     let currentUser = props.authUser;
@@ -14,39 +13,70 @@ const TotalCard = (props) => {
     let expenseFrom = props.expensefrom;
     let expenseTo = props.expenseto;
     let category = props.category;
+    let settings = props.settings;
 
     let totalExpenses = 0;
 
-    if (!expenses || !currentUser) {
-        return <div><Loader /></div>
+    if (!expenses || !currentUser || !settings) {
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
     }
 
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
-        let eachExpense = utils.eachExpense(expenses)
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser)
-        let filteredExpenses = utils.filterExpensesByCriteria(startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses)
-
+        let eachExpense = utils.eachExpense(expenses);
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        let filteredExpenses = utils.filterExpensesByCriteria(
+            startDate,
+            endDate,
+            category,
+            expenseFrom,
+            expenseTo,
+            thisUsersExpenses
+        );
 
         // Overall Expenses
         if (filteredExpenses.length > 1) {
-            totalExpenses = utils.totalExpense(filteredExpenses)
+            totalExpenses = utils.totalExpense(filteredExpenses);
         } else if (filteredExpenses.length === 1) {
-            totalExpenses = filteredExpenses[0].value.expense
+            totalExpenses = filteredExpenses[0].value.expense;
         } else {
-            totalExpenses = 0
+            totalExpenses = 0;
         }
     }
 
-    return (
-        <div className="col-sm-12" style={pad0}>
-            <div className="card card1">
-                <div className="card-block">
-                    <h3 className="card-title">Total<i className="fa fa-money float-right"></i></h3>
-                    <p className="card-text"><i className="fa fa-inr" aria-hidden="true"></i> {totalExpenses}</p>
+    if (settings) {
+        return (
+            <div className="col-sm-12" style={pad0}>
+                <div className="card card1">
+                    <div className="card-block">
+                        <h3 className="card-title">
+                            Total<i className="fa fa-money float-right" />
+                        </h3>
+                        <p className="card-text">
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {totalExpenses}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
-}
+        );
+    } else {
+        return (
+            <div className="col-sm-12" style={pad0}>
+                <div className="card card1">
+                    <div className="card-block">
+                        <h3 className="card-title">
+                            Total<i className="fa fa-money float-right" />
+                        </h3>
+                        <Loader />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+};
 
-export default TotalCard
+export default TotalCard;

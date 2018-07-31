@@ -63,50 +63,105 @@ const Cards = props => {
         }
     }
 
-    return (
-        <div className="row">
-            <div className="col-sm-6 col-md-6 col-lg-3">
-                <div className="card card1">
-                    <div className="card-block">
-                        <h3 className="card-title">Overall Spent</h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {totalExpenses}
-                        </p>
+    if (props.settings) {
+        return (
+            <div className="row">
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card1">
+                        <div className="card-block">
+                            <h3 className="card-title">Overall Spent</h3>
+                            <p className="card-text">
+                                <i
+                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                    aria-hidden="true"
+                                />{" "}
+                                {totalExpenses}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card2">
+                        <div className="card-block">
+                            <h3 className="card-title">This Month</h3>
+                            <p className="card-text">
+                                <i
+                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                    aria-hidden="true"
+                                />{" "}
+                                {totalExpensesThisMonth}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card4">
+                        <div className="card-block">
+                            <h3 className="card-title">This Week</h3>
+                            <p className="card-text">
+                                <i
+                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                    aria-hidden="true"
+                                />{" "}
+                                {totalExpensesThisWeek}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card3">
+                        <div className="card-block">
+                            <h3 className="card-title">Today</h3>
+                            <p className="card-text">
+                                <i
+                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                    aria-hidden="true"
+                                />{" "}
+                                {totalExpensesToday}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-6 col-lg-3">
-                <div className="card card2">
-                    <div className="card-block">
-                        <h3 className="card-title">This Month</h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {totalExpensesThisMonth}
-                        </p>
+        );
+    } else {
+        return (
+            <div className="row">
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card1">
+                        <div className="card-block">
+                            <h3 className="card-title">Overall Spent</h3>
+                            <Loader />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card2">
+                        <div className="card-block">
+                            <h3 className="card-title">This Month</h3>
+                            <Loader />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card4">
+                        <div className="card-block">
+                            <h3 className="card-title">This Week</h3>
+                            <Loader />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-3">
+                    <div className="card card3">
+                        <div className="card-block">
+                            <h3 className="card-title">Today</h3>
+                            <Loader />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="col-sm-6 col-md-6 col-lg-3">
-                <div className="card card4">
-                    <div className="card-block">
-                        <h3 className="card-title">This Week</h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {totalExpensesThisWeek}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="col-sm-6 col-md-6 col-lg-3">
-                <div className="card card3">
-                    <div className="card-block">
-                        <h3 className="card-title">Today</h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {totalExpensesToday}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default Cards;

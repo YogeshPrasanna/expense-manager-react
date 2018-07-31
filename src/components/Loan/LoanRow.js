@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 import moment from "moment";
+import * as utils from "./../Util";
 
 import EditLoanPopup from "./EditLoanPopup";
 
@@ -85,7 +86,8 @@ class LoanRow extends Component {
                     {this.props.loan.value.date} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Amount">
-                    <i className="fa fa-inr" aria-hidden="true" /> {this.props.loan.value.amount}
+                    <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
+                    {this.props.loan.value.amount}
                 </td>
                 <td data-th="loanType">
                     {this.props.loan.value.loanType}

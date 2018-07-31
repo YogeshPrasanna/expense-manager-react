@@ -7,7 +7,7 @@ import moment from "moment";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 class FilterViewPage extends Component {
     constructor(props) {
@@ -217,6 +217,7 @@ class FilterViewPage extends Component {
                                 todate={this.state.todate.format("MM/DD/YYYY")}
                                 category={this.state.category}
                                 authUser={this.props.user}
+                                settings={this.props.settings}
                             />
                         </div>
                         <div className="col-sm-8">

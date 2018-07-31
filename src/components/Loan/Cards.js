@@ -5,6 +5,7 @@ import * as utils from "../Util";
 const Cards = props => {
     let loans = props.loans;
     let currentUser = props.authUser;
+    let settings = props.settings;
     let loanToPay = 0;
     let loanToGet = 0;
 
@@ -34,7 +35,8 @@ const Cards = props => {
                     <div className="card-block">
                         <h3 className="card-title">You need to repay</h3>
                         <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {loanToPay}
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {loanToPay}
                         </p>
                     </div>
                 </div>
@@ -44,7 +46,8 @@ const Cards = props => {
                     <div className="card-block">
                         <h3 className="card-title">You need to get </h3>
                         <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {loanToGet}
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {loanToGet}
                         </p>
                     </div>
                 </div>

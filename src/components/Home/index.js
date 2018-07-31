@@ -6,8 +6,7 @@ import Cards from "./Cards";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
-
+import * as analytics from "./../../analytics/analytics";
 
 class HomePage extends Component {
     constructor(props) {
@@ -44,7 +43,11 @@ class HomePage extends Component {
             return (
                 <div>
                     <div className="col-sm-12" style={styleFromSettings}>
-                        <Cards expenses={this.props.expenses} authUser={this.props.user} />
+                        <Cards
+                            expenses={this.props.expenses}
+                            authUser={this.props.user}
+                            settings={this.props.settings}
+                        />
                         <GenerateExcel
                             expenses={this.props.expenses}
                             authUser={this.props.user}

@@ -7,7 +7,7 @@ import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -143,6 +143,7 @@ class MonthViewPage extends Component {
                                 authUser={this.props.user}
                                 month={this.state.month}
                                 year={this.state.year}
+                                settings={this.props.settings}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
