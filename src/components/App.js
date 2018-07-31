@@ -27,7 +27,7 @@ import SettingsPage from "./Settings/index";
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
 import * as utils from "./Util";
-import * as analytics from "./../analytics/analytics"
+import * as analytics from "./../analytics/analytics";
 
 class App extends Component {
     constructor(props) {
@@ -42,8 +42,6 @@ class App extends Component {
             defaultCategoriesColors: null,
             settings: null
         };
-
-
     }
 
     componentDidMount() {
@@ -56,11 +54,11 @@ class App extends Component {
             // console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser
                 ? this.setState({
-                    authUser: authUser
-                })
+                      authUser: authUser
+                  })
                 : this.setState({
-                    authUser: null
-                });
+                      authUser: null
+                  });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -182,6 +180,15 @@ class App extends Component {
                                         elem.key
                                     );
                                 });
+
+                                thisUsersLoans.map(elem => {
+                                    firebase.db.ref(`loans/${elem.key}`).remove();
+                                });
+
+                                // need to set empty state once deleting all records in legacy table
+                                // or else it will always be loading
+
+                                this.setState({ loans: data.val() });
                             }
                         });
                     }
