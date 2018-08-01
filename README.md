@@ -69,3 +69,14 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 #### Loan Page
 [![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Night Mode Home Page
+[![Night Mode Home](https://s25.postimg.cc/7o4tyl3jj/home_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Night Mode Month View Page
+[![Night Mode Month](https://s25.postimg.cc/iayn40jen/month_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+
+#### Settings
+[![Settings](https://s25.postimg.cc/dp2ivnifz/settings_page_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+
