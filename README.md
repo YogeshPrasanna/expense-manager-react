@@ -76,7 +76,8 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 #### Night Mode Month View Page
 [![Night Mode Month](https://s25.postimg.cc/iayn40jen/month_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-
 #### Settings
 [![Settings](https://s25.postimg.cc/dp2ivnifz/settings_page_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
 
+#### Mobile Views
+[![Mobile Screens](https://s25.postimg.cc/r5zhetxzz/mobile_screens_expense_manager.png)](https://sad-shirley-6ef62f.netlify.com/)
