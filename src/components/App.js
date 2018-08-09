@@ -91,7 +91,7 @@ class App extends Component {
                             defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
                         }
                     } else {
-                        db.doCreateSettingsForUser(this.state.authUser.uid, "sans-serif", "day");
+                        db.doCreateSettingsForUser(this.state.authUser.uid, "sans-serif", "day", "Indian Rupees");
                     }
                 });
 
