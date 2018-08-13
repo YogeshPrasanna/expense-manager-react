@@ -19,7 +19,10 @@ class ExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        if (window.confirm(message)) {
+            firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+        }
     }
 
     toggleEditPopup(e) {
