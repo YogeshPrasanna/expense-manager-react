@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import * as routes from "../../constants/routes";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 const SignUpPage = ({ history }) => (
     <div>
@@ -56,11 +56,11 @@ class SignUpForm extends Component {
                     // send a verification mail to user
                     authUser
                         .sendEmailVerification()
-                        .then(function () {
+                        .then(function() {
                             history.push(routes.USER_VERIFICATION);
                         })
-                        .catch(function (error) {
-                            console.log("something went wrong: ", error);
+                        .catch(function(error) {
+                            alert("something went wrong: ", error);
                         });
                 }
             })

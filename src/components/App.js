@@ -51,7 +51,6 @@ class App extends Component {
         analytics.logPageView();
 
         firebase.auth.onAuthStateChanged(authUser => {
-            // console.log("Authenticated user : ", firebase.auth.currentUser)
             authUser
                 ? this.setState({
                       authUser: authUser
@@ -97,7 +96,6 @@ class App extends Component {
 
                 // get all the expenses from new table
                 firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
-                    console.log("DATA : ", data);
                     if (data.val() !== null) {
                         this.setState({
                             expenses: data.val()

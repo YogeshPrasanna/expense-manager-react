@@ -28,8 +28,6 @@ class SettingsPage extends Component {
 
         db.doCreateSettingsForUser(this.props.user.uid, this.state.font, this.state.mode, this.state.currency);
 
-        console.log("state from submit : ", this.state);
-
         // reset form once saved
         // this.setState({ font: "Dhurjati", dataSaved: true, mode: "day" });
     }
@@ -39,8 +37,6 @@ class SettingsPage extends Component {
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
-
-        console.log("state from change : ", this.state);
     }
 
     componentDidMount() {
