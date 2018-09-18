@@ -8,6 +8,7 @@ import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
 import * as analytics from "./../../analytics/analytics";
+import DailyTotalCalender from "./DailyTotalCalender";
 
 class MonthViewPage extends Component {
     constructor(props) {
@@ -150,6 +151,13 @@ class MonthViewPage extends Component {
                                 authUser={this.props.user}
                                 month={this.state.month}
                                 year={this.state.year}
+                            />
+                            <DailyTotalCalender
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                month={this.state.month}
+                                year={this.state.year}
+                                settings={this.props.settings}
                             />
                         </div>
 

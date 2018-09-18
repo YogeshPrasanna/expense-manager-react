@@ -46,8 +46,10 @@ const Expense = props => {
             selectedYear
         );
 
+        console.log("expenses in selected month and year  : ", usersExpensesInSelectedMonthAndYear, selectedMonth, selectedYear)
+
         if (usersExpensesInSelectedMonthAndYear.length) {
-            return usersExpensesInSelectedMonthAndYear.map(function(elem, i) {
+            return usersExpensesInSelectedMonthAndYear.map(function (elem, i) {
                 return (
                     <ExpenseRow
                         user={props.authUser}

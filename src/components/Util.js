@@ -2,10 +2,10 @@ import moment from "moment";
 
 export const eachExpense = expenses => {
     return Object.keys(expenses)
-        .map(function(key) {
+        .map(function (key) {
             return { key: key, value: expenses[key] };
         })
-        .sort(function(a, b) {
+        .sort(function (a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(b.value.date) - new Date(a.value.date);
@@ -113,7 +113,7 @@ export const calculateTotalForAllCategories = expenses => {
         Others: 0
     };
 
-    const totalForACategory = function(expenses, category) {
+    const totalForACategory = function (expenses, category) {
         let temp = expenses.filter(elem => elem.value.category === category).map(el => Number(el.value.expense));
 
         var category = category;
@@ -253,8 +253,8 @@ export const filterExpensesByCriteria = (startDate, endDate, category, expenseFr
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
-    between.forEach(function(elem) {
-        return thisUsersExpenses.filter(function(el) {
+    between.forEach(function (elem) {
+        return thisUsersExpenses.filter(function (el) {
             return elem === el.value.date ? filteredExpenses.push(el) : "";
         });
     });
@@ -282,3 +282,40 @@ export const loanTakenOrGivenAmt = (thisUsersLoans, takenOrGiven) => {
         return 0;
     }
 };
+
+
+// get all the dates of a particular monthly
+
+export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
+    //var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = new Date(Number(selectedYear), Number(selectedMonth), 1);
+    var lastDay = new Date(Number(selectedYear), Number(selectedMonth) + 1, 0);
+
+    firstDay = moment(firstDay).format("MM/DD/YYYY");
+    lastDay = moment(lastDay).format("MM/DD/YYYY");
+
+    // Returns an array of dates between the two dates
+    var getDates = function (startDate, endDate) {
+        var dates = [],
+            currentDate = startDate,
+            addDays = function (days) {
+                var date = new Date(this.valueOf());
+                date.setDate(date.getDate() + days);
+                return date;
+            };
+        while (currentDate <= endDate) {
+            dates.push(currentDate);
+            currentDate = addDays.call(currentDate, 1);
+        }
+        return dates.map((date) => moment(date).format("MM/DD/YYYY"));
+    };
+
+    // Usage
+    var dates = getDates(new Date(firstDay), new Date(lastDay));
+    //var datesinSelectedMonth = [];
+    //dates.map(function (date) {
+    //datesinSelectedMonth.push(moment(date).format("MM/DD/YYYY"));
+    //});
+
+    return dates;
+}
