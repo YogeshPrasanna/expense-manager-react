@@ -2,10 +2,10 @@ import moment from "moment";
 
 export const eachExpense = expenses => {
     return Object.keys(expenses)
-        .map(function (key) {
+        .map(function(key) {
             return { key: key, value: expenses[key] };
         })
-        .sort(function (a, b) {
+        .sort(function(a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(b.value.date) - new Date(a.value.date);
@@ -20,7 +20,7 @@ export const currentUsersExpenses = (eachExpense, currentUser) => {
 export const expensesinMonthAndYear = (eachExpense, currentUser, selectedMonth, selectedYear) => {
     return eachExpense
         .filter(elem => elem.value.uid === currentUser.uid)
-        .filter(elem => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
+        .filter(elem => new Date(elem.value.date).getFullYear().toString() === selectedYear.toString())
         .filter(elem => new Date(elem.value.date).getMonth().toString() === selectedMonth);
 };
 
@@ -113,7 +113,7 @@ export const calculateTotalForAllCategories = expenses => {
         Others: 0
     };
 
-    const totalForACategory = function (expenses, category) {
+    const totalForACategory = function(expenses, category) {
         let temp = expenses.filter(elem => elem.value.category === category).map(el => Number(el.value.expense));
 
         var category = category;
@@ -253,8 +253,8 @@ export const filterExpensesByCriteria = (startDate, endDate, category, expenseFr
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
-    between.forEach(function (elem) {
-        return thisUsersExpenses.filter(function (el) {
+    between.forEach(function(elem) {
+        return thisUsersExpenses.filter(function(el) {
             return elem === el.value.date ? filteredExpenses.push(el) : "";
         });
     });
@@ -283,7 +283,6 @@ export const loanTakenOrGivenAmt = (thisUsersLoans, takenOrGiven) => {
     }
 };
 
-
 // get all the dates of a particular monthly
 
 export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
@@ -295,10 +294,10 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
     lastDay = moment(lastDay).format("MM/DD/YYYY");
 
     // Returns an array of dates between the two dates
-    var getDates = function (startDate, endDate) {
+    var getDates = function(startDate, endDate) {
         var dates = [],
             currentDate = startDate,
-            addDays = function (days) {
+            addDays = function(days) {
                 var date = new Date(this.valueOf());
                 date.setDate(date.getDate() + days);
                 return date;
@@ -307,7 +306,7 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
             dates.push(currentDate);
             currentDate = addDays.call(currentDate, 1);
         }
-        return dates.map((date) => moment(date).format("MM/DD/YYYY"));
+        return dates.map(date => moment(date).format("MM/DD/YYYY"));
     };
 
     // Usage
@@ -318,4 +317,4 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
     //});
 
     return dates;
-}
+};
