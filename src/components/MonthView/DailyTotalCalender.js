@@ -56,14 +56,6 @@ const DailyTotalCalender = props => {
                     ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)
                     : 0;
         });
-        console.log(
-            "expenses in selected month and year  : ",
-            usersExpensesInSelectedMonthAndYear,
-            selectedMonth,
-            selectedYear,
-            allDatesInSelectedMonth,
-            totals
-        );
 
         const listStyle = {
             backgroundColor: "white",
@@ -98,7 +90,6 @@ const DailyTotalCalender = props => {
         const ulStyle1 = {
             padding: "0px",
             // background: "cadetblue",
-            marginTop: "15px",
             marginBottom: "0px",
             //borderLeft: "10px solid #d6a447",
             borderRadius: "4px"
@@ -110,6 +101,27 @@ const DailyTotalCalender = props => {
             letterSpacing: "2px",
             fontSize: "20px"
         };
+
+        const calenderHeader = {
+            backgroundColor: "white",
+            padding: "5px",
+            marginTop: "15px",
+            width: "99%"
+        }
+
+        const calenderHeaderMonth = {
+            color: "orange",
+            fontSize: "25px",
+            fontWeight: "bold",
+            letterSpacing: "1px"
+        }
+
+        const calenderHeaderYear = {
+            float: "right",
+            fontSize: "30px",
+            marginTop: "-40px",
+            letterSpacing: "2px"
+        }
 
         let dayStart = [];
         let dayEnd = [];
@@ -126,7 +138,7 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        let daysStartGapHtml = dayStart.map(function(elem) {
+        let daysStartGapHtml = dayStart.map(function (elem) {
             return (
                 <li key={elem} style={listStyle}>
                     <div style={dateArea}>
@@ -138,7 +150,7 @@ const DailyTotalCalender = props => {
             );
         });
 
-        let daysEndGapHtml = dayEnd.map(function(elem) {
+        let daysEndGapHtml = dayEnd.map(function (elem) {
             return (
                 <li key={elem + 55} style={listStyle}>
                     <div style={dateArea}>
@@ -161,6 +173,10 @@ const DailyTotalCalender = props => {
         if (usersExpensesInSelectedMonthAndYear.length >= 1) {
             return (
                 <div>
+                    <div style={calenderHeader} >
+                        <div style={calenderHeaderMonth} > {moment(allDatesInSelectedMonth[0]).format('MMMM')} </div>
+                        <div style={calenderHeaderYear} > {selectedYear} </div>
+                    </div>
                     <ul style={ulStyle1}>
                         <li key="Sun" style={listStyle1}>
                             Sun
