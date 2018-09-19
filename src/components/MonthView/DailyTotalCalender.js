@@ -67,6 +67,7 @@ const DailyTotalCalender = props => {
             border: "1px solid rgba(0,0,0,0.1)",
             textAlign: "center"
         };
+
         const listStyle1 = {
             backgroundColor: "white",
             padding: "1px",
@@ -81,17 +82,12 @@ const DailyTotalCalender = props => {
 
         const ulStyle = {
             padding: "0px",
-            // background: "cadetblue",
-            // marginTop: "15px",
-            //borderLeft: "10px solid #d6a447",
             borderRadius: "4px"
         };
 
         const ulStyle1 = {
             padding: "0px",
-            // background: "cadetblue",
             marginBottom: "0px",
-            //borderLeft: "10px solid #d6a447",
             borderRadius: "4px"
         };
 
@@ -107,21 +103,22 @@ const DailyTotalCalender = props => {
             padding: "5px",
             marginTop: "15px",
             width: "99%"
-        }
+        };
 
         const calenderHeaderMonth = {
             color: "orange",
             fontSize: "25px",
             fontWeight: "bold",
-            letterSpacing: "1px"
-        }
+            letterSpacing: "1px",
+            paddingLeft: "10px"
+        };
 
         const calenderHeaderYear = {
             float: "right",
             fontSize: "30px",
             marginTop: "-40px",
             letterSpacing: "2px"
-        }
+        };
 
         let dayStart = [];
         let dayEnd = [];
@@ -138,7 +135,7 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        let daysStartGapHtml = dayStart.map(function (elem) {
+        let daysStartGapHtml = dayStart.map(function(elem) {
             return (
                 <li key={elem} style={listStyle}>
                     <div style={dateArea}>
@@ -150,7 +147,7 @@ const DailyTotalCalender = props => {
             );
         });
 
-        let daysEndGapHtml = dayEnd.map(function (elem) {
+        let daysEndGapHtml = dayEnd.map(function(elem) {
             return (
                 <li key={elem + 55} style={listStyle}>
                     <div style={dateArea}>
@@ -173,9 +170,9 @@ const DailyTotalCalender = props => {
         if (usersExpensesInSelectedMonthAndYear.length >= 1) {
             return (
                 <div>
-                    <div style={calenderHeader} >
-                        <div style={calenderHeaderMonth} > {moment(allDatesInSelectedMonth[0]).format('MMMM')} </div>
-                        <div style={calenderHeaderYear} > {selectedYear} </div>
+                    <div style={calenderHeader}>
+                        <div style={calenderHeaderMonth}> {moment(allDatesInSelectedMonth[0]).format("MMMM")} </div>
+                        <div style={calenderHeaderYear}> {selectedYear} </div>
                     </div>
                     <ul style={ulStyle1}>
                         <li key="Sun" style={listStyle1}>
