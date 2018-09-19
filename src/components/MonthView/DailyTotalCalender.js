@@ -47,6 +47,8 @@ const DailyTotalCalender = props => {
         );
 
         let totals = {};
+        let dayStart = [];
+        let dayEnd = [];
 
         let allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
         let TotalInThatDay = allDatesInSelectedMonth.map(date => {
@@ -57,38 +59,30 @@ const DailyTotalCalender = props => {
                     : 0;
         });
 
-        const listStyle = {
+        const listStyleDateCells = {
             backgroundColor: "white",
             padding: "1px",
             margin: "0px",
             display: "inline-block",
             width: "14.15%",
-            minHeight: "65px",
             border: "1px solid rgba(0,0,0,0.1)",
             textAlign: "center"
         };
 
-        const listStyle1 = {
-            backgroundColor: "white",
-            padding: "1px",
-            margin: "0px",
-            display: "inline-block",
-            width: "14.15%",
+        const listStyleDayHeaders = {
+            ...listStyleDateCells,
             fontSize: "18px",
-            color: "#00A5EB",
-            border: "1px solid rgba(0,0,0,0.1)",
-            textAlign: "center"
+            color: "#00A5EB"
         };
 
-        const ulStyle = {
+        const ulStyleCalenderCells = {
             padding: "0px",
             borderRadius: "4px"
         };
 
-        const ulStyle1 = {
-            padding: "0px",
-            marginBottom: "0px",
-            borderRadius: "4px"
+        const ulStyleDayHeaders = {
+            ...ulStyleCalenderCells,
+            marginBottom: "0px"
         };
 
         const dateArea = {
@@ -120,9 +114,6 @@ const DailyTotalCalender = props => {
             letterSpacing: "2px"
         };
 
-        let dayStart = [];
-        let dayEnd = [];
-
         for (let i = 0; i < moment(allDatesInSelectedMonth[0]).day(); i++) {
             dayStart.push(i);
         }
@@ -137,7 +128,7 @@ const DailyTotalCalender = props => {
 
         let daysStartGapHtml = dayStart.map(function(elem) {
             return (
-                <li key={elem} style={listStyle}>
+                <li key={elem} style={listStyleDateCells}>
                     <div style={dateArea}>
                         {" "}
                         &nbsp; <br />{" "}
@@ -149,7 +140,7 @@ const DailyTotalCalender = props => {
 
         let daysEndGapHtml = dayEnd.map(function(elem) {
             return (
-                <li key={elem + 55} style={listStyle}>
+                <li key={elem + 55} style={listStyleDateCells}>
                     <div style={dateArea}>
                         {" "}
                         &nbsp; <br />{" "}
@@ -161,7 +152,7 @@ const DailyTotalCalender = props => {
 
         let printHtml = Object.keys(totals).map((elem, i) => {
             return (
-                <li key={elem} style={listStyle}>
+                <li key={elem} style={listStyleDateCells}>
                     <div style={dateArea}> {moment(allDatesInSelectedMonth[i]).date()}</div> {totals[elem]}{" "}
                 </li>
             );
@@ -174,30 +165,30 @@ const DailyTotalCalender = props => {
                         <div style={calenderHeaderMonth}> {moment(allDatesInSelectedMonth[0]).format("MMMM")} </div>
                         <div style={calenderHeaderYear}> {selectedYear} </div>
                     </div>
-                    <ul style={ulStyle1}>
-                        <li key="Sun" style={listStyle1}>
+                    <ul style={ulStyleDayHeaders}>
+                        <li key="Sun" style={listStyleDayHeaders}>
                             Sun
                         </li>
-                        <li key="Mon" style={listStyle1}>
+                        <li key="Mon" style={listStyleDayHeaders}>
                             Mon
                         </li>
-                        <li key="Tue" style={listStyle1}>
+                        <li key="Tue" style={listStyleDayHeaders}>
                             Tue
                         </li>
-                        <li key="Wed" style={listStyle1}>
+                        <li key="Wed" style={listStyleDayHeaders}>
                             Wed
                         </li>
-                        <li key="Thu" style={listStyle1}>
+                        <li key="Thu" style={listStyleDayHeaders}>
                             Thu
                         </li>
-                        <li key="Fri" style={listStyle1}>
+                        <li key="Fri" style={listStyleDayHeaders}>
                             Fri
                         </li>
-                        <li key="Sat" style={listStyle1}>
+                        <li key="Sat" style={listStyleDayHeaders}>
                             Sat
                         </li>
                     </ul>
-                    <ul style={ulStyle}>
+                    <ul style={ulStyleCalenderCells}>
                         {daysStartGapHtml}
                         {printHtml}
                         {daysEndGapHtml}
