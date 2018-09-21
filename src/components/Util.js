@@ -162,32 +162,39 @@ export const categoryColors = [
 ];
 
 // retrun border color for each category - daily and monthly view
-export const categoryName = cat => {
+/*
+@method : categoryName
+@params : 
+    cat: category name
+    name: name of the component (Basically we're retrieving styles based on category here)
+@return : styles based on category for a particular component based on name 
+*/
+export const categoryName = (cat, name) => {
     switch (cat) {
         case "Food":
-            return { borderBottom: "5px solid #FF965D" };
+            return name === "card" ? { borderBottom: "5px solid #FF965D" } : { borderLeft: "10px solid #FF965D" };
         case "Automobile":
-            return { borderBottom: "5px solid #FFCC78" };
+            return name === "card" ? { borderBottom: "5px solid #FFCC78" } : { borderLeft: "10px solid #FFCC78" };
         case "Entertainment":
-            return { borderBottom: "5px solid #A08E78" };
+            return name === "card" ? { borderBottom: "5px solid #A08E78" } : { borderLeft: "10px solid #A08E78" };
         case "Clothing":
-            return { borderBottom: "5px solid #8DA685" };
+            return name === "card" ? { borderBottom: "5px solid #8DA685" } : { borderLeft: "10px solid #8DA685" };
         case "Healthcare":
-            return { borderBottom: "5px solid #00A3EA" };
+            return name === "card" ? { borderBottom: "5px solid #00A3EA" } : { borderLeft: "10px solid #00A3EA" };
         case "Travel":
-            return { borderBottom: "5px solid #3EA75E" };
+            return name === "card" ? { borderBottom: "5px solid #3EA75E" } : { borderLeft: "10px solid #3EA75E" };
         case "Shopping":
-            return { borderBottom: "5px solid #16B498" };
+            return name === "card" ? { borderBottom: "5px solid #16B498" } : { borderLeft: "10px solid #16B498" };
         case "Personal Care":
-            return { borderBottom: "5px solid #FF1945" };
+            return name === "card" ? { borderBottom: "5px solid #FF1945" } : { borderLeft: "10px solid #FF1945" };
         case "Investment":
-            return { borderBottom: "5px solid #FF5473" };
+            return name === "card" ? { borderBottom: "5px solid #FF5473" } : { borderLeft: "10px solid #FF5473" };
         case "Gifts & Donations":
-            return { borderBottom: "5px solid #927959" };
+            return name === "card" ? { borderBottom: "5px solid #927959" } : { borderLeft: "10px solid #927959" };
         case "Bills & Utilities":
-            return { borderBottom: "5px solid #7E0332" };
+            return name === "card" ? { borderBottom: "5px solid #7E0332" } : { borderLeft: "10px solid #7E0332" };
         case "Others":
-            return { borderBottom: "5px solid #872AEF" };
+            return name === "card" ? { borderBottom: "5px solid #872AEF" } : { borderLeft: "10px solid #872AEF" };
         default:
             return { borderBottom: "5px solid orange" };
     }

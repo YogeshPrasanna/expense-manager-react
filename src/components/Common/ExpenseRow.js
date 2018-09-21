@@ -68,7 +68,11 @@ class ExpenseRow extends Component {
         const lessFont = { fontSize: "15px", float: "right", marginTop: "5px", color: "rgba(255,255,255,.45)" };
 
         return (
-            <tr key={this.props.expenseId} id={this.props.expenseId}>
+            <tr
+                key={this.props.expenseId}
+                id={this.props.expenseId}
+                style={utils.categoryName(this.props.expense.value.category, "row")}
+            >
                 <td data-th="No">
                     {this.props.num + 1}
                     {this.state.showEditPopup ? (
