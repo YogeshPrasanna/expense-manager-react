@@ -3,6 +3,8 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 import moment from "moment";
 
+import { Link } from "react-router-dom";
+
 const DailyTotalCalender = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
@@ -152,9 +154,11 @@ const DailyTotalCalender = props => {
 
         let printHtml = Object.keys(totals).map((elem, i) => {
             return (
-                <li key={elem} style={listStyleDateCells}>
-                    <div style={dateArea}> {moment(allDatesInSelectedMonth[i]).date()}</div> {totals[elem]}{" "}
-                </li>
+                <Link to={`/daily-view?date=${elem}`}>
+                    <li key={elem} style={listStyleDateCells}>
+                        <div style={dateArea}> {moment(allDatesInSelectedMonth[i]).date()}</div> {totals[elem]}{" "}
+                    </li>
+                </Link>
             );
         });
 
