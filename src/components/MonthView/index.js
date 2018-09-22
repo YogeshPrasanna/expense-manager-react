@@ -139,6 +139,14 @@ class MonthViewPage extends Component {
                                     </div>
                                 </div>
                             </form>
+
+                            <DailyTotalCalender
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                month={this.state.month}
+                                year={this.state.year}
+                                settings={this.props.settings}
+                            />
                             <TotalCard
                                 expenses={this.props.expenses}
                                 authUser={this.props.user}
@@ -152,13 +160,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                             />
-                            <DailyTotalCalender
-                                expenses={this.props.expenses}
-                                authUser={this.props.user}
-                                month={this.state.month}
-                                year={this.state.year}
-                                settings={this.props.settings}
-                            />
+
                         </div>
 
                         <div className="col-sm-8">
