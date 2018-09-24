@@ -66,7 +66,7 @@ const DailyTotalCalender = props => {
             padding: "1px",
             margin: "0px",
             display: "inline-block",
-            width: "14.15%",
+            width: "14.20%",
             border: "1px solid rgba(0,0,0,0.1)",
             textAlign: "center"
         };
@@ -94,28 +94,6 @@ const DailyTotalCalender = props => {
             fontSize: "20px"
         };
 
-        const calenderHeader = {
-            backgroundColor: "white",
-            padding: "5px",
-            marginTop: "15px",
-            width: "99%"
-        };
-
-        const calenderHeaderMonth = {
-            color: "orange",
-            fontSize: "25px",
-            fontWeight: "bold",
-            letterSpacing: "1px",
-            paddingLeft: "10px"
-        };
-
-        const calenderHeaderYear = {
-            float: "right",
-            fontSize: "30px",
-            marginTop: "-40px",
-            letterSpacing: "2px"
-        };
-
         for (let i = 0; i < moment(allDatesInSelectedMonth[0]).day(); i++) {
             dayStart.push(i);
         }
@@ -128,7 +106,7 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        let daysStartGapHtml = dayStart.map(function(elem) {
+        let daysStartGapHtml = dayStart.map(function (elem) {
             return (
                 <li key={elem} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -140,7 +118,7 @@ const DailyTotalCalender = props => {
             );
         });
 
-        let daysEndGapHtml = dayEnd.map(function(elem) {
+        let daysEndGapHtml = dayEnd.map(function (elem) {
             return (
                 <li key={elem + 55} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -164,10 +142,6 @@ const DailyTotalCalender = props => {
 
         return (
             <div>
-                {/* <div style={calenderHeader}>
-                        <div style={calenderHeaderMonth}> {moment(allDatesInSelectedMonth[0]).format("MMMM")} </div>
-                        <div style={calenderHeaderYear}> {selectedYear} </div>
-                    </div> */}
                 <ul style={ulStyleDayHeaders}>
                     <li key="Sun" style={listStyleDayHeaders}>
                         Sun

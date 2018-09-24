@@ -78,36 +78,52 @@ class MonthViewPage extends Component {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
 
-        const inline = {
+        const monthDropdown = {
             display: "inline-block",
+            width: "66%",
             padding: "0",
             border: "0"
         };
 
+        const yearDropdown = {
+            display: "inline-block",
+            width: "34%",
+            padding: "0",
+            border: "0"
+        }
+
         const monthField = {
             background: "#FFFFFF",
-            //border: "1px solid rgba(155, 140, 140, 0.07)",
+            border: "1px solid #fff",
             color: "orange",
+            width: "100%",
             fontSize: "25px",
             fontWeight: "bold",
             letterSpacing: "1px",
-            paddingLeft: "10px"
+            padding: "6px",
+            borderRadius: "0"
         };
 
         const dateField = {
             fontSize: "25px",
             letterSpacing: "2px",
-            paddingLeft: "40px"
+            borderRadius: "0",
+            padding: "6px",
+            width: "100%"
         };
 
         const inputNightMode = {
-            // background: "#2c2b2b",
-            // color: "#a9a0a0",
-            border: "1px solid #9b8c8cc7",
+            color: "#495057",
+            border: "1px solid #fff",
             height: "auto"
         };
 
-        const inputDayMode = { background: "#fff", color: "#495057" };
+        const inputDayMode = {
+            background: "#fff",
+            color: "#495057",
+            border: "1px solid #fff",
+            height: "auto"
+        };
 
         if (this.props.settings) {
             return (
@@ -117,60 +133,48 @@ class MonthViewPage extends Component {
                             <form style={form}>
                                 <div style={Header}> View your expenses of a particular month </div>
 
-                                <div className="col-sm-8" style={inline}>
-                                    {/* <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
-                                        <span>Month</span>
-                                    </label> */}
-                                    <div>
-                                        <select
-                                            className="form-control"
-                                            name="month"
-                                            value={this.state.month}
-                                            onChange={this.handleChange.bind(this)}
-                                            style={{
-                                                ...(this.props.settings.mode === "night"
-                                                    ? inputNightMode
-                                                    : inputDayMode),
-                                                ...monthField
-                                            }}
-                                        >
-                                            <option value="0">January</option>
-                                            <option value="1">February</option>
-                                            <option value="2">March</option>
-                                            <option value="3">April</option>
-                                            <option value="4">May</option>
-                                            <option value="5">June</option>
-                                            <option value="6">July</option>
-                                            <option value="7">August</option>
-                                            <option value="8">September</option>
-                                            <option value="9">October</option>
-                                            <option value="10">November</option>
-                                            <option value="11">December</option>
-                                        </select>
-                                    </div>
+                                <div className="col-md-8 col-xs-6" style={monthDropdown}>
+                                    <select
+                                        name="month"
+                                        value={this.state.month}
+                                        onChange={this.handleChange.bind(this)}
+                                        style={{
+                                            ...(this.props.settings.mode === "night"
+                                                ? inputNightMode
+                                                : inputDayMode),
+                                            ...monthField
+                                        }}
+                                    >
+                                        <option value="0">January</option>
+                                        <option value="1">February</option>
+                                        <option value="2">March</option>
+                                        <option value="3">April</option>
+                                        <option value="4">May</option>
+                                        <option value="5">June</option>
+                                        <option value="6">July</option>
+                                        <option value="7">August</option>
+                                        <option value="8">September</option>
+                                        <option value="9">October</option>
+                                        <option value="10">November</option>
+                                        <option value="11">December</option>
+                                    </select>
                                 </div>
-                                <div className="col-sm-4" style={inline}>
-                                    {/* <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
-                                        <span>Year</span>
-                                    </label> */}
-                                    <div>
-                                        <select
-                                            className="form-control"
-                                            name="year"
-                                            value={this.state.year}
-                                            onChange={this.handleChange.bind(this)}
-                                            style={{
-                                                ...(this.props.settings.mode === "night"
-                                                    ? inputNightMode
-                                                    : inputDayMode),
-                                                ...dateField
-                                            }}
-                                        >
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                        </select>
-                                    </div>
+                                <div className="col-md-4 col-xs-6" style={yearDropdown}>
+                                    <select
+                                        name="year"
+                                        value={this.state.year}
+                                        onChange={this.handleChange.bind(this)}
+                                        style={{
+                                            ...(this.props.settings.mode === "night"
+                                                ? inputNightMode
+                                                : inputDayMode),
+                                            ...dateField
+                                        }}
+                                    >
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                    </select>
                                 </div>
                             </form>
 

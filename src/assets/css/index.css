@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://fonts.googleapis.com/css?family=Exo+2");
 @import url("https://fonts.googleapis.com/css?family=Lobster");
+
 .landing {
     font-family: "Dhurjati", sans-serif;
     font-size: 35px;
@@ -171,13 +172,11 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient(
-        145deg,
+    background-image: repeating-linear-gradient(145deg,
         transparent,
         transparent 1px,
         rgba(238, 238, 238, 0.298039) 3px,
-        rgba(238, 238, 238, 0.298039) 5px
-    );
+        rgba(238, 238, 238, 0.298039) 5px);
 }
 
 /* Switch type radio button  */
@@ -229,7 +228,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked + label {
+.switch-field input:checked+label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -248,20 +247,24 @@ ul {
         margin: 15px !important;
         margin-left: 0px !important;
     }
+
     #addExpense,
     #addLoan {
         bottom: 20px;
         right: 30px;
     }
+
     .expense-day {
         margin: 0 auto;
         /* display: table; */
         margin-left: 15px;
     }
+
     .dropdown-menu {
         position: relative;
         float: none;
     }
+
     .landing {
         text-align: center;
         letter-spacing: 3px;
@@ -270,6 +273,7 @@ ul {
         left: auto;
         display: none;
     }
+
     .popup_inner {
         width: 90vw;
         height: 80vh;
@@ -278,6 +282,7 @@ ul {
         left: 15px;
         top: 15px;
     }
+
     .switch-field label {
         width: 50%;
     }
@@ -368,6 +373,7 @@ nav .navNarrow .navbar-nav {
     nav .navWide {
         display: block;
     }
+
     nav .navNarrow {
         display: none;
     }
@@ -390,19 +396,23 @@ nav .navNarrow .navbar-nav {
     body {
         -webkit-print-color-adjust: exact;
     }
+
     .addexpense-btn,
     .addloan-btn,
     .export-print-bar {
         display: none;
     }
+
     table td[data-th="Edit"],
     table td[data-th="Delete"] {
         display: none;
     }
+
     .expense-table thead tr th:nth-child(6),
     .expense-table thead tr th:nth-child(7) {
         display: none;
     }
+
     .loan-table thead tr th:nth-child(8),
     .loan-table thead tr th:nth-child(9) {
         display: none;
@@ -411,4 +421,9 @@ nav .navNarrow .navbar-nav {
 
 .month-name {
     display: inline-block;
+}
+
+
+.form-control:focus-within {
+    outline: none;
 }
