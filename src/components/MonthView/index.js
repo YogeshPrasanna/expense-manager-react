@@ -78,10 +78,33 @@ class MonthViewPage extends Component {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
 
+        const inline = {
+            display: "inline-block",
+            padding: "0",
+            border: "0"
+        };
+
+        const monthField = {
+            background: "#FFFFFF",
+            //border: "1px solid rgba(155, 140, 140, 0.07)",
+            color: "orange",
+            fontSize: "25px",
+            fontWeight: "bold",
+            letterSpacing: "1px",
+            paddingLeft: "10px"
+        };
+
+        const dateField = {
+            fontSize: "25px",
+            letterSpacing: "2px",
+            paddingLeft: "40px"
+        };
+
         const inputNightMode = {
-            background: "#2c2b2b",
-            color: "#a9a0a0",
-            border: "1px solid #9b8c8cc7"
+            // background: "#2c2b2b",
+            // color: "#a9a0a0",
+            border: "1px solid #9b8c8cc7",
+            height: "auto"
         };
 
         const inputDayMode = { background: "#fff", color: "#495057" };
@@ -93,35 +116,23 @@ class MonthViewPage extends Component {
                         <div className="col-sm-4" style={leftCol}>
                             <form style={form}>
                                 <div style={Header}> View your expenses of a particular month </div>
-                                <div className="form-group row">
-                                    <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
-                                        <span>Year</span>
-                                    </label>
-                                    <div className="col-sm-9 col-xs-6">
-                                        <select
-                                            className="form-control"
-                                            name="year"
-                                            value={this.state.year}
-                                            onChange={this.handleChange.bind(this)}
-                                            style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
-                                        >
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="form-group row">
-                                    <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+
+                                <div className="col-sm-8" style={inline}>
+                                    {/* <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
                                         <span>Month</span>
-                                    </label>
-                                    <div className="col-sm-9 col-xs-6">
+                                    </label> */}
+                                    <div>
                                         <select
                                             className="form-control"
                                             name="month"
                                             value={this.state.month}
                                             onChange={this.handleChange.bind(this)}
-                                            style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            style={{
+                                                ...(this.props.settings.mode === "night"
+                                                    ? inputNightMode
+                                                    : inputDayMode),
+                                                ...monthField
+                                            }}
                                         >
                                             <option value="0">January</option>
                                             <option value="1">February</option>
@@ -135,6 +146,29 @@ class MonthViewPage extends Component {
                                             <option value="9">October</option>
                                             <option value="10">November</option>
                                             <option value="11">December</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4" style={inline}>
+                                    {/* <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                        <span>Year</span>
+                                    </label> */}
+                                    <div>
+                                        <select
+                                            className="form-control"
+                                            name="year"
+                                            value={this.state.year}
+                                            onChange={this.handleChange.bind(this)}
+                                            style={{
+                                                ...(this.props.settings.mode === "night"
+                                                    ? inputNightMode
+                                                    : inputDayMode),
+                                                ...dateField
+                                            }}
+                                        >
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
                                         </select>
                                     </div>
                                 </div>
@@ -160,7 +194,6 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                             />
-
                         </div>
 
                         <div className="col-sm-8">

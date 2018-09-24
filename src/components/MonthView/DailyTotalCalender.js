@@ -162,46 +162,42 @@ const DailyTotalCalender = props => {
             );
         });
 
-        if (usersExpensesInSelectedMonthAndYear.length >= 1) {
-            return (
-                <div>
-                    <div style={calenderHeader}>
+        return (
+            <div>
+                {/* <div style={calenderHeader}>
                         <div style={calenderHeaderMonth}> {moment(allDatesInSelectedMonth[0]).format("MMMM")} </div>
                         <div style={calenderHeaderYear}> {selectedYear} </div>
-                    </div>
-                    <ul style={ulStyleDayHeaders}>
-                        <li key="Sun" style={listStyleDayHeaders}>
-                            Sun
-                        </li>
-                        <li key="Mon" style={listStyleDayHeaders}>
-                            Mon
-                        </li>
-                        <li key="Tue" style={listStyleDayHeaders}>
-                            Tue
-                        </li>
-                        <li key="Wed" style={listStyleDayHeaders}>
-                            Wed
-                        </li>
-                        <li key="Thu" style={listStyleDayHeaders}>
-                            Thu
-                        </li>
-                        <li key="Fri" style={listStyleDayHeaders}>
-                            Fri
-                        </li>
-                        <li key="Sat" style={listStyleDayHeaders}>
-                            Sat
-                        </li>
-                    </ul>
-                    <ul style={ulStyleCalenderCells}>
-                        {daysStartGapHtml}
-                        {printHtml}
-                        {daysEndGapHtml}
-                    </ul>
-                </div>
-            );
-        } else {
-            return <div>{/* You have'nt spent a penny on the selected month */}</div>;
-        }
+                    </div> */}
+                <ul style={ulStyleDayHeaders}>
+                    <li key="Sun" style={listStyleDayHeaders}>
+                        Sun
+                    </li>
+                    <li key="Mon" style={listStyleDayHeaders}>
+                        Mon
+                    </li>
+                    <li key="Tue" style={listStyleDayHeaders}>
+                        Tue
+                    </li>
+                    <li key="Wed" style={listStyleDayHeaders}>
+                        Wed
+                    </li>
+                    <li key="Thu" style={listStyleDayHeaders}>
+                        Thu
+                    </li>
+                    <li key="Fri" style={listStyleDayHeaders}>
+                        Fri
+                    </li>
+                    <li key="Sat" style={listStyleDayHeaders}>
+                        Sat
+                    </li>
+                </ul>
+                <ul style={ulStyleCalenderCells}>
+                    {daysStartGapHtml}
+                    {printHtml}
+                    {daysEndGapHtml}
+                </ul>
+            </div>
+        );
     }
 };
 
