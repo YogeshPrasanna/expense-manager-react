@@ -90,15 +90,14 @@ class MonthViewPage extends Component {
             width: "34%",
             padding: "0",
             border: "0"
-        }
+        };
 
         const monthField = {
-            background: "#FFFFFF",
-            border: "1px solid #fff",
-            color: "orange",
+            background: "#333745",
+            border: "1px solid #333745",
+            color: "#EDD382",
             width: "100%",
             fontSize: "25px",
-            fontWeight: "bold",
             letterSpacing: "1px",
             padding: "6px",
             borderRadius: "0"
@@ -109,7 +108,10 @@ class MonthViewPage extends Component {
             letterSpacing: "2px",
             borderRadius: "0",
             padding: "6px",
-            width: "100%"
+            width: "100%",
+            border: "1px solid #333745",
+            background: "#333745",
+            color: "#C8E9A0"
         };
 
         const inputNightMode = {
@@ -139,9 +141,7 @@ class MonthViewPage extends Component {
                                         value={this.state.month}
                                         onChange={this.handleChange.bind(this)}
                                         style={{
-                                            ...(this.props.settings.mode === "night"
-                                                ? inputNightMode
-                                                : inputDayMode),
+                                            ...(this.props.settings.mode === "night" ? inputNightMode : inputDayMode),
                                             ...monthField
                                         }}
                                     >
@@ -165,9 +165,7 @@ class MonthViewPage extends Component {
                                         value={this.state.year}
                                         onChange={this.handleChange.bind(this)}
                                         style={{
-                                            ...(this.props.settings.mode === "night"
-                                                ? inputNightMode
-                                                : inputDayMode),
+                                            ...(this.props.settings.mode === "night" ? inputNightMode : inputDayMode),
                                             ...dateField
                                         }}
                                     >

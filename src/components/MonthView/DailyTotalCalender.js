@@ -13,29 +13,9 @@ const DailyTotalCalender = props => {
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
         return (
-            <tr>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-                <td>
-                    <Loader />
-                </td>
-            </tr>
+            <div>
+                <Loader />
+            </div>
         );
     }
 
@@ -61,20 +41,26 @@ const DailyTotalCalender = props => {
                     : 0;
         });
 
+        const today = moment().format("MM/DD/YYYY");
+
         const listStyleDateCells = {
-            backgroundColor: "white",
+            backgroundColor: "#333745",
             padding: "1px",
             margin: "0px",
             display: "inline-block",
             width: "14.20%",
-            border: "1px solid rgba(0,0,0,0.1)",
-            textAlign: "center"
+            // border: "1px solid rgba(0,0,0,0.1)",
+            textAlign: "center",
+            color: "#BEC5AD"
         };
+
+        const listStyleToday = { ...listStyleDateCells, backgroundColor: "#519872", color: "#BEC5AD" };
 
         const listStyleDayHeaders = {
             ...listStyleDateCells,
             fontSize: "18px",
-            color: "#00A5EB"
+            border: "1px solid #333745",
+            color: "#F7A278"
         };
 
         const ulStyleCalenderCells = {
@@ -87,12 +73,9 @@ const DailyTotalCalender = props => {
             marginBottom: "0px"
         };
 
-        const dateArea = {
-            background: "rgba(0,0,0,0.05)",
-            color: "orange",
-            letterSpacing: "2px",
-            fontSize: "20px"
-        };
+        const dateArea = { background: "rgba(0,0,0,0.05)", color: "#519872", letterSpacing: "2px", fontSize: "20px" };
+
+        const todayDateArea = { background: "#519872", color: "white", letterSpacing: "2px", fontSize: "20px" };
 
         for (let i = 0; i < moment(allDatesInSelectedMonth[0]).day(); i++) {
             dayStart.push(i);
@@ -106,7 +89,7 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        let daysStartGapHtml = dayStart.map(function (elem) {
+        let daysStartGapHtml = dayStart.map(function(elem) {
             return (
                 <li key={elem} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -118,7 +101,7 @@ const DailyTotalCalender = props => {
             );
         });
 
-        let daysEndGapHtml = dayEnd.map(function (elem) {
+        let daysEndGapHtml = dayEnd.map(function(elem) {
             return (
                 <li key={elem + 55} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -133,8 +116,12 @@ const DailyTotalCalender = props => {
         let printHtml = Object.keys(totals).map((elem, i) => {
             return (
                 <Link to={`/daily-view?date=${elem}`}>
-                    <li key={elem} style={listStyleDateCells}>
-                        <div style={dateArea}> {moment(allDatesInSelectedMonth[i]).date()}</div> {totals[elem]}{" "}
+                    <li key={elem} style={elem === today ? listStyleToday : listStyleDateCells}>
+                        <div style={elem === today ? todayDateArea : dateArea}>
+                            {" "}
+                            {moment(allDatesInSelectedMonth[i]).date()}
+                        </div>{" "}
+                        {totals[elem]}{" "}
                     </li>
                 </Link>
             );
