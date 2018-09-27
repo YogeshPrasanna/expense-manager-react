@@ -9,7 +9,7 @@
     font-size: 35px;
     text-align: center;
     position: absolute;
-    top: 30%;
+    top: 15%;
     padding: 0px 25px;
     /* left: 220px; */
 }
@@ -433,60 +433,48 @@ nav .navNarrow .navbar-nav {
 
 i.fa.fa-gift {
     color: #927959 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-cutlery {
     color: #ff965d !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-shopping-cart {
     color: #16b498 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-motorcycle {
     color: #ffcc78 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-get-pocket {
     color: #ff5473 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-film {
     color: #a08e78 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-shopping-bag {
     color: #8da685 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-plane {
     color: #3ea75e !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-user-md {
     color: #ff1945 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-medkit {
     color: #00a3ea !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-columns {
     color: #7e0332 !important;
-    opacity: 0.8 !important;
 }
 
 i.fa.fa-circle-o {
     color: #872aef !important;
-    opacity: 0.8 !important;
 }

@@ -4,7 +4,9 @@ import { Link, withRouter } from "react-router-dom";
 import { SignUpLink } from "../signUp/index";
 import { auth } from "../../firebase";
 import * as routes from "../../constants/routes";
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
+
+import logo from "./../../assets/images/logo.png";
 
 import firebase from "firebase";
 
@@ -94,6 +96,10 @@ class SignInForm extends Component {
     render() {
         const { email, password, error } = this.state;
 
+        const imgStyle = {
+            margin: "25px 35%"
+        };
+
         const isInvalid = password === "" || email === "";
 
         return (
@@ -101,6 +107,7 @@ class SignInForm extends Component {
                 <div className="row">
                     <div className="col-sm-12 col-md-6 ">
                         <div className="landing">
+                            <img src={logo} style={imgStyle} width="auto" height="100" />
                             <span>" Expense Manager which takes note of all your daily expenses "</span>
                             <p> Sign up to create an account - and start managing your expenses </p>
                         </div>
