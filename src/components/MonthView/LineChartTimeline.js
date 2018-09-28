@@ -78,7 +78,7 @@ const LineChartExpenseTimeline = props => {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    filled: true,
+                    fill: true,
                     data: Object.values(totals)
                 }
             ]
@@ -91,11 +91,7 @@ const LineChartExpenseTimeline = props => {
                 <h4>Expense Timeline</h4>
                 <div className="col-sm-12" style={lineArea}>
                     {" "}
-                    <Line
-                        data={data}
-                        height={window.screen.width > 720 ? 70 : 250}
-                        width={window.screen.width > 720 ? "auto" : 400}
-                    />
+                    <Line data={data} height={window.screen.width > 720 ? 70 : 250} />
                 </div>
             </div>
         );
