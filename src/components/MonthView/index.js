@@ -6,6 +6,7 @@ import CategoryTotalCard from "./CategoryTotalCard";
 import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
+import LineChartExpenseTimeline from "./LineChartTimeline";
 
 import * as analytics from "./../../analytics/analytics";
 import DailyTotalCalender from "./DailyTotalCalender";
@@ -70,7 +71,7 @@ class MonthViewPage extends Component {
                     ? "#ddd"
                     : "#EDF0EF"
                 : "#EDF0EF",
-            padding: "35px",
+            padding: "15px",
             margin: "15px 0"
         };
 
@@ -183,6 +184,7 @@ class MonthViewPage extends Component {
                                 year={this.state.year}
                                 settings={this.props.settings}
                             />
+
                             <TotalCard
                                 expenses={this.props.expenses}
                                 authUser={this.props.user}
@@ -199,10 +201,14 @@ class MonthViewPage extends Component {
                         </div>
 
                         <div className="col-sm-8">
-                            <div
-                                className="col-sm-12"
-                                style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
-                            >
+                            <div style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}>
+                                <LineChartExpenseTimeline
+                                    expenses={this.props.expenses}
+                                    authUser={this.props.user}
+                                    month={this.state.month}
+                                    year={this.state.year}
+                                    settings={this.props.settings}
+                                />
                                 <DoughnutChart
                                     expenses={this.props.expenses}
                                     authUser={this.props.user}

@@ -1,9 +1,9 @@
-import React from 'react'
-import { Doughnut } from 'react-chartjs-2'
-import Loader from '../Common/Loader'
-import * as utils from '../Util'
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import Loader from "../Common/Loader";
+import * as utils from "../Util";
 
-const DoughnutChart = (props) => {
+const DoughnutChart = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let selectedMonth = props.month;
@@ -12,45 +12,58 @@ const DoughnutChart = (props) => {
     let allCategoryTotals = null;
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
-        return <div><Loader /></div>
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
         let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(eachExpense, currentUser, selectedMonth, selectedYear);
+        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
+            eachExpense,
+            currentUser,
+            selectedMonth,
+            selectedYear
+        );
 
         allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
 
         let data = {
             labels: utils.categories,
-            datasets: [{
-                data: Object.values(allCategoryTotals),
-                backgroundColor: utils.categoryColors,
-                hoverBackgroundColor: utils.categoryColors
-            }]
+            datasets: [
+                {
+                    data: Object.values(allCategoryTotals),
+                    backgroundColor: utils.categoryColors,
+                    hoverBackgroundColor: utils.categoryColors
+                }
+            ]
         };
 
         const options = {
-            legend : {
+            legend: {
                 display: true,
-                position: 'top',
+                position: "top",
                 fullWidth: true,
-                reverse: false,
+                reverse: false
             }
-        }
+        };
 
         const optionsMobile = {
-            legend : {
+            legend: {
                 display: false
             }
-        }
+        };
 
         return (
             <div>
+                <hr />
+                <h4>Category Analyser</h4>
                 <Doughnut data={data} options={window.screen.width > 720 ? options : optionsMobile} responsive={true} />
             </div>
         );
-    } 
-}
+    }
+};
 
-export default DoughnutChart
+export default DoughnutChart;
