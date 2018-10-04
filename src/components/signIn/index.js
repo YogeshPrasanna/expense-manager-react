@@ -76,7 +76,7 @@ class SignInForm extends Component {
 
         const { history } = this.props;
 
-        auth.doSignInWithEmailAndPassword(email, password)
+        auth.doSignInWithEmailAndPassword(email.trim(), password)
             .then(authUser => {
                 // allow signin only when user is verified
                 if (authUser && authUser.emailVerified) {
