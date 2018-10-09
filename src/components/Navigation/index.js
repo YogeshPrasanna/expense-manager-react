@@ -207,6 +207,13 @@ const NavigationNonAuth = () => {
                     </Link> */}
 
                     <Link
+                        className={`nav-link ${window.location.pathname === "/shop" ? "active" : "inactive"}`}
+                        to={routes.SHOP}
+                    >
+                        Shop
+                    </Link>
+
+                    <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
                         to={routes.SIGN_IN}
                     >
@@ -227,6 +234,13 @@ const NavigationNonAuth = () => {
                     >
                         Sign In
                     </Link> */}
+
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/shop" ? "active" : "inactive"}`}
+                        to={routes.SHOP}
+                    >
+                        Shop
+                    </Link>
 
                     <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}

@@ -12,6 +12,7 @@ import Navigation from "./Navigation/index";
 //import LandingPage from "./Landing/index";
 import SignUpPage from "./signUp/index";
 import SignInPage from "./signIn/index";
+import ShopPage from "./Shop/index";
 import PasswordForgetPage from "./forgotPassword/index";
 import HomePage from "./Home/index";
 import AccountPage from "./Account/index";
@@ -237,6 +238,8 @@ class App extends Component {
                     {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
                     <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
                     <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+                    <Route exact path={routes.SHOP} component={() => <ShopPage />} />
+
                     <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
                     <Route
                         exact
