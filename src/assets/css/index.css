@@ -478,3 +478,23 @@ i.fa.fa-columns {
 i.fa.fa-circle-o {
     color: #872aef !important;
 }
+
+/* #leftArrowIcon {
+    position: absolute;
+    padding: 25px;
+    border: 5px solid orange;
+    top: 15px;
+    left: 15px;
+}
+
+#rightArrowIcon {
+    position: absolute;
+    height: 90px;
+    width: 45px;
+    padding: 25px;
+    border: 5px solid orange;
+    top: 15px;
+    right: 15px;
+    border-bottom-right-radius: 90px;
+    border-top-right-radius: 90px;
+} */

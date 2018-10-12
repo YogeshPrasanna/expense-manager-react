@@ -48,7 +48,7 @@ const DailyTotalCalender = props => {
             padding: "1px",
             margin: "0px",
             display: "inline-block",
-            width: "14.20%",
+            width: "14.285%",
             // border: "1px solid rgba(0,0,0,0.1)",
             textAlign: "center",
             color: "#BEC5AD"

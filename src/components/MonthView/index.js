@@ -29,6 +29,32 @@ class MonthViewPage extends Component {
         this.setState(change);
     }
 
+    handleLeftArrowCalender() {
+        if (this.state.month === "0") {
+            this.setState({
+                month: "11",
+                year: (Number(this.state.year) - 1).toString()
+            });
+        } else {
+            this.setState({
+                month: (Number(this.state.month) - 1).toString()
+            });
+        }
+    }
+
+    handleRightArrowCalender() {
+        if (this.state.month === "11") {
+            this.setState({
+                year: (Number(this.state.year) + 1).toString(),
+                month: "0"
+            });
+        } else {
+            this.setState({
+                month: (Number(this.state.month) + 1).toString()
+            });
+        }
+    }
+
     componentDidMount() {
         analytics.initGA();
         analytics.logPageView();
@@ -81,16 +107,45 @@ class MonthViewPage extends Component {
 
         const monthDropdown = {
             display: "inline-block",
-            width: "66%",
+            width: "60%",
             padding: "0",
             border: "0"
         };
 
         const yearDropdown = {
             display: "inline-block",
-            width: "34%",
+            width: "35%",
             padding: "0",
             border: "0"
+        };
+
+        const leftIcon = {
+            display: "inline-block",
+            width: "4%",
+            padding: "0",
+            border: "3px solid rgb(51, 55, 69)",
+            borderTop: "4px solid rgb(51, 55, 69)",
+            fontSize: "25px",
+            width: "100%",
+            background: "#333745",
+            color: "#DC965A",
+            textAlign: "center",
+            cursor: "pointer"
+        };
+
+        const rightIcon = {
+            display: "inline-block",
+            width: "3%",
+            padding: "0",
+            fontSize: "25px",
+            textAlign: "center",
+            width: "100%",
+            border: "3px solid rgb(51, 55, 69)",
+            borderTop: "4px solid rgb(51, 55, 69)",
+            borderRight: "none",
+            background: "#333745",
+            color: "#DC965A",
+            cursor: "pointer"
         };
 
         const monthField = {
@@ -136,7 +191,15 @@ class MonthViewPage extends Component {
                             <form style={form}>
                                 <div style={Header}> View your expenses of a particular month </div>
 
-                                <div className="col-md-8 col-xs-6" style={monthDropdown}>
+                                <div
+                                    className="col-md-1 col-xs-1"
+                                    style={leftIcon}
+                                    onClick={this.handleLeftArrowCalender.bind(this)}
+                                    id="leftArrowIcon"
+                                >
+                                    <i class="fa fa-caret-left" />
+                                </div>
+                                <div className="col-md-7 col-xs-5" style={monthDropdown}>
                                     <select
                                         name="month"
                                         value={this.state.month}
@@ -160,7 +223,7 @@ class MonthViewPage extends Component {
                                         <option value="11">December</option>
                                     </select>
                                 </div>
-                                <div className="col-md-4 col-xs-6" style={yearDropdown}>
+                                <div className="col-md-3 col-xs-5" style={yearDropdown}>
                                     <select
                                         name="year"
                                         value={this.state.year}
@@ -173,7 +236,17 @@ class MonthViewPage extends Component {
                                         <option value="2016">2016</option>
                                         <option value="2017">2017</option>
                                         <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
                                     </select>
+                                </div>
+                                <div
+                                    className="col-md-1 col-xs-1"
+                                    style={rightIcon}
+                                    onClick={this.handleRightArrowCalender.bind(this)}
+                                    id="rightArrowIcon"
+                                >
+                                    <i class="fa fa-caret-right" />
                                 </div>
                             </form>
 
