@@ -1,6 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
+
+class ContentSlider extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { activeItem: 0 };
+    }
+    setActiveItem(index) {
+        this.setState({ activeItem: index });
+    }
+    render() {
+        var childrenCount = React.Children.count(this.props.children);
+        var newChildren = React.Children.map(this.props.children, function(child) {
+            return React.cloneElement(child, { className: "simple-slider__slider-item" });
+        });
+        var innerStyle = {
+            width: childrenCount * 200 + "px",
+            left: this.state.activeItem * 200 * -1 + "px"
+        };
+        return (
+            <div>
+                <div className="simple-slider__slider-outer">
+                    <div className="simple-slider__slider-inner" style={innerStyle}>
+                        {newChildren}
+                    </div>
+                </div>
+                <div className="pager">
+                    {this.props.children.map(function(item, index) {
+                        return <button onClick={this.setActiveItem.bind(this, index)}>{index}</button>;
+                    }, this)}
+                </div>
+            </div>
+        );
+    }
+}
 
 const Cards = props => {
     let expenses = props.expenses;
@@ -64,66 +99,204 @@ const Cards = props => {
     }
 
     if (props.settings) {
-        return (
-            <div className="row">
-                <div className="col-sm-6 col-md-6 col-lg-3">
-                    <div className="card card1">
-                        <div className="card-block">
-                            <h3 className="card-title">Overall Spent</h3>
-                            <p className="card-text">
-                                <i
-                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
-                                    aria-hidden="true"
-                                />{" "}
-                                {totalExpenses}
-                            </p>
+        if (window.screen.width > 720) {
+            return (
+                <div className="row">
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <div className="card card1">
+                            <div className="card-block">
+                                <h3 className="card-title">Overall Spent</h3>
+                                <p className="card-text">
+                                    <i
+                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        aria-hidden="true"
+                                    />{" "}
+                                    {totalExpenses}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <div className="card card2">
+                            <div className="card-block">
+                                <h3 className="card-title">This Month</h3>
+                                <p className="card-text">
+                                    <i
+                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        aria-hidden="true"
+                                    />{" "}
+                                    {totalExpensesThisMonth}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <div className="card card4">
+                            <div className="card-block">
+                                <h3 className="card-title">This Week</h3>
+                                <p className="card-text">
+                                    <i
+                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        aria-hidden="true"
+                                    />{" "}
+                                    {totalExpensesThisWeek}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <div className="card card3">
+                            <div className="card-block">
+                                <h3 className="card-title">Today</h3>
+                                <p className="card-text">
+                                    <i
+                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        aria-hidden="true"
+                                    />{" "}
+                                    {totalExpensesToday}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-sm-6 col-md-6 col-lg-3">
-                    <div className="card card2">
-                        <div className="card-block">
-                            <h3 className="card-title">This Month</h3>
-                            <p className="card-text">
-                                <i
-                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
-                                    aria-hidden="true"
-                                />{" "}
-                                {totalExpensesThisMonth}
-                            </p>
+            );
+        } else {
+            return (
+                <div>
+                    {/* <ContentSlider>
+                        <div className="col-sm-6 col-md-6 col-lg-3">
+                            <div className="card card1">
+                                <div className="card-block">
+                                    <h3 className="card-title">Overall Spent</h3>
+                                    <p className="card-text">
+                                        <i
+                                            className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                            aria-hidden="true"
+                                        />{" "}
+                                        {totalExpenses}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-6 col-lg-3">
+                            <div className="card card2">
+                                <div className="card-block">
+                                    <h3 className="card-title">This Month</h3>
+                                    <p className="card-text">
+                                        <i
+                                            className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                            aria-hidden="true"
+                                        />{" "}
+                                        {totalExpensesThisMonth}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-6 col-lg-3">
+                            <div className="card card4">
+                                <div className="card-block">
+                                    <h3 className="card-title">This Week</h3>
+                                    <p className="card-text">
+                                        <i
+                                            className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                            aria-hidden="true"
+                                        />{" "}
+                                        {totalExpensesThisWeek}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6 col-md-6 col-lg-3">
+                            <div className="card card3">
+                                <div className="card-block">
+                                    <h3 className="card-title">Today</h3>
+                                    <p className="card-text">
+                                        <i
+                                            className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                            aria-hidden="true"
+                                        />{" "}
+                                        {totalExpensesToday}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentSlider> */}
+                    <div class="slider">
+                        {/* <a href="#slide-1">1</a>
+                        <a href="#slide-2">2</a>
+                        <a href="#slide-3">3</a>
+                        <a href="#slide-4">4</a> */}
+
+                        <div class="slides">
+                            <div id="slide-1">
+                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                    <div className="card card1">
+                                        <div className="card-block">
+                                            <h3 className="card-title">Overall Spent</h3>
+                                            <p className="card-text">
+                                                <i
+                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                {totalExpenses}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="slide-2">
+                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                    <div className="card card2">
+                                        <div className="card-block">
+                                            <h3 className="card-title">This Month</h3>
+                                            <p className="card-text">
+                                                <i
+                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                {totalExpensesThisMonth}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="slide-3">
+                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                    <div className="card card4">
+                                        <div className="card-block">
+                                            <h3 className="card-title">This Week</h3>
+                                            <p className="card-text">
+                                                <i
+                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                {totalExpensesThisWeek}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="slide-4">
+                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                    <div className="card card3">
+                                        <div className="card-block">
+                                            <h3 className="card-title">Today</h3>
+                                            <p className="card-text">
+                                                <i
+                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                {totalExpensesToday}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-sm-6 col-md-6 col-lg-3">
-                    <div className="card card4">
-                        <div className="card-block">
-                            <h3 className="card-title">This Week</h3>
-                            <p className="card-text">
-                                <i
-                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
-                                    aria-hidden="true"
-                                />{" "}
-                                {totalExpensesThisWeek}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-6 col-md-6 col-lg-3">
-                    <div className="card card3">
-                        <div className="card-block">
-                            <h3 className="card-title">Today</h3>
-                            <p className="card-text">
-                                <i
-                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
-                                    aria-hidden="true"
-                                />{" "}
-                                {totalExpensesToday}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+            );
+        }
     } else {
         return (
             <div className="row">
