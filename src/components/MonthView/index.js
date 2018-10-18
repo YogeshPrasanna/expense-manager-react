@@ -107,7 +107,7 @@ class MonthViewPage extends Component {
 
         const monthDropdown = {
             display: "inline-block",
-            width: "60%",
+            width: window.screen.width > 760 ? "60%" : "50%",
             padding: "0",
             border: "0"
         };
@@ -121,12 +121,11 @@ class MonthViewPage extends Component {
 
         const leftIcon = {
             display: "inline-block",
-            width: "4%",
             padding: "0",
             border: "3px solid rgb(51, 55, 69)",
             borderTop: "4px solid rgb(51, 55, 69)",
             fontSize: "25px",
-            width: "100%",
+            width: window.screen.width > 760 ? "100%" : "7.5%",
             background: "#333745",
             color: "#DC965A",
             textAlign: "center",
@@ -135,11 +134,10 @@ class MonthViewPage extends Component {
 
         const rightIcon = {
             display: "inline-block",
-            width: "3%",
             padding: "0",
             fontSize: "25px",
             textAlign: "center",
-            width: "100%",
+            width: window.screen.width > 760 ? "100%" : "7.5%",
             border: "3px solid rgb(51, 55, 69)",
             borderTop: "4px solid rgb(51, 55, 69)",
             borderRight: "none",
