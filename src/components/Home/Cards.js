@@ -13,7 +13,7 @@ class ContentSlider extends Component {
     }
     render() {
         var childrenCount = React.Children.count(this.props.children);
-        var newChildren = React.Children.map(this.props.children, function(child) {
+        var newChildren = React.Children.map(this.props.children, function (child) {
             return React.cloneElement(child, { className: "simple-slider__slider-item" });
         });
         var innerStyle = {
@@ -28,7 +28,7 @@ class ContentSlider extends Component {
                     </div>
                 </div>
                 <div className="pager">
-                    {this.props.children.map(function(item, index) {
+                    {this.props.children.map(function (item, index) {
                         return <button onClick={this.setActiveItem.bind(this, index)}>{index}</button>;
                     }, this)}
                 </div>
@@ -229,7 +229,7 @@ const Cards = props => {
 
                         <div class="slides">
                             <div id="slide-1">
-                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
                                     <div className="card card1">
                                         <div className="card-block">
                                             <h3 className="card-title">Overall Spent</h3>
@@ -245,7 +245,7 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-2">
-                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
                                     <div className="card card2">
                                         <div className="card-block">
                                             <h3 className="card-title">This Month</h3>
@@ -261,7 +261,7 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-3">
-                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
                                     <div className="card card4">
                                         <div className="card-block">
                                             <h3 className="card-title">This Week</h3>
@@ -277,7 +277,7 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-4">
-                                <div className="col-sm-6 col-md-6 col-lg-3">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
                                     <div className="card card3">
                                         <div className="card-block">
                                             <h3 className="card-title">Today</h3>
