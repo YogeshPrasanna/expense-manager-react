@@ -131,6 +131,26 @@ ul {
     color: #ddd !important;
 }
 
+.card5 {
+    background: #4F517D !important;
+    color: #ddd !important;
+}
+
+.card6 {
+    background: #A66060 !important;
+    color: #ddd !important;
+}
+
+.card7 {
+    background: #47682C !important;
+    color: #ddd !important;
+}
+
+.card8 {
+    background: #8D7B76 !important;
+    color: #ddd !important;
+}
+
 .card .card-block .card-title {
     padding: 15px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);

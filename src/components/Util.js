@@ -2,10 +2,10 @@ import moment from "moment";
 
 export const eachExpense = expenses => {
     return Object.keys(expenses)
-        .map(function(key) {
+        .map(function (key) {
             return { key: key, value: expenses[key] };
         })
-        .sort(function(a, b) {
+        .sort(function (a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(b.value.date) - new Date(a.value.date);
@@ -34,6 +34,13 @@ export const currentMonthExpenses = (eachExpense, currentUser) => {
     return eachExpense.filter(
         elem => elem.value.uid === currentUser.uid && new Date(elem.value.date).getMonth() === new Date().getMonth()
     );
+};
+
+// expense in current year
+export const expensesinCurrentYear = (eachExpense, currentUser) => {
+    return eachExpense
+        .filter(elem => elem.value.uid === currentUser.uid)
+        .filter(elem => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
 };
 
 // expenses in a particular month of this year
@@ -70,6 +77,69 @@ export const totalExpense = expenses => {
         return 0;
     }
 };
+
+// most spend day
+export const mostSpentDay = expenses => {
+    let monday = 0;
+    let tuesday = 0;
+    let wednesday = 0;
+    let thursday = 0;
+    let friday = 0;
+    let saturday = 0;
+    let sunday = 0;
+
+    expenses.map(elem => {
+        switch ((elem.value.day).toString()) {
+            case "0":
+                sunday = sunday + 1
+                return ""
+            case "1":
+                monday = monday + 1
+                return ""
+            case "2":
+                tuesday = tuesday + 1
+                return ""
+            case "3":
+                wednesday = wednesday + 1
+                return ""
+            case "4":
+                thursday = thursday + 1
+                return ""
+            case "5":
+                friday = friday + 1
+                return ""
+            case "6":
+                saturday = saturday + 1
+                return ""
+            default:
+                return "";
+        }
+    })
+
+    let mostDaysObj = {
+        "sunday": sunday,
+        "monday": monday,
+        "tuesday": tuesday,
+        "wednesday": wednesday,
+        "thursday": thursday,
+        "friday": friday,
+        "saturday": saturday
+    }
+
+    var sortable = [];
+    for (var day in mostDaysObj) {
+        sortable.push([day, mostDaysObj[day]]);
+    }
+
+    let sortedCategories = sortable.sort(function (a, b) {
+        return b[1] - a[1];
+    });
+
+    return {
+        "mostSpentDay": expenses.length ? sortedCategories[0][0] : "-",
+        "leastSpentDay": expenses.length ? sortedCategories[6][0] : "-"
+    }
+}
 
 // Total expenses in Each month
 export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser) => {
@@ -113,7 +183,7 @@ export const calculateTotalForAllCategories = expenses => {
         Others: 0
     };
 
-    const totalForACategory = function(expenses, category) {
+    const totalForACategory = function (expenses, category) {
         let temp = expenses.filter(elem => elem.value.category === category).map(el => Number(el.value.expense));
 
         var category = category;
@@ -126,8 +196,27 @@ export const calculateTotalForAllCategories = expenses => {
 
     categories.map(category => totalForACategory(expenses, category));
 
+    console.log("CAtegories Toatal : ", categoryTotal)
+
     return categoryTotal;
 };
+
+// most spent on category
+export const mostSpentCategory = (expenses) => {
+    let categoryTotals = calculateTotalForAllCategories(expenses);
+
+    var sortable = [];
+    for (var cat in categoryTotals) {
+        sortable.push([cat, categoryTotals[cat]]);
+    }
+
+    let sortedCategories = sortable.sort(function (a, b) {
+        return b[1] - a[1];
+    });
+
+
+    return expenses.length ? sortedCategories[0][0] : "-";
+}
 
 // all categories
 export const categories = [
@@ -260,8 +349,8 @@ export const filterExpensesByCriteria = (startDate, endDate, category, expenseFr
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
-    between.forEach(function(elem) {
-        return thisUsersExpenses.filter(function(el) {
+    between.forEach(function (elem) {
+        return thisUsersExpenses.filter(function (el) {
             return elem === el.value.date ? filteredExpenses.push(el) : "";
         });
     });
@@ -301,10 +390,10 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
     lastDay = moment(lastDay).format("MM/DD/YYYY");
 
     // Returns an array of dates between the two dates
-    var getDates = function(startDate, endDate) {
+    var getDates = function (startDate, endDate) {
         var dates = [],
             currentDate = startDate,
-            addDays = function(days) {
+            addDays = function (days) {
                 var date = new Date(this.valueOf());
                 date.setDate(date.getDate() + days);
                 return date;
