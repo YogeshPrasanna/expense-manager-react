@@ -47,10 +47,10 @@ export const expensesinCurrentYear = (eachExpense, currentUser) => {
 };
 
 // expenses in a particular month of this year
-export const expensesinMonth = (eachExpense, currentUser, MonthNumber) => {
+export const expensesinMonth = (eachExpense, currentUser, MonthNumber, selectedYear) => {
     return eachExpense
         .filter(elem => elem.value.uid === currentUser.uid)
-        .filter(elem => new Date(elem.value.date).getFullYear().toString() === new Date().getFullYear().toString())
+        .filter(elem => new Date(elem.value.date).getFullYear().toString() === selectedYear.toString())
         .filter(elem => new Date(elem.value.date).getMonth().toString() === MonthNumber);
 };
 
@@ -145,11 +145,13 @@ export const mostSpentDay = expenses => {
 };
 
 // Total expenses in Each month
-export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser) => {
+export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser, selectedYear) => {
     let expensesOfAllMonthsInThisYear = [];
 
     for (var i = 0; i <= 11; i++) {
-        expensesOfAllMonthsInThisYear.push(totalExpense(expensesinMonth(eachExpense, currentUser, String(i))));
+        expensesOfAllMonthsInThisYear.push(
+            totalExpense(expensesinMonth(eachExpense, currentUser, String(i), selectedYear))
+        );
     }
     return expensesOfAllMonthsInThisYear;
 };

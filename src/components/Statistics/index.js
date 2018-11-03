@@ -4,7 +4,7 @@ import BarChartAllMonths from "./BarChartAllMonths";
 import CategoryTotalCard from "./CategoryTotalCard";
 import Loader from "./../Common/Loader";
 
-import * as analytics from "./../../analytics/analytics"
+import * as analytics from "./../../analytics/analytics";
 
 const marB15 = {
     marginBottom: "15px",
@@ -25,7 +25,6 @@ const StatisticsPage = props => {
     };
 
     if (props.settings) {
-
         analytics.initGA();
         analytics.logPageView();
 
@@ -38,7 +37,6 @@ const StatisticsPage = props => {
                     </div>
                     <div className="col-sm-6" style={props.settings.mode === "night" ? nmBgForCharts : marB15}>
                         <BarChartAllMonths expenses={props.expenses} authUser={props.user} />
-                        <span className="badge badge-info">Monthly expenses for this year</span>
                     </div>
                 </div>
                 <div className="row">
