@@ -2,6 +2,6 @@
   command = "sed -i s/API_KEY_PLACEHOLDER/$API_KEY/g netlify.toml && npm run build"
   publish = "build"
 
-[context.production.environment]
+[context.production]
   TOML_ENV_VAR = "From netlify.toml"
   REACT_APP_TOML_ENV_VAR = "From netlify.toml (REACT_APP_)"
