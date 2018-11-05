@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "sed -i s/API_KEY_PLACEHOLDER/$API_KEY/g netlify.toml && npm run build"
   publish = "build"
 
 [context.production.environment]
