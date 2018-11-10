@@ -37,21 +37,40 @@ const DoughnutChartCategory = props => {
         const options = {
             legend: {
                 display: true,
-                position: "top",
+                position: "left",
                 fullWidth: true,
                 reverse: false
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 15,
+                    bottom: 0
+                }
             }
         };
 
         const optionsMobile = {
-            legend: {
-                display: false
+            legend: { display: true, position: "bottom", fullWidth: true },
+            layout: {
+                padding: {
+                    left: 15,
+                    right: 15,
+                    top: 15,
+                    bottom: 15
+                }
             }
         };
 
         return (
             <div>
-                <Doughnut data={data} options={window.screen.width > 720 ? options : optionsMobile} responsive={true} />
+                <Doughnut
+                    data={data}
+                    options={window.screen.width > 720 ? options : optionsMobile}
+                    height={window.screen.width > 720 ? 140 : 450}
+                    responsive={true}
+                />
             </div>
         );
     }
