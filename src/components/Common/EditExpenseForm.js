@@ -70,6 +70,16 @@ class EditExpenseForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
+            const validationBox = {
+                background: "rgba(0,0,0,0)",
+                color: "#ffecb8",
+                fontSize: "12px",
+                width: "60%",
+                position: "absolute",
+                bottom: "15px",
+                left: "15px"
+            };
+
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -153,9 +163,21 @@ class EditExpenseForm extends Component {
                     ) : (
                         <span />
                     )}
-                    <button className="btn btn-primary float-right" type="submit">
-                        save
-                    </button>
+                    {this.state.expense > 0 && this.state.date && this.state.category ? (
+                        <button className="btn btn-primary float-right" type="submit">
+                            save
+                        </button>
+                    ) : (
+                        <div>
+                            <div style={validationBox}>
+                                <div> Expense : should be greater than 0 </div>
+                                <div> Date : should be selected </div>
+                            </div>
+                            <button className="btn btn-primary float-right" disabled type="submit">
+                                save
+                            </button>
+                        </div>
+                    )}
                 </form>
             );
         } else {
