@@ -324,6 +324,37 @@ export const categoryIcon = category => {
     }
 };
 
+export const getCatColor = category => {
+    switch (category) {
+        case "Food":
+            return "#FF965D";
+        case "Automobile":
+            return "#FFCC78";
+        case "Entertainment":
+            return "#A08E78";
+        case "Clothing":
+            return "#8DA685";
+        case "Healthcare":
+            return "#00A3EA";
+        case "Travel":
+            return "#3EA75E";
+        case "Shopping":
+            return "#16B498";
+        case "Personal Care":
+            return "#FF1945";
+        case "Investment":
+            return "#FF5473";
+        case "Gifts & Donations":
+            return "#927959";
+        case "Bills & Utilities":
+            return "#7E0332";
+        case "Others":
+            return "#872AEF";
+        default:
+            return "#fff";
+    }
+};
+
 export const setCurrencyIcon = currency => {
     switch (currency) {
         case "Indian Rupees":

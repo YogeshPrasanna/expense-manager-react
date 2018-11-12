@@ -9,6 +9,8 @@ const DoughnutChart = props => {
     let dateSelected = props.date;
 
     let allCategoryTotals = null;
+    let categoryList = null;
+    let categoryColors = null;
 
     if (!expenses || !currentUser || !dateSelected) {
         return (
@@ -24,12 +26,26 @@ const DoughnutChart = props => {
 
         allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
 
+        const eachCategory = allCategoryTotals => {
+            return Object.keys(allCategoryTotals).map(function(key) {
+                return { key: key, value: allCategoryTotals[key] };
+            });
+        };
+
+        categoryList = eachCategory(allCategoryTotals)
+            .filter(el => {
+                return el.value > 0;
+            })
+            .map(el => el.key);
+
+        categoryColors = categoryList.map(el => utils.getCatColor(el));
+
         let data = {
-            labels: utils.categories,
+            labels: categoryList,
             datasets: [
                 {
-                    data: Object.values(allCategoryTotals),
-                    backgroundColor: utils.categoryColors,
+                    data: Object.values(allCategoryTotals).filter(el => el > 0),
+                    backgroundColor: categoryColors,
                     hoverBackgroundColor: utils.categoryColors
                 }
             ]
