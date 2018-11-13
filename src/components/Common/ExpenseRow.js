@@ -81,6 +81,7 @@ class ExpenseRow extends Component {
                             expense={this.props.expense}
                             closePopup={this.toggleEditPopup.bind(this)}
                             settings={this.props.settings}
+                            convertedCurrency={this.props.convertedCurrency}
                         />
                     ) : null}
                 </td>

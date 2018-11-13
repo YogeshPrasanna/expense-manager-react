@@ -77,6 +77,10 @@ class SettingsPage extends Component {
                 color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
             };
 
+            const customLabel = {
+                marginLeft: window.screen.width > 720 ? "-50%" : "0"
+            };
+
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <form onSubmit={this.handleSubmit}>
@@ -144,7 +148,7 @@ class SettingsPage extends Component {
                         </div>
                         <div className="form-inline row">
                             <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
-                                <span>Travel Mode</span>
+                                <span style={customLabel}>Travel Mode</span>
                             </label>
                             <div className="col-sm-4 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
                                 <input

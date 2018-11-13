@@ -88,11 +88,16 @@ class HomePage extends Component {
                             authUser={this.props.user}
                             settings={this.props.settings}
                         />
-                        <ExpenseTable
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            settings={this.props.settings}
-                        />
+                        {this.state.convertedCurrency ? (
+                            <ExpenseTable
+                                expenses={this.props.expenses}
+                                authUser={this.props.user}
+                                settings={this.props.settings}
+                                convertedCurrency={this.state.convertedCurrency}
+                            />
+                        ) : (
+                            <Loader />
+                        )}
                     </div>
                     <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
