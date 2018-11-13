@@ -10,7 +10,11 @@ const AddExpensePopup = props => {
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
                 <div className="addExpenseHeader"> Add an expense </div>
-                <AddExpenseForm user={props.user} settings={props.settings} />
+                <AddExpenseForm
+                    user={props.user}
+                    settings={props.settings}
+                    convertedCurrency={props.convertedCurrency}
+                />
                 <button id="closePopup" onClick={props.closePopup}>
                     {" "}
                     X{" "}

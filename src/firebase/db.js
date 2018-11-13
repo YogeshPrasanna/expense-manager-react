@@ -55,11 +55,13 @@ const doCreateLoanTable = (uid, date, amount, loanType, reason, person, day, sta
     db.ref(`loanTable/${uid}/${key}`).set({ uid, date, amount, loanType, reason, person, day, status });
 };
 
-const doCreateSettingsForUser = (uid, font, mode, currency) =>
+const doCreateSettingsForUser = (uid, font, mode, currency, travelMode, fromCurrency) =>
     db.ref(`settings/${uid}`).set({
         font,
         mode,
-        currency
+        currency,
+        travelMode,
+        fromCurrency
     });
 
 //  const expensesRef = db.ref('expenses')

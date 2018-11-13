@@ -16,7 +16,17 @@ class SettingsPage extends Component {
                     ? this.props.settings.currency
                     : "Indian Rupees"
                 : "Indian Rupees",
-            mode: this.props.settings ? this.props.settings.mode : "day"
+            mode: this.props.settings ? this.props.settings.mode : "day",
+            travelMode: this.props.settings
+                ? this.props.settings.travelMode
+                    ? this.props.settings.travelMode
+                    : "off"
+                : "off",
+            fromCurrency: this.props.settings
+                ? this.props.settings.fromCurrency
+                    ? this.props.settings.fromCurrency
+                    : "Indian Rupees"
+                : "Indian Rupees"
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +36,14 @@ class SettingsPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        db.doCreateSettingsForUser(this.props.user.uid, this.state.font, this.state.mode, this.state.currency);
+        db.doCreateSettingsForUser(
+            this.props.user.uid,
+            this.state.font,
+            this.state.mode,
+            this.state.currency,
+            this.state.travelMode,
+            this.state.fromCurrency
+        );
 
         // reset form once saved
         // this.setState({ font: "Dhurjati", dataSaved: true, mode: "day" });
@@ -106,7 +123,7 @@ class SettingsPage extends Component {
                             <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
                                 <span>Mode</span>
                             </label>
-                            <div className="col-sm-10 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
+                            <div className="col-sm-4 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
                                 <input
                                     type="radio"
                                     name="mode"
@@ -124,6 +141,68 @@ class SettingsPage extends Component {
                                 />
                                 <label for="switch_right">Night</label>{" "}
                             </div>
+                        </div>
+                        <div className="form-inline row">
+                            <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
+                                <span>Travel Mode</span>
+                            </label>
+                            <div className="col-sm-4 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
+                                <input
+                                    type="radio"
+                                    name="travelMode"
+                                    value="on"
+                                    defaultChecked={this.state.travelMode === "on"}
+                                    id="switch_left_travel"
+                                />
+                                <label for="switch_left_travel">On</label>
+                                <input
+                                    type="radio"
+                                    name="travelMode"
+                                    value="off"
+                                    defaultChecked={this.state.travelMode === "off"}
+                                    id="switch_right_travel"
+                                />
+                                <label for="switch_right_travel">Off</label>{" "}
+                            </div>
+                            {this.state.travelMode === "on" ? (
+                                <div className="col-sm-6 col-xs-6" onChange={this.handleChange.bind(this)}>
+                                    <span>
+                                        <select
+                                            className="form-control"
+                                            name="fromCurrency"
+                                            value={this.state.fromCurrency}
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option value="Indian Rupees">Indian Rupees</option>
+                                            <option value="US Dollars">US Dollars</option>
+                                            <option value="Pounds">Pounds</option>
+                                            <option value="Yen">Yen</option>
+                                            <option value="Euro">Euro</option>
+                                        </select>
+                                    </span>
+
+                                    <span>
+                                        {" "}
+                                        <input
+                                            type="text"
+                                            style={{ width: "40px" }}
+                                            className="form-control"
+                                            value="to"
+                                            disabled
+                                        />{" "}
+                                    </span>
+                                    <span>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={this.state.currency}
+                                            disabled
+                                        />
+                                    </span>
+                                </div>
+                            ) : (
+                                <div />
+                            )}
                         </div>
 
                         {this.state.dataSaved ? (

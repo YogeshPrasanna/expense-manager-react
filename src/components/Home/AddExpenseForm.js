@@ -32,10 +32,12 @@ class AddExpenseForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
+        console.log("converted currency", this.props.convertedCurrency);
         db.doCreateExpense(
             this.state.uid,
             $(".date").val(),
-            this.state.expense,
+            Math.floor(this.state.expense * this.props.convertedCurrency),
             this.state.category,
             this.state.comments,
             moment($(".date").val()).day()

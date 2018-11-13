@@ -12,9 +12,7 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            showPopup: false
-        };
+        this.state = { showPopup: false, convertedCurrency: null };
     }
 
     togglePopup() {
@@ -26,6 +24,41 @@ class HomePage extends Component {
     componentDidMount() {
         analytics.initGA();
         analytics.logPageView();
+
+        // if travel mode then convert currency else set to 1
+        if (this.props.settings && this.props.settings.travelMode === "on") {
+            function returnCur(cur) {
+                switch (cur) {
+                    case "Indian Rupees":
+                        return "INR";
+                    case "US Dollars":
+                        return "USD";
+                    case "Pounds":
+                        return "EUR";
+                    case "Euro":
+                        return "EUR";
+                    case "Yen":
+                        return "YER";
+                    default:
+                        return "INR";
+                }
+            }
+
+            let fromcur = returnCur(this.props.settings.fromCurrency);
+            let tocur = returnCur(this.props.settings.currency);
+
+            fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y`)
+                .then(resp => resp.json()) // Transform the data into json
+                .then(data => {
+                    this.setState({ convertedCurrency: Object.values(data)[0].val });
+                })
+                .catch(() => {
+                    alert("Some Problem with the currency converter api. Values will Fallback to default currency");
+                    this.setState({ convertedCurrency: 1 });
+                });
+        } else {
+            this.setState({ convertedCurrency: 1 });
+        }
     }
 
     render() {
@@ -40,6 +73,8 @@ class HomePage extends Component {
         };
 
         if (this.props.settings) {
+            console.log("converted currency : ", this.state.convertedCurrency);
+
             return (
                 <div>
                     <div className="col-sm-12" style={styleFromSettings}>
@@ -63,11 +98,16 @@ class HomePage extends Component {
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
                     {this.state.showPopup ? (
-                        <AddExpensePopup
-                            user={this.props.user}
-                            closePopup={this.togglePopup.bind(this)}
-                            settings={this.props.settings}
-                        />
+                        this.state.convertedCurrency ? (
+                            <AddExpensePopup
+                                user={this.props.user}
+                                closePopup={this.togglePopup.bind(this)}
+                                settings={this.props.settings}
+                                convertedCurrency={this.state.convertedCurrency}
+                            />
+                        ) : (
+                            <Loader />
+                        )
                     ) : null}
                 </div>
             );
