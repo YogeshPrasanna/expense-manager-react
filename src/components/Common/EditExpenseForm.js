@@ -38,7 +38,7 @@ class EditExpenseForm extends Component {
         firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expense.key}`).update({
             date: this.state.date.format("MM/DD/YYYY"),
             day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            expense: Math.floor(this.state.expense * this.props.convertedCurrency),
+            expense: Math.ceil(this.state.expense * this.props.convertedCurrency),
             category: this.state.category,
             comments: this.state.comments
         });

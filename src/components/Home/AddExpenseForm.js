@@ -37,7 +37,7 @@ class AddExpenseForm extends Component {
         db.doCreateExpense(
             this.state.uid,
             $(".date").val(),
-            Math.floor(this.state.expense * this.props.convertedCurrency),
+            Math.ceil(this.state.expense * this.props.convertedCurrency),
             this.state.category,
             this.state.comments,
             moment($(".date").val()).day()
