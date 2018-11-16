@@ -274,6 +274,15 @@ ul {
         margin-left: 0px !important;
     }
 
+    .mobileNoPadding {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .card-block {
+        margin-top: 15px;
+    }
+
     #addExpense,
     #addLoan {
         bottom: 20px;
@@ -558,7 +567,8 @@ i.fa.fa-circle-o {
 
 .slides {
     display: flex;
-    overflow-x: auto;
+    overflow-x: overlay;
+    margin-top: -15px;
 
     border-radius: 5px;
 

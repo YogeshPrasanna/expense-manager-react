@@ -31,7 +31,6 @@ const Cards = props => {
         const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, currentUser);
         const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, currentUser);
 
-
         // Overall Expenses
         if (thisUsersExpenses.length > 1) {
             totalExpenses = utils.totalExpense(thisUsersExpenses);
@@ -82,7 +81,6 @@ const Cards = props => {
         mostSpentDay = utils.mostSpentDay(thisUsersExpenses).mostSpentDay;
         leastSpentDay = utils.mostSpentDay(thisUsersExpenses).leastSpentDay;
     }
-
 
     //mostSpentCategory
     if (props.settings) {
@@ -196,8 +194,7 @@ const Cards = props => {
             );
         } else {
             return (
-                <div>
-
+                <div class="mobileNoPadding">
                     <div class="slider">
                         {/* <a href="#slide-1">1</a>
                         <a href="#slide-2">2</a>
@@ -206,8 +203,8 @@ const Cards = props => {
 
                         <div class="slides">
                             <div id="slide-1">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card1">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card1 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">Overall Spent</h3>
                                             <p className="card-text">
@@ -222,8 +219,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-2">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card5">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card5 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">This Year</h3>
                                             <p className="card-text">
@@ -238,8 +235,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-3">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card2">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card2 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">This Month</h3>
                                             <p className="card-text">
@@ -254,8 +251,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-4">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card4">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card4 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">This Week</h3>
                                             <p className="card-text">
@@ -270,8 +267,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-5">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card3">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card3 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">Today</h3>
                                             <p className="card-text">
@@ -286,8 +283,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-6">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card6">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card6 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">Most Spent on</h3>
                                             <p className="card-text">
@@ -299,8 +296,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-7">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card7">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card7 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">Most Spent day</h3>
                                             <p className="card-text">
@@ -312,8 +309,8 @@ const Cards = props => {
                                 </div>
                             </div>
                             <div id="slide-8">
-                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding">
-                                    <div className="card card8">
+                                <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
+                                    <div className="card card8 mobileNoPadding">
                                         <div className="card-block">
                                             <h3 className="card-title">Least Spent day</h3>
                                             <p className="card-text">

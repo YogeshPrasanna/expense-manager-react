@@ -77,7 +77,7 @@ class HomePage extends Component {
 
             return (
                 <div>
-                    <div className="col-sm-12" style={styleFromSettings}>
+                    <div className="col-sm-12 mobileNoPadding" style={styleFromSettings}>
                         <Cards
                             expenses={this.props.expenses}
                             authUser={this.props.user}
