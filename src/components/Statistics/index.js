@@ -29,7 +29,7 @@ const StatisticsPage = props => {
         analytics.logPageView();
 
         return (
-            <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
+            <div className="container-fluid" style={styleFromSettings}>
                 <div className="row">
                     <div
                         className="col-sm-6 mobileNoPadding"
@@ -46,7 +46,7 @@ const StatisticsPage = props => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-12" style={marB15}>
+                    <div className="col-sm-12 mobileNoPadding" style={marB15}>
                         <CategoryTotalCard expenses={props.expenses} authUser={props.user} />
                     </div>
                 </div>

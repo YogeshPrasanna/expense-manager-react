@@ -29,8 +29,8 @@ const Cards = props => {
     }
 
     return (
-        <div className="row">
-            <div className="col-sm-3">
+        <div className="row mobileNoPadding">
+            <div className="col-sm-3 mobileNoPadding">
                 <div className="card card1 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">You need to repay</h3>
@@ -41,7 +41,7 @@ const Cards = props => {
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 mobileNoPadding">
                 <div className="card card2 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">You need to get </h3>

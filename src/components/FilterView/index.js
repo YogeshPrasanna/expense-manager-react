@@ -100,9 +100,9 @@ class FilterViewPage extends Component {
 
         if (this.props.settings) {
             return (
-                <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
+                <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4" style={leftCol}>
+                        <div className="col-sm-4 mobileNoPadding" style={leftCol}>
                             <form onSubmit={this.handleSubmit} style={form}>
                                 {/* <div style={datePickerHeader}> Filter out your expenses </div> */}
                                 <div className="form-group row">
@@ -220,7 +220,7 @@ class FilterViewPage extends Component {
                                 settings={this.props.settings}
                             />
                         </div>
-                        <div className="col-sm-8">
+                        <div className="col-sm-8 mobileNoPadding">
                             <GenerateExcel
                                 expenses={this.props.expenses}
                                 expensefrom={this.state.expensefrom}
