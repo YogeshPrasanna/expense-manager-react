@@ -27,7 +27,7 @@ const GenerateExcel = props => {
             color: "#DEDA54",
             padding: "10px",
             borderRadius: "5px",
-            marginTop: "15px"
+            marginTop: window.screen.width > 720 ? "15px" : "0"
         };
 
         return (

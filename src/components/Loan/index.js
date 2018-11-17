@@ -38,7 +38,7 @@ class LoanPage extends Component {
 
         if (this.props.settings) {
             return (
-                <div className="container-fluid" style={styleFromSettings}>
+                <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
                     <div className="row">
                         <div className="col-sm-12">
                             <Cards loans={this.props.loans} authUser={this.props.user} settings={this.props.settings} />

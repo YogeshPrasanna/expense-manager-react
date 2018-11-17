@@ -65,7 +65,7 @@ class LoanRow extends Component {
         }
 
         const loanStatusStyle = {
-            borderLeft: this.props.loan.value.status === "Pending" ? "25px solid #FFB74D" : "25px solid #689F38",
+            borderLeft: this.props.loan.value.status === "Pending" ? "10px solid #FFB74D" : "10px solid #689F38",
             backgroundImage:
                 this.props.loan.value.status === "Pending"
                     ? "none"
