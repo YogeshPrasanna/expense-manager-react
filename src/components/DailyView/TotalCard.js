@@ -38,7 +38,7 @@ const TotalCard = props => {
     if (settings) {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1">
+                <div className="card card1 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />
@@ -54,7 +54,7 @@ const TotalCard = props => {
     } else {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1">
+                <div className="card card1 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />

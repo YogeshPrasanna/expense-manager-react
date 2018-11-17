@@ -61,13 +61,15 @@ const DoughnutChart = props => {
             layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } }
         };
 
+        const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
+
         return (
             <div>
-                <h4>Category Analyser</h4>
+                <h4 style={mobPad15}>Category Analyser</h4>
                 <Doughnut
                     data={data}
                     options={window.screen.width > 720 ? options : optionsMobile}
-                    height={window.screen.width > 720 ? 80 : 450}
+                    height={window.screen.width > 720 ? 80 : 420}
                     responsive={true}
                 />
             </div>

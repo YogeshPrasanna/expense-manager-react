@@ -69,11 +69,11 @@ class DailyViewPage extends Component {
         };
 
         const leftCol = {
-            borderRight: "2px solid rgba(0,0,0,0.2)"
+            borderRight: window.screen.width > 720 ? "2px solid rgba(0,0,0,0.2)" : "none"
         };
 
         const form = {
-            padding: "15px 0 0 0"
+            padding: window.screen.width > 720 ? "15px 0 0 0" : "15px"
         };
 
         const pad15 = {
@@ -106,12 +106,12 @@ class DailyViewPage extends Component {
 
         if (this.props.settings) {
             return (
-                <div className="container-fluid" style={styleFromSettings}>
+                <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4" style={leftCol}>
+                        <div className="col-sm-4 " style={leftCol}>
                             <form onSubmit={this.handleSubmit} style={form}>
-                                <div style={datePickerHeader}> View your expenses on a particular date </div>
-                                <div className="form-group row">
+                                {/* <div style={datePickerHeader}> View your expenses on a particular date </div> */}
+                                <div className="form-group row mobileNoPadding">
                                     <label className="col-2 col-form-label" style={white}>
                                         <span>Date</span>
                                     </label>
@@ -144,7 +144,7 @@ class DailyViewPage extends Component {
                         </div>
                         <div className="col-sm-8">
                             <div
-                                className="col-sm-12"
+                                className="col-sm-12 mobileNoPadding"
                                 style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
                             >
                                 <DoughnutChart
