@@ -65,11 +65,11 @@ class FilterViewPage extends Component {
         };
 
         const leftCol = {
-            borderRight: "2px solid rgba(0,0,0,0.2)"
+            borderRight: window.screen.width > 720 ? "2px solid rgba(0,0,0,0.2)" : "none"
         };
 
         const form = {
-            padding: "15px 0 0 0"
+            padding: window.screen.width > 720 ? "15px 0 0 0" : "15px"
         };
 
         const pad0 = {
@@ -100,11 +100,11 @@ class FilterViewPage extends Component {
 
         if (this.props.settings) {
             return (
-                <div className="container-fluid" style={styleFromSettings}>
+                <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
                     <div className="row">
                         <div className="col-sm-4" style={leftCol}>
                             <form onSubmit={this.handleSubmit} style={form}>
-                                <div style={datePickerHeader}> Filter out your expenses </div>
+                                {/* <div style={datePickerHeader}> Filter out your expenses </div> */}
                                 <div className="form-group row">
                                     <div className="col-sm-6" style={pad0}>
                                         <label className="col-sm-12 col-form-label" style={white}>

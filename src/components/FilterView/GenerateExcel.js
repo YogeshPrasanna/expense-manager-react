@@ -42,11 +42,11 @@ const GenerateExcel = props => {
             color: "#DEDA54",
             padding: "10px",
             borderRadius: "5px",
-            marginTop: "15px"
+            marginTop: window.screen.width > 720 ? "15px" : "0"
         };
 
         return (
-            <div className="col-sm-12 export-print-bar" style={exportArea}>
+            <div className="col-sm-12 export-print-bar " style={exportArea}>
                 <ExportToExcel excelDataObject={excelDataObject} pageTitle={pageTitle} />
             </div>
         );

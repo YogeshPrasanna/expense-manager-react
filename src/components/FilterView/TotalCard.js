@@ -50,10 +50,11 @@ const TotalCard = props => {
     if (settings) {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1">
+                <div className="card card1 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">
-                            Total<i className="fa fa-money float-right" />
+                            Total
+                            <i className="fa fa-money float-right" />
                         </h3>
                         <p className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
@@ -66,10 +67,11 @@ const TotalCard = props => {
     } else {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1">
+                <div className="card card1 mobileNoPadding">
                     <div className="card-block">
                         <h3 className="card-title">
-                            Total<i className="fa fa-money float-right" />
+                            Total
+                            <i className="fa fa-money float-right" />
                         </h3>
                         <Loader />
                     </div>
