@@ -71,7 +71,7 @@ const CategoryTotalCard = props => {
 
     return (
         <div className="col-sm-12" style={pad0}>
-            <div className="card card4">
+            <div className="card card4 mobileNoPadding">
                 <div className="card-block">
                     <h3 className="card-title">Each Category</h3>
                     <ul style={pad0}>{categoryList}</ul>
