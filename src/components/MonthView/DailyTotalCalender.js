@@ -152,7 +152,7 @@ const DailyTotalCalender = props => {
                         Sat
                     </li>
                 </ul>
-                <ul style={ulStyleCalenderCells}>
+                <ul style={ulStyleCalenderCells} className="mobileNoPadding">
                     {daysStartGapHtml}
                     {printHtml}
                     {daysEndGapHtml}

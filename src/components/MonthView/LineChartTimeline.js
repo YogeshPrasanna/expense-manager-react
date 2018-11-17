@@ -85,10 +85,11 @@ const LineChartExpenseTimeline = props => {
         };
 
         const lineArea = { background: "#DDDDDD" };
+        const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
 
         return (
             <div>
-                <h4>Expense Timeline</h4>
+                <h4 style={mobPad15}>Expense Timeline</h4>
                 <div className="col-sm-12" style={lineArea}>
                     {" "}
                     <Line data={data} height={window.screen.width > 720 ? 70 : 250} />

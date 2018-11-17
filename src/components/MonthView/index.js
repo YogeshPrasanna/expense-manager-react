@@ -183,11 +183,11 @@ class MonthViewPage extends Component {
 
         if (this.props.settings) {
             return (
-                <div className="container-fluid" style={styleFromSettings}>
+                <div className="container-fluid mobileNoPadding" style={styleFromSettings}>
                     <div className="row">
                         <div className="col-sm-4" style={leftCol}>
-                            <form style={form}>
-                                <div style={Header}> View your expenses of a particular month </div>
+                            <form style={form} className="mobileNoPadding">
+                                {/* <div style={Header}> View your expenses of a particular month </div> */}
 
                                 <div
                                     className="col-md-1 col-xs-1"
@@ -272,7 +272,10 @@ class MonthViewPage extends Component {
                         </div>
 
                         <div className="col-sm-8">
-                            <div style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}>
+                            <div
+                                style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
+                                className="mobileNoPadding"
+                            >
                                 <LineChartExpenseTimeline
                                     expenses={this.props.expenses}
                                     authUser={this.props.user}
