@@ -46,7 +46,7 @@ const DoughnutChart = props => {
                 {
                     data: Object.values(allCategoryTotals).filter(el => el > 0),
                     backgroundColor: categoryColors,
-                    hoverBackgroundColor: utils.categoryColors
+                    hoverBackgroundColor: categoryColors
                 }
             ]
         };
