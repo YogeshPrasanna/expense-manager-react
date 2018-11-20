@@ -16,6 +16,11 @@ class SettingsPage extends Component {
                     ? this.props.settings.currency
                     : "Indian Rupees"
                 : "Indian Rupees",
+            monthLimit: this.props.settings
+                ? this.props.settings.monthLimit
+                    ? this.props.settings.monthLimit
+                    : 15000
+                : 15000,
             mode: this.props.settings ? this.props.settings.mode : "day",
             travelMode: this.props.settings
                 ? this.props.settings.travelMode
@@ -42,7 +47,8 @@ class SettingsPage extends Component {
             this.state.mode,
             this.state.currency,
             this.state.travelMode,
-            this.state.fromCurrency
+            this.state.fromCurrency,
+            this.state.monthLimit
         );
 
         // reset form once saved
@@ -81,6 +87,10 @@ class SettingsPage extends Component {
                 marginLeft: window.screen.width > 720 ? "-50%" : "0"
             };
 
+            const inputNightMode = { background: "#2c2b2b", color: "#a9a0a0", border: "1px solid #9b8c8cc7" };
+
+            const inputDayMode = { background: "#fff", color: "#495057" };
+
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <form onSubmit={this.handleSubmit}>
@@ -94,6 +104,7 @@ class SettingsPage extends Component {
                                     name="font"
                                     value={this.state.font}
                                     onChange={this.handleChange.bind(this)}
+                                    style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                 >
                                     <option value="Dhurjati">Dhurjati</option>
                                     <option value="sans-serif">sans-serif</option>
@@ -114,6 +125,7 @@ class SettingsPage extends Component {
                                     name="currency"
                                     value={this.state.currency}
                                     onChange={this.handleChange.bind(this)}
+                                    style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                 >
                                     <option value="Indian Rupees">Indian Rupees</option>
                                     <option value="US Dollars">US Dollars</option>
@@ -121,6 +133,22 @@ class SettingsPage extends Component {
                                     <option value="Yen">Yen</option>
                                     <option value="Euro">Euro</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-xs-6 col-form-label" style={white}>
+                                <span>Monthly Limit </span>
+                            </label>
+                            <div className="col-sm-10 col-xs-6">
+                                <input
+                                    className="form-control"
+                                    required
+                                    type="number"
+                                    name="monthLimit"
+                                    onChange={this.handleChange.bind(this)}
+                                    value={this.state.monthLimit}
+                                    style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                />
                             </div>
                         </div>
                         <div className="form-group row">

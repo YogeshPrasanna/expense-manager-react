@@ -118,13 +118,32 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-6 col-lg-3">
                         <div className="card card2">
                             <div className="card-block">
-                                <h3 className="card-title">This Month</h3>
+                                <h3 className="card-title">
+                                    This Month{" "}
+                                    <i
+                                        className={
+                                            totalExpensesThisMonth > props.settings.monthLimit
+                                                ? "fa fa-warning warning-color"
+                                                : ""
+                                        }
+                                        aria-hidden="true"
+                                    />{" "}
+                                </h3>
                                 <p className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpensesThisMonth}
+                                </p>
+                                <p className="limitText">
+                                    {totalExpensesThisMonth > props.settings.monthLimit ? (
+                                        <span>
+                                            Monthly <br /> Limit <br /> exceeded{" "}
+                                        </span>
+                                    ) : (
+                                        ""
+                                    )}
                                 </p>
                             </div>
                         </div>
@@ -238,13 +257,32 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-6 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card2 mobileNoPadding">
                                         <div className="card-block">
-                                            <h3 className="card-title">This Month</h3>
+                                            <h3 className="card-title">
+                                                This Month{" "}
+                                                <i
+                                                    className={
+                                                        totalExpensesThisMonth > props.settings.monthLimit
+                                                            ? "fa fa-warning warning-color"
+                                                            : ""
+                                                    }
+                                                    aria-hidden="true"
+                                                />{" "}
+                                            </h3>
                                             <p className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpensesThisMonth}
+                                            </p>
+                                            <p className="limitText">
+                                                {totalExpensesThisMonth > props.settings.monthLimit ? (
+                                                    <span>
+                                                        Monthly <br /> Limit <br /> exceeded{" "}
+                                                    </span>
+                                                ) : (
+                                                    ""
+                                                )}
                                             </p>
                                         </div>
                                     </div>

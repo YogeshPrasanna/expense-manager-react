@@ -97,7 +97,8 @@ class App extends Component {
                             "day",
                             "Indian Rupees",
                             "off",
-                            "Indian Rupees"
+                            "Indian Rupees",
+                            15000
                         );
                     }
                 });

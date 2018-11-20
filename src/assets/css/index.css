@@ -132,22 +132,22 @@ ul {
 }
 
 .card5 {
-    background: #4F517D !important;
+    background: #4f517d !important;
     color: #ddd !important;
 }
 
 .card6 {
-    background: #A66060 !important;
+    background: #a66060 !important;
     color: #ddd !important;
 }
 
 .card7 {
-    background: #47682C !important;
+    background: #47682c !important;
     color: #ddd !important;
 }
 
 .card8 {
-    background: #8D7B76 !important;
+    background: #8d7b76 !important;
     color: #ddd !important;
 }
 
@@ -160,6 +160,7 @@ ul {
     padding: 15px;
     font-size: 35px;
     font-weight: bold;
+    margin: 0;
 }
 
 .expense-day {
@@ -198,11 +199,13 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient(145deg,
+    background-image: repeating-linear-gradient(
+        145deg,
         transparent,
         transparent 1px,
         rgba(238, 238, 238, 0.298039) 3px,
-        rgba(238, 238, 238, 0.298039) 5px);
+        rgba(238, 238, 238, 0.298039) 5px
+    );
 }
 
 /* Switch type radio button  */
@@ -254,7 +257,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked+label {
+.switch-field input:checked + label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -593,7 +596,7 @@ i.fa.fa-circle-o {
     background: transparent;
 }
 
-.slides>div {
+.slides > div {
     flex-shrink: 0;
     width: 100%;
     height: auto;
@@ -610,7 +613,7 @@ i.fa.fa-circle-o {
     font-size: 100px;
 }
 
-.slides>div:target {
+.slides > div:target {
     transform: scale(0.8);
 }
 
@@ -630,7 +633,7 @@ i.fa.fa-circle-o {
     color: white;
 }
 
-.slider>a {
+.slider > a {
     display: inline-flex;
     width: 1.5rem;
     height: 1.5rem;
@@ -643,17 +646,32 @@ i.fa.fa-circle-o {
     position: relative;
 }
 
-.slider>a:active {
+.slider > a:active {
     top: 1px;
 }
 
-.slider>a:focus {
+.slider > a:focus {
     background: #000;
 }
 
 /* Don't need button navigation */
 @supports (scroll-snap-type) {
-    .slider>a {
+    .slider > a {
         display: none;
     }
+}
+
+.warning-color {
+    color: #e04f4ff0;
+    float: right;
+}
+
+.limitText {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    color: inherit;
+    font-size: 15px;
+    text-align: right;
+    margin-bottom: 0 !important;
 }
