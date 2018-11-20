@@ -282,6 +282,10 @@ ul {
         margin: 0 !important;
     }
 
+    .mobileNoMargin {
+        margin: 0 !important;
+    }
+
     .card-block {
         margin-top: 15px;
     }
@@ -666,6 +670,10 @@ i.fa.fa-circle-o {
     float: right;
 }
 
+.icon-size-monthly-warning {
+    font-size: 1.5em !important;
+}
+
 .limitText {
     position: absolute;
     right: 15px;
@@ -674,4 +682,9 @@ i.fa.fa-circle-o {
     font-size: 15px;
     text-align: right;
     margin-bottom: 0 !important;
+}
+
+.success-color {
+    color: green;
+    float: right;
 }
