@@ -76,7 +76,7 @@ h1 {
 .rwd-table {
     background: #34495e;
     color: #fff;
-    border-radius: 0.4em;
+    border-radius: 0;
     overflow: hidden;
 }
 

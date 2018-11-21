@@ -41,7 +41,7 @@ const GenerateExcel = props => {
             backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",
             color: "#DEDA54",
             padding: "10px",
-            borderRadius: "5px",
+            borderRadius: "0",
             marginTop: window.screen.width > 720 ? "15px" : "0"
         };
 
