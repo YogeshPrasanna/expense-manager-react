@@ -64,10 +64,6 @@ class FilterViewPage extends Component {
             borderRadius: "5px"
         };
 
-        const leftCol = {
-            borderRight: window.screen.width > 720 ? "2px solid rgba(0,0,0,0.2)" : "none"
-        };
-
         const form = {
             padding: window.screen.width > 720 ? "15px 0 0 0" : "15px"
         };
@@ -90,6 +86,10 @@ class FilterViewPage extends Component {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
 
+        const rightCol = {
+            paddingLeft: "0"
+        };
+
         const inputNightMode = {
             background: "#2c2b2b",
             color: "#a9a0a0",
@@ -102,7 +102,7 @@ class FilterViewPage extends Component {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4 mobileNoPadding" style={leftCol}>
+                        <div className="col-sm-4 mobileNoPadding">
                             <form onSubmit={this.handleSubmit} style={form}>
                                 {/* <div style={datePickerHeader}> Filter out your expenses </div> */}
                                 <div className="form-group row">
@@ -220,7 +220,7 @@ class FilterViewPage extends Component {
                                 settings={this.props.settings}
                             />
                         </div>
-                        <div className="col-sm-8 mobileNoPadding">
+                        <div className="col-sm-8 mobileNoPadding" style={rightCol}>
                             <GenerateExcel
                                 expenses={this.props.expenses}
                                 expensefrom={this.state.expensefrom}

@@ -74,8 +74,6 @@ class MonthViewPage extends Component {
             padding: "15px"
         };
 
-        const leftCol = { borderRight: window.screen.width > 720 ? "2px solid rgba(0,0,0,0.2)" : "none" };
-
         const form = {
             padding: "15px 0 0 0"
         };
@@ -167,6 +165,10 @@ class MonthViewPage extends Component {
             color: "#C8E9A0"
         };
 
+        const rightCol = {
+            paddingLeft: "0"
+        };
+
         const inputNightMode = {
             color: "#495057",
             border: "1px solid #fff",
@@ -184,7 +186,7 @@ class MonthViewPage extends Component {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4 mobileNoPadding" style={leftCol}>
+                        <div className="col-sm-4 mobileNoPadding">
                             <form style={form} className="mobileNoPadding">
                                 {/* <div style={Header}> View your expenses of a particular month </div> */}
 
@@ -278,7 +280,7 @@ class MonthViewPage extends Component {
                             />
                         </div>
 
-                        <div className="col-sm-8 mobileNoPadding">
+                        <div className="col-sm-8 mobileNoPadding" style={rightCol}>
                             <div
                                 style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
                                 className="mobileNoPadding"

@@ -68,10 +68,6 @@ class DailyViewPage extends Component {
             borderRadius: "5px"
         };
 
-        const leftCol = {
-            borderRight: window.screen.width > 720 ? "2px solid rgba(0,0,0,0.2)" : "none"
-        };
-
         const form = {
             padding: window.screen.width > 720 ? "15px 0 0 0" : "15px"
         };
@@ -100,6 +96,8 @@ class DailyViewPage extends Component {
             margin: "15px 0"
         };
 
+        const rightCol = { paddingLeft: "0" };
+
         const white = {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
@@ -108,7 +106,7 @@ class DailyViewPage extends Component {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4 mobileNoPadding" style={leftCol}>
+                        <div className="col-sm-4 mobileNoPadding">
                             <form onSubmit={this.handleSubmit} style={form}>
                                 {/* <div style={datePickerHeader}> View your expenses on a particular date </div> */}
                                 <div className="form-group row mobileNoPadding">
@@ -142,7 +140,7 @@ class DailyViewPage extends Component {
                                 authUser={this.props.user}
                             />
                         </div>
-                        <div className="col-sm-8 mobileNoPadding">
+                        <div className="col-sm-8 mobileNoPadding" style={rightCol}>
                             <div
                                 className="col-sm-12 mobileNoPadding"
                                 style={this.props.settings.mode === "night" ? nmBgForCharts : pad15}
