@@ -76,7 +76,7 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 [![Night Mode Home](https://i.postimg.cc/W4N792Rh/home-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Night Mode Month View Page
-[![Night Mode Month](https://s25.postimg.cc/iayn40jen/month_night_mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+[![Night Mode Month](https://i.postimg.cc/zDyzFLVf/month-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Settings
 [![Settings](https://i.postimg.cc/pr0s2D95/settings.png)](https://sad-shirley-6ef62f.netlify.com/)
