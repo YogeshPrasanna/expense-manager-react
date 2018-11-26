@@ -690,6 +690,10 @@ i.fa.fa-circle-o {
     float: right;
 }
 
+.totalRecords {
+    float: right;
+}
+
 /* Bootstrap overrides */
 .alert,
 .form-control {
