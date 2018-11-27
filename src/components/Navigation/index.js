@@ -85,6 +85,13 @@ const NavigationAuth = props => {
                         Loan
                     </Link>
                     <Link
+                        className={`nav-link ${window.location.pathname === "/savings" ? "active" : "inactive"}`}
+                        to={routes.SAVINGS_VIEW}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Savings
+                    </Link>
+                    <Link
                         className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
                         to={routes.SETTINGS_VIEW}
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
@@ -156,7 +163,6 @@ const NavigationAuth = props => {
                     >
                         Stats
                     </Link>
-
                     <Link
                         className={`nav-link ${window.location.pathname === "/loan" ? "active" : "inactive"}`}
                         to={routes.LOAN_VIEW}
@@ -164,6 +170,14 @@ const NavigationAuth = props => {
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
                         Loan
+                    </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/savings" ? "active" : "inactive"}`}
+                        to={routes.SAVINGS_VIEW}
+                        onClick={burgerToggle}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Savings
                     </Link>
                     <Link
                         className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}

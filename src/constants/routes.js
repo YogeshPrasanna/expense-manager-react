@@ -13,3 +13,4 @@ export const USER_VERIFICATION = "/user-vefification";
 export const STATISTICS_VIEW = "/statistics";
 export const LOAN_VIEW = "/loan";
 export const SETTINGS_VIEW = "/settings";
+export const SAVINGS_VIEW = "/savings";

@@ -24,6 +24,7 @@ import UserVerification from "./UserVerification/index";
 import StatisticsPage from "./Statistics/index";
 import LoanPage from "./Loan/index";
 import SettingsPage from "./Settings/index";
+import SavingsPage from "./Savings/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
@@ -334,6 +335,12 @@ class App extends Component {
                         exact
                         path={routes.SETTINGS_VIEW}
                         component={() => <SettingsPage user={this.state.authUser} settings={this.state.settings} />}
+                    />
+
+                    <Route
+                        exact
+                        path={routes.SAVINGS_VIEW}
+                        component={() => <SavingsPage user={this.state.authUser} settings={this.state.settings} />}
                     />
                 </div>
             </Router>
