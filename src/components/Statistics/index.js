@@ -8,7 +8,7 @@ import * as analytics from "./../../analytics/analytics";
 
 const marB15 = {
     marginBottom: window.screen.width > 720 ? "15px" : "0",
-    marginTop: window.screen.width > 720 ? "15px" : "0"
+    marginTop: window.screen.width > 720 ? "0" : "0"
 };
 
 const StatisticsPage = props => {
