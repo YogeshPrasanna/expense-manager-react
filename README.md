@@ -83,3 +83,6 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 #### Mobile Views
 [![Mobile Screens](https://s25.postimg.cc/r5zhetxzz/mobile_screens_expense_manager.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Calendar Component
+[![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
