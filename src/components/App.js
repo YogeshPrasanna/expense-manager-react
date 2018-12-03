@@ -42,7 +42,8 @@ class App extends Component {
             loans: null,
             defaultCategoriesNames: null,
             defaultCategoriesColors: null,
-            settings: null
+            settings: null,
+            savings: null
         };
     }
 
@@ -143,6 +144,15 @@ class App extends Component {
                     }
                 });
 
+                // get all the savings from new table
+                firebase.db.ref(`savingsTable/${this.state.authUser.uid}`).on("value", data => {
+                    if (data.val() !== null) {
+                        this.setState({ savings: data.val() });
+                    } else {
+                        this.setState({ savings: data.val() });
+                    }
+                });
+
                 // get all the defaultCategories
                 firebase.db.ref("defaultCategories").on("value", data => {
                     if (data) {
@@ -196,7 +206,9 @@ class App extends Component {
                                 // need to set empty state once deleting all records in legacy table
                                 // or else it will always be loading
 
-                                this.setState({ loans: data.val() });
+                                this.setState({
+                                    loans: data.val()
+                                });
                             }
                         });
                     }
@@ -340,7 +352,13 @@ class App extends Component {
                     <Route
                         exact
                         path={routes.SAVINGS_VIEW}
-                        component={() => <SavingsPage user={this.state.authUser} settings={this.state.settings} />}
+                        component={() => (
+                            <SavingsPage
+                                user={this.state.authUser}
+                                savings={this.state.savings}
+                                settings={this.state.settings}
+                            />
+                        )}
                     />
                 </div>
             </Router>

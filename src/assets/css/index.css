@@ -62,6 +62,16 @@ ul {
     background: white;
 }
 
+.popup_inner_saving {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 8% !important;
+    bottom: 2% !important;
+    margin: auto;
+    background: white;
+}
+
 .addExpenseHeader {
     display: block;
     padding: 15px;
