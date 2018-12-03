@@ -30,6 +30,7 @@ const MonthExpenseTable = props => {
                     year={props.year}
                     key={Math.random() * 100}
                     settings={props.settings}
+                    convertedCurrency={props.convertedCurrency}
                 />
             </tbody>
         </table>

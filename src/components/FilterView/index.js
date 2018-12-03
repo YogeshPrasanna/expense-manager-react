@@ -23,7 +23,8 @@ class FilterViewPage extends Component {
             todate: moment(),
             category: "Food",
             expensefrom: "00",
-            expenseto: "10000"
+            expenseto: "10000",
+            convertedCurrency: null
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -53,6 +54,43 @@ class FilterViewPage extends Component {
     componentDidMount() {
         analytics.initGA();
         analytics.logPageView();
+
+        // if travel mode then convert currency else set to 1
+        if (this.props.settings && this.props.settings.travelMode === "on") {
+            function returnCur(cur) {
+                switch (cur) {
+                    case "Indian Rupees":
+                        return "INR";
+                    case "US Dollars":
+                        return "USD";
+                    case "Pounds":
+                        return "EUR";
+                    case "Euro":
+                        return "EUR";
+                    case "Yen":
+                        return "YER";
+                    default:
+                        return "INR";
+                }
+            }
+
+            let fromcur = returnCur(this.props.settings.fromCurrency);
+            let tocur = returnCur(this.props.settings.currency);
+
+            fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y`)
+                .then(resp => resp.json()) // Transform the data into json
+                .then(data => {
+                    this.setState({
+                        convertedCurrency: Object.values(data)[0].val
+                    });
+                })
+                .catch(() => {
+                    alert("Some Problem with the currency converter api. Values will Fallback to default currency");
+                    this.setState({ convertedCurrency: 1 });
+                });
+        } else {
+            this.setState({ convertedCurrency: 1 });
+        }
     }
 
     render() {
@@ -231,16 +269,21 @@ class FilterViewPage extends Component {
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                             />
-                            <ExpenseTable
-                                expenses={this.props.expenses}
-                                expensefrom={this.state.expensefrom}
-                                expenseto={this.state.expenseto}
-                                fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                todate={this.state.todate.format("MM/DD/YYYY")}
-                                category={this.state.category}
-                                authUser={this.props.user}
-                                settings={this.props.settings}
-                            />
+                            {this.state.convertedCurrency ? (
+                                <ExpenseTable
+                                    expenses={this.props.expenses}
+                                    expensefrom={this.state.expensefrom}
+                                    expenseto={this.state.expenseto}
+                                    fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                                    todate={this.state.todate.format("MM/DD/YYYY")}
+                                    category={this.state.category}
+                                    authUser={this.props.user}
+                                    settings={this.props.settings}
+                                    convertedCurrency={this.state.convertedCurrency}
+                                />
+                            ) : (
+                                <Loader />
+                            )}
                         </div>
                     </div>
                 </div>
