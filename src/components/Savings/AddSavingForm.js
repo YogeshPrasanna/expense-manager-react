@@ -43,17 +43,19 @@ class AddSavingForm extends Component {
 
         console.log(this.state);
 
-        console.log("converted currency", this.props.convertedCurrency);
+        console.log("date", $(".date").val());
+
+        // console.log("converted currency", this.props.convertedCurrency);
         db.doCreateSaving(
             this.state.uid,
-            $(".date").val(),
+            this.state.date.format("MM/DD/YYYY"),
             this.state.goalAmount,
             Math.ceil(this.state.savingAmount),
             this.state.savingFor,
             this.state.comments,
             this.state.goalAchieved,
             this.state.cardColor,
-            moment($(".date").val()).day()
+            moment(this.state.date.format("MM/DD/YYYY")).day()
         );
         // reset form once saved
         this.setState({
