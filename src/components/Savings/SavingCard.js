@@ -14,7 +14,10 @@ const SavingsCard = props => {
     }
 
     if (savings && currentUser) {
-        var img = `url(https://source.unsplash.com/760x320/?${props.savings.value.savingFor}) 20% 1% / cover no-repeat`;
+        var img = `url(https://source.unsplash.com/760x320/?${
+            props.savings.value.savingFor.split(" ")[0]
+        }) 20% 1% / cover no-repeat`;
+
         return (
             <div class="col-sm-4 col-xs-12" style={{ display: "inline-block" }}>
                 <div class="img-card card-savings" style={{ border: "none" }}>
@@ -30,14 +33,34 @@ const SavingsCard = props => {
                             <span class="year">{moment(props.savings.value.date).year()}</span>
                         </div>
                         <div class="data">
-                            <div class="content">
-                                <span class="author">Jane Doe</span>
+                            <div class="content" style={{ borderLeft: `10px solid ${props.savings.value.cardColor}` }}>
+                                {/* <span class="author">Jane Doe</span> */}
+                                <form>
+                                    <div className="form-group row">
+                                        <label className="col-sm-4 col-xs-6 col-form-label">
+                                            <span>Add Saving :</span>
+                                        </label>
+                                        <div className="col-sm-4 col-xs-6">
+                                            <input className="form-control" required type="number" name="expense" />
+                                        </div>
+                                        <div className="col-sm-2 col-xs-2">
+                                            {/* <button className="save-btn"> */}
+                                            <i className="fa fa-save action-icons" aria-hidden="true" />
+                                            {/* </button> */}
+                                        </div>
+                                    </div>
+                                </form>
                                 <h1 class="title">
                                     <a href="#">{props.savings.value.savingFor}</a>
                                 </h1>
                                 <p class="text">{props.savings.value.comments}</p>
                                 <label for="show-menu" class="menu-button">
                                     <span />
+                                    <i className="fa fa-edit action-icons" aria-hidden="true" />
+
+                                    <button className="delete-btn">
+                                        <i className="fa fa-trash-o" aria-hidden="true" />
+                                    </button>
                                 </label>
                             </div>
                             {/* <input type="checkbox" id="show-menu" />
