@@ -8,23 +8,26 @@ import $ from "jquery";
 import Loader from "../Common/Loader";
 
 import * as db from "../../firebase/db";
+import * as firebase from "../../firebase/firebase";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
-class AddSavingForm extends Component {
+class EditSavingForm extends Component {
     constructor(props) {
         super(props);
 
+        const savings = this.props.savings;
+
         this.state = {
-            date: moment(),
-            day: moment().day,
-            goalAmount: "",
-            savingAmount: "",
-            savingFor: "Food",
-            comments: "",
-            goalAchieved: "no",
-            cardColor: "#fff",
+            date: moment(savings.value.date),
+            day: moment(savings.value.date).day,
+            goalAmount: savings.value.goalAmount,
+            savingAmount: savings.value.savingAmount,
+            savingFor: savings.value.savingFor,
+            comments: savings.value.comments,
+            goalAchieved: savings.value.goalAchieved,
+            cardColor: savings.value.cardColor,
             uid: this.props.user.uid,
             dataSaved: false,
             displayColorPicker: false
@@ -41,30 +44,18 @@ class AddSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        db.doCreateSaving(
-            this.state.uid,
-            this.state.date.format("MM/DD/YYYY"),
-            this.state.goalAmount,
-            Math.ceil(this.state.savingAmount),
-            this.state.savingFor,
-            this.state.comments,
-            this.state.goalAchieved,
-            this.state.cardColor,
-            moment(this.state.date.format("MM/DD/YYYY")).day()
-        );
-        // reset form once saved
-        this.setState({
-            date: moment(),
-            day: moment().day,
-            goalAmount: "",
-            savingAmount: "",
-            savingFor: "Food",
-            comments: "",
-            goalAchieved: "no",
-            cardColor: "#fff",
-            uid: this.props.user.uid,
-            dataSaved: true
+        firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+            date: this.state.date.format("MM/DD/YYYY"),
+            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            goalAmount: this.state.goalAmount,
+            savingAmount: Math.ceil(this.state.savingAmount),
+            savingFor: this.state.savingFor,
+            comments: this.state.comments,
+            goalAchieved: this.state.goalAchieved,
+            cardColor: this.state.cardColor
         });
+
+        $("#closePopup").click();
     }
 
     handleClick() {
@@ -74,6 +65,10 @@ class AddSavingForm extends Component {
     handleClose() {
         this.setState({ displayColorPicker: false });
     }
+
+    // handleChange = (color) => {
+    //     this.setState({ color: color.rgb })
+    // };
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
@@ -245,7 +240,7 @@ class AddSavingForm extends Component {
 
                     <div className="form-group row">
                         <label className="col-sm-3 col-xs-6 col-form-label">
-                            <span>Goal Achieved</span>
+                            <span>Goal Achieved {this.state.goalAchieved} </span>
                         </label>
                         <div className="col-sm-5 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
                             <input
@@ -299,4 +294,4 @@ class AddSavingForm extends Component {
     }
 }
 
-export default AddSavingForm;
+export default EditSavingForm;

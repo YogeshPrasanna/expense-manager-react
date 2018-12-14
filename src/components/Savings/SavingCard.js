@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 
+import EditSavingPopup from "./EditSavingPopup";
+
 import Loader from "../Common/Loader";
 import "./styles/cards.css";
 
@@ -9,6 +11,8 @@ import moment from "moment";
 class SavingsCard extends Component {
     constructor(props) {
         super(props);
+
+        this.state = { showEditPopup: false };
 
         this.handleClick = this.handleClick.bind(this);
     }
@@ -21,22 +25,38 @@ class SavingsCard extends Component {
         }
     }
 
+    toggleEditPopup(e) {
+        this.setState({
+            showEditPopup: !this.state.showEditPopup
+        });
+    }
+
     render() {
         let savings = this.props.savings;
-        // let settings = props.settings;
+        let settings = this.props.settings;
         let currentUser = this.props.authUser;
 
-        if (!savings || !currentUser) {
+        console.log("savings ", savings, settings);
+
+        if (!savings || !currentUser || !settings) {
             return <Loader />;
         }
 
-        if (savings && currentUser) {
+        if (savings && currentUser && settings) {
             var img = `url(https://source.unsplash.com/760x320/?${
                 savings.value.savingFor.split(" ")[0]
             }) 20% 1% / cover no-repeat`;
 
             return (
                 <div class="col-sm-4 col-xs-12" style={{ display: "inline-block" }}>
+                    {this.state.showEditPopup ? (
+                        <EditSavingPopup
+                            user={this.props.authUser}
+                            savings={this.props.savings}
+                            closePopup={this.toggleEditPopup.bind(this)}
+                            settings={this.props.settings}
+                        />
+                    ) : null}
                     <div class="img-card card-savings" style={{ border: "none" }}>
                         <div class="wrapper" style={{ background: img }}>
                             "
@@ -71,31 +91,17 @@ class SavingsCard extends Component {
                                         <a href="#">{savings.value.savingFor}</a>
                                     </h1>
                                     <p class="text">{savings.value.comments}</p>
-                                    <label for="show-menu" class="menu-button">
+                                    <label htmlFor="show-menu" class="menu-button">
                                         <span />
-                                        <i className="fa fa-edit action-icons" aria-hidden="true" />
+                                        <button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}>
+                                            <i className="fa fa-edit action-icons" aria-hidden="true" />
+                                        </button>
 
                                         <button className="delete-btn" onClick={this.handleClick}>
                                             <i className="fa fa-trash-o" aria-hidden="true" />
                                         </button>
                                     </label>
                                 </div>
-                                {/* <input type="checkbox" id="show-menu" />
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="#" class="fa fa-bookmark-o" />
-                                </li>
-                                <li>
-                                    <a href="#" class="fa fa-heart-o">
-                                        <span>47</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="fa fa-comment-o">
-                                        <span>8</span>
-                                    </a>
-                                </li>
-                            </ul> */}
                             </div>
                         </div>
                     </div>

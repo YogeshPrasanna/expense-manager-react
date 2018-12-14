@@ -38,7 +38,6 @@ class SavingsPage extends Component {
         };
 
         if (this.props.settings) {
-            console.log("PROPS : ", this.props);
             return (
                 <div>
                     <div className="container-fluid" style={styleFromSettings}>

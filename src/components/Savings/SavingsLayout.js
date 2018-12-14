@@ -17,20 +17,10 @@ const SavingsLayout = props => {
         let eachSaving = utils.eachExpense(savings);
         let thisUsersSavings = utils.currentUsersExpenses(eachSaving, currentUser);
 
-        console.log(savings, thisUsersSavings);
-
-        var arra = ["nature", "car", "pattern", "nation", "colour", "sky", "cloth", "butterfly", "food", "beach"];
-
         if (thisUsersSavings.length) {
             var abc = thisUsersSavings.map(function(elem, i) {
                 console.log("from inside map : ", elem, currentUser);
-                return (
-                    <SavingsCard
-                        savings={elem}
-                        authUser={currentUser}
-                        img={arra[Number(Math.random().toString()[2])]}
-                    />
-                );
+                return <SavingsCard savings={elem} authUser={currentUser} settings={settings} />;
             });
 
             return <div class="col-sm-12">{abc}</div>;
