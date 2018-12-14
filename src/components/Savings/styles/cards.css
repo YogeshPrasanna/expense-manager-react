@@ -145,11 +145,25 @@ h1 {
 .img-card .menu-button {
     position: absolute;
     z-index: 999;
-    top: 16px;
-    right: 16px;
+    top: 0px;
+    right: 0px;
     width: 25px;
     text-align: center;
     cursor: pointer;
+    background: linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
+        linear-gradient(225deg, black 25%, transparent 25%) -50px 0, linear-gradient(315deg, black 25%, transparent 25%),
+        linear-gradient(45deg, black 25%, transparent 25%);
+    background-size: 2em 2em;
+    background-color: #232323;
+    height: 100%;
+}
+
+.img-card .menu-button button {
+    width: 100%;
+    /* border-bottom: 2px solid yellow; */
+    padding: 16.5px 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid orange;
 }
 
 .card-savings form {
@@ -217,4 +231,46 @@ h1 {
 
 .img-card.card-savings {
     padding: 15px 0;
+}
+
+.moreToSaveMsg {
+    position: relative;
+    top: -24px;
+    width: 87.3%;
+    color: #fff;
+    /* font-size: 25px; */
+    margin-left: 52px;
+    background: rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.5);
+}
+
+.moreToSaveMsg span {
+    padding-left: 15px;
+}
+
+.save-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    color: lightblue;
+    line-height: 1px;
+    padding: 0;
+}
+
+@media (max-width: 720px) {
+    .card-savings .wrapper {
+        min-height: 435px;
+    }
+
+    .moreToSaveMsg {
+        font-size: 23px;
+    }
+
+    #saving-card {
+        padding: 0;
+    }
 }

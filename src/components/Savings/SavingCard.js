@@ -5,6 +5,7 @@ import EditSavingPopup from "./EditSavingPopup";
 
 import Loader from "../Common/Loader";
 import "./styles/cards.css";
+import $ from "jquery";
 
 import moment from "moment";
 
@@ -12,9 +13,11 @@ class SavingsCard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { showEditPopup: false };
+        this.state = { showEditPopup: false, addSavingAmount: "" };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // deleting the saving
@@ -31,24 +34,45 @@ class SavingsCard extends Component {
         });
     }
 
+    handleChange(e) {
+        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
+        var change = {};
+        change[e.target.name] = e.target.value;
+        this.setState(change);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        firebase.db.ref(`savingsTable/${this.props.authUser.uid}/${this.props.savings.key}`).update({
+            savingAmount: Math.ceil(Number(this.props.savings.value.savingAmount) + Number(this.state.addSavingAmount))
+        });
+
+        $("#closePopup").click();
+    }
+
     render() {
         let savings = this.props.savings;
         let settings = this.props.settings;
         let currentUser = this.props.authUser;
-
-        console.log("savings ", savings, settings);
 
         if (!savings || !currentUser || !settings) {
             return <Loader />;
         }
 
         if (savings && currentUser && settings) {
-            var img = `url(https://source.unsplash.com/760x320/?${
+            let img = `url(https://source.unsplash.com/760x320/?${
                 savings.value.savingFor.split(" ")[0]
             }) 20% 1% / cover no-repeat`;
 
+            const customLabel = {
+                padding: "0 0px 0 10px"
+            };
+            const customInput = {
+                height: "28px"
+            };
             return (
-                <div class="col-sm-4 col-xs-12" style={{ display: "inline-block" }}>
+                <div class="col-sm-4 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
                     {this.state.showEditPopup ? (
                         <EditSavingPopup
                             user={this.props.authUser}
@@ -69,21 +93,30 @@ class SavingsCard extends Component {
                                 </span>
                                 <span class="year">{moment(savings.value.date).year()}</span>
                             </div>
+                            <div class="moreToSaveMsg">
+                                <span>{savings.value.goalAmount - savings.value.savingAmount} more to save</span>
+                            </div>
                             <div class="data">
                                 <div class="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>
-                                    {/* <span class="author">Jane Doe</span> */}
-                                    <form>
+                                    <form onSubmit={this.handleSubmit}>
                                         <div className="form-group row">
-                                            <label className="col-sm-4 col-xs-6 col-form-label">
+                                            <label className="col-sm-3 col-xs-6 col-form-label" style={customLabel}>
                                                 <span>Add Saving :</span>
                                             </label>
                                             <div className="col-sm-4 col-xs-6">
-                                                <input className="form-control" required type="number" name="expense" />
+                                                <input
+                                                    className="form-control"
+                                                    name="addSavingAmount"
+                                                    required
+                                                    type="number"
+                                                    style={customInput}
+                                                    onChange={this.handleChange.bind(this)}
+                                                />
                                             </div>
-                                            <div className="col-sm-2 col-xs-2">
-                                                {/* <button className="save-btn"> */}
-                                                <i className="fa fa-save action-icons" aria-hidden="true" />
-                                                {/* </button> */}
+                                            <div className="col-sm-1 col-xs-2" style={{ padding: "0" }}>
+                                                <button className="save-btn" type="submit">
+                                                    <i className="fa fa-save action-icons" aria-hidden="true" />
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
