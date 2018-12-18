@@ -300,6 +300,14 @@ ul {
 
     .card-block {
         margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .card .card-block .card-text {
+        padding: 18px;
+        font-size: 27px;
+        font-weight: bold;
+        margin: 0;
     }
 
     #addExpense,
