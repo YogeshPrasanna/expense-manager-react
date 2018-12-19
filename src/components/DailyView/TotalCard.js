@@ -46,7 +46,7 @@ const TotalCard = props => {
                         </h3>
                         <p className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
-                            {totalExpenses}
+                            {totalExpenses.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>

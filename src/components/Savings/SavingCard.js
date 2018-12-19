@@ -94,7 +94,12 @@ class SavingsCard extends Component {
                                 <span class="year">{moment(savings.value.date).year()}</span>
                             </div>
                             <div class="moreToSaveMsg">
-                                <span>{savings.value.goalAmount - savings.value.savingAmount} more to save</span>
+                                <span>
+                                    {(savings.value.goalAmount - savings.value.savingAmount)
+                                        .toString()
+                                        .replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}{" "}
+                                    more to save
+                                </span>
                             </div>
                             <div class="data">
                                 <div class="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>

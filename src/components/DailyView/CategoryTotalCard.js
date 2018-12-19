@@ -62,7 +62,7 @@ const CategoryTotalCard = props => {
                     <span style={category} className="ttt" key={el.key}>
                         <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
                         <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
-                        <div style={categoryExpense}>{el.value}</div>
+                        <div style={categoryExpense}>{el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}</div>
                     </span>
                 );
             } else {

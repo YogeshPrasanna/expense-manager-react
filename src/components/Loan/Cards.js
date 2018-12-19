@@ -37,7 +37,7 @@ const Cards = props => {
                         <h3 className="card-title">You need to repay</h3>
                         <p className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
-                            {loanToPay}
+                            {loanToPay.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ const Cards = props => {
                         <h3 className="card-title">You need to get </h3>
                         <p className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
-                            {loanToGet}
+                            {loanToGet.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>

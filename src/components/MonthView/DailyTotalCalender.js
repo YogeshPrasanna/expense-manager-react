@@ -121,7 +121,7 @@ const DailyTotalCalender = props => {
                             {" "}
                             {moment(allDatesInSelectedMonth[i]).date()}
                         </div>{" "}
-                        {totals[elem]}{" "}
+                        {totals[elem].toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}{" "}
                     </li>
                 </Link>
             );
