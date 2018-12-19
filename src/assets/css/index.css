@@ -117,6 +117,9 @@ ul {
     margin-top: 15px;
     border-left: 10px solid rgba(0, 0, 0, 0.1) !important;
     border-radius: 0 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
 .card:hover {
