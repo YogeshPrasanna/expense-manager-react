@@ -57,11 +57,11 @@ class App extends Component {
         firebase.auth.onAuthStateChanged(authUser => {
             authUser
                 ? this.setState({
-                      authUser: authUser
-                  })
+                    authUser: authUser
+                })
                 : this.setState({
-                      authUser: null
-                  });
+                    authUser: null
+                });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -375,7 +375,7 @@ class App extends Component {
                     <Route
                         exact
                         path={routes.SETTINGS_VIEW}
-                        component={() => <SettingsPage user={this.state.authUser} settings={this.state.settings} />}
+                        component={() => <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} />}
                     />
 
                     <Route
