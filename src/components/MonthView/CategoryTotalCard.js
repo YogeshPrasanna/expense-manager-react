@@ -35,6 +35,7 @@ const CategoryTotalCard = props => {
     let currentUser = props.authUser;
     let selectedMonth = props.month;
     let selectedYear = props.year;
+    let cards = props.cards;
 
     let allCategoryTotals = null;
     let categoryList = null;
@@ -47,7 +48,7 @@ const CategoryTotalCard = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && cards) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -81,7 +82,7 @@ const CategoryTotalCard = props => {
 
     return (
         <div className="col-sm-12" style={pad0}>
-            <div className="card card4 mobileNoPadding">
+            <div className="card card4 mobileNoPadding" style={cards.card4}>
                 <div className="card-block">
                     <h3 className="card-title"> Each Category</h3>
                     <ul style={pad0}>{categoryList}</ul>

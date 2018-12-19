@@ -6,6 +6,7 @@ const Cards = props => {
     let loans = props.loans;
     let currentUser = props.authUser;
     let settings = props.settings;
+    let cards = props.cards;
     let loanToPay = 0;
     let loanToGet = 0;
 
@@ -31,7 +32,7 @@ const Cards = props => {
     return (
         <div className="row mobileNoPadding">
             <div className="col-sm-3 mobileNoPadding">
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={props.cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">You need to repay</h3>
                         <p className="card-text">
@@ -42,7 +43,7 @@ const Cards = props => {
                 </div>
             </div>
             <div className="col-sm-3 mobileNoPadding">
-                <div className="card card2 mobileNoPadding">
+                <div className="card card2 mobileNoPadding" style={props.cards.card2}>
                     <div className="card-block">
                         <h3 className="card-title">You need to get </h3>
                         <p className="card-text">

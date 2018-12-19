@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { firebase } from "../firebase/index";
 import { defaults } from "react-chartjs-2";
+import Trianglify from "trianglify";
 
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -251,6 +252,27 @@ class App extends Component {
             height: "100vh"
         };
 
+        var patternconfig = { height: 300, width: 500, cell_size: Math.floor(Math.random() * 250) + 50 }; // palette: Trianglify.colorbrewer,
+        var pattern = Trianglify({ ...patternconfig });
+        var pattern2 = Trianglify({ ...patternconfig });
+        var pattern3 = Trianglify({ ...patternconfig });
+        var pattern4 = Trianglify({ ...patternconfig });
+        var pattern5 = Trianglify({ ...patternconfig });
+        var pattern6 = Trianglify({ ...patternconfig });
+        var pattern7 = Trianglify({ ...patternconfig });
+        var pattern8 = Trianglify({ ...patternconfig });
+
+        const cards = {
+            card8: { backgroundImage: `url(${pattern8.png()})` },
+            card7: { backgroundImage: `url(${pattern7.png()})` },
+            card6: { backgroundImage: `url(${pattern6.png()})` },
+            card5: { backgroundImage: `url(${pattern5.png()})` },
+            card4: { backgroundImage: `url(${pattern4.png()})` },
+            card3: { backgroundImage: `url(${pattern3.png()})` },
+            card2: { backgroundImage: `url(${pattern2.png()})` },
+            card1: { backgroundImage: `url(${pattern.png()})` }
+        };
+
         return (
             <Router>
                 <div style={bodyStyle}>
@@ -276,13 +298,16 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />
                     <Route
                         exact
                         path={routes.ACCOUNT}
-                        component={() => <AccountPage user={this.state.authUser} settings={this.state.settings} />}
+                        component={() => (
+                            <AccountPage user={this.state.authUser} settings={this.state.settings} cards={cards} />
+                        )}
                     />
 
                     <Route
@@ -293,6 +318,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />
@@ -305,6 +331,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />
@@ -317,6 +344,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />
@@ -339,6 +367,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 loans={this.state.loans}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />

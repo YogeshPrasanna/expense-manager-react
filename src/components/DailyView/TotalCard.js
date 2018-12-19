@@ -10,6 +10,7 @@ const TotalCard = props => {
     let currentUser = props.authUser;
     let selectedDate = props.date;
     let settings = props.settings;
+    let cards = props.cards;
 
     let totalExpenses = 0;
 
@@ -35,10 +36,10 @@ const TotalCard = props => {
         }
     }
 
-    if (settings) {
+    if (settings && cards) {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />
@@ -54,7 +55,7 @@ const TotalCard = props => {
     } else {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />

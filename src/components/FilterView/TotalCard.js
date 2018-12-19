@@ -14,6 +14,7 @@ const TotalCard = props => {
     let expenseTo = props.expenseto;
     let category = props.category;
     let settings = props.settings;
+    let cards = props.cards;
 
     let totalExpenses = 0;
 
@@ -25,7 +26,7 @@ const TotalCard = props => {
         );
     }
 
-    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
+    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category && cards) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
         let filteredExpenses = utils.filterExpensesByCriteria(
@@ -50,7 +51,7 @@ const TotalCard = props => {
     if (settings) {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total
@@ -67,7 +68,7 @@ const TotalCard = props => {
     } else {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total

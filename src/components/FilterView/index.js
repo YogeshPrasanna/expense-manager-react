@@ -136,7 +136,7 @@ class FilterViewPage extends Component {
 
         const inputDayMode = { background: "#fff", color: "#495057" };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
@@ -256,6 +256,7 @@ class FilterViewPage extends Component {
                                 category={this.state.category}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
+                                cards={this.props.cards}
                             />
                         </div>
                         <div className="col-sm-8 mobileNoPadding" style={rightCol}>

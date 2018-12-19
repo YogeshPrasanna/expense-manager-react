@@ -12,6 +12,7 @@ const TotalCard = props => {
     let selectedMonth = props.month;
     let selectedYear = props.year;
     let settings = props.settings;
+    let cards = props.cards;
 
     let totalExpenses = 0;
 
@@ -23,7 +24,7 @@ const TotalCard = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && cards) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -45,7 +46,7 @@ const TotalCard = props => {
     if (settings) {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />
@@ -61,7 +62,7 @@ const TotalCard = props => {
     } else {
         return (
             <div className="col-sm-12" style={pad0}>
-                <div className="card card1 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
                         <h3 className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />

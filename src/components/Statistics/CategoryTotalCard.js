@@ -2,6 +2,8 @@ import React from "react";
 import * as utils from "../Util";
 import Loader from "../Common/Loader";
 
+import Trianglify from "trianglify";
+
 const CategoryTotalCard = props => {
     const pad0 = {
         padding: "0"
@@ -38,6 +40,10 @@ const CategoryTotalCard = props => {
     let allCategoryTotals = null;
     let categoryList = null;
 
+    const patternconfig = { height: 300, width: 1500, cell_size: Math.floor(Math.random() * 250) + 50 }; // palette: Trianglify.colorbrewer,
+    const pattern = Trianglify({ ...patternconfig });
+    const card4 = { backgroundImage: `url(${pattern.png()})` };
+
     if (!expenses || !currentUser) {
         return <Loader />;
     }
@@ -71,7 +77,7 @@ const CategoryTotalCard = props => {
 
     return (
         <div className="col-sm-12" style={pad0}>
-            <div className="card card4 mobileNoPadding">
+            <div className="card card4 mobileNoPadding" style={card4}>
                 <div className="card-block">
                     <h3 className="card-title">Each Category</h3>
                     <ul style={pad0}>{categoryList}</ul>

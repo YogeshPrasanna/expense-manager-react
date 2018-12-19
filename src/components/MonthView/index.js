@@ -220,7 +220,7 @@ class MonthViewPage extends Component {
             height: "auto"
         };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
@@ -309,12 +309,14 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 settings={this.props.settings}
+                                cards={this.props.cards}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
                                 authUser={this.props.user}
                                 month={this.state.month}
                                 year={this.state.year}
+                                cards={this.props.cards}
                             />
                         </div>
 

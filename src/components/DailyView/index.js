@@ -137,7 +137,7 @@ class DailyViewPage extends Component {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
         };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
@@ -168,11 +168,13 @@ class DailyViewPage extends Component {
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
+                                cards={this.props.cards}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
+                                cards={this.props.cards}
                             />
                         </div>
                         <div className="col-sm-8 mobileNoPadding" style={rightCol}>

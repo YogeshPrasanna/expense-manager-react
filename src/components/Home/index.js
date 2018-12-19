@@ -72,7 +72,7 @@ class HomePage extends Component {
             minHeight: "91vh"
         };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             console.log("converted currency : ", this.state.convertedCurrency);
 
             return (
@@ -82,6 +82,7 @@ class HomePage extends Component {
                             expenses={this.props.expenses}
                             authUser={this.props.user}
                             settings={this.props.settings}
+                            cards={this.props.cards}
                         />
                         <GenerateExcel
                             expenses={this.props.expenses}

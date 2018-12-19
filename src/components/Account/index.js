@@ -35,13 +35,13 @@ const AccountPage = props => {
             outline: "none"
         };
 
-        if (props.settings) {
+        if (props.settings && props.cards) {
             return (
                 <div className="container-fluid" style={props.settings.mode === "night" ? styleFromSettings : center}>
                     <img src={props.user.photoURL || url} style={userImage} alt="something's wrong" />
                     <div className="row">
                         <div className="col-sm-10 col-md-10 col-lg-5" style={center}>
-                            <div className="card card3">
+                            <div className="card card3" style={props.cards.card3}>
                                 <div className="card-body">
                                     <h5 className="card-title">Hello {props.user.displayName || props.user.email}</h5>
                                     <hr />

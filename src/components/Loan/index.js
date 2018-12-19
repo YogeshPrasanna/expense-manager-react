@@ -36,12 +36,17 @@ class LoanPage extends Component {
             minHeight: "91vh"
         };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
                         <div className="col-sm-12 mobileNoPadding">
-                            <Cards loans={this.props.loans} authUser={this.props.user} settings={this.props.settings} />
+                            <Cards
+                                loans={this.props.loans}
+                                authUser={this.props.user}
+                                settings={this.props.settings}
+                                cards={this.props.cards}
+                            />
                             <GenerateExcel
                                 loans={this.props.loans}
                                 authUser={this.props.user}
