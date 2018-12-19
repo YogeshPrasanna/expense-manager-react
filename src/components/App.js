@@ -356,6 +356,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                cards={cards}
                             />
                         )}
                     />

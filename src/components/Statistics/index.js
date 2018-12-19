@@ -2,6 +2,9 @@ import React from "react";
 import DoughnutChartCategory from "./DoughnutChartCategory";
 import BarChartAllMonths from "./BarChartAllMonths";
 import CategoryTotalCard from "./CategoryTotalCard";
+
+import Cards from "../Home/Cards";
+
 import Loader from "./../Common/Loader";
 
 import * as analytics from "./../../analytics/analytics";
@@ -43,6 +46,16 @@ const StatisticsPage = props => {
                         style={props.settings.mode === "night" ? nmBgForCharts : marB15}
                     >
                         <BarChartAllMonths expenses={props.expenses} authUser={props.user} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 mobileNoPadding" style={marB15}>
+                        <Cards
+                            expenses={props.expenses}
+                            authUser={props.user}
+                            settings={props.settings}
+                            cards={props.cards}
+                        />
                     </div>
                 </div>
                 <div className="row">
