@@ -172,6 +172,7 @@ ul {
 .card .card-block .card-title {
     padding: 15px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 0 !important;
 }
 
 .card-title {
@@ -182,6 +183,7 @@ ul {
 .card-text {
     color: white;
     mix-blend-mode: difference;
+    padding: 10px 15px !important;
 }
 
 .card .card-block .card-text {
@@ -324,6 +326,10 @@ ul {
         font-size: 27px;
         font-weight: bold;
         margin: 0;
+    }
+
+    .card-title {
+        margin-bottom: auto !important;
     }
 
     #addExpense,
