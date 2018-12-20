@@ -43,13 +43,6 @@ const NavigationAuth = props => {
                         Home
                     </Link>
                     <Link
-                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
-                        to={routes.ACCOUNT}
-                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
-                    >
-                        Account
-                    </Link>
-                    <Link
                         className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}
                         to={routes.MONTH_VIEW}
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
@@ -122,14 +115,6 @@ const NavigationAuth = props => {
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
                         Home
-                    </Link>
-                    <Link
-                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
-                        to={routes.ACCOUNT}
-                        onClick={burgerToggle}
-                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
-                    >
-                        Account
                     </Link>
                     <Link
                         className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}

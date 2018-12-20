@@ -16,8 +16,7 @@ import SignInPage from "./signIn/index";
 import ShopPage from "./Shop/index";
 import PasswordForgetPage from "./forgotPassword/index";
 import HomePage from "./Home/index";
-import AccountPage from "./Account/index";
-import UpdatePassword from "./Account/UpdatePassword";
+import UpdatePassword from "./Settings/UpdatePassword";
 import MonthViewPage from "./MonthView/index";
 import DailyViewPage from "./DailyView/index";
 import FilterViewPage from "./FilterView/index";
@@ -57,11 +56,11 @@ class App extends Component {
         firebase.auth.onAuthStateChanged(authUser => {
             authUser
                 ? this.setState({
-                    authUser: authUser
-                })
+                      authUser: authUser
+                  })
                 : this.setState({
-                    authUser: null
-                });
+                      authUser: null
+                  });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -304,14 +303,6 @@ class App extends Component {
                     />
                     <Route
                         exact
-                        path={routes.ACCOUNT}
-                        component={() => (
-                            <AccountPage user={this.state.authUser} settings={this.state.settings} cards={cards} />
-                        )}
-                    />
-
-                    <Route
-                        exact
                         path={routes.MONTH_VIEW}
                         component={() => (
                             <MonthViewPage
@@ -376,7 +367,9 @@ class App extends Component {
                     <Route
                         exact
                         path={routes.SETTINGS_VIEW}
-                        component={() => <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} />}
+                        component={() => (
+                            <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} />
+                        )}
                     />
 
                     <Route
