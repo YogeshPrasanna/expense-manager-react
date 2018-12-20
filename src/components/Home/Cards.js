@@ -257,7 +257,7 @@ const Cards = props => {
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
-                                                {totalExpenses}
+                                                {totalExpenses.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@ const Cards = props => {
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
-                                                {totalExpensesThisYear}
+                                                {totalExpensesThisYear.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                         </div>
                                     </div>
@@ -299,7 +299,9 @@ const Cards = props => {
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
-                                                {totalExpensesThisMonth}
+                                                {totalExpensesThisMonth
+                                                    .toString()
+                                                    .replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                             <p className="limitText">
                                                 {totalExpensesThisMonth > props.settings.monthLimit ? (
@@ -324,7 +326,7 @@ const Cards = props => {
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
-                                                {totalExpensesThisWeek}
+                                                {totalExpensesThisWeek.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                         </div>
                                     </div>
@@ -340,7 +342,7 @@ const Cards = props => {
                                                     className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
-                                                {totalExpensesToday}
+                                                {totalExpensesToday.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                         </div>
                                     </div>
