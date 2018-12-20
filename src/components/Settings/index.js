@@ -72,27 +72,6 @@ class SettingsPage extends Component {
     }
 
     render() {
-
-        const styleFromSettings = {
-            fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
-            backgroundColor: this.props.settings
-                ? this.props.settings.mode === "night"
-                    ? "#484842"
-                    : "#EDF0EF"
-                : "#EDF0EF",
-            minHeight: "91vh",
-            padding: "2.33%"
-
-        };
-
-        const white = {
-            color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
-        };
-
-        const customLabel = {
-            marginLeft: window.screen.width > 720 ? "-35%" : "0"
-        };
-
         const userImage = {
             width: "200px",
             height: "200px",
@@ -105,20 +84,49 @@ class SettingsPage extends Component {
             margin: "0 auto",
             display: "block"
         };
-
-        const centerHeight = {
-            padding: "15px"
-        }
-
-        const test = {
-            borderRadius: "10px",
-            outline: "none"
-        };
-
-        const inputNightMode = { background: "#2c2b2b", color: "#a9a0a0", border: "1px solid #9b8c8cc7" };
-
-        const inputDayMode = { background: "#fff", color: "#495057" };
         if (this.props.settings && this.props.user && this.props.cards) {
+            const styleFromSettings = {
+                fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
+                backgroundColor: this.props.settings
+                    ? this.props.settings.mode === "night"
+                        ? "#484842"
+                        : "#EDF0EF"
+                    : "#EDF0EF",
+                minHeight: "91vh",
+                padding: "2.33%"
+            };
+
+            const white = {
+                color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
+            };
+
+            const customLabel = {
+                marginLeft: window.screen.width > 720 ? "-35%" : "0"
+            };
+
+            const centerHeight = {
+                padding: "15px"
+            };
+
+            const test = {
+                borderRadius: "10px",
+                outline: "none"
+            };
+
+            const inputNightMode = { background: "#2c2b2b", color: "#a9a0a0", border: "1px solid #9b8c8cc7" };
+
+            const inputDayMode = { background: "#fff", color: "#495057" };
+
+            const settingsHeader = {
+                background: this.props.settings.mode === "night" ? "rgb(44, 43, 43)" : "#2b2b2",
+                color: this.props.settings.mode === "night" ? "rgb(169, 160, 160)" : "#2b2b2",
+                padding: "10px",
+                border: "1px solid rgba(155, 140, 140, 0.78)",
+                margin: "5% 5%",
+                borderRadius: "15px",
+                textAlign: "center"
+            };
+
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
@@ -128,12 +136,16 @@ class SettingsPage extends Component {
                                 <div className="col-sm-10 col-md-10 col-lg-10" style={center}>
                                     <div className="card card3" style={this.props.cards.card3}>
                                         <div className="card-body">
-                                            <h5 className="card-title">Hello {this.props.user.displayName || this.props.user.email}</h5>
+                                            <h5 className="card-title">
+                                                Hello {this.props.user.displayName || this.props.user.email}
+                                            </h5>
                                             <hr />
                                             <p className="card-title">Registered email : {this.props.user.email}</p>
                                             <hr />
                                             <p className="card-title">
-                                                {this.props.user.emailVerified ? "User is verified" : "User not verified"}
+                                                {this.props.user.emailVerified
+                                                    ? "User is verified"
+                                                    : "User not verified"}
                                             </p>
                                             <hr />
                                             <button classame="btn btn-default" style={test}>
@@ -145,6 +157,7 @@ class SettingsPage extends Component {
                             </div>
                         </div>
                         <div className="col-sm-6" style={centerHeight}>
+                            <div style={settingsHeader}> change Your Settings Here </div>
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group row">
                                     <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
@@ -207,7 +220,10 @@ class SettingsPage extends Component {
                                     <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
                                         <span>Mode</span>
                                     </label>
-                                    <div className="col-sm-6 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
+                                    <div
+                                        className="col-sm-6 col-xs-6 switch-field"
+                                        onChange={this.handleChange.bind(this)}
+                                    >
                                         <input
                                             type="radio"
                                             name="mode"
@@ -230,7 +246,10 @@ class SettingsPage extends Component {
                                     <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
                                         <span style={customLabel}>Travel Mode</span>
                                     </label>
-                                    <div className="col-sm-6 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
+                                    <div
+                                        className="col-sm-6 col-xs-6 switch-field"
+                                        onChange={this.handleChange.bind(this)}
+                                    >
                                         <input
                                             type="radio"
                                             name="travelMode"
@@ -285,21 +304,20 @@ class SettingsPage extends Component {
                                             </span>
                                         </div>
                                     ) : (
-                                            <div />
-                                        )}
+                                        <div />
+                                    )}
                                 </div>
 
                                 {this.state.dataSaved ? (
                                     <span className="bg-success success-msg"> Data saved successfully</span>
                                 ) : (
-                                        <span />
-                                    )}
+                                    <span />
+                                )}
                                 <button className="btn btn-primary float-right" type="submit">
                                     save
-                        </button>
+                                </button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             );
@@ -318,7 +336,9 @@ class SettingsPage extends Component {
                                                 <hr />
                                                 <p className="card-title">Getting your registered email</p>
                                                 <hr />
-                                                <p className="card-title">{"we're checking wether you're a verified user"}</p>
+                                                <p className="card-title">
+                                                    {"we're checking wether you're a verified user"}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
