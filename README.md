@@ -70,7 +70,7 @@
   
  2. Setup Repo Locally
  
-- git clone https://github.com/YogeshPrasanna/expense-manager-react.git
+    `git clone https://github.com/YogeshPrasanna/expense-manager-react.git`
 
 ### `npm install`
 
