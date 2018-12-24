@@ -17,6 +17,9 @@
 #### Home Page
 [![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
 
+#### Night Mode Home Page
+[![Night Mode Home](https://i.postimg.cc/mZVBMTwf/Home1.png)](https://sad-shirley-6ef62f.netlify.com/)
+
 #### Monthly View
 [![Monthly View](https://s25.postimg.cc/i3vmm1sr3/monthly.png)](https://sad-shirley-6ef62f.netlify.com/)
 
@@ -31,9 +34,6 @@
 
 #### Loan Page
 [![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Night Mode Home Page
-[![Night Mode Home](https://i.postimg.cc/W4N792Rh/home-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Night Mode Month View Page
 [![Night Mode Month](https://i.postimg.cc/zDyzFLVf/month-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
