@@ -17,7 +17,7 @@ const marB15 = {
 const StatisticsPage = props => {
     const styleFromSettings = {
         fontFamily: props.settings ? props.settings.font : "sans-serif",
-        backgroundColor: props.settings ? (props.settings.mode === "night" ? "#484842" : "#EDF0EF") : "#EDF0EF",
+        backgroundColor: props.settings ? (props.settings.mode === "night" ? "#484842" : "auto") : "auto",
         minHeight: "91vh"
     };
 

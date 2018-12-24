@@ -90,8 +90,8 @@ class SettingsPage extends Component {
                 backgroundColor: this.props.settings
                     ? this.props.settings.mode === "night"
                         ? "#484842"
-                        : "#EDF0EF"
-                    : "#EDF0EF",
+                        : "auto"
+                    : "auto",
                 minHeight: "91vh",
                 padding: "2.33%"
             };

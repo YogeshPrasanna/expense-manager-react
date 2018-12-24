@@ -118,11 +118,7 @@ class MonthViewPage extends Component {
 
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
-            backgroundColor: this.props.settings
-                ? this.props.settings.mode === "night"
-                    ? "#484842"
-                    : "#EDF0EF"
-                : "#EDF0EF",
+            backgroundColor: this.props.settings ? (this.props.settings.mode === "night" ? "#484842" : "auto") : "auto",
             minHeight: "91vh"
         };
 
