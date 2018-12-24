@@ -1,16 +1,92 @@
 ## A Simple Expense Manager 💵
 
+## Demo Account
+
+*_In case you need to have a quick look at the app without creating an account, use the below credentials_*
+
+[Click Here For Demo](https://sad-shirley-6ef62f.netlify.com/)
+
+`Username : yogi15moto@gmail.com`
+`password: yogesh`
+
+## Screenshots
+
+#### Login Screen
+[![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Home Page
+[![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Night Mode Home Page
+[![Night Mode Home](https://i.postimg.cc/mZVBMTwf/Home1.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Monthly View
+[![Monthly View](https://s25.postimg.cc/i3vmm1sr3/monthly.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Daily View
+[![Daily View](https://s25.postimg.cc/6208rwbsv/daily.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Filter
+[![Filter Page](https://s25.postimg.cc/uiiemdrz3/filter.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Statistics
+[![Statistics](https://s25.postimg.cc/lnhkbvawf/statistics.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Loan Page
+[![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Night Mode Month View Page
+[![Night Mode Month](https://i.postimg.cc/zDyzFLVf/month-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Settings
+[![Settings](https://i.postimg.cc/pr0s2D95/settings.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Mobile Views
+[![Mobile Screens](https://s25.postimg.cc/r5zhetxzz/mobile_screens_expense_manager.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Calendar Component
+[![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+## Setup
+
+#### 1. Setting Up Firebase 
+- Create a firebase account
+
+- Create a new firebase project 
+
+  [![Add Firebase Project](https://i.postimg.cc/TwvMnjTk/add-Firebase.png)](https://i.postimg.cc/TwvMnjTk/add-Firebase.png)
+  [![Add Firebase Project](https://i.postimg.cc/fL74C3LM/add-project.png)](https://i.postimg.cc/fL74C3LM/add-project.png)
+  
+- Be Sure to Choose Realtime Database , and not firestore
+
+- change database rules to 
+  [![Change database rules](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)
+  
+- Enable Google Authentication and Email Authentication , Feel Free to add other authentication methods and setup accordingly
+  [![Enable Google Authentication](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)
+  
+- Setup Email Verification Template
+  [![Setup Email Verification Template](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)
+  
+ 2. Setup Repo Locally
+ 
+    `git clone https://github.com/YogeshPrasanna/expense-manager-react.git`
+
 ### `npm install`
 
-This will install all the required packages and dependencies to run the app.
+      This will install all the required packages and dependencies to run the app.
+
+### create a file named .env.local in root folder and add your firebase api key here
+    
+    `REACT_APP_FIREBASE_API_KEY = "your-api-key-here"`
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  Runs the app in the development mode.<br>
+  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+  The page will reload if you make edits.<br>
+  You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -40,49 +116,3 @@ By default, the generated project uses the latest version of React.
 
 You can refer [to the React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
 
-## Demo Account
-
-*_In case you need to have a quick look at the app without creating an account, use the below credentials_*
-
-[Click Here For Demo](https://sad-shirley-6ef62f.netlify.com/)
-
-`Username : yogi15moto@gmail.com`
-`password: yogesh`
-
-## Screenshots
-
-#### Login Screen
-[![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Home Page
-[![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Monthly View
-[![Monthly View](https://s25.postimg.cc/i3vmm1sr3/monthly.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Daily View
-[![Daily View](https://s25.postimg.cc/6208rwbsv/daily.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Filter
-[![Filter Page](https://s25.postimg.cc/uiiemdrz3/filter.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Statistics
-[![Statistics](https://s25.postimg.cc/lnhkbvawf/statistics.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Loan Page
-[![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Night Mode Home Page
-[![Night Mode Home](https://i.postimg.cc/W4N792Rh/home-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Night Mode Month View Page
-[![Night Mode Month](https://i.postimg.cc/zDyzFLVf/month-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Settings
-[![Settings](https://i.postimg.cc/pr0s2D95/settings.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Mobile Views
-[![Mobile Screens](https://s25.postimg.cc/r5zhetxzz/mobile_screens_expense_manager.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Calendar Component
-[![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
