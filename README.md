@@ -15,7 +15,7 @@
 [![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Home Page
-[![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
+[![Home Page](https://i.postimg.cc/25XXmXdt/HOMEDAY4.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Night Mode Home Page
 [![Night Mode Home](https://i.postimg.cc/mZVBMTwf/Home1.png)](https://sad-shirley-6ef62f.netlify.com/)
