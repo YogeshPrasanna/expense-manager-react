@@ -35,6 +35,9 @@
 #### Settings Night Mode
 [![Settings](https://i.postimg.cc/CLBMVWj3/SETTINGS-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
+#### Filter Night Mode
+[![Filter Page](https://i.postimg.cc/kM2rDJ8Y/FILTER-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
 #### Home Page Day Mode
 [![Home Page](https://i.postimg.cc/25XXmXdt/HOMEDAY4.png)](https://sad-shirley-6ef62f.netlify.com/)
 
@@ -43,9 +46,6 @@
 
 #### Daily View Day Mode
 [![Daily View](https://i.postimg.cc/cCT3yPwg/DAILY-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Filter Day Mode
-[![Filter Page](https://s25.postimg.cc/uiiemdrz3/filter.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Statistics Day Mode
 [![Statistics](https://i.postimg.cc/Wz43rzqz/STATISTICS-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
