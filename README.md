@@ -14,35 +14,50 @@
 #### Login Screen
 [![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Home Page
-[![Home Page](https://s25.postimg.cc/c2xxoyizj/home.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Mobile Views
+[![Mobile Screens](https://i.postimg.cc/c1jZTXVX/mobile-Views.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Night Mode Home Page
 [![Night Mode Home](https://i.postimg.cc/mZVBMTwf/Home1.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Monthly View
-[![Monthly View](https://s25.postimg.cc/i3vmm1sr3/monthly.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Month View Page Night Mode
+[![Night Mode Month](https://i.postimg.cc/jqvn50nC/MONTHLY-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Daily View
-[![Daily View](https://s25.postimg.cc/6208rwbsv/daily.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Daily View Night Mode
+[![Daily View](https://i.postimg.cc/BQQDcQfx/DAILY-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Filter
-[![Filter Page](https://s25.postimg.cc/uiiemdrz3/filter.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Statistics Night Mode
+[![Statistics](https://i.postimg.cc/1tm5hXHB/STATISTICS-NIGHT-MODE2.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Statistics
-[![Statistics](https://s25.postimg.cc/lnhkbvawf/statistics.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Saving Goals Night Mode
+[![Savings](https://i.postimg.cc/WbBNpX8h/SAVINGS-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Loan Page
+#### Settings Night Mode
+[![Settings](https://i.postimg.cc/CLBMVWj3/SETTINGS-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Filter Night Mode
+[![Filter Page](https://i.postimg.cc/kM2rDJ8Y/FILTER-NIGHT-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Home Page Day Mode
+[![Home Page](https://i.postimg.cc/25XXmXdt/HOMEDAY4.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Monthly View Day Mode
+[![Monthly View](https://i.postimg.cc/qqmNZyH2/MONTH-VIEW-DAY.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Daily View Day Mode
+[![Daily View](https://i.postimg.cc/cCT3yPwg/DAILY-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Statistics Day Mode
+[![Statistics](https://i.postimg.cc/Wz43rzqz/STATISTICS-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Loan Page Day Mode
 [![Loan Page](https://s25.postimg.cc/s16nf3kxb/loan.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Night Mode Month View Page
-[![Night Mode Month](https://i.postimg.cc/zDyzFLVf/month-night-mode.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Saving Goals Day Mode
+[![Savings](https://i.postimg.cc/fRYwVmq5/SAVINGS-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-#### Settings
-[![Settings](https://i.postimg.cc/pr0s2D95/settings.png)](https://sad-shirley-6ef62f.netlify.com/)
-
-#### Mobile Views
-[![Mobile Screens](https://s25.postimg.cc/r5zhetxzz/mobile_screens_expense_manager.png)](https://sad-shirley-6ef62f.netlify.com/)
+#### Settings Day Mode
+[![Settings](https://i.postimg.cc/59k9TxF5/SETTINGS-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Calendar Component
 [![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
