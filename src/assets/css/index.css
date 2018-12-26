@@ -14,6 +14,37 @@
     /* left: 220px; */
 }
 
+.landing-home-section {
+    background: #6f42c1;
+}
+
+.landing-month-section {
+    background: coral;
+}
+
+.landing-stats-section {
+    background: #0288d1;
+}
+
+.landing-savings-section {
+    background: #72c341;
+}
+
+.landing-mobile-section {
+    background: orange;
+}
+
+.landing-home-section-title {
+    padding: 20% 2%;
+    font-size: 3.3em;
+    line-height: 1.2em;
+    color: #fafaf5;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-style: normal;
+    text-shadow: 1px 3px 3px rgba(255, 255, 255, 0.4);
+}
+
 .nopadding {
     padding: 10px !important;
     margin: 0 !important;
