@@ -127,7 +127,9 @@ class SignInForm extends Component {
             borderRadius: "10px",
             boxShadow: "100px solid red",
             boxShadow: "20px 20px rgba(0,0,0,0.4)",
-            borderStyle: "none"
+            borderStyle: "none",
+            width: "100%",
+            height: "auto"
         };
 
         return (
@@ -183,7 +185,7 @@ class SignInForm extends Component {
                 <div className="row landing-home-section" style={fullHeight}>
                     <div className="col-sm-12 col-md-8" style={areaPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={homeScreen} style={homeImgStyle} width="750" height="380" />
+                            <img src={homeScreen} style={homeImgStyle} />
                         ) : (
                             <img src={homeMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -201,7 +203,7 @@ class SignInForm extends Component {
                     </div>
                     <div className="col-sm-12 col-md-8" style={areaMonthPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={monthScreen} style={homeImgStyle} width="700" height="480" />
+                            <img src={monthScreen} style={homeImgStyle} />
                         ) : (
                             <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -210,7 +212,7 @@ class SignInForm extends Component {
                 <div className="row landing-stats-section" style={fullHeight}>
                     <div className="col-sm-12 col-md-8" style={areaPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={statisticsScreen} style={homeImgStyle} width="700" height="540" />
+                            <img src={statisticsScreen} style={homeImgStyle} />
                         ) : (
                             <img src={statsMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -230,7 +232,7 @@ class SignInForm extends Component {
                     </div>
                     <div className="col-sm-12 col-md-8" style={areaMonthPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={savingsScreen} style={homeImgStyle} width="750" height="380" />
+                            <img src={savingsScreen} style={homeImgStyle} />
                         ) : (
                             <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -241,19 +243,19 @@ class SignInForm extends Component {
                         <div className="col-sm-12 col-md-9" style={{ padding: "2%" }}>
                             <img
                                 src={homeMobile}
-                                style={{ ...homeImgStyle, margin: "15px" }}
+                                style={{ ...homeImgStyle, margin: "15px", width: "27%" }}
                                 width="auto"
                                 height="auto"
                             />
                             <img
                                 src={monthMobile}
-                                style={{ ...homeImgStyle, margin: "15px" }}
+                                style={{ ...homeImgStyle, margin: "15px", width: "27%" }}
                                 width="auto"
                                 height="auto"
                             />
                             <img
                                 src={statsMobile}
-                                style={{ ...homeImgStyle, margin: "15px" }}
+                                style={{ ...homeImgStyle, margin: "15px", width: "27%" }}
                                 width="auto"
                                 height="auto"
                             />
@@ -276,12 +278,7 @@ class SignInForm extends Component {
                     </div>
                     <div className="col-sm-12 col-md-8" style={areaMonthPadding}>
                         {window.screen.width > 720 ? (
-                            <img
-                                src={travel}
-                                style={{ ...homeImgStyle, boxShadow: "none" }}
-                                width="700"
-                                height="auto"
-                            />
+                            <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} />
                         ) : (
                             <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} width="300" height="300" />
                         )}
