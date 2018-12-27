@@ -14,6 +14,7 @@ import savingsScreen from "./../../assets/images/SAVINGS_NIGHT.png";
 import homeMobile from "./../../assets/images/HOME_MOBILE.png";
 import monthMobile from "./../../assets/images/MONTH_MOBILE.png";
 import statsMobile from "./../../assets/images/STATISTICS_MOBILE.png";
+import travel from "./../../assets/images/travel.png";
 
 import firebase from "firebase";
 
@@ -267,6 +268,25 @@ class SignInForm extends Component {
                 ) : (
                     <div />
                 )}
+                <div className="row landing-travel-section" style={fullHeight}>
+                    <div className="col-sm-12 col-md-4" style={{ padding: "0 0 0 7%" }}>
+                        <div className="landing-home-section-title" style={{ fontSize: "2.7em" }}>
+                            Travel Ready <hr /> Never Worry We'll Convert your travel currency to your native currency
+                        </div>
+                    </div>
+                    <div className="col-sm-12 col-md-8" style={areaMonthPadding}>
+                        {window.screen.width > 720 ? (
+                            <img
+                                src={travel}
+                                style={{ ...homeImgStyle, boxShadow: "none" }}
+                                width="700"
+                                height="auto"
+                            />
+                        ) : (
+                            <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} width="300" height="300" />
+                        )}
+                    </div>
+                </div>
             </div>
         );
     }
