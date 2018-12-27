@@ -182,7 +182,7 @@ class SignInForm extends Component {
                 <div className="row landing-home-section" style={fullHeight}>
                     <div className="col-sm-12 col-md-8" style={areaPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={homeScreen} style={homeImgStyle} width="700" height="380" />
+                            <img src={homeScreen} style={homeImgStyle} width="750" height="380" />
                         ) : (
                             <img src={homeMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -229,7 +229,7 @@ class SignInForm extends Component {
                     </div>
                     <div className="col-sm-12 col-md-8" style={areaMonthPadding}>
                         {window.screen.width > 720 ? (
-                            <img src={savingsScreen} style={homeImgStyle} width="700" height="380" />
+                            <img src={savingsScreen} style={homeImgStyle} width="750" height="380" />
                         ) : (
                             <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
                         )}
@@ -260,7 +260,7 @@ class SignInForm extends Component {
                         <div className="col-sm-12 col-md-3">
                             <div className="landing-home-section-title" style={{ fontSize: "2.7em" }}>
                                 Expense Manager is a progressive Web application <hr />
-                                This can be used as an app in mobile
+                                This can be used even as an app in mobile
                             </div>
                         </div>
                     </div>
