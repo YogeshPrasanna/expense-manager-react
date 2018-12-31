@@ -11,9 +11,6 @@
 
 ## Screenshots
 
-#### Login Screen
-[![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
-
 #### Mobile Views
 [![Mobile Screens](https://i.postimg.cc/c1jZTXVX/mobile-Views.png)](https://sad-shirley-6ef62f.netlify.com/)
 
@@ -58,6 +55,9 @@
 
 #### Settings Day Mode
 [![Settings](https://i.postimg.cc/59k9TxF5/SETTINGS-DAY-MODE.png)](https://sad-shirley-6ef62f.netlify.com/)
+
+#### Login Screen
+[![Login Page](https://s25.postimg.cc/jvolgx1tb/login.png)](https://sad-shirley-6ef62f.netlify.com/)
 
 #### Calendar Component
 [![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
