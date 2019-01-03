@@ -33,7 +33,7 @@ const Cards = props => {
         const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, currentUser);
 
         // Overall Expenses
-        if (thisUsersExpenses.length > 1) {
+        if (thisUsersExpenses.length >= 1) {
             totalExpenses = utils.totalExpense(thisUsersExpenses);
         } else if (thisUsersExpenses.length === 1) {
             totalExpenses = thisUsersExpenses[0].value.expense;
@@ -42,7 +42,7 @@ const Cards = props => {
         }
 
         // This month expenses
-        if (thisUsersExpensesThisMonth.length > 1) {
+        if (thisUsersExpensesThisMonth.length >= 1) {
             totalExpensesThisMonth = utils.totalExpense(thisUsersExpensesThisMonth);
         } else if (thisUsersExpensesThisMonth.length === 1) {
             totalExpensesThisMonth = thisUsersExpensesThisMonth[0].value.expense;
@@ -51,7 +51,7 @@ const Cards = props => {
         }
 
         // Today's expenses
-        if (thisUsersExpensesToday.length > 1) {
+        if (thisUsersExpensesToday.length >= 1) {
             totalExpensesToday = utils.totalExpense(thisUsersExpensesToday);
         } else if (thisUsersExpensesToday.length === 1) {
             totalExpensesToday = thisUsersExpensesToday[0].value.expense;
@@ -60,7 +60,7 @@ const Cards = props => {
         }
 
         // This weeks expenses
-        if (thisUsersExpensesThisWeek.length > 1) {
+        if (thisUsersExpensesThisWeek.length >= 1) {
             totalExpensesThisWeek = utils.totalExpense(thisUsersExpensesThisWeek);
         } else if (thisUsersExpensesThisWeek.length === 1) {
             totalExpensesThisWeek = thisUsersExpensesThisWeek[0].value.expense;
@@ -69,7 +69,7 @@ const Cards = props => {
         }
 
         // This years expenses
-        if (thisUsersExpensesThisYear.length > 1) {
+        if (thisUsersExpensesThisYear.length >= 1) {
             totalExpensesThisYear = utils.totalExpense(thisUsersExpensesThisYear);
         } else if (thisUsersExpensesThisWeek.length === 1) {
             totalExpensesThisYear = thisUsersExpensesThisYear[0].value.expense;
@@ -168,8 +168,8 @@ const Cards = props => {
                                             Monthly <br /> Limit <br /> exceeded{" "}
                                         </span>
                                     ) : (
-                                        ""
-                                    )}
+                                            ""
+                                        )}
                                 </p>
                             </div>
                         </div>
@@ -309,8 +309,8 @@ const Cards = props => {
                                                         Monthly <br /> Limit <br /> exceeded{" "}
                                                     </span>
                                                 ) : (
-                                                    ""
-                                                )}
+                                                        ""
+                                                    )}
                                             </p>
                                         </div>
                                     </div>
