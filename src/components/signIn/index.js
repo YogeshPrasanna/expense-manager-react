@@ -141,6 +141,9 @@ class SignInForm extends Component {
                             <span>Expense Manager which takes note of all your daily expenses</span>
                             <hr />
                             <p> Sign up to create an account - and start managing your expenses </p>
+                            <hr />
+                            <iframe src="https://ghbtns.com/github-btn.html?user=YogeshPrasanna&repo=expense-manager-react&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                            <iframe src="https://ghbtns.com/github-btn.html?user=YogeshPrasanna&repo=expense-manager-react&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-6 ">
@@ -187,8 +190,8 @@ class SignInForm extends Component {
                         {window.screen.width > 720 ? (
                             <img src={homeScreen} style={homeImgStyle} />
                         ) : (
-                            <img src={homeMobile} style={homeImgStyle} width="auto" height="auto" />
-                        )}
+                                <img src={homeMobile} style={homeImgStyle} width="auto" height="auto" />
+                            )}
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="landing-home-section-title">
@@ -205,8 +208,8 @@ class SignInForm extends Component {
                         {window.screen.width > 720 ? (
                             <img src={monthScreen} style={homeImgStyle} />
                         ) : (
-                            <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
-                        )}
+                                <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
+                            )}
                     </div>
                 </div>
                 <div className="row landing-stats-section" style={fullHeight}>
@@ -214,8 +217,8 @@ class SignInForm extends Component {
                         {window.screen.width > 720 ? (
                             <img src={statisticsScreen} style={homeImgStyle} />
                         ) : (
-                            <img src={statsMobile} style={homeImgStyle} width="auto" height="auto" />
-                        )}
+                                <img src={statsMobile} style={homeImgStyle} width="auto" height="auto" />
+                            )}
                     </div>
                     <div className="col-sm-12 col-md-4">
                         <div className="landing-home-section-title" style={{ fontSize: "2.7em" }}>
@@ -234,8 +237,8 @@ class SignInForm extends Component {
                         {window.screen.width > 720 ? (
                             <img src={savingsScreen} style={homeImgStyle} />
                         ) : (
-                            <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
-                        )}
+                                <img src={monthMobile} style={homeImgStyle} width="auto" height="auto" />
+                            )}
                     </div>
                 </div>
                 {window.screen.width > 720 ? (
@@ -268,8 +271,8 @@ class SignInForm extends Component {
                         </div>
                     </div>
                 ) : (
-                    <div />
-                )}
+                        <div />
+                    )}
                 <div className="row landing-travel-section" style={fullHeight}>
                     <div className="col-sm-12 col-md-4" style={{ padding: "0 0 0 7%" }}>
                         <div className="landing-home-section-title" style={{ fontSize: "2.7em" }}>
@@ -280,8 +283,8 @@ class SignInForm extends Component {
                         {window.screen.width > 720 ? (
                             <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} />
                         ) : (
-                            <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} width="300" height="300" />
-                        )}
+                                <img src={travel} style={{ ...homeImgStyle, boxShadow: "none" }} width="300" height="300" />
+                            )}
                     </div>
                 </div>
             </div>
