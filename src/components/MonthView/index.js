@@ -9,6 +9,7 @@ import Loader from "./../Common/Loader";
 import LineChartExpenseTimeline from "./LineChartTimeline";
 import MonthLimitWarning from "./MonthLimitWarning";
 
+import * as utils from "../Util";
 import * as analytics from "./../../analytics/analytics";
 import DailyTotalCalender from "./DailyTotalCalender";
 
@@ -266,11 +267,7 @@ class MonthViewPage extends Component {
                                             ...dateField
                                         }}
                                     >
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
+                                        {utils.yearsGenereator().map((elem) => (<option value={elem}>{elem}</option>))}
                                     </select>
                                 </div>
                                 <div
