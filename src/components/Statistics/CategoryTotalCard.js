@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import * as utils from "../Util";
 import Loader from "../Common/Loader";
 
+import { Link } from "react-router-dom";
+
+import moment from "moment";
 import Trianglify from "trianglify";
 
 class CategoryTotalCard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            year: "all"
-        };
+        this.state = { year: moment(new Date()).get("year") };
     }
 
     handleChange(e) {
@@ -102,15 +103,37 @@ class CategoryTotalCard extends Component {
 
             categoryList = eachCategory(allCategoryTotals).map(el => {
                 if (el.value) {
-                    return (
-                        <span style={category} className="ttt" key={el.key}>
-                            <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
-                            <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
-                            <div style={categoryExpense}>
-                                {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
-                            </div>
-                        </span>
-                    );
+                    if (selectedYear === "all") {
+                        return (
+                            <span style={category} className="ttt" key={el.key}>
+                                <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                                <i
+                                    className={`fa fa-${utils.categoryIcon(el.key)}`}
+                                    style={lessFont}
+                                    aria-hidden="true"
+                                />
+                                <div style={categoryExpense}>
+                                    {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                                </div>
+                            </span>
+                        );
+                    } else {
+                        return (
+                            <Link to={`/filter-view?category=${el.key}&selectedYear=${selectedYear}&from=yearpage`}>
+                                <span style={category} className="ttt" key={el.key}>
+                                    <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                                    <i
+                                        className={`fa fa-${utils.categoryIcon(el.key)}`}
+                                        style={lessFont}
+                                        aria-hidden="true"
+                                    />
+                                    <div style={categoryExpense}>
+                                        {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                                    </div>
+                                </span>
+                            </Link>
+                        );
+                    }
                 } else {
                     return <span key={el.key} />;
                 }
@@ -129,7 +152,9 @@ class CategoryTotalCard extends Component {
                                 onChange={this.handleChange.bind(this)}
                             >
                                 <option value="all">All</option>
-                                {utils.yearsGenereator().map((elem) => (<option value={elem}>{elem}</option>))}
+                                {utils.yearsGenereator().map(elem => (
+                                    <option value={elem}>{elem}</option>
+                                ))}
                             </select>
                         </div>
                     </form>

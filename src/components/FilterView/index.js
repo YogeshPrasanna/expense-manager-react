@@ -18,14 +18,83 @@ class FilterViewPage extends Component {
         const start = new Date("1/1/" + thisYear);
         const defaultStart = moment(start.valueOf());
 
-        this.state = {
-            fromdate: defaultStart,
-            todate: moment(),
-            category: "Food",
-            expensefrom: "00",
-            expenseto: "10000",
-            convertedCurrency: null
-        };
+        function parseURLParams(url) {
+            var queryStart = url.indexOf("?") + 1,
+                queryEnd = url.indexOf("#") + 1 || url.length + 1,
+                query = url.slice(queryStart, queryEnd - 1),
+                pairs = query.replace(/\+/g, " ").split("&"),
+                parms = {},
+                i,
+                n,
+                v,
+                nv;
+
+            if (query === url || query === "") return;
+
+            for (i = 0; i < pairs.length; i++) {
+                nv = pairs[i].split("=", 2);
+                n = decodeURIComponent(nv[0]);
+                v = decodeURIComponent(nv[1]);
+
+                if (!parms.hasOwnProperty(n)) parms[n] = [];
+                parms[n].push(nv.length === 2 ? v : null);
+            }
+            return parms;
+        }
+
+        var urlString = window.location.href;
+        var urlParams = parseURLParams(urlString);
+
+        if (urlParams) {
+            if (urlParams.from[0] === "monthpage") {
+                const selectedMonth = Number(urlParams.selectedMonth[0]) + 1;
+                const selectedYear = Number(urlParams.selectedYear[0]);
+                const urlCategory = urlParams.category[0];
+                //const noOfDaysInMonth = moment(`${selectedMonth}-${selectedYear}`, "YYYY-MM").daysInMonth();
+                const noOfDaysInMonth = moment(`${selectedYear}-${selectedMonth}`, "YYYY-MM").daysInMonth();
+
+                const startDate = moment(`${selectedMonth}/01/${selectedYear}`);
+                const endDate = moment(`${selectedMonth}/${noOfDaysInMonth}/${selectedYear}`);
+
+                this.state = {
+                    fromdate: startDate,
+                    todate: endDate,
+                    category: urlCategory,
+                    expensefrom: "00",
+                    expenseto: "10000",
+                    convertedCurrency: null
+                };
+            } else if (urlParams.from[0] === "yearpage") {
+                const selectedYear =
+                    urlParams.selectedYear[0] === "all"
+                        ? moment(new Date()).get("year")
+                        : Number(urlParams.selectedYear[0]);
+                const urlCategory = urlParams.category[0];
+                //const noOfDaysInMonth = moment(`${selectedMonth}-${selectedYear}`, "YYYY-MM").daysInMonth();
+                const noOfDaysInMonth = moment(`${selectedYear}-12`, "YYYY-MM").daysInMonth();
+
+                const startDate = moment(`01/01/${selectedYear}`);
+                const endDate = moment(`12/${noOfDaysInMonth}/${selectedYear}`);
+
+                this.state = {
+                    fromdate: startDate,
+                    todate: endDate,
+                    category: urlCategory,
+                    expensefrom: "00",
+                    expenseto: "10000",
+                    convertedCurrency: null
+                };
+            }
+        } else {
+            this.state = {
+                fromdate: defaultStart,
+                todate: moment(),
+                category: "Food",
+                expensefrom: "00",
+                expenseto: "10000",
+                convertedCurrency: null
+            };
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleFromDateSelect = this.handleFromDateSelect.bind(this);
