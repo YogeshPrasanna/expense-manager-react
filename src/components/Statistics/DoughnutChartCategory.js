@@ -3,6 +3,8 @@ import { Doughnut } from "react-chartjs-2";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
+import { Route } from "react-router-dom";
+
 class DoughnutChartCategory extends Component {
     constructor(props) {
         super(props);
@@ -91,15 +93,31 @@ class DoughnutChartCategory extends Component {
                                 onChange={this.handleChange.bind(this)}
                             >
                                 <option value="all">All</option>
-                                {utils.yearsGenereator().map((elem) => (<option value={elem}>{elem}</option>))}
+                                {utils.yearsGenereator().map(elem => (
+                                    <option value={elem}>{elem}</option>
+                                ))}
                             </select>
                         </div>
                     </form>
-                    <Doughnut
-                        data={data}
-                        options={window.screen.width > 720 ? options : optionsMobile}
-                        height={window.screen.width > 720 ? 140 : 450}
-                        responsive={true}
+                    <Route
+                        render={({ history }) => (
+                            <Doughnut
+                                data={data}
+                                options={window.screen.width > 720 ? options : optionsMobile}
+                                height={window.screen.width > 720 ? 140 : 450}
+                                responsive={true}
+                                onElementsClick={elems => {
+                                    if (elems) {
+                                        const clickedLabel = elems[0]._model.label;
+                                        if (selectedYear !== "all") {
+                                            history.push(
+                                                `/filter-view?category=${clickedLabel}&selectedYear=${selectedYear}&from=yearpage`
+                                            );
+                                        }
+                                    }
+                                }}
+                            />
+                        )}
                     />
                 </div>
             );

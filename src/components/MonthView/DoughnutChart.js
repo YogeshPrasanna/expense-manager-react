@@ -3,6 +3,8 @@ import { Doughnut } from "react-chartjs-2";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
+import { Route } from "react-router-dom";
+
 const DoughnutChart = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
@@ -72,11 +74,23 @@ const DoughnutChart = props => {
             <div>
                 <hr />
                 <h4 style={mobPad15}>Category Analyser</h4>
-                <Doughnut
-                    data={data}
-                    options={window.screen.width > 720 ? options : optionsMobile}
-                    height={window.screen.width > 720 ? 80 : 450}
-                    responsive={true}
+                <Route
+                    render={({ history }) => (
+                        <Doughnut
+                            data={data}
+                            options={window.screen.width > 720 ? options : optionsMobile}
+                            height={window.screen.width > 720 ? 80 : 450}
+                            responsive={true}
+                            onElementsClick={elems => {
+                                if (elems) {
+                                    const clickedLabel = elems[0]._model.label;
+                                    history.push(
+                                        `/filter-view?category=${clickedLabel}&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`
+                                    );
+                                }
+                            }}
+                        />
+                    )}
                 />
             </div>
         );
