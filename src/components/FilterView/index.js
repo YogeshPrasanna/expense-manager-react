@@ -227,18 +227,11 @@ class FilterViewPage extends Component {
                                             onChange={this.handleChange.bind(this)}
                                             style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
-                                            <option value="Food">Food</option>
-                                            <option value="Automobile">Automobile</option>
-                                            <option value="Entertainment">Entertainment</option>
-                                            <option value="Clothing">Clothing</option>
-                                            <option value="Healthcare">Healthcare</option>
-                                            <option value="Travel">Travel</option>
-                                            <option value="Shopping">Shopping</option>
-                                            <option value="Personal Care">Personal Care</option>
-                                            <option value="Investment">Investment</option>
-                                            <option value="Gifts & Donations">Gifts & Donations</option>
-                                            <option value="Bills & Utilities">Bills & Utilities</option>
-                                            <option value="Others">Others</option>
+                                            {this.props.categories ? Object.keys(this.props.categories).map(key => (
+                                                <option key={this.props.categories[key].category} value={this.props.categories[key].category}>
+                                                    {this.props.categories[key].category}
+                                                </option>
+                                            )) : []}
                                         </select>
                                     </div>
                                 </div>
@@ -253,6 +246,7 @@ class FilterViewPage extends Component {
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                         </div>
                         <div className="col-sm-8 mobileNoPadding" style={rightCol}>
@@ -265,6 +259,7 @@ class FilterViewPage extends Component {
                                 category={this.state.category}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
+                                categories={this.props.categories}
                             />
                             {this.state.convertedCurrency ? (
                                 <ExpenseTable
@@ -277,6 +272,7 @@ class FilterViewPage extends Component {
                                     authUser={this.props.user}
                                     settings={this.props.settings}
                                     convertedCurrency={this.state.convertedCurrency}
+                                    categories={this.props.categories}
                                 />
                             ) : (
                                 <Loader />

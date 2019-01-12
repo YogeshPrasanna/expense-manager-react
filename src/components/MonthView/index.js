@@ -286,6 +286,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 settings={this.props.settings}
+                                categories={this.props.categories}
                             />
 
                             <MonthLimitWarning
@@ -294,6 +295,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 settings={this.props.settings}
+                                categories={this.props.categories}
                             />
 
                             <TotalCard
@@ -303,6 +305,7 @@ class MonthViewPage extends Component {
                                 year={this.state.year}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
@@ -310,6 +313,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                         </div>
 
@@ -324,12 +328,14 @@ class MonthViewPage extends Component {
                                     month={this.state.month}
                                     year={this.state.year}
                                     settings={this.props.settings}
+                                    categories={this.props.categories}
                                 />
                                 <DoughnutChart
                                     expenses={this.props.expenses}
                                     authUser={this.props.user}
                                     month={this.state.month}
                                     year={this.state.year}
+                                    categories = {this.props.categories}
                                 />
                             </div>
                             <GenerateExcel
@@ -338,6 +344,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 settings={this.props.settings}
+                                categories={this.props.categories}
                             />
 
                             {this.state.convertedCurrency ? (
@@ -348,6 +355,7 @@ class MonthViewPage extends Component {
                                     year={this.state.year}
                                     settings={this.props.settings}
                                     convertedCurrency={this.state.convertedCurrency}
+                                    categories={this.props.categories}
                                 />
                             ) : (
                                 <Loader />

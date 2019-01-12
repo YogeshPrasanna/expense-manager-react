@@ -11,8 +11,9 @@ const Expense = props => {
     let expenseFrom = props.expensefrom;
     let expenseTo = props.expenseto;
     let category = props.category;
+    let categories = props.categories;
 
-    if (!expenses || !currentUser) {
+    if (!expenses || !currentUser || !categories) {
         return (
             <tr>
                 <td>
@@ -40,7 +41,7 @@ const Expense = props => {
         );
     }
 
-    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
+    if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
         let filteredExpenses = utils.filterExpensesByCriteria(
@@ -63,6 +64,7 @@ const Expense = props => {
                         expenseId={filteredExpenses[i].key}
                         settings={props.settings}
                         convertedCurrency={props.convertedCurrency}
+                        categories={props.categories}
                     />
                 );
             });

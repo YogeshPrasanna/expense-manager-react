@@ -85,6 +85,13 @@ const NavigationAuth = props => {
                         Savings
                     </Link>
                     <Link
+                        className={`nav-link ${window.location.pathname === "/categories" ? "active" : "inactive"}`}
+                        to={routes.CATEGORY_VIEW}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Categories
+                    </Link>
+                    <Link
                         className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
                         to={routes.SETTINGS_VIEW}
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
@@ -171,6 +178,14 @@ const NavigationAuth = props => {
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
                         Settings
+                    </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/categories" ? "active" : "inactive"}`}
+                        to={routes.CATEGORY_VIEW}
+                        onClick={burgerToggle}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Categories
                     </Link>
                     <Link className="nav-link" to={routes.SIGN_IN} onClick={burgerToggle}>
                         <SignOutButton />

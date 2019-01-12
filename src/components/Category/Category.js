@@ -1,21 +1,15 @@
 import React from "react";
-import ExpenseRow from "../Common/ExpenseRow";
+import CategoryRow from "../Common/CategoryRow";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
-const Expense = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedMonth = props.month;
-    let selectedYear = props.year;
+const Category = props => {
     let categories = props.categories;
+    let currentUser = props.authUser;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !categories) {
+    if (!categories || !currentUser) {
         return (
             <tr>
-                <td>
-                    <Loader />
-                </td>
                 <td>
                     <Loader />
                 </td>
@@ -38,27 +32,21 @@ const Expense = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear && categories) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
-            eachExpense,
-            currentUser,
-            selectedMonth,
-            selectedYear
-        );
+    if (categories && currentUser) {
+        let eachCategory = utils.eachCategory(categories);
+        let thisUsersCategories = utils.currentUsersCategories(eachCategory, currentUser);
 
-        if (usersExpensesInSelectedMonthAndYear.length) {
-            return usersExpensesInSelectedMonthAndYear.map(function(elem, i) {
+        if (thisUsersCategories.length) {
+            return thisUsersCategories.map(function(elem, i) {
                 return (
-                    <ExpenseRow
+                    <CategoryRow
                         user={props.authUser}
-                        expense={elem}
+                        category={elem}
                         num={i}
                         key={i}
-                        expenseId={usersExpensesInSelectedMonthAndYear[i].key}
+                        categoryId={thisUsersCategories[i].key}
                         settings={props.settings}
                         convertedCurrency={props.convertedCurrency}
-                        categories={props.categories}
                     />
                 );
             });
@@ -67,7 +55,8 @@ const Expense = props => {
                 <tr>
                     <td>
                         <div className="alert alert-info" role="alert">
-                            You have'nt spent a penny on the selected month
+                            Start logging your expenses to see your expenses here , add an expense by clicking on the +
+                            Button on the bottom right corner of this page
                         </div>
                     </td>
                 </tr>
@@ -76,4 +65,4 @@ const Expense = props => {
     }
 };
 
-export default Expense;
+export default Category;

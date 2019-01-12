@@ -61,7 +61,8 @@ class EditExpenseForm extends Component {
     }
 
     render() {
-        if (this.props.settings) {
+        if (this.props.settings && this.props.categories) {
+
             const inputNightMode = {
                 background: "#2c2b2b",
                 color: "#a9a0a0",
@@ -126,18 +127,11 @@ class EditExpenseForm extends Component {
                                 onChange={this.handleChange.bind(this)}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             >
-                                <option value="Food">Food</option>
-                                <option value="Automobile">Automobile</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Healthcare">Healthcare</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Shopping">Shopping</option>
-                                <option value="Personal Care">Personal Care</option>
-                                <option value="Investment">Investment</option>
-                                <option value="Gifts & Donations">Gifts & Donations</option>
-                                <option value="Bills & Utilities">Bills & Utilities</option>
-                                <option value="Others">Others</option>
+                                {this.props.categories ? Object.keys(this.props.categories).map(key => (
+                                    <option key={this.props.categories[key].category} value={this.props.categories[key].category}>
+                                        {this.props.categories[key].category}
+                                    </option>
+                                )): []}
                             </select>
                         </div>
                     </div>

@@ -14,6 +14,7 @@ const AddExpensePopup = props => {
                     user={props.user}
                     settings={props.settings}
                     convertedCurrency={props.convertedCurrency}
+                    categories = {props.categories}
                 />
                 <button id="closePopup" onClick={props.closePopup}>
                     {" "}

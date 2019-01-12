@@ -10,8 +10,8 @@ const DailyTotalCalender = props => {
     let currentUser = props.authUser;
     let selectedMonth = props.month;
     let selectedYear = props.year;
-
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    let categories = props.categories;
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !categories) {
         return (
             <div>
                 <Loader />
@@ -19,7 +19,7 @@ const DailyTotalCalender = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,

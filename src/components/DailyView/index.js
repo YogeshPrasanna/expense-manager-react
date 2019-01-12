@@ -165,12 +165,14 @@ class DailyViewPage extends Component {
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                         </div>
                         <div className="col-sm-8 mobileNoPadding" style={rightCol}>
@@ -182,6 +184,7 @@ class DailyViewPage extends Component {
                                     expenses={this.props.expenses}
                                     date={this.state.date.format("MM/DD/YYYY")}
                                     authUser={this.props.user}
+                                    categories={this.props.categories}
                                 />
                             </div>
                             <GenerateExcel
@@ -189,6 +192,7 @@ class DailyViewPage extends Component {
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
+                                categories={this.props.categories}
                             />
                             {this.state.convertedCurrency ? (
                                 <ExpenseTable
@@ -197,6 +201,7 @@ class DailyViewPage extends Component {
                                     authUser={this.props.user}
                                     settings={this.props.settings}
                                     convertedCurrency={this.state.convertedCurrency}
+                                    categories={this.props.categories}
                                 />
                             ) : (
                                 <Loader />

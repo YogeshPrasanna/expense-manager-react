@@ -11,10 +11,10 @@ const TotalCard = props => {
     let selectedDate = props.date;
     let settings = props.settings;
     let cards = props.cards;
-
+    let categories = props.categories;
     let totalExpenses = 0;
 
-    if (!expenses || !currentUser || !settings) {
+    if (!expenses || !currentUser || !settings || !categories) {
         return (
             <div>
                 <Loader />
@@ -22,7 +22,7 @@ const TotalCard = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && currentUser && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, selectedDate);
 

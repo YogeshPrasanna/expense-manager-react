@@ -42,6 +42,7 @@ class LoanPage extends Component {
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
+                                categories={this.props.categories}
                             />
                             <GenerateExcel
                                 loans={this.props.loans}

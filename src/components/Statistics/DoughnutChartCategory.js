@@ -22,7 +22,7 @@ class DoughnutChartCategory extends Component {
         let expenses = this.props.expenses;
         let currentUser = this.props.authUser;
         let selectedYear = this.state.year;
-
+        let categories = this.props.categories;
         let allCategoryTotals = null;
 
         const monthDropdown = {
@@ -36,7 +36,7 @@ class DoughnutChartCategory extends Component {
 
         const formStyle = { position: "absolute", top: "0", padding: "15px", right: "-15px", zIndex: "9" };
 
-        if (!expenses || !currentUser) {
+        if (!expenses || !currentUser || !categories) {
             return (
                 <div>
                     <Loader />
@@ -44,28 +44,37 @@ class DoughnutChartCategory extends Component {
             );
         }
 
-        if (expenses && currentUser && selectedYear) {
+        if (expenses && currentUser && selectedYear && categories) {
             let eachExpense = utils.eachExpense(expenses);
             let usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+
+            let eachCategories = utils.eachCategory(categories);
+            let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
 
             //allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses);
 
             // dropdown selection all / any year
             if (selectedYear == "all") {
-                allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses);
+                allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses,thisUsersCategories);
             } else {
                 allCategoryTotals = utils.calculateTotalForAllCategories(
-                    utils.expensesinSelectedYear(eachExpense, currentUser, selectedYear.toString())
+                    utils.expensesinSelectedYear(eachExpense, currentUser, selectedYear.toString()),thisUsersCategories
                 );
             }
-
+            const listCategory = [],listCategoryColor=[];
+            Object.keys(categories).map(key => (
+                listCategory.push(categories[key].category)
+            ));
+            Object.keys(categories).map(key => (
+                listCategoryColor.push(categories[key].color)
+            ));
             let data = {
-                labels: utils.categories,
+                labels: listCategory,
                 datasets: [
                     {
                         data: Object.values(allCategoryTotals),
-                        backgroundColor: utils.categoryColors,
-                        hoverBackgroundColor: utils.categoryColors
+                        backgroundColor: listCategoryColor,
+                        hoverBackgroundColor: listCategoryColor
                     }
                 ]
             };

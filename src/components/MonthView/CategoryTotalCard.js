@@ -36,11 +36,11 @@ const CategoryTotalCard = props => {
     let selectedMonth = props.month;
     let selectedYear = props.year;
     let cards = props.cards;
-
+    let categories = props.categories;
     let allCategoryTotals = null;
     let categoryList = null;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !categories) {
         return (
             <div>
                 <Loader />
@@ -48,7 +48,7 @@ const CategoryTotalCard = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear && cards) {
+    if (expenses && currentUser && selectedMonth && selectedYear && cards && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -57,7 +57,10 @@ const CategoryTotalCard = props => {
             selectedYear
         );
 
-        allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
+        let eachCategories = utils.eachCategory(categories);
+        let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
+
+        allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear,thisUsersCategories);
 
         const eachCategory = allCategoryTotals => {
             return Object.keys(allCategoryTotals).map(function(key) {
@@ -67,9 +70,15 @@ const CategoryTotalCard = props => {
 
         categoryList = eachCategory(allCategoryTotals).map(el => {
             if (el.value) {
+                let categoryColor = "";
+                Object.keys(categories).map(function(key) {
+                   if(categories[key].category == el.key)
+                        categoryColor = categories[key].color;
+                });
                 return (
                     <span style={category} className="ttt" key={el.key}>
-                        <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                        {/* <div style={utils.categoryName(el.key, "card")}>{el.key}</div> */}
+                        <div style={{ borderBottom: "5px solid " +categoryColor}}>{el.key}</div>
                         <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
                         <div style={categoryExpense}>{el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}</div>
                     </span>

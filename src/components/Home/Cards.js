@@ -14,8 +14,8 @@ const Cards = props => {
     let mostSpentCategory = "-";
     let mostSpentDay = "-";
     let leastSpentDay = "-";
-
-    if (!expenses && !currentUser) {
+    let categories = props.categories;
+    if (!expenses && !currentUser && !categories) {
         return (
             <div>
                 <Loader />
@@ -23,9 +23,12 @@ const Cards = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && currentUser && categories) {
         const eachExpense = utils.eachExpense(expenses);
         const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+
+        let eachCategories = utils.eachCategory(categories);
+        let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
 
         const thisUsersExpensesThisMonth = utils.currentMonthExpenses(eachExpense, currentUser);
         const thisUsersExpensesToday = utils.expensesToday(eachExpense, currentUser);
@@ -78,7 +81,7 @@ const Cards = props => {
         }
 
         // most spent category
-        mostSpentCategory = utils.mostSpentCategory(thisUsersExpenses);
+        mostSpentCategory = utils.mostSpentCategory(thisUsersExpenses,thisUsersCategories);
         mostSpentDay = utils.mostSpentDay(thisUsersExpenses).mostSpentDay;
         leastSpentDay = utils.mostSpentDay(thisUsersExpenses).leastSpentDay;
     }

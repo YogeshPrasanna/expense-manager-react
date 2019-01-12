@@ -34,6 +34,7 @@ const ExpenseTable = props => {
                     key={Math.random() * 100}
                     settings={props.settings}
                     convertedCurrency={props.convertedCurrency}
+                    categories={props.categories}
                 />
             </tbody>
         </table>

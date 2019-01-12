@@ -7,8 +7,8 @@ const Expense = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let dateSelected = props.date;
-
-    if (!expenses || !currentUser) {
+    let categories = props.categories;
+    if (!expenses || !currentUser || !categories) {
         return (
             <tr>
                 <td>
@@ -36,7 +36,7 @@ const Expense = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && currentUser && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
@@ -51,6 +51,7 @@ const Expense = props => {
                         expenseId={thisUsersExpenses[i].key}
                         settings={props.settings}
                         convertedCurrency={props.convertedCurrency}
+                        categories={props.categories}
                     />
                 );
             });

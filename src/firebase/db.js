@@ -32,6 +32,22 @@ const doCreateExpenseTable = (uid, date, expense, category, comments, day, key) 
     });
 };
 
+// Create an category table , this happens for first time
+const doCreateCategoryTable = (uid, category, color, icon, key) => {
+    db.ref(`categoryTable/${uid}/${key}`).set({
+        uid,
+        category,
+        color,
+        icon
+    });
+};
+
+const doCreateCategory = (uid, category, color, icon) => {
+    db.ref(`categoryTable/${uid}`)
+        .push()
+        .set({ uid, category, color, icon });
+};
+
 // Create an saving table , this happens for first time
 const doCreateSavingsTable = (
     uid,
@@ -65,6 +81,8 @@ const doCreateSaving = (uid, date, goalAmount, savingAmount, savingFor, comments
 };
 
 const onceGetExpenses = () => db.ref("expenses").once("value");
+
+const onceGetCategories = () => db.ref('categories').once('value');
 
 const onceGetLoans = () => db.ref("loans").once("value");
 
@@ -121,5 +139,8 @@ export {
     doCreateLoanTable,
     doCreateSettingsForUser,
     doCreateSavingsTable,
-    doCreateSaving
+    doCreateSaving,
+    doCreateCategoryTable,
+    doCreateCategory,
+    onceGetCategories
 };

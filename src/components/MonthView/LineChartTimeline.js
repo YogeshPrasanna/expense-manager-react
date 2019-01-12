@@ -9,8 +9,9 @@ const LineChartExpenseTimeline = props => {
     let currentUser = props.authUser;
     let selectedMonth = props.month;
     let selectedYear = props.year;
+    let categories = props.categories;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !categories) {
         return (
             <div>
                 <Loader />
@@ -18,7 +19,7 @@ const LineChartExpenseTimeline = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,

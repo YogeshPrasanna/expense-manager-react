@@ -25,6 +25,7 @@ import StatisticsPage from "./Statistics/index";
 import LoanPage from "./Loan/index";
 import SettingsPage from "./Settings/index";
 import SavingsPage from "./Savings/index";
+import CategoriesPage from "./Category/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
@@ -40,10 +41,11 @@ class App extends Component {
             users: null,
             expenses: null,
             loans: null,
-            defaultCategoriesNames: null,
-            defaultCategoriesColors: null,
+            // defaultCategoriesNames: null,
+            // defaultCategoriesColors: null,
             settings: null,
-            savings: null
+            savings: null,
+            categories: null
         };
     }
 
@@ -56,11 +58,11 @@ class App extends Component {
         firebase.auth.onAuthStateChanged(authUser => {
             authUser
                 ? this.setState({
-                      authUser: authUser
-                  })
+                    authUser: authUser
+                })
                 : this.setState({
-                      authUser: null
-                  });
+                    authUser: null
+                });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -153,12 +155,50 @@ class App extends Component {
                     }
                 });
 
-                // get all the defaultCategories
-                firebase.db.ref("defaultCategories").on("value", data => {
-                    if (data) {
+                // // get all the defaultCategories
+                // firebase.db.ref("defaultCategories").on("value", data => {
+                //     if (data) {
+                //         this.setState({
+                //             defaultCategoriesNames: Object.keys(data.val()),
+                //             defaultCategoriesColors: Object.values(data.val())
+                //         });
+                //     }
+                // });
+
+
+                // get all the category from new table
+                firebase.db.ref(`categoryTable/${this.state.authUser.uid}`).on("value", data => {
+                    if (data.val() !== null) {
                         this.setState({
-                            defaultCategoriesNames: Object.keys(data.val()),
-                            defaultCategoriesColors: Object.values(data.val())
+                            categories: data.val()
+                        });
+                    } else {
+                        // get and set categories in db from old categories table to new categoryTable
+                        firebase.db.ref("categories").on("value", data => {
+                            if (data) {
+                                let eachCategory = utils.eachCategory(data.val());
+                                let thisUsersCategories = utils.currentUsersCategories(eachCategory, this.state.authUser);
+
+                                thisUsersCategories.map(elem => {
+                                    db.doCreateCategoryTable(
+                                        elem.value.uid,
+                                        elem.value.category,
+                                        elem.value.color,
+                                        elem.value.icon,
+                                        elem.key
+                                    );
+                                });
+                                thisUsersCategories.map(elem => {
+                                    firebase.db.ref(`categories/${elem.key}`).remove();
+                                });
+
+                                // need to set empty state once deleting all records in legacy table
+                                // or else it will always be loading
+
+                                this.setState({
+                                    categories: data.val()
+                                });
+                            }
                         });
                     }
                 });
@@ -220,6 +260,17 @@ class App extends Component {
                         if (data) {
                             this.setState({
                                 expenses: data.val()
+                            });
+                        }
+                    });
+                });
+
+                const categoriesRef = firebase.db.ref(`categoryTable/${this.state.authUser.uid}`);
+                categoriesRef.on("child_removed", data => {
+                    firebase.db.ref(`categoryTable/${this.state.authUser.uid}`).on("value", data => {
+                        if (data) {
+                            this.setState({
+                                categories: data.val()
                             });
                         }
                     });
@@ -297,6 +348,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                categories={this.state.categories}
                                 cards={cards}
                             />
                         )}
@@ -309,6 +361,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                categories={this.state.categories}
                                 cards={cards}
                             />
                         )}
@@ -322,6 +375,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                categories={this.state.categories}
                                 cards={cards}
                             />
                         )}
@@ -335,6 +389,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                categories={this.state.categories}
                                 cards={cards}
                             />
                         )}
@@ -347,6 +402,7 @@ class App extends Component {
                                 user={this.state.authUser}
                                 expenses={this.state.expenses}
                                 settings={this.state.settings}
+                                categories={this.state.categories}
                                 cards={cards}
                             />
                         )}
@@ -368,7 +424,7 @@ class App extends Component {
                         exact
                         path={routes.SETTINGS_VIEW}
                         component={() => (
-                            <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} />
+                            <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} categories={this.state.categories} />
                         )}
                     />
 
@@ -379,6 +435,19 @@ class App extends Component {
                             <SavingsPage
                                 user={this.state.authUser}
                                 savings={this.state.savings}
+                                settings={this.state.settings}
+                                categories={this.state.categories}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        exact
+                        path={routes.CATEGORY_VIEW}
+                        component={() => (
+                            <CategoriesPage
+                                user={this.state.authUser}
+                                categories={this.state.categories}
                                 settings={this.state.settings}
                             />
                         )}

@@ -8,8 +8,8 @@ const GenerateExcel = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let dateSelected = props.date;
-
-    if (!expenses || !currentUser) {
+    let categories = props.categories;
+    if (!expenses || !currentUser || !categories) {
         return (
             <div>
                 <Loader />
@@ -17,7 +17,7 @@ const GenerateExcel = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && currentUser && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
         let excelDataObject = thisUsersExpenses.map(exp => exp.value);

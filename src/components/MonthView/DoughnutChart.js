@@ -8,12 +8,12 @@ const DoughnutChart = props => {
     let currentUser = props.authUser;
     let selectedMonth = props.month;
     let selectedYear = props.year;
-
+    let categories = props.categories;
     let allCategoryTotals = null;
     let categoryList = null;
     let categoryColors = null;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !categories) {
         return (
             <div>
                 <Loader />
@@ -21,7 +21,7 @@ const DoughnutChart = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -30,7 +30,10 @@ const DoughnutChart = props => {
             selectedYear
         );
 
-        allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
+        let eachCategories = utils.eachCategory(categories);
+        let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
+
+        allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear,thisUsersCategories);
 
         const eachCategory = allCategoryTotals => {
             return Object.keys(allCategoryTotals).map(function(key) {
@@ -44,7 +47,15 @@ const DoughnutChart = props => {
             })
             .map(el => el.key);
 
-        categoryColors = categoryList.map(el => utils.getCatColor(el));
+        categoryColors = [];
+        categoryList.map(function(category) {
+            Object.keys(categories).map(function(key) {
+                if(categories[key].category == category){
+                    categoryColors.push(categories[key].color);
+                }
+            }); 
+        });
+        console.log(categoryColors)
 
         let data = {
             labels: categoryList,

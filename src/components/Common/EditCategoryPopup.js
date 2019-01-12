@@ -1,7 +1,7 @@
 import React from "react";
-import EditExpenseForm from "./EditExpenseForm";
+import EditCategoryForm from "./EditCategoryForm";
 
-const EditExpensePopup = props => {
+const EditCategoryPopup = props => {
     const nightModePopup = {
         backgroundColor: props.settings ? (props.settings.mode === "night" ? "#857861" : "#fff") : "#fff"
     };
@@ -9,12 +9,12 @@ const EditExpensePopup = props => {
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
                 <div className="addExpenseHeader"> Edit expense </div>
-                <EditExpenseForm
+                <EditCategoryForm
                     user={props.user}
-                    expense={props.expense}
+                    category={props.category}
                     settings={props.settings}
-                    categories = {props.categories}
                     convertedCurrency={props.convertedCurrency}
+                    categories={props.categories}
                 />
                 <button id="closePopup" onClick={props.closePopup}>
                     {" "}
@@ -25,4 +25,4 @@ const EditExpensePopup = props => {
     );
 };
 
-export default EditExpensePopup;
+export default EditCategoryPopup;

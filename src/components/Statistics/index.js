@@ -38,14 +38,14 @@ const StatisticsPage = props => {
                         className="col-sm-6 mobileNoPadding"
                         style={props.settings.mode === "night" ? nmBgForCharts : marB15}
                     >
-                        <DoughnutChartCategory expenses={props.expenses} authUser={props.user} />
+                        <DoughnutChartCategory expenses={props.expenses} authUser={props.user} categories={props.categories}/>
                         <span className="badge badge-info">Total Expense for each category</span>
                     </div>
                     <div
                         className="col-sm-6 mobileNoPadding"
                         style={props.settings.mode === "night" ? nmBgForCharts : marB15}
                     >
-                        <BarChartAllMonths expenses={props.expenses} authUser={props.user} />
+                        <BarChartAllMonths expenses={props.expenses} authUser={props.user}  categories={props.categories}/>
                     </div>
                 </div>
                 <div className="row">
@@ -55,12 +55,13 @@ const StatisticsPage = props => {
                             authUser={props.user}
                             settings={props.settings}
                             cards={props.cards}
+                            categories={props.categories}
                         />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12 mobileNoPadding" style={marB15}>
-                        <CategoryTotalCard expenses={props.expenses} authUser={props.user} />
+                        <CategoryTotalCard expenses={props.expenses} authUser={props.user}  categories={props.categories}/>
                     </div>
                 </div>
             </div>

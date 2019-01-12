@@ -8,10 +8,10 @@ const MonthLimitWarning = props => {
     let selectedMonth = props.month;
     let selectedYear = props.year;
     let settings = props.settings;
-
+    let categories = props.categories;
     let totalExpenses = 0;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !settings) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !settings || !categories) {
         return (
             <div>
                 <Loader />
@@ -19,7 +19,7 @@ const MonthLimitWarning = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,

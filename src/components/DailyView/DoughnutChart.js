@@ -7,12 +7,12 @@ const DoughnutChart = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let dateSelected = props.date;
-
+    let categories = props.categories;
     let allCategoryTotals = null;
     let categoryList = null;
     let categoryColors = null;
 
-    if (!expenses || !currentUser || !dateSelected) {
+    if (!expenses || !currentUser || !dateSelected || !categories) {
         return (
             <div>
                 <Loader />
@@ -20,11 +20,13 @@ const DoughnutChart = props => {
         );
     }
 
-    if (expenses && currentUser && dateSelected) {
+    if (expenses && currentUser && dateSelected && categories) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
-        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
+        let eachCategories = utils.eachCategory(categories);
+        let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
+        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses,thisUsersCategories);
 
         const eachCategory = allCategoryTotals => {
             return Object.keys(allCategoryTotals).map(function(key) {
@@ -38,7 +40,14 @@ const DoughnutChart = props => {
             })
             .map(el => el.key);
 
-        categoryColors = categoryList.map(el => utils.getCatColor(el));
+            categoryColors = [];
+            categoryList.map(function(category) {
+                Object.keys(categories).map(function(key) {
+                    if(categories[key].category == category){
+                        categoryColors.push(categories[key].color);
+                    }
+                }); 
+            });
 
         let data = {
             labels: categoryList,

@@ -71,7 +71,8 @@ class ExpenseRow extends Component {
             <tr
                 key={this.props.expenseId}
                 id={this.props.expenseId}
-                style={utils.categoryName(this.props.expense.value.category, "row")}
+                // style={utils.categoryName(this.props.expense.value.category, "row")}
+                style= {{borderLeft: "10px solid" +this.props.expense.value.color}}
             >
                 <td data-th="No">
                     {this.props.num + 1}
@@ -82,6 +83,7 @@ class ExpenseRow extends Component {
                             closePopup={this.toggleEditPopup.bind(this)}
                             settings={this.props.settings}
                             convertedCurrency={this.props.convertedCurrency}
+                            categories={this.props.categories}
                         />
                     ) : null}
                 </td>

@@ -52,7 +52,7 @@ class CategoryTotalCard extends Component {
         let expenses = this.props.expenses;
         let currentUser = this.props.authUser;
         let selectedYear = this.state.year;
-
+        let categories = this.props.categories;
         let allCategoryTotals = null;
         let categoryList = null;
 
@@ -77,20 +77,22 @@ class CategoryTotalCard extends Component {
             zIndex: "9"
         };
 
-        if (!expenses || !currentUser) {
+        if (!expenses || !currentUser || !categories) {
             return <Loader />;
         }
 
-        if (expenses && currentUser && selectedYear) {
+        if (expenses && currentUser && selectedYear && categories) {
             let eachExpense = utils.eachExpense(expenses);
             let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
+            let eachCategories = utils.eachCategory(categories);
+            let thisUsersCategories = utils.currentUsersCategories(eachCategories, currentUser);
             // dropdown selection all / any year
             if (selectedYear == "all") {
-                allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
+                allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses,thisUsersCategories);
             } else {
                 allCategoryTotals = utils.calculateTotalForAllCategories(
-                    utils.expensesinSelectedYear(eachExpense, currentUser, selectedYear.toString())
+                    utils.expensesinSelectedYear(eachExpense, currentUser, selectedYear.toString()),thisUsersCategories
                 );
             }
 
@@ -102,9 +104,15 @@ class CategoryTotalCard extends Component {
 
             categoryList = eachCategory(allCategoryTotals).map(el => {
                 if (el.value) {
+                    let categoryColor = "";
+                    Object.keys(categories).map(function(key) {
+                    if(categories[key].category == el.key)
+                            categoryColor = categories[key].color;
+                    });
                     return (
                         <span style={category} className="ttt" key={el.key}>
-                            <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                            {/* <div style={utils.categoryName(el.key, "card")}>{el.key}</div> */}
+                            <div style={{ borderBottom: "5px solid " +categoryColor}}>{el.key}</div>
                             <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
                             <div style={categoryExpense}>
                                 {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}

@@ -134,7 +134,7 @@ ul {
     cursor: pointer;
 }
 
-.addexpense-btn {
+.addexpense-btn,.addCategory-btn {
     border-radius: 50px;
     border-color: #25221b66;
     cursor: pointer;
@@ -517,6 +517,7 @@ nav .navNarrow .navbar-nav {
     }
 
     .addexpense-btn,
+    .addCategory,
     .addloan-btn,
     .export-print-bar {
         display: none;

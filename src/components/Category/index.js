@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
-import ExpenseTable from "./ExpenseTable.js";
-import AddExpensePopup from "./AddExpensePopup";
-import Cards from "./Cards";
-import GenerateExcel from "./GenerateExcel";
+import CategoryTable from "./CategoryTable.js";
+import AddCategoryPopup from "./AddCategoryPopup";
 import Loader from "./../Common/Loader";
 
 import * as analytics from "./../../analytics/analytics";
 
-class HomePage extends Component {
+class CategoryPage extends Component {
     constructor(props) {
         super(props);
 
@@ -64,52 +62,41 @@ class HomePage extends Component {
     render() {
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
-            backgroundColor: this.props.settings ? (this.props.settings.mode === "night" ? "#484842" : "auto") : "auto",
+            backgroundColor: this.props.settings
+                ? this.props.settings.mode === "night"
+                    ? "#484842"
+                    : "#EDF0EF"
+                : "#EDF0EF",
             minHeight: "91vh"
         };
 
-        if (this.props.settings && this.props.cards && this.props.categories) {
+        if (this.props.settings) {
             console.log("converted currency : ", this.state.convertedCurrency);
 
             return (
                 <div>
                     <div className="col-sm-12 mobileNoPadding" style={styleFromSettings}>
-                        <Cards
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            settings={this.props.settings}
-                            cards={this.props.cards}
-                            categories = {this.props.categories}
-                        />
-                        <GenerateExcel
-                            expenses={this.props.expenses}
-                            authUser={this.props.user}
-                            settings={this.props.settings}
-                            categories = {this.props.categories}
-                        />
                         {this.state.convertedCurrency ? (
-                            <ExpenseTable
-                                expenses={this.props.expenses}
+                            <CategoryTable
+                                categories={this.props.categories}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 convertedCurrency={this.state.convertedCurrency}
-                                categories = {this.props.categories}
                             />
                         ) : (
                             <Loader />
                         )}
                     </div>
-                    <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
-                        <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
+                    <button className="addCategory-btn" onClick={this.togglePopup.bind(this)} id="addCategory">
+                        <i className="fa fa-plus-circle fa-5x" aria-hidden="false" />
                     </button>
                     {this.state.showPopup ? (
                         this.state.convertedCurrency ? (
-                            <AddExpensePopup
+                            <AddCategoryPopup
                                 user={this.props.user}
                                 closePopup={this.togglePopup.bind(this)}
                                 settings={this.props.settings}
                                 convertedCurrency={this.state.convertedCurrency}
-                                categories = {this.props.categories}
                             />
                         ) : (
                             <Loader />
@@ -127,4 +114,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default CategoryPage;

@@ -1,6 +1,10 @@
 import moment from "moment";
 
 export const eachExpense = expenses => {
+    if(expenses == null){
+        expenses = [];
+        return expenses;
+    }
     return Object.keys(expenses)
         .map(function(key) {
             return { key: key, value: expenses[key] };
@@ -12,8 +16,24 @@ export const eachExpense = expenses => {
         });
 };
 
+export const eachCategory = categories => {
+    if(categories == null){
+        categories = [];
+        return categories;
+    }
+    return Object.keys(categories)
+        .map(function(key) {
+            return { key: key, value: categories[key] };
+        })
+        .sort();
+};
+
 export const currentUsersExpenses = (eachExpense, currentUser) => {
     return eachExpense.filter(elem => elem.value.uid === currentUser.uid);
+};
+
+export const currentUsersCategories = (eachCategory, currentUser) => {
+    return eachCategory.filter(elem => elem.value.uid === currentUser.uid);
 };
 
 // expenses in selected month and year
@@ -34,6 +54,11 @@ export const expensesinSelectedYear = (eachExpense, currentUser, selectedYear) =
 // expenses in a selected date
 export const expensesInDate = (eachExpense, currentUser, date) => {
     return eachExpense.filter(elem => elem.value.uid === currentUser.uid && elem.value.date === date);
+};
+
+// expenses in a selected category
+export const expensesInCategory = (eachExpense, currentUser, category) => {
+    return eachCategory.filter(elem => elem.value.uid === currentUser.uid && elem.value.category === category);
 };
 
 // expenses in current month
@@ -164,37 +189,12 @@ export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, curren
 };
 
 // Total for each category
-export const calculateTotalForAllCategories = expenses => {
-    const categories = [
-        "Food",
-        "Automobile",
-        "Entertainment",
-        "Clothing",
-        "Healthcare",
-        "Travel",
-        "Shopping",
-        "Personal Care",
-        "Investment",
-        "Gifts & Donations",
-        "Bills & Utilities",
-        "Others"
-    ];
-
-    let categoryTotal = {
-        Food: 0,
-        Automobile: 0,
-        Entertainment: 0,
-        Clothing: 0,
-        Healthcare: 0,
-        Travel: 0,
-        Shopping: 0,
-        "Personal Care": 0,
-        Investment: 0,
-        "Gifts & Donations": 0,
-        "Bills & Utilities": 0,
-        Others: 0
-    };
-
+export const calculateTotalForAllCategories = (expenses,categories) => {
+    
+    let categoryTotal = [];
+    categories.map(key => (
+        categoryTotal[key.value.category] = 0
+    ));
     const totalForACategory = function(expenses, category) {
         let temp = expenses.filter(elem => elem.value.category === category).map(el => Number(el.value.expense));
 
@@ -206,7 +206,7 @@ export const calculateTotalForAllCategories = expenses => {
         }
     };
 
-    categories.map(category => totalForACategory(expenses, category));
+    categories.map(category => totalForACategory(expenses, category.value.category));
 
     console.log("CAtegories Toatal : ", categoryTotal);
 
@@ -214,8 +214,8 @@ export const calculateTotalForAllCategories = expenses => {
 };
 
 // most spent on category
-export const mostSpentCategory = expenses => {
-    let categoryTotals = calculateTotalForAllCategories(expenses);
+export const mostSpentCategory = (expenses,categories) => {
+    let categoryTotals = calculateTotalForAllCategories(expenses,categories);
 
     var sortable = [];
     for (var cat in categoryTotals) {
@@ -227,77 +227,6 @@ export const mostSpentCategory = expenses => {
     });
 
     return expenses.length ? sortedCategories[0][0] : "-";
-};
-
-// all categories
-export const categories = [
-    "Food",
-    "Automobile",
-    "Entertainment",
-    "Clothing",
-    "Healthcare",
-    "Travel",
-    "Shopping",
-    "Personal Care",
-    "Investment",
-    "Gifts & Donations",
-    "Bills & Utilities",
-    "Others"
-];
-
-// colors for each category
-export const categoryColors = [
-    "#FF965D",
-    "#FFCC78",
-    "#A08E78",
-    "#8DA685",
-    "#00A3EA",
-    "#3EA75E",
-    "#16B498",
-    "#FF1945",
-    "#FF5473",
-    "#927959",
-    "#7E0332",
-    "#872AEF"
-];
-
-// retrun border color for each category - daily and monthly view
-/*
-@method : categoryName
-@params : 
-    cat: category name
-    name: name of the component (Basically we're retrieving styles based on category here)
-@return : styles based on category for a particular component based on name 
-*/
-export const categoryName = (cat, name) => {
-    switch (cat) {
-        case "Food":
-            return name === "card" ? { borderBottom: "5px solid #FF965D" } : { borderLeft: "10px solid #FF965D" };
-        case "Automobile":
-            return name === "card" ? { borderBottom: "5px solid #FFCC78" } : { borderLeft: "10px solid #FFCC78" };
-        case "Entertainment":
-            return name === "card" ? { borderBottom: "5px solid #A08E78" } : { borderLeft: "10px solid #A08E78" };
-        case "Clothing":
-            return name === "card" ? { borderBottom: "5px solid #8DA685" } : { borderLeft: "10px solid #8DA685" };
-        case "Healthcare":
-            return name === "card" ? { borderBottom: "5px solid #00A3EA" } : { borderLeft: "10px solid #00A3EA" };
-        case "Travel":
-            return name === "card" ? { borderBottom: "5px solid #3EA75E" } : { borderLeft: "10px solid #3EA75E" };
-        case "Shopping":
-            return name === "card" ? { borderBottom: "5px solid #16B498" } : { borderLeft: "10px solid #16B498" };
-        case "Personal Care":
-            return name === "card" ? { borderBottom: "5px solid #FF1945" } : { borderLeft: "10px solid #FF1945" };
-        case "Investment":
-            return name === "card" ? { borderBottom: "5px solid #FF5473" } : { borderLeft: "10px solid #FF5473" };
-        case "Gifts & Donations":
-            return name === "card" ? { borderBottom: "5px solid #927959" } : { borderLeft: "10px solid #927959" };
-        case "Bills & Utilities":
-            return name === "card" ? { borderBottom: "5px solid #7E0332" } : { borderLeft: "10px solid #7E0332" };
-        case "Others":
-            return name === "card" ? { borderBottom: "5px solid #872AEF" } : { borderLeft: "10px solid #872AEF" };
-        default:
-            return { borderBottom: "5px solid orange" };
-    }
 };
 
 export const categoryIcon = category => {
@@ -328,37 +257,6 @@ export const categoryIcon = category => {
             return "circle-o";
         default:
             return "bars";
-    }
-};
-
-export const getCatColor = category => {
-    switch (category) {
-        case "Food":
-            return "#FF965D";
-        case "Automobile":
-            return "#FFCC78";
-        case "Entertainment":
-            return "#A08E78";
-        case "Clothing":
-            return "#8DA685";
-        case "Healthcare":
-            return "#00A3EA";
-        case "Travel":
-            return "#3EA75E";
-        case "Shopping":
-            return "#16B498";
-        case "Personal Care":
-            return "#FF1945";
-        case "Investment":
-            return "#FF5473";
-        case "Gifts & Donations":
-            return "#927959";
-        case "Bills & Utilities":
-            return "#7E0332";
-        case "Others":
-            return "#872AEF";
-        default:
-            return "#fff";
     }
 };
 
