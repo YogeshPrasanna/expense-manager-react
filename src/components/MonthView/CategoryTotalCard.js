@@ -1,6 +1,9 @@
 import React from "react";
 import * as utils from "../Util";
 import Loader from "../Common/Loader";
+
+import { Link } from "react-router-dom";
+
 const CategoryTotalCard = props => {
     const pad0 = {
         padding: "0"
@@ -69,6 +72,7 @@ const CategoryTotalCard = props => {
         };
 
         categoryList = eachCategory(allCategoryTotals).map(el => {
+            console.log("month categoreis el : ", el);
             if (el.value) {
                 let categoryColor = "";
                 Object.keys(categories).map(function(key) {
@@ -76,12 +80,20 @@ const CategoryTotalCard = props => {
                         categoryColor = categories[key].color;
                 });
                 return (
-                    <span style={category} className="ttt" key={el.key}>
-                        {/* <div style={utils.categoryName(el.key, "card")}>{el.key}</div> */}
-                        <div style={{ borderBottom: "5px solid " +categoryColor}}>{el.key}</div>
-                        <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
-                        <div style={categoryExpense}>{el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}</div>
-                    </span>
+                   <Link
+                        to={`/filter-view?category=${
+                            el.key
+                        }&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`}
+                    >
+                        <span style={category} className="ttt" key={el.key}>
+                            {/* <div style={utils.categoryName(el.key, "card")}>{el.key}</div> */}
+                            <div style={{ borderBottom: "5px solid " +categoryColor}}>{el.key}</div>
+                            <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
+                            <div style={categoryExpense}>
+                                {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                            </div>
+                        </span>
+                    </Link>
                 );
             } else {
                 return <span key={el.key} />;
