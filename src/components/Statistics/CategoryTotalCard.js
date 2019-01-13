@@ -105,6 +105,11 @@ class CategoryTotalCard extends Component {
 
             categoryList = eachCategory(allCategoryTotals).map(el => {
                 if (el.value) {
+                    let categoryColor = "";
+                    Object.keys(categories).map(function(key) {
+                    if(categories[key].category == el.key)
+                            categoryColor = categories[key].color;
+                    });
                     if (selectedYear === "all") {
                         return (
                             <span style={category} className="ttt" key={el.key}>
