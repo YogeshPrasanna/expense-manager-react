@@ -82,7 +82,7 @@ const DoughnutChart = props => {
                             height={window.screen.width > 720 ? 80 : 450}
                             responsive={true}
                             onElementsClick={elems => {
-                                if (elems) {
+                                if (elems.length) {
                                     const clickedLabel = elems[0]._model.label;
                                     history.push(
                                         `/filter-view?category=${clickedLabel}&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`

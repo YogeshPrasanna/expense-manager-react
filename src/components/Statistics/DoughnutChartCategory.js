@@ -107,8 +107,9 @@ class DoughnutChartCategory extends Component {
                                 height={window.screen.width > 720 ? 140 : 450}
                                 responsive={true}
                                 onElementsClick={elems => {
-                                    if (elems) {
-                                        const clickedLabel = elems[0]._model.label;
+                                    if (elems.length) {
+                                        console.log("ELEMENTS : ", elems);
+                                        let clickedLabel = elems[0]._model.label;
                                         if (selectedYear !== "all") {
                                             history.push(
                                                 `/filter-view?category=${clickedLabel}&selectedYear=${selectedYear}&from=yearpage`
