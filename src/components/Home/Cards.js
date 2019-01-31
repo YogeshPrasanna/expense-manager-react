@@ -3,6 +3,8 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 import Trianglify from "trianglify";
 
+import moment from "moment";
+
 const Cards = props => {
     let expenses = props.expenses;
     let currentUser = props.authUser;
@@ -28,7 +30,11 @@ const Cards = props => {
         const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
         const thisUsersExpensesThisMonth = utils.currentMonthExpenses(eachExpense, currentUser);
-        const thisUsersExpensesToday = utils.expensesToday(eachExpense, currentUser);
+        const thisUsersExpensesToday = utils.expensesInDate(
+            eachExpense,
+            currentUser,
+            moment(new Date()).format("MM/DD/YYYY")
+        );
         const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, currentUser);
         const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, currentUser);
 
@@ -168,8 +174,8 @@ const Cards = props => {
                                             Monthly <br /> Limit <br /> exceeded{" "}
                                         </span>
                                     ) : (
-                                            ""
-                                        )}
+                                        ""
+                                    )}
                                 </p>
                             </div>
                         </div>
@@ -309,8 +315,8 @@ const Cards = props => {
                                                         Monthly <br /> Limit <br /> exceeded{" "}
                                                     </span>
                                                 ) : (
-                                                        ""
-                                                    )}
+                                                    ""
+                                                )}
                                             </p>
                                         </div>
                                     </div>

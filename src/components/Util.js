@@ -75,7 +75,8 @@ export const expensesThisWeek = (eachExpense, currentUser) => {
     return eachExpense.filter(
         elem =>
             elem.value.uid === currentUser.uid &&
-            moment(elem.value.date, "MM/DD/YYYY").week() === moment(moment(new Date()), "MM/DD/YYYY").week()
+            moment(elem.value.date, "MM/DD/YYYY").week() === moment(moment(new Date()), "MM/DD/YYYY").week() &&
+            moment(elem.value.date, "MM/DD/YYYY").year() === moment(moment(new Date()), "MM/DD/YYYY").year()
     );
 };
 
@@ -463,9 +464,9 @@ export const yearsGenereator = () => {
     var dateVal = new Date();
     var currentYear = dateVal.getFullYear();
     var cutOffYears = 4; // using 5 years as cutoff as per reports cutoffyears to keep inline
-    for (var i = currentYear - cutOffYears; i <= currentYear + cutOffYears; i++) { 
+    for (var i = currentYear - cutOffYears; i <= currentYear + cutOffYears; i++) {
         defaultYears.push(i);
     }
 
     return defaultYears;
-}
+};
