@@ -114,17 +114,22 @@ const DailyTotalCalender = props => {
         });
 
         let printHtml = Object.keys(totals).map((elem, i) => {
-            return (
-                <Link to={`/daily-view?date=${elem}`}>
-                    <li key={elem} style={elem === today ? listStyleToday : listStyleDateCells}>
-                        <div style={elem === today ? todayDateArea : dateArea}>
-                            {" "}
-                            {moment(allDatesInSelectedMonth[i]).date()}
-                        </div>{" "}
-                        {totals[elem].toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}{" "}
-                    </li>
-                </Link>
+            var listEle = (
+                <li key={elem} style={elem === today ? listStyleToday : listStyleDateCells}>
+                    <div style={elem === today ? todayDateArea : dateArea}>
+                        {" "}
+                        {moment(allDatesInSelectedMonth[i]).date()}
+                    </div>{" "}
+                    {totals[elem].toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}{" "}
+                </li>
             );
+
+            // Links to daily view if total is not 0
+            if (totals[elem] != 0) {
+                return <Link to={`/daily-view?date=${elem}`}>{listEle}</Link>;
+            } else {
+                return listEle;
+            }
         });
 
         return (
