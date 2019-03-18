@@ -6,6 +6,7 @@ import moment from "moment";
 import ExpenseTable from "./ExpenseTable.js";
 import TotalCard from "./TotalCard";
 import CategoryTotalCard from "./CategoryTotalCard";
+import MobileExpenseTable from "./MobileExpenseTable";
 import DoughnutChart from "./DoughnutChart";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
@@ -191,13 +192,23 @@ class DailyViewPage extends Component {
                                 settings={this.props.settings}
                             />
                             {this.state.convertedCurrency ? (
-                                <ExpenseTable
-                                    expenses={this.props.expenses}
-                                    date={this.state.date.format("MM/DD/YYYY")}
-                                    authUser={this.props.user}
-                                    settings={this.props.settings}
-                                    convertedCurrency={this.state.convertedCurrency}
-                                />
+                                window.screen.width > 720 ? (
+                                    <ExpenseTable
+                                        expenses={this.props.expenses}
+                                        date={this.state.date.format("MM/DD/YYYY")}
+                                        authUser={this.props.user}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                ) : (
+                                    <MobileExpenseTable
+                                        expenses={this.props.expenses}
+                                        authUser={this.props.user}
+                                        date={this.state.date.format("MM/DD/YYYY")}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                )
                             ) : (
                                 <Loader />
                             )}

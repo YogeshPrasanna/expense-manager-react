@@ -8,6 +8,7 @@ import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
 import * as analytics from "./../../analytics/analytics";
+import MobileExpenseTable from "./MobileExpenseTable";
 
 class FilterViewPage extends Component {
     constructor(props) {
@@ -336,17 +337,31 @@ class FilterViewPage extends Component {
                                 settings={this.props.settings}
                             />
                             {this.state.convertedCurrency ? (
-                                <ExpenseTable
-                                    expenses={this.props.expenses}
-                                    expensefrom={this.state.expensefrom}
-                                    expenseto={this.state.expenseto}
-                                    fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                    todate={this.state.todate.format("MM/DD/YYYY")}
-                                    category={this.state.category}
-                                    authUser={this.props.user}
-                                    settings={this.props.settings}
-                                    convertedCurrency={this.state.convertedCurrency}
-                                />
+                                window.screen.width > 720 ? (
+                                    <ExpenseTable
+                                        expenses={this.props.expenses}
+                                        expensefrom={this.state.expensefrom}
+                                        expenseto={this.state.expenseto}
+                                        fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                                        todate={this.state.todate.format("MM/DD/YYYY")}
+                                        category={this.state.category}
+                                        authUser={this.props.user}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                ) : (
+                                    <MobileExpenseTable
+                                        expenses={this.props.expenses}
+                                        expensefrom={this.state.expensefrom}
+                                        expenseto={this.state.expenseto}
+                                        fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                                        todate={this.state.todate.format("MM/DD/YYYY")}
+                                        category={this.state.category}
+                                        authUser={this.props.user}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                )
                             ) : (
                                 <Loader />
                             )}
