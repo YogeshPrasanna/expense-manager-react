@@ -134,6 +134,12 @@ ul {
     cursor: pointer;
 }
 
+.edit-btn-mobile,
+.delete-mobile-btn {
+
+    padding: 5px 25px;
+}
+
 .addexpense-btn {
     border-radius: 50px;
     border-color: #25221b66;
@@ -773,4 +779,95 @@ i.fa.fa-circle-o {
 .alert,
 .form-control {
     border-radius: 0 !important;
+}
+
+
+.accordion {
+    margin: 3em auto;
+    max-width: 30em;
+}
+
+.toggle {
+    display: none;
+}
+
+.option {
+    position: relative;
+    /* margin-bottom: 1em; */
+}
+
+.title,
+.content {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: all 0.2s;
+}
+
+.title {
+    background: #fff;
+    padding: 5px;
+    display: block;
+    color: #7A7572;
+    font-weight: bold;
+}
+
+.title:after,
+.title:before {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    width: 2px;
+    height: 0.75em;
+    background-color: #7A7572;
+    transition: all 0.2s;
+}
+
+.title:after {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #343a40;
+    color: #fff;
+}
+
+.content p {
+    margin: 0;
+    padding: 0.5em 1em 1em;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.option label {
+    margin-bottom: 0;
+    border-bottom: 1px solid orange;
+}
+
+.toggle:checked+.title,
+.toggle:checked+.title+.content {
+    box-shadow: 3px 3px 6px #ddd, -3px 3px 6px #ddd;
+}
+
+.toggle:checked+.title+.content {
+    max-height: 500px;
+}
+
+.toggle:checked+.title:before {
+    -webkit-transform: rotate(90deg) !important;
+    transform: rotate(90deg) !important;
+}
+
+.mobile-row-header {
+    padding: 0 10px;
+}
+
+.last-item {
+    float: right;
+    padding-right: 30px !important;
 }

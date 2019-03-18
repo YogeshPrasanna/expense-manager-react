@@ -8,6 +8,7 @@ import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 import LineChartExpenseTimeline from "./LineChartTimeline";
 import MonthLimitWarning from "./MonthLimitWarning";
+import MobileExpenseTable from "./MobileExpenseTable";
 
 import * as utils from "../Util";
 import * as analytics from "./../../analytics/analytics";
@@ -267,7 +268,9 @@ class MonthViewPage extends Component {
                                             ...dateField
                                         }}
                                     >
-                                        {utils.yearsGenereator().map((elem) => (<option value={elem}>{elem}</option>))}
+                                        {utils.yearsGenereator().map(elem => (
+                                            <option value={elem}>{elem}</option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div
@@ -341,14 +344,25 @@ class MonthViewPage extends Component {
                             />
 
                             {this.state.convertedCurrency ? (
-                                <MonthExpenseTable
-                                    expenses={this.props.expenses}
-                                    authUser={this.props.user}
-                                    month={this.state.month}
-                                    year={this.state.year}
-                                    settings={this.props.settings}
-                                    convertedCurrency={this.state.convertedCurrency}
-                                />
+                                window.screen.width > 720 ? (
+                                    <MonthExpenseTable
+                                        expenses={this.props.expenses}
+                                        authUser={this.props.user}
+                                        month={this.state.month}
+                                        year={this.state.year}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                ) : (
+                                    <MobileExpenseTable
+                                        expenses={this.props.expenses}
+                                        authUser={this.props.user}
+                                        month={this.state.month}
+                                        year={this.state.year}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                )
                             ) : (
                                 <Loader />
                             )}

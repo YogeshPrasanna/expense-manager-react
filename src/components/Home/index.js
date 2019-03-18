@@ -6,6 +6,8 @@ import Cards from "./Cards";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
+import MobileExpenseTable from "./MobileExpenseTable";
+
 import * as analytics from "./../../analytics/analytics";
 
 class HomePage extends Component {
@@ -80,18 +82,28 @@ class HomePage extends Component {
                             settings={this.props.settings}
                             cards={this.props.cards}
                         />
+
                         <GenerateExcel
                             expenses={this.props.expenses}
                             authUser={this.props.user}
                             settings={this.props.settings}
                         />
                         {this.state.convertedCurrency ? (
-                            <ExpenseTable
-                                expenses={this.props.expenses}
-                                authUser={this.props.user}
-                                settings={this.props.settings}
-                                convertedCurrency={this.state.convertedCurrency}
-                            />
+                            window.screen.width > 720 ? (
+                                <ExpenseTable
+                                    expenses={this.props.expenses}
+                                    authUser={this.props.user}
+                                    settings={this.props.settings}
+                                    convertedCurrency={this.state.convertedCurrency}
+                                />
+                            ) : (
+                                <MobileExpenseTable
+                                    expenses={this.props.expenses}
+                                    authUser={this.props.user}
+                                    settings={this.props.settings}
+                                    convertedCurrency={this.state.convertedCurrency}
+                                />
+                            )
                         ) : (
                             <Loader />
                         )}
