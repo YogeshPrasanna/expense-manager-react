@@ -53,7 +53,7 @@ class MobileExpenseRow extends Component {
                             style={lessFont}
                             aria-hidden="true"
                         />
-                        {this.props.expense.value.category}
+                        <span class="truncate"> {this.props.expense.value.comments} </span>
                     </span>
                     <span class="mobile-row-header last-item">
                         <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
@@ -61,7 +61,9 @@ class MobileExpenseRow extends Component {
                     </span>
                 </label>
                 <div class="content">
-                    <p>{this.props.expense.value.comments}</p>
+                    <p>
+                        {this.props.expense.value.category} - {this.props.expense.value.comments}
+                    </p>
                     <button className="edit-btn edit-btn-mobile" onClick={this.toggleEditPopup.bind(this)}>
                         <i className="fa fa-edit" aria-hidden="true" /> edit
                     </button>

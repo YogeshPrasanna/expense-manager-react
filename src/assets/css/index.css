@@ -871,3 +871,14 @@ i.fa.fa-circle-o {
     float: right;
     padding-right: 30px !important;
 }
+
+.truncate {
+    width: 100px;
+    /* fallback if needed */
+    width: calc(100% - 73%);
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    line-height: initial;
+    text-overflow: ellipsis;
+}
