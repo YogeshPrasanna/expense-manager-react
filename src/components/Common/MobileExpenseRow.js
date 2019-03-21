@@ -33,7 +33,12 @@ class MobileExpenseRow extends Component {
         const lessFont = { fontSize: "15px", paddingRight: "10px", color: "rgba(255,255,255,.45)" };
         const nightModeTitle = {
             background: this.props.settings ? (this.props.settings.mode === "night" ? "#2C3034" : "#fff") : "#fff",
-            color: this.props.settings ? (this.props.settings.mode === "night" ? "#BBBBBB" : "#212529") : "#212529"
+            color: this.props.settings ? (this.props.settings.mode === "night" ? "#BBBBBB" : "#212529") : "#212529",
+            borderBottom: this.props.settings
+                ? this.props.settings.mode === "night"
+                    ? "1px solid #343a40"
+                    : "1px solid orange"
+                : "1px solid orange"
         };
 
         return (
