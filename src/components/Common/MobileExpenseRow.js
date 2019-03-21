@@ -31,6 +31,10 @@ class MobileExpenseRow extends Component {
 
     render() {
         const lessFont = { fontSize: "15px", paddingRight: "10px", color: "rgba(255,255,255,.45)" };
+        const nightModeTitle = {
+            background: this.props.settings ? (this.props.settings.mode === "night" ? "#2C3034" : "#fff") : "#fff",
+            color: this.props.settings ? (this.props.settings.mode === "night" ? "#BBBBBB" : "#212529") : "#212529"
+        };
 
         return (
             <div class="option">
@@ -44,7 +48,7 @@ class MobileExpenseRow extends Component {
                     />
                 ) : null}
                 <input type="checkbox" id={`toggle${this.props.expenseId}`} class="toggle" />
-                <label class="title" for={`toggle${this.props.expenseId}`}>
+                <label class="title" style={nightModeTitle} for={`toggle${this.props.expenseId}`}>
                     {" "}
                     <span class="mobile-row-header">{this.props.expense.value.date}</span>
                     <span class="mobile-row-header">
