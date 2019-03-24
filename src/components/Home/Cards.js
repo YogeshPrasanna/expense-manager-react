@@ -2,6 +2,8 @@ import React from "react";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 import Trianglify from "trianglify";
+import LineChartExpenseTimeline from "./LineChartTimeline";
+import BarChartAllMonths from "./BarChartAllMonths";
 
 import moment from "moment";
 
@@ -146,6 +148,11 @@ const Cards = props => {
                                 </p>
                             </div>
                         </div>
+                        {window.screen.width > 1024 ? (
+                            <BarChartAllMonths expenses={props.expenses} authUser={props.authUser} />
+                        ) : (
+                            <span />
+                        )}
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card3" style={props.cards.card3}>
@@ -178,6 +185,17 @@ const Cards = props => {
                                     )}
                                 </p>
                             </div>
+                        </div>
+                        <div>
+                            {window.screen.width > 1024 ? (
+                                <LineChartExpenseTimeline
+                                    expenses={props.expenses}
+                                    authUser={props.authUser}
+                                    settings={props.settings}
+                                />
+                            ) : (
+                                <span />
+                            )}
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
