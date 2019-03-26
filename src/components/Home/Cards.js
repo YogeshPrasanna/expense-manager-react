@@ -8,8 +8,8 @@ import BarChartAllMonths from "./BarChartAllMonths";
 import moment from "moment";
 
 const Cards = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
+    const { expenses, authUser, cards, settings } = props;
+
     let totalExpenses = 0;
     let totalExpensesThisMonth = 0;
     let totalExpensesToday = 0;
@@ -19,7 +19,7 @@ const Cards = props => {
     let mostSpentDay = "-";
     let leastSpentDay = "-";
 
-    if (!expenses && !currentUser) {
+    if (!expenses && !authUser) {
         return (
             <div>
                 <Loader />
@@ -27,18 +27,18 @@ const Cards = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && authUser) {
         const eachExpense = utils.eachExpense(expenses);
-        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
 
-        const thisUsersExpensesThisMonth = utils.currentMonthExpenses(eachExpense, currentUser);
+        const thisUsersExpensesThisMonth = utils.currentMonthExpenses(eachExpense, authUser);
         const thisUsersExpensesToday = utils.expensesInDate(
             eachExpense,
-            currentUser,
+            authUser,
             moment(new Date()).format("MM/DD/YYYY")
         );
-        const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, currentUser);
-        const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, currentUser);
+        const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, authUser);
+        const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, authUser);
 
         // Overall Expenses
         if (thisUsersExpenses.length >= 1) {
@@ -92,7 +92,7 @@ const Cards = props => {
     }
 
     //mostSpentCategory
-    if (props.settings && props.cards) {
+    if (settings && cards) {
         // var patternconfig = {
         //     height: 300,
         //     width: 300,
@@ -122,12 +122,12 @@ const Cards = props => {
             return (
                 <div className="row">
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card1" style={props.cards.card1}>
+                        <div className="card card1" style={cards.card1}>
                             <div className="card-block">
                                 <h3 className="card-title">Overall Spent</h3>
                                 <p className="card-text">
                                     <i
-                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpenses.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -136,12 +136,12 @@ const Cards = props => {
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card2" style={props.cards.card2}>
+                        <div className="card card2" style={cards.card2}>
                             <div className="card-block">
                                 <h3 className="card-title">This Year</h3>
                                 <p className="card-text">
                                     <i
-                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpensesThisYear.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -149,19 +149,19 @@ const Cards = props => {
                             </div>
                         </div>
                         {window.screen.width > 1024 ? (
-                            <BarChartAllMonths expenses={props.expenses} authUser={props.authUser} />
+                            <BarChartAllMonths expenses={expenses} authUser={authUser} />
                         ) : (
                             <span />
                         )}
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card3" style={props.cards.card3}>
+                        <div className="card card3" style={cards.card3}>
                             <div className="card-block">
                                 <h3 className="card-title">
                                     This Month{" "}
                                     <i
                                         className={
-                                            totalExpensesThisMonth > props.settings.monthLimit
+                                            totalExpensesThisMonth > settings.monthLimit
                                                 ? "fa fa-warning warning-color"
                                                 : ""
                                         }
@@ -170,13 +170,13 @@ const Cards = props => {
                                 </h3>
                                 <p className="card-text">
                                     <i
-                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpensesThisMonth.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                 </p>
                                 <p className="limitText">
-                                    {totalExpensesThisMonth > props.settings.monthLimit ? (
+                                    {totalExpensesThisMonth > settings.monthLimit ? (
                                         <span>
                                             Monthly <br /> Limit <br /> exceeded{" "}
                                         </span>
@@ -188,23 +188,19 @@ const Cards = props => {
                         </div>
                         <div>
                             {window.screen.width > 1024 ? (
-                                <LineChartExpenseTimeline
-                                    expenses={props.expenses}
-                                    authUser={props.authUser}
-                                    settings={props.settings}
-                                />
+                                <LineChartExpenseTimeline expenses={expenses} authUser={authUser} settings={settings} />
                             ) : (
                                 <span />
                             )}
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card4" style={props.cards.card4}>
+                        <div className="card card4" style={cards.card4}>
                             <div className="card-block">
                                 <h3 className="card-title">This Week</h3>
                                 <p className="card-text">
                                     <i
-                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpensesThisWeek.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -213,12 +209,12 @@ const Cards = props => {
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card5" style={props.cards.card5}>
+                        <div className="card card5" style={cards.card5}>
                             <div className="card-block">
                                 <h3 className="card-title">Today</h3>
                                 <p className="card-text">
                                     <i
-                                        className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                        className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
                                     />{" "}
                                     {totalExpensesToday.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -227,7 +223,7 @@ const Cards = props => {
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card6" style={props.cards.card6}>
+                        <div className="card card6" style={cards.card6}>
                             <div className="card-block">
                                 <h3 className="card-title">Most Spent on</h3>
                                 <p className="card-text">
@@ -238,7 +234,7 @@ const Cards = props => {
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card7" style={props.cards.card7}>
+                        <div className="card card7" style={cards.card7}>
                             <div className="card-block">
                                 <h3 className="card-title">Most Spent day</h3>
                                 <p className="card-text">
@@ -249,7 +245,7 @@ const Cards = props => {
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card8" style={props.cards.card8}>
+                        <div className="card card8" style={cards.card8}>
                             <div className="card-block">
                                 <h3 className="card-title">Least Spent day</h3>
                                 <p className="card-text">
@@ -273,12 +269,12 @@ const Cards = props => {
                         <div class="slides">
                             <div id="slide-1">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card1 mobileNoPadding" style={props.cards.card1}>
+                                    <div className="card card1 mobileNoPadding" style={cards.card1}>
                                         <div className="card-block">
                                             <h3 className="card-title">Overall Spent</h3>
                                             <p className="card-text">
                                                 <i
-                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpenses.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -289,12 +285,12 @@ const Cards = props => {
                             </div>
                             <div id="slide-2">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card5 mobileNoPadding" style={props.cards.card5}>
+                                    <div className="card card5 mobileNoPadding" style={cards.card5}>
                                         <div className="card-block">
                                             <h3 className="card-title">This Year</h3>
                                             <p className="card-text">
                                                 <i
-                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpensesThisYear.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -305,13 +301,13 @@ const Cards = props => {
                             </div>
                             <div id="slide-3">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card2 mobileNoPadding" style={props.cards.card2}>
+                                    <div className="card card2 mobileNoPadding" style={cards.card2}>
                                         <div className="card-block">
                                             <h3 className="card-title">
                                                 This Month{" "}
                                                 <i
                                                     className={
-                                                        totalExpensesThisMonth > props.settings.monthLimit
+                                                        totalExpensesThisMonth > settings.monthLimit
                                                             ? "fa fa-warning warning-color"
                                                             : ""
                                                     }
@@ -320,7 +316,7 @@ const Cards = props => {
                                             </h3>
                                             <p className="card-text">
                                                 <i
-                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpensesThisMonth
@@ -328,7 +324,7 @@ const Cards = props => {
                                                     .replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                                             </p>
                                             <p className="limitText">
-                                                {totalExpensesThisMonth > props.settings.monthLimit ? (
+                                                {totalExpensesThisMonth > settings.monthLimit ? (
                                                     <span>
                                                         Monthly <br /> Limit <br /> exceeded{" "}
                                                     </span>
@@ -342,12 +338,12 @@ const Cards = props => {
                             </div>
                             <div id="slide-4">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card4 mobileNoPadding" style={props.cards.card4}>
+                                    <div className="card card4 mobileNoPadding" style={cards.card4}>
                                         <div className="card-block">
                                             <h3 className="card-title">This Week</h3>
                                             <p className="card-text">
                                                 <i
-                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpensesThisWeek.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -358,12 +354,12 @@ const Cards = props => {
                             </div>
                             <div id="slide-5">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card3 mobileNoPadding" style={props.cards.card3}>
+                                    <div className="card card3 mobileNoPadding" style={cards.card3}>
                                         <div className="card-block">
                                             <h3 className="card-title">Today</h3>
                                             <p className="card-text">
                                                 <i
-                                                    className={`fa ${utils.setCurrencyIcon(props.settings.currency)}`}
+                                                    className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
                                                 />{" "}
                                                 {totalExpensesToday.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -374,7 +370,7 @@ const Cards = props => {
                             </div>
                             <div id="slide-6">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card6 mobileNoPadding" style={props.cards.card6}>
+                                    <div className="card card6 mobileNoPadding" style={cards.card6}>
                                         <div className="card-block">
                                             <h3 className="card-title">Most Spent on</h3>
                                             <p className="card-text">
@@ -387,7 +383,7 @@ const Cards = props => {
                             </div>
                             <div id="slide-7">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card7 mobileNoPadding" style={props.cards.card7}>
+                                    <div className="card card7 mobileNoPadding" style={cards.card7}>
                                         <div className="card-block">
                                             <h3 className="card-title">Most Spent day</h3>
                                             <p className="card-text">
@@ -400,7 +396,7 @@ const Cards = props => {
                             </div>
                             <div id="slide-8">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
-                                    <div className="card card8 mobileNoPadding" style={props.cards.card8}>
+                                    <div className="card card8 mobileNoPadding" style={cards.card8}>
                                         <div className="card-block">
                                             <h3 className="card-title">Least Spent day</h3>
                                             <p className="card-text">

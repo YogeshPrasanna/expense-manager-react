@@ -3,10 +3,9 @@ import ExportToExcel from "./../Common/ExportToExcel";
 import * as utils from "./../Util";
 
 const GenerateExcel = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
+    const { expenses, authUser, settings } = props;
 
-    if (!expenses || !currentUser) {
+    if (!expenses || !authUser) {
         return (
             <div className="loader" id="loader-6">
                 <span />
@@ -17,13 +16,13 @@ const GenerateExcel = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && authUser) {
         let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
         var excelDataObject = thisUsersExpenses.map(exp => exp.value);
 
         let exportArea = {
-            backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",
+            backgroundColor: settings ? (settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",
             color: "#DEDA54",
             padding: "10px",
             borderRadius: "0",

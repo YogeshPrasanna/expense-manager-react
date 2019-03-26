@@ -5,10 +5,9 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const MobileExpenseTable = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
+    const { expenses, authUser, settings, convertedCurrency } = props;
 
-    if (!expenses || !currentUser) {
+    if (!expenses || !authUser) {
         return (
             <div>
                 <Loader />
@@ -16,21 +15,21 @@ const MobileExpenseTable = props => {
         );
     }
 
-    if (expenses && currentUser) {
+    if (expenses && authUser) {
         let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
 
         if (thisUsersExpenses.length) {
             return thisUsersExpenses.map(function(elem, i) {
                 return (
                     <MobileExpenseRow
-                        user={props.authUser}
+                        user={authUser}
                         expense={elem}
                         num={i}
                         key={i}
                         expenseId={thisUsersExpenses[i].key}
-                        settings={props.settings}
-                        convertedCurrency={props.convertedCurrency}
+                        settings={settings}
+                        convertedCurrency={convertedCurrency}
                     />
                 );
             });
