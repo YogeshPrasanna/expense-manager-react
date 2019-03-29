@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart, Doughnut } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 import "chartjs-plugin-labels";
