@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.1.1",
     "chart.js": "^2.7.1",
+    "chartjs-plugin-labels": "^1.1.0",
     "firebase": "^4.13.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
