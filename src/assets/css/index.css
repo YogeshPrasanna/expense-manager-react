@@ -216,14 +216,15 @@ ul {
 }
 
 .card-title {
-    color: #484842;
-    /* color: white;
-    mix-blend-mode: difference; */
+    /* color: #484842; */
+    color: white;
+    mix-blend-mode: difference;
 }
 
 .card-text {
-    color: #484842;
-    /* mix-blend-mode: difference; */
+    /* color: #484842; */
+    color: white;
+    mix-blend-mode: difference;
     padding: 10px 15px !important;
 }
 
@@ -270,13 +271,11 @@ ul {
 }
 
 .loan-settled-row-bg {
-    background-image: repeating-linear-gradient(
-        145deg,
+    background-image: repeating-linear-gradient(145deg,
         transparent,
         transparent 1px,
         rgba(238, 238, 238, 0.298039) 3px,
-        rgba(238, 238, 238, 0.298039) 5px
-    );
+        rgba(238, 238, 238, 0.298039) 5px);
 }
 
 /* Switch type radio button  */
@@ -328,7 +327,7 @@ ul {
     cursor: pointer;
 }
 
-.switch-field input:checked + label {
+.switch-field input:checked+label {
     background-color: #a5dc86;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -372,6 +371,19 @@ ul {
     .card-title {
         margin-bottom: auto !important;
     }
+
+    /* .card-title {
+        color: #484842;
+        color: white;
+        mix-blend-mode: difference;
+    }
+
+    .card-text {
+        color: #484842;
+        color: white;
+        mix-blend-mode: difference;
+        padding: 10px 15px !important;
+    } */
 
     #addExpense,
     #addLoan {
@@ -683,7 +695,7 @@ i.fa.fa-circle-o {
     background: transparent;
 }
 
-.slides > div {
+.slides>div {
     flex-shrink: 0;
     width: 100%;
     height: auto;
@@ -700,7 +712,7 @@ i.fa.fa-circle-o {
     font-size: 100px;
 }
 
-.slides > div:target {
+.slides>div:target {
     transform: scale(0.8);
 }
 
@@ -720,7 +732,7 @@ i.fa.fa-circle-o {
     color: white;
 }
 
-.slider > a {
+.slider>a {
     display: inline-flex;
     width: 1.5rem;
     height: 1.5rem;
@@ -733,17 +745,17 @@ i.fa.fa-circle-o {
     position: relative;
 }
 
-.slider > a:active {
+.slider>a:active {
     top: 1px;
 }
 
-.slider > a:focus {
+.slider>a:focus {
     background: #000;
 }
 
 /* Don't need button navigation */
 @supports (scroll-snap-type) {
-    .slider > a {
+    .slider>a {
         display: none;
     }
 }
@@ -849,16 +861,16 @@ i.fa.fa-circle-o {
     border-bottom: 1px solid orange;
 }
 
-.toggle:checked + .title,
-.toggle:checked + .title + .content {
+.toggle:checked+.title,
+.toggle:checked+.title+.content {
     box-shadow: 3px 3px 6px #ddd, -3px 3px 6px #ddd;
 }
 
-.toggle:checked + .title + .content {
+.toggle:checked+.title+.content {
     max-height: 500px;
 }
 
-.toggle:checked + .title:before {
+.toggle:checked+.title:before {
     -webkit-transform: rotate(90deg) !important;
     transform: rotate(90deg) !important;
 }
