@@ -19,6 +19,15 @@ const Cards = props => {
     let mostSpentDay = "-";
     let leastSpentDay = "-";
 
+    const cardStyleDesktop = {
+        "color": "white",
+        "mixBlendMode": "difference"
+    }
+
+    const cardStyleMobile = {
+        "color": "#2C3034",
+    }
+
     if (!expenses && !authUser) {
         return (
             <div>
@@ -124,8 +133,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card1" style={cards.card1}>
                             <div className="card-block">
-                                <h3 className="card-title">Overall Spent</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">Overall Spent</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
@@ -138,8 +147,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card2" style={cards.card2}>
                             <div className="card-block">
-                                <h3 className="card-title">This Year</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">This Year</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
@@ -151,13 +160,13 @@ const Cards = props => {
                         {window.screen.width > 1024 ? (
                             <BarChartAllMonths expenses={expenses} authUser={authUser} />
                         ) : (
-                            <span />
-                        )}
+                                <span />
+                            )}
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card3" style={cards.card3}>
                             <div className="card-block">
-                                <h3 className="card-title">
+                                <h3 style={cardStyleDesktop} className="card-title">
                                     This Month{" "}
                                     <i
                                         className={
@@ -168,7 +177,7 @@ const Cards = props => {
                                         aria-hidden="true"
                                     />{" "}
                                 </h3>
-                                <p className="card-text">
+                                <p style={cardStyleDesktop} className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
@@ -181,8 +190,8 @@ const Cards = props => {
                                             Monthly <br /> Limit <br /> exceeded{" "}
                                         </span>
                                     ) : (
-                                        ""
-                                    )}
+                                            ""
+                                        )}
                                 </p>
                             </div>
                         </div>
@@ -190,15 +199,15 @@ const Cards = props => {
                             {window.screen.width > 1024 ? (
                                 <LineChartExpenseTimeline expenses={expenses} authUser={authUser} settings={settings} />
                             ) : (
-                                <span />
-                            )}
+                                    <span />
+                                )}
                         </div>
                     </div>
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card4" style={cards.card4}>
                             <div className="card-block">
-                                <h3 className="card-title">This Week</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">This Week</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
@@ -211,8 +220,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card5" style={cards.card5}>
                             <div className="card-block">
-                                <h3 className="card-title">Today</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">Today</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     <i
                                         className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                         aria-hidden="true"
@@ -225,8 +234,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card6" style={cards.card6}>
                             <div className="card-block">
-                                <h3 className="card-title">Most Spent on</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">Most Spent on</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {mostSpentCategory}
                                 </p>
@@ -236,8 +245,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card7" style={cards.card7}>
                             <div className="card-block">
-                                <h3 className="card-title">Most Spent day</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">Most Spent day</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {mostSpentDay}
                                 </p>
@@ -247,8 +256,8 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card8" style={cards.card8}>
                             <div className="card-block">
-                                <h3 className="card-title">Least Spent day</h3>
-                                <p className="card-text">
+                                <h3 style={cardStyleDesktop} className="card-title">Least Spent day</h3>
+                                <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {leastSpentDay}
                                 </p>
@@ -271,8 +280,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card1 mobileNoPadding" style={cards.card1}>
                                         <div className="card-block">
-                                            <h3 className="card-title">Overall Spent</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">Overall Spent</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
@@ -287,8 +296,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card5 mobileNoPadding" style={cards.card5}>
                                         <div className="card-block">
-                                            <h3 className="card-title">This Year</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">This Year</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
@@ -303,7 +312,7 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card2 mobileNoPadding" style={cards.card2}>
                                         <div className="card-block">
-                                            <h3 className="card-title">
+                                            <h3 style={cardStyleMobile} className="card-title">
                                                 This Month{" "}
                                                 <i
                                                     className={
@@ -314,7 +323,7 @@ const Cards = props => {
                                                     aria-hidden="true"
                                                 />{" "}
                                             </h3>
-                                            <p className="card-text">
+                                            <p style={cardStyleMobile} className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
@@ -329,8 +338,8 @@ const Cards = props => {
                                                         Monthly <br /> Limit <br /> exceeded{" "}
                                                     </span>
                                                 ) : (
-                                                    ""
-                                                )}
+                                                        ""
+                                                    )}
                                             </p>
                                         </div>
                                     </div>
@@ -340,8 +349,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card4 mobileNoPadding" style={cards.card4}>
                                         <div className="card-block">
-                                            <h3 className="card-title">This Week</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">This Week</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
@@ -356,8 +365,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card3 mobileNoPadding" style={cards.card3}>
                                         <div className="card-block">
-                                            <h3 className="card-title">Today</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">Today</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 <i
                                                     className={`fa ${utils.setCurrencyIcon(settings.currency)}`}
                                                     aria-hidden="true"
@@ -372,8 +381,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card6 mobileNoPadding" style={cards.card6}>
                                         <div className="card-block">
-                                            <h3 className="card-title">Most Spent on</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">Most Spent on</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {mostSpentCategory}
                                             </p>
@@ -385,8 +394,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card7 mobileNoPadding" style={cards.card7}>
                                         <div className="card-block">
-                                            <h3 className="card-title">Most Spent day</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">Most Spent day</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {mostSpentDay}
                                             </p>
@@ -398,8 +407,8 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card8 mobileNoPadding" style={cards.card8}>
                                         <div className="card-block">
-                                            <h3 className="card-title">Least Spent day</h3>
-                                            <p className="card-text">
+                                            <h3 style={cardStyleMobile} className="card-title">Least Spent day</h3>
+                                            <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {leastSpentDay}
                                             </p>

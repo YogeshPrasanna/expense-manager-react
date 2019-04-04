@@ -10,6 +10,16 @@ const Cards = props => {
     let loanToPay = 0;
     let loanToGet = 0;
 
+    const cardStyleDesktop = {
+        "color": "white",
+        "mixBlendMode": "difference"
+    }
+
+    const cardStyleMobile = {
+        "color": "#2C3034",
+    }
+
+
     if (!loans && !currentUser) {
         return (
             <div>
@@ -34,8 +44,8 @@ const Cards = props => {
             <div className="col-sm-3 mobileNoPadding">
                 <div className="card card1 mobileNoPadding" style={props.cards.card1}>
                     <div className="card-block">
-                        <h3 className="card-title">You need to repay</h3>
-                        <p className="card-text">
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to repay</h3>
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
                             {loanToPay.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
@@ -45,8 +55,8 @@ const Cards = props => {
             <div className="col-sm-3 mobileNoPadding">
                 <div className="card card2 mobileNoPadding" style={props.cards.card2}>
                     <div className="card-block">
-                        <h3 className="card-title">You need to get </h3>
-                        <p className="card-text">
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to get </h3>
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
                             {loanToGet.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>

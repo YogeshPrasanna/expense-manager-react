@@ -63,19 +63,18 @@ const CategoryTotalCard = props => {
         allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
 
         const eachCategory = allCategoryTotals => {
-            return Object.keys(allCategoryTotals).map(function(key) {
+            return Object.keys(allCategoryTotals).map(function (key) {
                 return { key: key, value: allCategoryTotals[key] };
             });
         };
 
         categoryList = eachCategory(allCategoryTotals).map(el => {
-            console.log("month categoreis el : ", el);
             if (el.value) {
                 return (
                     <Link
                         to={`/filter-view?category=${
                             el.key
-                        }&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`}
+                            }&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`}
                     >
                         <span style={category} className="ttt" key={el.key}>
                             <div style={utils.categoryName(el.key, "card")}>{el.key}</div>

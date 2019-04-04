@@ -6,6 +6,16 @@ const TotalCard = props => {
         padding: "0"
     };
 
+    const cardStyleDesktop = {
+        "color": "white",
+        "mixBlendMode": "difference"
+    }
+
+    const cardStyleMobile = {
+        "color": "#2C3034",
+    }
+
+
     let expenses = props.expenses;
     let currentUser = props.authUser;
     let selectedDate = props.date;
@@ -41,10 +51,10 @@ const TotalCard = props => {
             <div className="col-sm-12" style={pad0}>
                 <div className="card card1 mobileNoPadding" style={cards.card1}>
                     <div className="card-block">
-                        <h3 className="card-title">
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">
                             Total Money Spent <i className="fa fa-money float-right" />
                         </h3>
-                        <p className="card-text">
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
                             {totalExpenses.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>

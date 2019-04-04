@@ -217,14 +217,14 @@ ul {
 
 .card-title {
     /* color: #484842; */
-    color: white;
-    mix-blend-mode: difference;
+    /* color: white;
+    mix-blend-mode: difference; */
 }
 
 .card-text {
     /* color: #484842; */
-    color: white;
-    mix-blend-mode: difference;
+    /* color: white;
+    mix-blend-mode: difference; */
     padding: 10px 15px !important;
 }
 
