@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 import * as utils from "../Util";
+import moment from "moment";
 
 import EditExpensePopup from "./EditExpensePopup";
 
@@ -55,7 +56,7 @@ class MobileExpenseRow extends Component {
                 <input type="checkbox" id={`toggle${this.props.expenseId}`} class="toggle" />
                 <label class="title" style={nightModeTitle} for={`toggle${this.props.expenseId}`}>
                     {" "}
-                    <span class="mobile-row-header">{this.props.expense.value.date}</span>
+                    <span class="mobile-row-header">{this.props.expense.value.date == moment(new Date()).format("MM/DD/YYYY") ? ` Today \u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0` : this.props.expense.value.date}</span>
                     <span class="mobile-row-header">
                         <i
                             className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}
