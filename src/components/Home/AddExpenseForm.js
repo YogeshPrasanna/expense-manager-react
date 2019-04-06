@@ -33,7 +33,6 @@ class AddExpenseForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        console.log("converted currency", this.props.convertedCurrency);
         db.doCreateExpense(
             this.state.uid,
             $(".date").val(),
@@ -168,23 +167,23 @@ class AddExpenseForm extends Component {
                     {this.state.dataSaved ? (
                         <span className="bg-success success-msg"> Data saved successfully</span>
                     ) : (
-                        <span />
-                    )}
+                            <span />
+                        )}
                     {this.state.expense > 0 && this.state.date && this.state.category ? (
                         <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>
                     ) : (
-                        <div>
-                            <div style={validationBox}>
-                                <div> Expense : should be greater than 0 </div>
-                                <div> Date : should be selected </div>
-                            </div>
-                            <button className="btn btn-primary float-right" disabled type="submit">
-                                save
+                            <div>
+                                <div style={validationBox}>
+                                    <div> Expense : should be greater than 0 </div>
+                                    <div> Date : should be selected </div>
+                                </div>
+                                <button className="btn btn-primary float-right" disabled type="submit">
+                                    save
                             </button>
-                        </div>
-                    )}
+                            </div>
+                        )}
                 </form>
             );
         } else {

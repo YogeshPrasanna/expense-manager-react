@@ -38,17 +38,16 @@ const MonthLimitWarning = props => {
         }
 
         if (settings) {
-            console.log("total expenses : ", totalExpenses, settings.monthLimit);
             if (totalExpenses > settings.monthLimit) {
                 return (
-                    <div class="alert alert-warning mobileNoMargin" role="alert">
+                    <div className="alert alert-warning mobileNoMargin" role="alert">
                         <i className="fa fa-warning fa-2x warning-color icon-size-monthly-warning" aria-hidden="true" />
                         You've exceeded your monthly limit
                     </div>
                 );
             } else {
                 return (
-                    <div class="alert alert-success mobileNoMargin" role="alert">
+                    <div className="alert alert-success mobileNoMargin" role="alert">
                         <i className="fa fa-check fa-2x success-color icon-size-monthly-warning" aria-hidden="true" />
                         Yay You're still under the Montly Limit
                     </div>

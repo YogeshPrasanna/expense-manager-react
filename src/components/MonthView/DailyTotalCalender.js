@@ -89,7 +89,7 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        let daysStartGapHtml = dayStart.map(function(elem) {
+        let daysStartGapHtml = dayStart.map(function (elem) {
             return (
                 <li key={elem} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -101,7 +101,7 @@ const DailyTotalCalender = props => {
             );
         });
 
-        let daysEndGapHtml = dayEnd.map(function(elem) {
+        let daysEndGapHtml = dayEnd.map(function (elem) {
             return (
                 <li key={elem + 55} style={listStyleDateCells}>
                     <div style={dateArea}>
@@ -115,7 +115,7 @@ const DailyTotalCalender = props => {
 
         let printHtml = Object.keys(totals).map((elem, i) => {
             var listEle = (
-                <li key={elem} style={elem === today ? listStyleToday : listStyleDateCells}>
+                <li key={i} style={elem === today ? listStyleToday : listStyleDateCells}>
                     <div style={elem === today ? todayDateArea : dateArea}>
                         {" "}
                         {moment(allDatesInSelectedMonth[i]).date()}
@@ -126,7 +126,7 @@ const DailyTotalCalender = props => {
 
             // Links to daily view if total is not 0
             if (totals[elem] != 0) {
-                return <Link to={`/daily-view?date=${elem}`}>{listEle}</Link>;
+                return <Link to={`/daily-view?date=${elem}`} key={i}>{listEle}</Link>;
             } else {
                 return listEle;
             }

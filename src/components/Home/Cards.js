@@ -268,14 +268,14 @@ const Cards = props => {
             );
         } else {
             return (
-                <div class="mobileNoPadding">
-                    <div class="slider">
+                <div className="mobileNoPadding">
+                    <div className="slider">
                         {/* <a href="#slide-1">1</a>
                         <a href="#slide-2">2</a>
                         <a href="#slide-3">3</a>
                         <a href="#slide-4">4</a> */}
 
-                        <div class="slides">
+                        <div className="slides">
                             <div id="slide-1">
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card1 mobileNoPadding" style={cards.card1}>

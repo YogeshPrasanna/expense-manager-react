@@ -222,8 +222,8 @@ class DoughnutChartCategory extends Component {
                                 onChange={this.handleChange.bind(this)}
                             >
                                 <option value="all">All</option>
-                                {utils.yearsGenereator().map(elem => (
-                                    <option value={elem}>{elem}</option>
+                                {utils.yearsGenereator().map((elem, i) => (
+                                    <option key={i} value={elem}>{elem}</option>
                                 ))}
                             </select>
                         </div>
@@ -237,7 +237,6 @@ class DoughnutChartCategory extends Component {
                                 responsive={true}
                                 onElementsClick={elems => {
                                     if (elems.length) {
-                                        console.log("ELEMENTS : ", elems);
                                         let clickedLabel = elems[0]._model.label;
                                         if (selectedYear !== "all") {
                                             history.push(

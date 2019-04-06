@@ -71,7 +71,6 @@ class HomePage extends Component {
         };
 
         if (this.props.settings && this.props.cards) {
-            console.log("converted currency : ", this.state.convertedCurrency);
 
             return (
                 <div>
@@ -97,16 +96,16 @@ class HomePage extends Component {
                                     convertedCurrency={this.state.convertedCurrency}
                                 />
                             ) : (
-                                <MobileExpenseTable
-                                    expenses={this.props.expenses}
-                                    authUser={this.props.user}
-                                    settings={this.props.settings}
-                                    convertedCurrency={this.state.convertedCurrency}
-                                />
-                            )
+                                    <MobileExpenseTable
+                                        expenses={this.props.expenses}
+                                        authUser={this.props.user}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                )
                         ) : (
-                            <Loader />
-                        )}
+                                <Loader />
+                            )}
                     </div>
                     <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
@@ -120,8 +119,8 @@ class HomePage extends Component {
                                 convertedCurrency={this.state.convertedCurrency}
                             />
                         ) : (
-                            <Loader />
-                        )
+                                <Loader />
+                            )
                     ) : null}
                 </div>
             );

@@ -63,7 +63,7 @@ class SavingsCard extends Component {
         if (savings && currentUser && settings) {
             let img = `url(https://source.unsplash.com/760x320/?${
                 savings.value.savingFor.split(" ")[0]
-            }) 20% 1% / cover no-repeat`;
+                }) 20% 1% / cover no-repeat`;
 
             const customLabel = {
                 padding: "0 0px 0 10px"
@@ -72,7 +72,7 @@ class SavingsCard extends Component {
                 height: "28px"
             };
             return (
-                <div class="col-sm-4 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
+                <div className="col-sm-4 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
                     {this.state.showEditPopup ? (
                         <EditSavingPopup
                             user={this.props.authUser}
@@ -81,19 +81,19 @@ class SavingsCard extends Component {
                             settings={this.props.settings}
                         />
                     ) : null}
-                    <div class="img-card card-savings" style={{ border: "none" }}>
-                        <div class="wrapper" style={{ background: img }}>
+                    <div className="img-card card-savings" style={{ border: "none" }}>
+                        <div className="wrapper" style={{ background: img }}>
                             "
-                            <div class="date">
-                                <span class="day">{moment(savings.value.date).date()}</span>
-                                <span class="month">
+                            <div className="date">
+                                <span className="day">{moment(savings.value.date).date()}</span>
+                                <span className="month">
                                     {moment(savings.value.date)
                                         .format("MMMM")
                                         .substr(0, 3)}
                                 </span>
-                                <span class="year">{moment(savings.value.date).year()}</span>
+                                <span className="year">{moment(savings.value.date).year()}</span>
                             </div>
-                            <div class="moreToSaveMsg">
+                            <div className="moreToSaveMsg">
                                 <span>
                                     {(savings.value.goalAmount - savings.value.savingAmount)
                                         .toString()
@@ -101,8 +101,8 @@ class SavingsCard extends Component {
                                     more to save
                                 </span>
                             </div>
-                            <div class="data">
-                                <div class="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>
+                            <div className="data">
+                                <div className="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="form-group row">
                                             <label className="col-sm-3 col-xs-6 col-form-label" style={customLabel}>
@@ -125,11 +125,11 @@ class SavingsCard extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <h1 class="title">
+                                    <h1 className="title">
                                         <a href="#">{savings.value.savingFor}</a>
                                     </h1>
-                                    <p class="text">{savings.value.comments}</p>
-                                    <label htmlFor="show-menu" class="menu-button">
+                                    <p className="text">{savings.value.comments}</p>
+                                    <label htmlFor="show-menu" className="menu-button">
                                         <span />
                                         <button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}>
                                             <i className="fa fa-edit action-icons" aria-hidden="true" />

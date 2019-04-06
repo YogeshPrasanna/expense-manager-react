@@ -34,8 +34,7 @@ const MobileExpenseTable = props => {
         );
 
         if (filteredExpenses.length) {
-            console.log("filteredExpenses", filteredExpenses);
-            return filteredExpenses.map(function(elem, i) {
+            return filteredExpenses.map(function (elem, i) {
                 return (
                     <MobileExpenseRow
                         user={props.authUser}

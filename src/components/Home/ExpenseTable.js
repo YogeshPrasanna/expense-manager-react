@@ -51,9 +51,13 @@ class ExpenseTable extends Component {
         if (!expenses || !currentUser) {
             return (
                 <table>
-                    <tr>
-                        <Loader />
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <Loader />
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             );
         }

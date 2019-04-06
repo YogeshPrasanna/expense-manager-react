@@ -68,13 +68,14 @@ const CategoryTotalCard = props => {
             });
         };
 
-        categoryList = eachCategory(allCategoryTotals).map(el => {
+        categoryList = eachCategory(allCategoryTotals).map((el, i) => {
             if (el.value) {
                 return (
                     <Link
                         to={`/filter-view?category=${
                             el.key
                             }&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`}
+                        key={i}
                     >
                         <span style={category} className="ttt" key={el.key}>
                             <div style={utils.categoryName(el.key, "card")}>{el.key}</div>

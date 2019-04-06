@@ -146,8 +146,8 @@ class BarChartAllMonths extends Component {
                                         value={this.state.year}
                                         onChange={this.handleChange.bind(this)}
                                     >
-                                        {utils.yearsGenereator().map(elem => (
-                                            <option value={elem}>{elem}</option>
+                                        {utils.yearsGenereator().map((elem, i) => (
+                                            <option key={i} value={elem}>{elem}</option>
                                         ))}
                                     </select>
                                 </div>

@@ -96,12 +96,12 @@ class CategoryTotalCard extends Component {
             }
 
             const eachCategory = allCategoryTotals => {
-                return Object.keys(allCategoryTotals).map(function(key) {
+                return Object.keys(allCategoryTotals).map(function (key) {
                     return { key: key, value: allCategoryTotals[key] };
                 });
             };
 
-            categoryList = eachCategory(allCategoryTotals).map(el => {
+            categoryList = eachCategory(allCategoryTotals).map((el, i) => {
                 if (el.value) {
                     if (selectedYear === "all") {
                         return (
@@ -119,7 +119,7 @@ class CategoryTotalCard extends Component {
                         );
                     } else {
                         return (
-                            <Link to={`/filter-view?category=${el.key}&selectedYear=${selectedYear}&from=yearpage`}>
+                            <Link key={i} to={`/filter-view?category=${el.key}&selectedYear=${selectedYear}&from=yearpage`}>
                                 <span style={category} className="ttt" key={el.key}>
                                     <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
                                     <i
@@ -152,8 +152,8 @@ class CategoryTotalCard extends Component {
                                 onChange={this.handleChange.bind(this)}
                             >
                                 <option value="all">All</option>
-                                {utils.yearsGenereator().map(elem => (
-                                    <option value={elem}>{elem}</option>
+                                {utils.yearsGenereator().map((elem, i) => (
+                                    <option key={i} value={elem}>{elem}</option>
                                 ))}
                             </select>
                         </div>

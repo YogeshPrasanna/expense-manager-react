@@ -232,7 +232,7 @@ class MonthViewPage extends Component {
                                     onClick={this.handleLeftArrowCalender.bind(this)}
                                     id="leftArrowIcon"
                                 >
-                                    <i class="fa fa-caret-left" />
+                                    <i className="fa fa-caret-left" />
                                 </div>
                                 <div className="col-md-7 col-xs-5" style={monthDropdown}>
                                     <select
@@ -268,8 +268,8 @@ class MonthViewPage extends Component {
                                             ...dateField
                                         }}
                                     >
-                                        {utils.yearsGenereator().map(elem => (
-                                            <option value={elem}>{elem}</option>
+                                        {utils.yearsGenereator().map((elem, i) => (
+                                            <option value={elem} key={i}>{elem}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -279,7 +279,7 @@ class MonthViewPage extends Component {
                                     onClick={this.handleRightArrowCalender.bind(this)}
                                     id="rightArrowIcon"
                                 >
-                                    <i class="fa fa-caret-right" />
+                                    <i className="fa fa-caret-right" />
                                 </div>
                             </form>
 
@@ -354,18 +354,18 @@ class MonthViewPage extends Component {
                                         convertedCurrency={this.state.convertedCurrency}
                                     />
                                 ) : (
-                                    <MobileExpenseTable
-                                        expenses={this.props.expenses}
-                                        authUser={this.props.user}
-                                        month={this.state.month}
-                                        year={this.state.year}
-                                        settings={this.props.settings}
-                                        convertedCurrency={this.state.convertedCurrency}
-                                    />
-                                )
+                                        <MobileExpenseTable
+                                            expenses={this.props.expenses}
+                                            authUser={this.props.user}
+                                            month={this.state.month}
+                                            year={this.state.year}
+                                            settings={this.props.settings}
+                                            convertedCurrency={this.state.convertedCurrency}
+                                        />
+                                    )
                             ) : (
-                                <Loader />
-                            )}
+                                    <Loader />
+                                )}
                         </div>
                     </div>
                 </div>

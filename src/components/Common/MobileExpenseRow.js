@@ -43,7 +43,7 @@ class MobileExpenseRow extends Component {
         };
 
         return (
-            <div class="option">
+            <div className="option">
                 {this.state.showEditPopup ? (
                     <EditExpensePopup
                         user={this.props.user}
@@ -53,24 +53,24 @@ class MobileExpenseRow extends Component {
                         convertedCurrency={this.props.convertedCurrency}
                     />
                 ) : null}
-                <input type="checkbox" id={`toggle${this.props.expenseId}`} class="toggle" />
-                <label class="title" style={nightModeTitle} for={`toggle${this.props.expenseId}`}>
+                <input type="checkbox" id={`toggle${this.props.expenseId}`} className="toggle" />
+                <label className="title" style={nightModeTitle} for={`toggle${this.props.expenseId}`}>
                     {" "}
-                    <span class="mobile-row-header">{this.props.expense.value.date == moment(new Date()).format("MM/DD/YYYY") ? ` Today \u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0` : this.props.expense.value.date}</span>
-                    <span class="mobile-row-header">
+                    <span className="mobile-row-header">{this.props.expense.value.date == moment(new Date()).format("MM/DD/YYYY") ? ` Today \u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0` : this.props.expense.value.date}</span>
+                    <span className="mobile-row-header">
                         <i
                             className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}
                             style={lessFont}
                             aria-hidden="true"
                         />
-                        <span class="truncate"> {this.props.expense.value.comments} </span>
+                        <span className="truncate"> {this.props.expense.value.comments} </span>
                     </span>
-                    <span class="mobile-row-header last-item">
+                    <span className="mobile-row-header last-item">
                         <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
                         {this.props.expense.value.expense}
                     </span>
                 </label>
-                <div class="content">
+                <div className="content">
                     <p>
                         {this.props.expense.value.category} - {this.props.expense.value.comments}
                     </p>

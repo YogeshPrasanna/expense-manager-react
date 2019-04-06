@@ -54,7 +54,6 @@ const LineChartExpenseTimeline = props => {
             dayEnd.push(i);
         }
 
-        console.log("Totals :", totals);
 
         const data = {
             labels: Object.keys(totals).map(date => date.substr(3, 2)),
