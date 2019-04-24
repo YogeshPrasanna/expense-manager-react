@@ -47,12 +47,12 @@ class CategoryTotalCard extends Component {
             float: "left",
             marginTop: "10px",
             marginLeft: "5px",
-            color: "rgba(255,255,255,.45)"
+            color: "rgba(255const,255,255,.45)"
         };
 
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let selectedYear = this.state.year;
+        const expenses = this.props.expenses;
+        const currentUser = this.props.authUser;
+        const selectedYear = this.state.year;
 
         let allCategoryTotals = null;
         let categoryList = null;
@@ -83,8 +83,8 @@ class CategoryTotalCard extends Component {
         }
 
         if (expenses && currentUser && selectedYear) {
-            let eachExpense = utils.eachExpense(expenses);
-            let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+            const eachExpense = utils.eachExpense(expenses);
+            const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
             // dropdown selection all / any year
             if (selectedYear == "all") {

@@ -16,11 +16,11 @@ const MobileExpenseTable = props => {
     }
 
     if (expenses && authUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
 
         if (thisUsersExpenses.length) {
-            return thisUsersExpenses.map(function(elem, i) {
+            return thisUsersExpenses.map(function (elem, i) {
                 return (
                     <MobileExpenseRow
                         user={authUser}

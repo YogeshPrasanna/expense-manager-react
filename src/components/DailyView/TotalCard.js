@@ -16,11 +16,11 @@ const TotalCard = props => {
     }
 
 
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedDate = props.date;
-    let settings = props.settings;
-    let cards = props.cards;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const selectedDate = props.date;
+    const settings = props.settings;
+    const cards = props.cards;
 
     let totalExpenses = 0;
 
@@ -33,8 +33,8 @@ const TotalCard = props => {
     }
 
     if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, selectedDate);
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, selectedDate);
 
         // Overall Expenses
         if (thisUsersExpenses.length > 1) {

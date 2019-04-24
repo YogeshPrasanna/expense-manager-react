@@ -9,7 +9,7 @@ class ExpenseTable extends Component {
     constructor(props) {
         super(props);
 
-        let expenses = JSON.parse(JSON.stringify(this.props.expenses));
+        const expenses = JSON.parse(JSON.stringify(this.props.expenses));
 
         this.state = {
             expenses
@@ -20,8 +20,8 @@ class ExpenseTable extends Component {
 
     componentDidMount() {
         if (this.props.expenses && this.props.authUser) {
-            let eachExpense = utils.eachExpense(this.props.expenses);
-            let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.props.authUser);
+            const eachExpense = utils.eachExpense(this.props.expenses);
+            const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.props.authUser);
 
             this.setState({
                 expenses: thisUsersExpenses
@@ -30,10 +30,10 @@ class ExpenseTable extends Component {
     }
 
     handelDateChange(e) {
-        let eachExpense = utils.eachExpense(this.props.expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.props.authUser);
+        const eachExpense = utils.eachExpense(this.props.expenses);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.props.authUser);
 
-        let searchResults = thisUsersExpenses.filter(elem =>
+        const searchResults = thisUsersExpenses.filter(elem =>
             elem.value.comments.toLowerCase().includes(e.target.value.toLowerCase())
         );
         this.setState({
@@ -45,8 +45,8 @@ class ExpenseTable extends Component {
         const nightMode = {
             background: this.props.settings ? (this.props.settings.mode === "night" ? "#212529" : "auto") : "auto"
         };
-        let expenses = this.state.expenses;
-        let currentUser = this.props.authUser;
+        const expenses = this.state.expenses;
+        const currentUser = this.props.authUser;
 
         if (!expenses || !currentUser) {
             return (

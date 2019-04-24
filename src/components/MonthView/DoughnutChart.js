@@ -7,10 +7,10 @@ import "chartjs-plugin-labels";
 import { Route } from "react-router-dom";
 
 const DoughnutChart = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedMonth = props.month;
-    let selectedYear = props.year;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const selectedMonth = props.month;
+    const selectedYear = props.year;
 
     let allCategoryTotals = null;
     let categoryList = null;
@@ -25,8 +25,8 @@ const DoughnutChart = props => {
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
+        const eachExpense = utils.eachExpense(expenses);
+        const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
             currentUser,
             selectedMonth,
@@ -36,7 +36,7 @@ const DoughnutChart = props => {
         allCategoryTotals = utils.calculateTotalForAllCategories(usersExpensesInSelectedMonthAndYear);
 
         const eachCategory = allCategoryTotals => {
-            return Object.keys(allCategoryTotals).map(function(key) {
+            return Object.keys(allCategoryTotals).map(function (key) {
                 return { key: key, value: allCategoryTotals[key] };
             });
         };
@@ -49,7 +49,7 @@ const DoughnutChart = props => {
 
         categoryColors = categoryList.map(el => utils.getCatColor(el));
 
-        let data = {
+        const data = {
             labels: categoryList,
             datasets: [
                 {

@@ -5,9 +5,9 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const MobileExpenseTable = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let dateSelected = props.date;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const dateSelected = props.date;
 
     if (!expenses || !currentUser || !dateSelected) {
         return (
@@ -18,11 +18,11 @@ const MobileExpenseTable = props => {
     }
 
     if (expenses && currentUser && dateSelected) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInDate = utils.expensesInDate(eachExpense, currentUser, dateSelected);
+        const eachExpense = utils.eachExpense(expenses);
+        const usersExpensesInDate = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
         if (usersExpensesInDate.length) {
-            return usersExpensesInDate.map(function(elem, i) {
+            return usersExpensesInDate.map(function (elem, i) {
                 return (
                     <MobileExpenseRow
                         user={props.authUser}

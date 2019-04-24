@@ -16,12 +16,12 @@ const TotalCard = props => {
         "color": "#2C3034",
     }
 
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedMonth = props.month;
-    let selectedYear = props.year;
-    let settings = props.settings;
-    let cards = props.cards;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const selectedMonth = props.month;
+    const selectedYear = props.year;
+    const settings = props.settings;
+    const cards = props.cards;
 
     let totalExpenses = 0;
 
@@ -34,8 +34,8 @@ const TotalCard = props => {
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear && cards) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
+        const eachExpense = utils.eachExpense(expenses);
+        const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
             currentUser,
             selectedMonth,

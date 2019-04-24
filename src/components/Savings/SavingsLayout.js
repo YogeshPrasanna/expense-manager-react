@@ -5,17 +5,17 @@ import * as utils from "../Util";
 import SavingsCard from "./SavingCard";
 
 const SavingsLayout = props => {
-    let savings = props.savings;
-    let settings = props.settings;
-    let currentUser = props.authUser;
+    const savings = props.savings;
+    const settings = props.settings;
+    const currentUser = props.authUser;
 
     if (!savings || !currentUser) {
         return <Loader />;
     }
 
     if (savings && currentUser) {
-        let eachSaving = utils.eachExpense(savings);
-        let thisUsersSavings = utils.currentUsersExpenses(eachSaving, currentUser);
+        const eachSaving = utils.eachExpense(savings);
+        const thisUsersSavings = utils.currentUsersExpenses(eachSaving, currentUser);
 
         if (thisUsersSavings.length) {
             var abc = thisUsersSavings.map(function (elem, i) {

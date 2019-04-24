@@ -5,9 +5,9 @@ import * as utils from "../Util";
 import "chartjs-plugin-labels";
 
 const DoughnutChart = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let dateSelected = props.date;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const dateSelected = props.date;
 
     let allCategoryTotals = null;
     let categoryList = null;
@@ -22,13 +22,13 @@ const DoughnutChart = props => {
     }
 
     if (expenses && currentUser && dateSelected) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
         allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
 
         const eachCategory = allCategoryTotals => {
-            return Object.keys(allCategoryTotals).map(function(key) {
+            return Object.keys(allCategoryTotals).map(function (key) {
                 return { key: key, value: allCategoryTotals[key] };
             });
         };
@@ -41,7 +41,7 @@ const DoughnutChart = props => {
 
         categoryColors = categoryList.map(el => utils.getCatColor(el));
 
-        let data = {
+        const data = {
             labels: categoryList,
             datasets: [
                 {

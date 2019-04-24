@@ -3,10 +3,10 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const Cards = props => {
-    let loans = props.loans;
-    let currentUser = props.authUser;
-    let settings = props.settings;
-    let cards = props.cards;
+    const loans = props.loans;
+    const currentUser = props.authUser;
+    const settings = props.settings;
+    const cards = props.cards;
     let loanToPay = 0;
     let loanToGet = 0;
 

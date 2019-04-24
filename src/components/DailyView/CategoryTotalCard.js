@@ -32,10 +32,10 @@ const CategoryTotalCard = props => {
         color: "rgba(255,255,255,.45)"
     };
 
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let dateSelected = props.date;
-    let cards = props.cards;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const dateSelected = props.date;
+    const cards = props.cards;
 
     let allCategoryTotals = null;
     let categoryList = null;
@@ -45,13 +45,13 @@ const CategoryTotalCard = props => {
     }
 
     if (expenses && currentUser && dateSelected && cards) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
         allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
 
         const eachCategory = allCategoryTotals => {
-            return Object.keys(allCategoryTotals).map(function(key) {
+            return Object.keys(allCategoryTotals).map(function (key) {
                 return { key: key, value: allCategoryTotals[key] };
             });
         };

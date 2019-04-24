@@ -3,11 +3,11 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const MonthLimitWarning = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedMonth = props.month;
-    let selectedYear = props.year;
-    let settings = props.settings;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const selectedMonth = props.month;
+    const selectedYear = props.year;
+    const settings = props.settings;
 
     let totalExpenses = 0;
 
@@ -20,8 +20,8 @@ const MonthLimitWarning = props => {
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
+        const eachExpense = utils.eachExpense(expenses);
+        const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
             currentUser,
             selectedMonth,

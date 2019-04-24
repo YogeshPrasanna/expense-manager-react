@@ -52,9 +52,9 @@ class SavingsCard extends Component {
     }
 
     render() {
-        let savings = this.props.savings;
-        let settings = this.props.settings;
-        let currentUser = this.props.authUser;
+        const savings = this.props.savings;
+        const settings = this.props.settings;
+        const currentUser = this.props.authUser;
 
         if (!savings || !currentUser || !settings) {
             return <Loader />;

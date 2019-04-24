@@ -56,11 +56,11 @@ class App extends Component {
         firebase.auth.onAuthStateChanged(authUser => {
             authUser
                 ? this.setState({
-                      authUser: authUser
-                  })
+                    authUser: authUser
+                })
                 : this.setState({
-                      authUser: null
-                  });
+                    authUser: null
+                });
 
             if (this.state.authUser) {
                 // get all the users in the db
@@ -115,8 +115,8 @@ class App extends Component {
                         // get and set expenses in db from old expenses table to new expenseTable
                         firebase.db.ref("expenses").on("value", data => {
                             if (data) {
-                                let eachExpense = utils.eachExpense(data.val());
-                                let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
+                                const eachExpense = utils.eachExpense(data.val());
+                                const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
 
                                 thisUsersExpenses.map(elem => {
                                     db.doCreateExpenseTable(
@@ -182,8 +182,8 @@ class App extends Component {
                         // get and set expenses in db from old expenses table to new expenseTable
                         firebase.db.ref("loans").on("value", data => {
                             if (data) {
-                                let eachExpense = utils.eachExpense(data.val());
-                                let thisUsersLoans = utils.currentUsersExpenses(eachExpense, this.state.authUser);
+                                const eachExpense = utils.eachExpense(data.val());
+                                const thisUsersLoans = utils.currentUsersExpenses(eachExpense, this.state.authUser);
 
                                 thisUsersLoans.map(elem => {
                                     db.doCreateLoanTable(

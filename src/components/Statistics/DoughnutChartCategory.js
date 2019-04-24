@@ -22,9 +22,9 @@ class DoughnutChartCategory extends Component {
     }
 
     render() {
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let selectedYear = this.state.year;
+        const expenses = this.props.expenses;
+        const currentUser = this.props.authUser;
+        const selectedYear = this.state.year;
 
         let allCategoryTotals = null;
 
@@ -48,8 +48,8 @@ class DoughnutChartCategory extends Component {
         }
 
         if (expenses && currentUser && selectedYear) {
-            let eachExpense = utils.eachExpense(expenses);
-            let usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+            const eachExpense = utils.eachExpense(expenses);
+            const usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
             //allCategoryTotals = utils.calculateTotalForAllCategories(usersExpenses);
 
@@ -62,7 +62,7 @@ class DoughnutChartCategory extends Component {
                 );
             }
 
-            let data = {
+            const data = {
                 labels: utils.categories,
                 datasets: [
                     {

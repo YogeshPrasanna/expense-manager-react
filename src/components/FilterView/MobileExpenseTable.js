@@ -5,13 +5,13 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const MobileExpenseTable = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let startDate = props.fromdate;
-    let endDate = props.todate;
-    let expenseFrom = props.expensefrom;
-    let expenseTo = props.expenseto;
-    let category = props.category;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const startDate = props.fromdate;
+    const endDate = props.todate;
+    const expenseFrom = props.expensefrom;
+    const expenseTo = props.expenseto;
+    const category = props.category;
 
     if (!expenses || !currentUser) {
         return (
@@ -22,9 +22,9 @@ const MobileExpenseTable = props => {
     }
 
     if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
-        let filteredExpenses = utils.filterExpensesByCriteria(
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        const filteredExpenses = utils.filterExpensesByCriteria(
             startDate,
             endDate,
             category,

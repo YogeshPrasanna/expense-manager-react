@@ -6,10 +6,10 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const DailyTotalCalender = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let selectedMonth = props.month;
-    let selectedYear = props.year;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const selectedMonth = props.month;
+    const selectedYear = props.year;
 
     if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
         return (
@@ -20,8 +20,8 @@ const DailyTotalCalender = props => {
     }
 
     if (expenses && currentUser && selectedMonth && selectedYear) {
-        let eachExpense = utils.eachExpense(expenses);
-        let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
+        const eachExpense = utils.eachExpense(expenses);
+        const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
             currentUser,
             selectedMonth,
@@ -32,9 +32,9 @@ const DailyTotalCalender = props => {
         let dayStart = [];
         let dayEnd = [];
 
-        let allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
-        let TotalInThatDay = allDatesInSelectedMonth.map(date => {
-            var expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
+        const allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
+        const TotalInThatDay = allDatesInSelectedMonth.map(date => {
+            let expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
             totals[date] =
                 expensesOnThatDate.map(elem => Number(elem.value.expense)).length >= 1
                     ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)

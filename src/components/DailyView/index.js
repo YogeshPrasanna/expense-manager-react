@@ -76,8 +76,8 @@ class DailyViewPage extends Component {
                 }
             }
 
-            let fromcur = returnCur(this.props.settings.fromCurrency);
-            let tocur = returnCur(this.props.settings.currency);
+            const fromcur = returnCur(this.props.settings.fromCurrency);
+            const tocur = returnCur(this.props.settings.currency);
 
             fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y`)
                 .then(resp => resp.json()) // Transform the data into json
@@ -201,17 +201,17 @@ class DailyViewPage extends Component {
                                         convertedCurrency={this.state.convertedCurrency}
                                     />
                                 ) : (
-                                    <MobileExpenseTable
-                                        expenses={this.props.expenses}
-                                        authUser={this.props.user}
-                                        date={this.state.date.format("MM/DD/YYYY")}
-                                        settings={this.props.settings}
-                                        convertedCurrency={this.state.convertedCurrency}
-                                    />
-                                )
+                                        <MobileExpenseTable
+                                            expenses={this.props.expenses}
+                                            authUser={this.props.user}
+                                            date={this.state.date.format("MM/DD/YYYY")}
+                                            settings={this.props.settings}
+                                            convertedCurrency={this.state.convertedCurrency}
+                                        />
+                                    )
                             ) : (
-                                <Loader />
-                            )}
+                                    <Loader />
+                                )}
                         </div>
                     </div>
                 </div>

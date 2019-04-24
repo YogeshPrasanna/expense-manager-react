@@ -4,13 +4,13 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const Expense = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let startDate = props.fromdate;
-    let endDate = props.todate;
-    let expenseFrom = props.expensefrom;
-    let expenseTo = props.expenseto;
-    let category = props.category;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const startDate = props.fromdate;
+    const endDate = props.todate;
+    const expenseFrom = props.expensefrom;
+    const expenseTo = props.expenseto;
+    const category = props.category;
 
     if (!expenses || !currentUser) {
         return (
@@ -41,9 +41,9 @@ const Expense = props => {
     }
 
     if (expenses && currentUser && startDate && endDate && expenseFrom && expenseTo && category) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
-        let filteredExpenses = utils.filterExpensesByCriteria(
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        const filteredExpenses = utils.filterExpensesByCriteria(
             startDate,
             endDate,
             category,
@@ -53,7 +53,7 @@ const Expense = props => {
         );
 
         if (filteredExpenses.length) {
-            return filteredExpenses.map(function(elem, i) {
+            return filteredExpenses.map(function (elem, i) {
                 return (
                     <ExpenseRow
                         user={props.authUser}

@@ -21,9 +21,9 @@ class BarChartAllMonths extends Component {
     }
 
     render() {
-        let expenses = this.props.expenses;
-        let currentUser = this.props.authUser;
-        let selectedYear = this.state.year;
+        const expenses = this.props.expenses;
+        const currentUser = this.props.authUser;
+        const selectedYear = this.state.year;
 
         if (!expenses || !currentUser) {
             return (
@@ -34,15 +34,15 @@ class BarChartAllMonths extends Component {
         }
 
         if (expenses && currentUser) {
-            let eachExpense = utils.eachExpense(expenses);
-            let allMonthsTotals = utils.totalExpensesInEachMonthOfThisYear(
+            const eachExpense = utils.eachExpense(expenses);
+            const allMonthsTotals = utils.totalExpensesInEachMonthOfThisYear(
                 expenses,
                 eachExpense,
                 currentUser,
                 selectedYear
             );
 
-            let data = {
+            const data = {
                 labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY", "AUG", "SEP", "OCT", "NOV", "DEC"],
                 datasets: [
                     {

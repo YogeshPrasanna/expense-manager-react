@@ -6,7 +6,7 @@ import * as routes from "../../constants/routes";
 
 const NavigationAuth = props => {
     const burgerToggle = () => {
-        let linksEl = document.querySelector(".narrowLinks");
+        const linksEl = document.querySelector(".narrowLinks");
         if (linksEl.style.display === "block") {
             linksEl.style.display = "none";
         } else {
@@ -260,8 +260,8 @@ const Navigation = ({ authUser, settings }) => {
             {authUser && authUser.emailVerified && settings ? (
                 <NavigationAuth settings={settings} />
             ) : (
-                <NavigationNonAuth />
-            )}
+                    <NavigationNonAuth />
+                )}
         </div>
     );
 };

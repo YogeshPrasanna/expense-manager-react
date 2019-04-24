@@ -4,9 +4,9 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const Expense = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let dateSelected = props.date;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const dateSelected = props.date;
 
     if (!expenses || !currentUser) {
         return (
@@ -37,8 +37,8 @@ const Expense = props => {
     }
 
     if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
         if (thisUsersExpenses.length) {
             return thisUsersExpenses.map((elem, i) => {
