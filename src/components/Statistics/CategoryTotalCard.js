@@ -57,7 +57,7 @@ class CategoryTotalCard extends Component {
         let allCategoryTotals = null;
         let categoryList = null;
 
-        const patternconfig = { height: 300, width: 1500, cell_size: Math.floor(Math.random() * 250) + 50 }; // palette: Trianglify.colorbrewer,
+        const patternconfig = { height: 300, width: 1500, cell_size: 50 }; // palette: Trianglify.colorbrewer,
         const pattern = Trianglify({ ...patternconfig });
         const card4 = { backgroundImage: `url(${pattern.png()})` };
 

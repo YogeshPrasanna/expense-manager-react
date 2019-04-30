@@ -251,7 +251,7 @@ class App extends Component {
             height: "100vh"
         };
 
-        var patternconfig = { height: 300, width: 500, cell_size: Math.floor(Math.random() * 250) + 50 }; // palette: Trianglify.colorbrewer,
+        var patternconfig = { height: 300, width: 500, cell_size: 35 }; // palette: Trianglify.colorbrewer,
         var pattern = Trianglify({ ...patternconfig });
         var pattern2 = Trianglify({ ...patternconfig });
         var pattern3 = Trianglify({ ...patternconfig });
