@@ -132,7 +132,7 @@ const DoughnutChart = props => {
         };
 
         const optionsMobile = {
-            legend: { display: true, position: "bottom", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
+            legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
             layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } },
             cutoutPercentage: 0,
             plugins: {
@@ -213,7 +213,7 @@ const DoughnutChart = props => {
                             <Doughnut
                                 data={data}
                                 options={window.screen.width > 720 ? options : optionsMobile}
-                                height={window.screen.width > 720 ? 80 : 250}
+                                height={window.screen.width > 720 ? 80 : 230}
                                 responsive={true}
                                 onElementsClick={elems => {
                                     if (elems.length) {
