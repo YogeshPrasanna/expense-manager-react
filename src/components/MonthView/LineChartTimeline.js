@@ -9,8 +9,9 @@ const LineChartExpenseTimeline = props => {
     let currentUser = props.authUser;
     let selectedMonth = props.month;
     let selectedYear = props.year;
+    let settings = props.settings;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !settings) {
         return (
             <div>
                 <Loader />
@@ -18,7 +19,7 @@ const LineChartExpenseTimeline = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && settings) {
         let eachExpense = utils.eachExpense(expenses);
         let usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -57,10 +58,11 @@ const LineChartExpenseTimeline = props => {
 
         const data = {
             labels: Object.keys(totals).map(date => date.substr(3, 2)),
+            //type: 'line',
             datasets: [
                 {
                     label: "Expense",
-                    // fill: false,
+                    //fill: false,
                     // lineTension: 0.1,
                     // backgroundColor: "rgba(75,192,192,0.4)",
                     // borderColor: "rgba(75,192,192,1)",
@@ -79,9 +81,9 @@ const LineChartExpenseTimeline = props => {
                     // pointHitRadius: 10,
                     // fill: true,
                     data: Object.values(totals),
-                    borderColor: "transparent",
-                    // backgroundColor: "rgb(0,0,0,0.3)",
-                    backgroundColor: "rgb(68, 159, 238)",
+                    borderColor: "rgba(75,192,192,1)",
+                    backgroundColor: "rgb(0,0,0,0)",
+                    //backgroundColor: "rgb(68, 159, 238)",
                     pointBackgroundColor: "rgba(0,0,0,0)",
                     pointBorderColor: "rgba(0,0,0,0)",
                     borderWidth: 4
@@ -89,15 +91,69 @@ const LineChartExpenseTimeline = props => {
             ]
         };
 
-        const lineArea = { background: "#DDDDDD" };
+        const lineArea = settings.mode === "night" ? { background: window.screen.width > 720 ? "#2C3034" : "#2C3034" } : { background: "#dddddd" };
+        const headerColor = settings.mode === "night" ? { color: "rgb(237, 211, 130)" } : { color: "inherit" }
         const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
+        var options = {
+            legend: {
+                display: false,
+                labels: {
+                    fontColor: "rgb(247, 162, 120)"
+                }
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)",
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90,
+                        fontColor: "rgb(81, 152, 114)",
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)",
+                    },
+                    scaleLabel: {
+                        display: false,
+                        labelString: "Normalized/Indexed Data",
+                    },
+                    ticks: {
+                        display: false
+                    }
+                }]
+            }
+        }
+
+        var optionsDesktop = {
+            legend: {
+                labels: {
+                    fontColor: "rgb(247, 162, 120)"
+                }
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        fontColor: "rgb(81, 152, 114)",
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontColor: "rgb(81, 152, 114)",
+                    }
+                }]
+            }
+        }
 
         return (
             <div>
-                <h4 style={mobPad15}>Expense Timeline</h4>
-                <div className="col-sm-12" style={lineArea}>
+                <h4 style={{ ...mobPad15, ...headerColor }}>Expense Timeline</h4>
+                <div className="col-sm-12 mobileNoPadding" style={lineArea}>
                     {" "}
-                    <Line data={data} height={window.screen.width > 720 ? 70 : 250} />
+                    <Line data={data} options={window.screen.width > 720 ? optionsDesktop : options} height={window.screen.width > 720 ? 70 : 150} />
                 </div>
             </div>
         );

@@ -127,7 +127,7 @@ class MonthViewPage extends Component {
         const nmBgForCharts = {
             backgroundColor: this.props.settings
                 ? this.props.settings.mode === "night"
-                    ? "#ddd"
+                    ? "#2C3034"
                     : "#EDF0EF"
                 : "#EDF0EF",
             padding: "15px",
@@ -202,7 +202,7 @@ class MonthViewPage extends Component {
         };
 
         const rightCol = {
-            paddingLeft: "0"
+            paddingLeft: "0",
         };
 
         const inputNightMode = {
@@ -333,6 +333,7 @@ class MonthViewPage extends Component {
                                     authUser={this.props.user}
                                     month={this.state.month}
                                     year={this.state.year}
+                                    settings={this.props.settings}
                                 />
                             </div>
                             <GenerateExcel

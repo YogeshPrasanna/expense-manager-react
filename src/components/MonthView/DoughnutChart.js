@@ -11,12 +11,13 @@ const DoughnutChart = props => {
     const currentUser = props.authUser;
     const selectedMonth = props.month;
     const selectedYear = props.year;
+    const settings = props.settings;
 
     let allCategoryTotals = null;
     let categoryList = null;
     let categoryColors = null;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !settings) {
         return (
             <div>
                 <Loader />
@@ -24,7 +25,7 @@ const DoughnutChart = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear) {
+    if (expenses && currentUser && selectedMonth && selectedYear && settings) {
         const eachExpense = utils.eachExpense(expenses);
         const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -55,13 +56,14 @@ const DoughnutChart = props => {
                 {
                     data: Object.values(allCategoryTotals).filter(el => el > 0),
                     backgroundColor: categoryColors,
-                    hoverBackgroundColor: categoryColors
+                    hoverBackgroundColor: categoryColors,
+                    borderWidth: 0,
                 }
             ]
         };
 
         const options = {
-            legend: { display: true, position: "left", fullWidth: true, reverse: false },
+            legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)" } },
             layout: { padding: { left: 15, right: 85, top: 5, bottom: 5 } },
             cutoutPercentage: 70,
             plugins: {
@@ -130,7 +132,7 @@ const DoughnutChart = props => {
         };
 
         const optionsMobile = {
-            legend: { display: true, position: "bottom", fullWidth: true },
+            legend: { display: true, position: "bottom", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
             layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } },
             cutoutPercentage: 0,
             plugins: {
@@ -198,27 +200,31 @@ const DoughnutChart = props => {
             }
         };
         const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
+        const headerColor = settings.mode === "night" ? { color: "rgb(237, 211, 130)" } : { color: "inherit" }
+        const lineArea = settings.mode === "night" ? { background: window.screen.width > 720 ? "#2C3034" : "#2C3034" } : { background: "#dddddd" };
 
         return (
             <div>
                 <hr />
-                <h4 style={mobPad15}>Category Analyser</h4>
+                <h4 style={{ ...mobPad15, ...headerColor }}>Category Analyser</h4>
                 <Route
                     render={({ history }) => (
-                        <Doughnut
-                            data={data}
-                            options={window.screen.width > 720 ? options : optionsMobile}
-                            height={window.screen.width > 720 ? 80 : 350}
-                            responsive={true}
-                            onElementsClick={elems => {
-                                if (elems.length) {
-                                    const clickedLabel = elems[0]._model.label;
-                                    history.push(
-                                        `/filter-view?category=${clickedLabel}&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`
-                                    );
-                                }
-                            }}
-                        />
+                        <div style={lineArea}>
+                            <Doughnut
+                                data={data}
+                                options={window.screen.width > 720 ? options : optionsMobile}
+                                height={window.screen.width > 720 ? 80 : 250}
+                                responsive={true}
+                                onElementsClick={elems => {
+                                    if (elems.length) {
+                                        const clickedLabel = elems[0]._model.label;
+                                        history.push(
+                                            `/filter-view?category=${clickedLabel}&selectedMonth=${selectedMonth}&selectedYear=${selectedYear}&from=monthpage`
+                                        );
+                                    }
+                                }}
+                            />
+                        </div>
                     )}
                 />
             </div>
