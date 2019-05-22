@@ -24,8 +24,9 @@ class BarChartAllMonths extends Component {
         const expenses = this.props.expenses;
         const currentUser = this.props.authUser;
         const selectedYear = this.state.year;
+        const settings = this.props.settings;
 
-        if (!expenses || !currentUser) {
+        if (!expenses || !currentUser || !settings) {
             return (
                 <div>
                     <Loader />
@@ -33,7 +34,7 @@ class BarChartAllMonths extends Component {
             );
         }
 
-        if (expenses && currentUser) {
+        if (expenses && currentUser && settings) {
             const eachExpense = utils.eachExpense(expenses);
             const allMonthsTotals = utils.totalExpensesInEachMonthOfThisYear(
                 expenses,
@@ -47,8 +48,8 @@ class BarChartAllMonths extends Component {
                 datasets: [
                     {
                         data: allMonthsTotals,
-                        backgroundColor: "rgba(66,133,234,0.8)",
-                        borderColor: "rgba(66,133,234,1)",
+                        backgroundColor: "rgb(81, 152, 114)",
+                        borderColor: "rgb(81, 152, 114)",
                         borderWidth: 2,
                         hoverBackgroundColor: "rgba(66,133,234,0.6)",
                         hoverBorderColor: "rgba(66,133,234,1)"
@@ -58,7 +59,28 @@ class BarChartAllMonths extends Component {
 
             const options = {
                 legend: {
-                    display: false
+                    display: false,
+                    labels: {
+                        fontColor: "rgb(247, 162, 120)"
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        },
+                        ticks: {
+                            fontColor: "rgb(81, 152, 114)",
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        },
+                        ticks: {
+                            fontColor: "rgb(81, 152, 114)",
+                        }
+                    }]
                 },
                 plugins: {
                     labels: {
@@ -75,7 +97,7 @@ class BarChartAllMonths extends Component {
                         fontSize: 12,
 
                         // font color, can be color array for each data or function for dynamic color, default is defaultFontColor
-                        fontColor: "#000",
+                        fontColor: "rgb(247, 162, 120)",
 
                         // font style, default is defaultFontStyle
                         fontStyle: "bold",
@@ -125,6 +147,36 @@ class BarChartAllMonths extends Component {
                 }
             };
 
+            const optionsMobile = {
+                legend: options.legend,
+                plugins: options.plugins,
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 90,
+                            minRotation: 90,
+                            fontColor: "rgb(81, 152, 114)",
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        },
+                        scaleLabel: {
+                            display: false,
+                            labelString: "Normalized/Indexed Data",
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                }
+            }
+
             const monthDropdown = {
                 display: "block",
                 background: "#DDDDDD",
@@ -157,7 +209,7 @@ class BarChartAllMonths extends Component {
                     <Bar
                         data={data}
                         height={window.screen.width > 720 ? 140 : 250}
-                        options={options}
+                        options={window.screen.width > 720 ? options : optionsMobile}
                         responsive={true}
                     />
                 </div>

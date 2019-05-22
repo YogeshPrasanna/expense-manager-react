@@ -121,7 +121,7 @@ class DailyViewPage extends Component {
         const nmBgForCharts = {
             backgroundColor: this.props.settings
                 ? this.props.settings.mode === "night"
-                    ? "#ddd"
+                    ? "#2C3034"
                     : "#EDF0EF"
                 : "#EDF0EF",
             padding: "35px",
@@ -183,6 +183,7 @@ class DailyViewPage extends Component {
                                     expenses={this.props.expenses}
                                     date={this.state.date.format("MM/DD/YYYY")}
                                     authUser={this.props.user}
+                                    settings={this.props.settings}
                                 />
                             </div>
                             <GenerateExcel

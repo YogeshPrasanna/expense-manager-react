@@ -22,9 +22,9 @@ const StatisticsPage = props => {
     };
 
     const nmBgForCharts = {
-        backgroundColor: props.settings ? (props.settings.mode === "night" ? "#ddd" : "#EDF0EF") : "#EDF0EF",
+        backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#EDF0EF") : "#EDF0EF",
         padding: "10px",
-        border: window.screen.width > 720 ? "15px solid #484842" : "15px solid #DDDDDD"
+        // border: window.screen.width > 720 ? "15px solid #484842" : "15px solid #DDDDDD"
     };
 
     if (props.settings) {
@@ -38,14 +38,14 @@ const StatisticsPage = props => {
                         className="col-sm-6 mobileNoPadding"
                         style={props.settings.mode === "night" ? nmBgForCharts : marB15}
                     >
-                        <DoughnutChartCategory expenses={props.expenses} authUser={props.user} />
+                        <DoughnutChartCategory expenses={props.expenses} authUser={props.user} settings={props.settings} />
                         <span className="badge badge-info">Total Expense for each category</span>
                     </div>
                     <div
                         className="col-sm-6 mobileNoPadding"
                         style={props.settings.mode === "night" ? nmBgForCharts : marB15}
                     >
-                        <BarChartAllMonths expenses={props.expenses} authUser={props.user} />
+                        <BarChartAllMonths expenses={props.expenses} authUser={props.user} settings={props.settings} />
                     </div>
                 </div>
                 <div className="row">

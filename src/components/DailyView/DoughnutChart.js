@@ -8,12 +8,13 @@ const DoughnutChart = props => {
     const expenses = props.expenses;
     const currentUser = props.authUser;
     const dateSelected = props.date;
+    const settings = props.settings;
 
     let allCategoryTotals = null;
     let categoryList = null;
     let categoryColors = null;
 
-    if (!expenses || !currentUser || !dateSelected) {
+    if (!expenses || !currentUser || !dateSelected || !settings) {
         return (
             <div>
                 <Loader />
@@ -21,7 +22,7 @@ const DoughnutChart = props => {
         );
     }
 
-    if (expenses && currentUser && dateSelected) {
+    if (expenses && currentUser && dateSelected && settings) {
         const eachExpense = utils.eachExpense(expenses);
         const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
@@ -47,13 +48,14 @@ const DoughnutChart = props => {
                 {
                     data: Object.values(allCategoryTotals).filter(el => el > 0),
                     backgroundColor: categoryColors,
-                    hoverBackgroundColor: categoryColors
+                    hoverBackgroundColor: categoryColors,
+                    borderWidth: 0,
                 }
             ]
         };
 
         const options = {
-            legend: { display: true, position: "left", fullWidth: true, reverse: false },
+            legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)" } },
             layout: { padding: { left: 15, right: 85, top: 5, bottom: 5 } },
             cutoutPercentage: 70,
             plugins: {
@@ -122,7 +124,7 @@ const DoughnutChart = props => {
         };
 
         const optionsMobile = {
-            legend: { display: true, position: "bottom", fullWidth: true },
+            legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
             layout: {
                 padding: { left: 15, right: 15, top: 15, bottom: 15 },
                 cutoutPercentage: 0,
@@ -192,15 +194,18 @@ const DoughnutChart = props => {
             }
         };
 
+        const headerColor = settings.mode === "night" ? { color: "rgb(237, 211, 130)" } : { color: "inherit" }
+        const lineArea = settings.mode === "night" ? { background: window.screen.width > 720 ? "#2C3034" : "#2C3034", padding: 0 } : { background: "#dddddd", padding: 0 };
+
         const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
 
         return (
-            <div>
-                <h4 style={mobPad15}>Category Analyser</h4>
+            <div style={lineArea}>
+                <h4 style={{ ...mobPad15, ...headerColor }}>Category Analyser</h4>
                 <Doughnut
                     data={data}
                     options={window.screen.width > 720 ? options : optionsMobile}
-                    height={window.screen.width > 720 ? 80 : 420}
+                    height={window.screen.width > 720 ? 80 : 230}
                     responsive={true}
                 />
             </div>

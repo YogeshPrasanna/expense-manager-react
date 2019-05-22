@@ -25,6 +25,7 @@ class DoughnutChartCategory extends Component {
         const expenses = this.props.expenses;
         const currentUser = this.props.authUser;
         const selectedYear = this.state.year;
+        const settings = this.props.settings;
 
         let allCategoryTotals = null;
 
@@ -39,7 +40,7 @@ class DoughnutChartCategory extends Component {
 
         const formStyle = { position: "absolute", top: "0", padding: "15px", right: "-15px", zIndex: "9" };
 
-        if (!expenses || !currentUser) {
+        if (!expenses || !currentUser || !settings) {
             return (
                 <div>
                     <Loader />
@@ -47,7 +48,7 @@ class DoughnutChartCategory extends Component {
             );
         }
 
-        if (expenses && currentUser && selectedYear) {
+        if (expenses && currentUser && selectedYear && settings) {
             const eachExpense = utils.eachExpense(expenses);
             const usersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
@@ -68,13 +69,14 @@ class DoughnutChartCategory extends Component {
                     {
                         data: Object.values(allCategoryTotals),
                         backgroundColor: utils.categoryColors,
-                        hoverBackgroundColor: utils.categoryColors
+                        hoverBackgroundColor: utils.categoryColors,
+                        borderWidth: 0,
                     }
                 ]
             };
 
             const options = {
-                legend: { display: true, position: "left", fullWidth: true, reverse: false },
+                legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)" } },
                 layout: { padding: { left: 0, right: 0, top: 15, bottom: 0 } },
                 cutoutPercentage: 70,
                 plugins: {
@@ -143,7 +145,7 @@ class DoughnutChartCategory extends Component {
             };
 
             const optionsMobile = {
-                legend: { display: true, position: "bottom", fullWidth: true },
+                legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
                 layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } },
                 cutoutPercentage: 0,
                 plugins: {
@@ -211,8 +213,10 @@ class DoughnutChartCategory extends Component {
                 }
             };
 
+            const lineArea = settings.mode === "night" ? { background: window.screen.width > 720 ? "#2C3034" : "#2C3034", padding: 0 } : { background: "#dddddd", padding: 0 };
+
             return (
-                <div>
+                <div style={lineArea}>
                     <form>
                         <div className="col-sm-12 col-xs-12">
                             <select
@@ -233,7 +237,7 @@ class DoughnutChartCategory extends Component {
                             <Doughnut
                                 data={data}
                                 options={window.screen.width > 720 ? options : optionsMobile}
-                                height={window.screen.width > 720 ? 140 : 450}
+                                height={window.screen.width > 720 ? 140 : 270}
                                 responsive={true}
                                 onElementsClick={elems => {
                                     if (elems.length) {
