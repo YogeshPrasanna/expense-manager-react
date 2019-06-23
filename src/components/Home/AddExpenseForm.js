@@ -111,6 +111,7 @@ class AddExpenseForm extends Component {
                         <div className="col-sm-10 col-xs-6">
                             <input
                                 className="form-control"
+                                autoFocus
                                 required
                                 type="number"
                                 name="expense"
