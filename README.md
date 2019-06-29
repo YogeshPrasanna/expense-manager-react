@@ -77,6 +77,24 @@
 - change database rules to 
   [![Change database rules](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)
   
+- Now lets add the app in firebase
+  [![Adding the app](https://i.postimg.cc/x15nGjnk/add-app1.png)](https://i.postimg.cc/x15nGjnk/add-app1.png)
+  
+- Give Your app a name & hosting is optional
+  [![Give Your app a name](https://i.postimg.cc/9MR2jGTT/adding-firebase1.png)](https://i.postimg.cc/9MR2jGTT/adding-firebase1.png)
+  
+- Now Lets add the config in ./src/firebase/firebase.js
+  [![lets add the config](https://i.postimg.cc/LXcp4nBW/adding-firebase2.png)](https://i.postimg.cc/LXcp4nBW/adding-firebase2.png)
+  
+- OPTIONAL_STEP : If you're hosting this app somewhere make sure the api key comes from .env.local as environment variable, doing this does not expose yor api-key , and do not commit this file to github , add this in .gitignore 
+    `# api Keys`
+    `*.env`
+ 
+    #### create a file named .env.local in root folder and add your firebase api key here
+    
+     `REACT_APP_FIREBASE_API_KEY = "your-api-key-here"`
+     [![.env.local](https://i.postimg.cc/fLZcGv1q/env-local.png)](https://i.postimg.cc/fLZcGv1q/env-local.png)
+  
 - Enable Google Authentication and Email Authentication , Feel Free to add other authentication methods and setup accordingly
   [![Enable Google Authentication](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)
   
@@ -90,10 +108,6 @@
 ### `npm install`
 
       This will install all the required packages and dependencies to run the app.
-
-### create a file named .env.local in root folder and add your firebase api key here
-    
-    `REACT_APP_FIREBASE_API_KEY = "your-api-key-here"`
 
 ### `npm start`
 
