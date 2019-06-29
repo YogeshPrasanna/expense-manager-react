@@ -96,7 +96,7 @@ class App extends Component {
                         db.doCreateSettingsForUser(
                             this.state.authUser.uid,
                             "sans-serif",
-                            "day",
+                            "night",
                             "Indian Rupees",
                             "off",
                             "Indian Rupees",
