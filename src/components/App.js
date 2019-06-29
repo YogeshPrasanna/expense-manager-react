@@ -114,7 +114,7 @@ class App extends Component {
                     } else {
                         // get and set expenses in db from old expenses table to new expenseTable
                         firebase.db.ref("expenses").on("value", data => {
-                            if (data) {
+                            if (data.val() !== null) {
                                 const eachExpense = utils.eachExpense(data.val());
                                 const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
 
@@ -155,7 +155,7 @@ class App extends Component {
 
                 // get all the defaultCategories
                 firebase.db.ref("defaultCategories").on("value", data => {
-                    if (data) {
+                    if (data.val() !== null) {
                         this.setState({
                             defaultCategoriesNames: Object.keys(data.val()),
                             defaultCategoriesColors: Object.values(data.val())
@@ -181,7 +181,7 @@ class App extends Component {
                     } else {
                         // get and set expenses in db from old expenses table to new expenseTable
                         firebase.db.ref("loans").on("value", data => {
-                            if (data) {
+                            if (data.val() !== null) {
                                 const eachExpense = utils.eachExpense(data.val());
                                 const thisUsersLoans = utils.currentUsersExpenses(eachExpense, this.state.authUser);
 
