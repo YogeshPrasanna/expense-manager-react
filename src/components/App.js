@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
 import { firebase } from "../firebase/index";
 import { defaults } from "react-chartjs-2";
 import Trianglify from "trianglify";
@@ -25,6 +25,7 @@ import StatisticsPage from "./Statistics/index";
 import LoanPage from "./Loan/index";
 import SettingsPage from "./Settings/index";
 import SavingsPage from "./Savings/index";
+import ErrorPage from "./Error/index";
 
 import * as routes from "../constants/routes";
 import * as db from "../firebase/db";
@@ -276,7 +277,7 @@ class App extends Component {
             <Router>
                 <div style={bodyStyle}>
                     <Navigation authUser={this.state.authUser} settings={this.state.settings} />
-
+                    <Switch>
                     {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
                     <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
                     <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
@@ -383,6 +384,13 @@ class App extends Component {
                             />
                         )}
                     />
+
+                    <Route
+                        component={() => (
+                            <ErrorPage />
+                        )}
+                    />
+                    </Switch>
                 </div>
             </Router>
         );

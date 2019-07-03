@@ -119,14 +119,15 @@ class HomePage extends Component {
                                 convertedCurrency={this.state.convertedCurrency}
                             />
                         ) : (
-                                <Loader />
+                            <div style={styleFromSettings}><Loader /></div>
+                                
                             )
                     ) : null}
                 </div>
             );
         } else {
             return (
-                <div>
+                <div style={styleFromSettings}>
                     <Loader />
                 </div>
             );
