@@ -56,11 +56,9 @@ class LoanPage extends Component {
                         </div>
                     </div>
 
-                    {this.props.loans ? (
-                        <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addLoan">
-                            <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
-                        </button>
-                    ) : null}
+                    <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addLoan">
+                        <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
+                    </button>
 
                     {this.state.showPopup ? (
                         <AddLoanPopup
