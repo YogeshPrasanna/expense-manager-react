@@ -76,18 +76,29 @@ const DailyTotalCalender = props => {
         const dateArea = { background: "rgba(0,0,0,0.05)", color: "#519872", letterSpacing: "2px", fontSize: "20px" };
 
         const todayDateArea = { background: "#519872", color: "white", letterSpacing: "2px", fontSize: "20px" };
-
+        let previDays = [];
+        let nextiDays = [];
         for (let i = 0; i < moment(allDatesInSelectedMonth[0]).day(); i++) {
+            previDays.push(moment(allDatesInSelectedMonth[0]).subtract(i + 1, 'd').format("MM/DD/YYYY"))
             dayStart.push(i);
         }
+        console.log("%c day start ", "background: red; color: white", previDays)
+
 
         for (
             let i = 0;
             i < Math.abs(moment(allDatesInSelectedMonth[allDatesInSelectedMonth.length - 1]).day() - 6);
             i++
         ) {
+            nextiDays.push(moment(allDatesInSelectedMonth[allDatesInSelectedMonth.length - 1]).add(i + 1, 'd').format("MM/DD/YYYY"))
             dayEnd.push(i);
         }
+
+        console.log("%c day end ", "background: blue; color: white", nextiDays)
+
+
+        console.log(dayStart, dayEnd)
+
 
         let daysStartGapHtml = dayStart.map(function (elem) {
             return (

@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nmodule.exports = function (Chart) {\n  Chart.Scatter = function (context, config) {\n    config.type = 'scatter';\n    return new Chart(context, config);\n  };\n};","map":null,"metadata":{},"sourceType":"script"}
