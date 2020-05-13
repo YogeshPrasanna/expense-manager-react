@@ -49,7 +49,7 @@ class HomePage extends Component {
             const fromcur = returnCur(this.props.settings.fromCurrency);
             const tocur = returnCur(this.props.settings.currency);
 
-            fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y`)
+            fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y&apiKey=${process.env.REACT_APP_FREE_CURRENCY_CONVERTER_API_KEY}`)
                 .then(resp => resp.json()) // Transform the data into json
                 .then(data => {
                     this.setState({ convertedCurrency: Object.values(data)[0].val });
@@ -119,8 +119,8 @@ class HomePage extends Component {
                                 convertedCurrency={this.state.convertedCurrency}
                             />
                         ) : (
-                            <div style={styleFromSettings}><Loader /></div>
-                                
+                                <div style={styleFromSettings}><Loader /></div>
+
                             )
                     ) : null}
                 </div>
