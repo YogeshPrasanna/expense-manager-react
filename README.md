@@ -105,6 +105,13 @@
 - Setup Email Verification Template
   [![Setup Email Verification Template](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)
   
+- Finally we need to set up the API-Key for currency converter , which is needed for travel mode.
+    - Head over to [currencyconverterapi.com](https://free.currencyconverterapi.com/)
+    - create your API-KEY 
+    - Add this in .env.local as a environment variable
+    
+        `REACT_APP_FREE_CURRENCY_CONVERTER_API_KEY = "your-api-key-here"`
+  
  2. Setup Repo Locally
  
     `git clone https://github.com/YogeshPrasanna/expense-manager-react.git`
