@@ -297,18 +297,18 @@ class FilterViewPage extends Component {
                                             onChange={this.handleChange.bind(this)}
                                             style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
-                                            <option value="Food">Food</option>
-                                            <option value="Automobile">Automobile</option>
-                                            <option value="Entertainment">Entertainment</option>
-                                            <option value="Clothing">Clothing</option>
-                                            <option value="Healthcare">Healthcare</option>
-                                            <option value="Travel">Travel</option>
-                                            <option value="Shopping">Shopping</option>
-                                            <option value="Personal Care">Personal Care</option>
-                                            <option value="Investment">Investment</option>
-                                            <option value="Gifts & Donations">Gifts & Donations</option>
-                                            <option value="Bills & Utilities">Bills & Utilities</option>
-                                            <option value="Others">Others</option>
+                                            <option value="Food">{this.props.settings.editedCategories["Food"] ? this.props.settings.editedCategories["Food"] : "Food"}</option>
+                                            <option value="Automobile">{this.props.settings.editedCategories["Automobile"] ? this.props.settings.editedCategories["Automobile"] : "Automobile"}</option>
+                                            <option value="Entertainment">{this.props.settings.editedCategories["Entertainment"] ? this.props.settings.editedCategories["Entertainment"] : "Entertainment"}</option>
+                                            <option value="Clothing">{this.props.settings.editedCategories["Clothing"] ? this.props.settings.editedCategories["Clothing"] : "Clothing"}</option>
+                                            <option value="Healthcare">{this.props.settings.editedCategories["Healthcare"] ? this.props.settings.editedCategories["Healthcare"] : "Healthcare"}</option>
+                                            <option value="Travel">{this.props.settings.editedCategories["Travel"] ? this.props.settings.editedCategories["Travel"] : "Travel"}</option>
+                                            <option value="Shopping">{this.props.settings.editedCategories["Shopping"] ? this.props.settings.editedCategories["Shopping"] : "Shopping"}</option>
+                                            <option value="Personal Care">{this.props.settings.editedCategories["Personal Care"] ? this.props.settings.editedCategories["Personal Care"] : "Personal Care"}</option>
+                                            <option value="Investment">{this.props.settings.editedCategories["Investment"] ? this.props.settings.editedCategories["Investment"] : "Investment"}</option>
+                                            <option value="Gifts & Donations">{this.props.settings.editedCategories["Gifts & Donations"] ? this.props.settings.editedCategories["Gifts & Donations"] : "Gifts & Donations"}</option>
+                                            <option value="Bills & Utilities">{this.props.settings.editedCategories["Bills & Utilities"] ? this.props.settings.editedCategories["Bills & Utilities"] : "Bills & Utilities"}</option>
+                                            <option value="Others">{this.props.settings.editedCategories["Others"] ? this.props.settings.editedCategories["Others"] : "Others"}</option>
                                         </select>
                                     </div>
                                 </div>

@@ -209,6 +209,7 @@ export const calculateTotalForAllCategories = expenses => {
 
     categories.map(category => totalForACategory(expenses, category));
 
+    console.log("category total", categoryTotal)
 
     return categoryTotal;
 };

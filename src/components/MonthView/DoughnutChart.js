@@ -38,7 +38,7 @@ const DoughnutChart = props => {
 
         const eachCategory = allCategoryTotals => {
             return Object.keys(allCategoryTotals).map(function (key) {
-                return { key: key, value: allCategoryTotals[key] };
+                return { key: settings.editedCategories[key] ? settings.editedCategories[key] : key, value: allCategoryTotals[key] };
             });
         };
 
@@ -48,7 +48,10 @@ const DoughnutChart = props => {
             })
             .map(el => el.key);
 
-        categoryColors = categoryList.map(el => utils.getCatColor(el));
+        categoryColors = categoryList.map((el) => {
+            let cat = Object.keys(settings.editedCategories).filter(function(key) {return settings.editedCategories[key] === el})[0] || el
+            return utils.getCatColor(cat)
+        });
 
         const data = {
             labels: categoryList,

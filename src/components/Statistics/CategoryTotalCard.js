@@ -53,6 +53,7 @@ class CategoryTotalCard extends Component {
         const expenses = this.props.expenses;
         const currentUser = this.props.authUser;
         const selectedYear = this.state.year;
+        const settings = this.props.settings;
 
         let allCategoryTotals = null;
         let categoryList = null;
@@ -78,11 +79,11 @@ class CategoryTotalCard extends Component {
             zIndex: "9"
         };
 
-        if (!expenses || !currentUser) {
+        if (!expenses || !currentUser || !settings) {
             return <Loader />;
         }
 
-        if (expenses && currentUser && selectedYear) {
+        if (expenses && currentUser && selectedYear && settings) {
             const eachExpense = utils.eachExpense(expenses);
             const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
 
@@ -102,11 +103,12 @@ class CategoryTotalCard extends Component {
             };
 
             categoryList = eachCategory(allCategoryTotals).map((el, i) => {
+                let catName = settings.editedCategories[el.key] ? settings.editedCategories[el.key] : el.key;
                 if (el.value) {
                     if (selectedYear === "all") {
                         return (
                             <span style={category} className="ttt" key={el.key}>
-                                <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                                <div style={utils.categoryName(el.key, "card")}>{catName}</div>
                                 <i
                                     className={`fa fa-${utils.categoryIcon(el.key)}`}
                                     style={lessFont}
@@ -121,7 +123,7 @@ class CategoryTotalCard extends Component {
                         return (
                             <Link key={i} to={`/filter-view?category=${el.key}&selectedYear=${selectedYear}&from=yearpage`}>
                                 <span style={category} className="ttt" key={el.key}>
-                                    <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                                    <div style={utils.categoryName(el.key, "card")}>{catName}</div>
                                     <i
                                         className={`fa fa-${utils.categoryIcon(el.key)}`}
                                         style={lessFont}

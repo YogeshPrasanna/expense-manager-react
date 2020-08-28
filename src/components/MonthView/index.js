@@ -313,6 +313,7 @@ class MonthViewPage extends Component {
                                 month={this.state.month}
                                 year={this.state.year}
                                 cards={this.props.cards}
+                                settings={this.props.settings}
                             />
                         </div>
 

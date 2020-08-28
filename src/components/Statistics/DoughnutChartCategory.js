@@ -63,8 +63,26 @@ class DoughnutChartCategory extends Component {
                 );
             }
 
+            console.log(Object.keys(settings.editedCategories))
+
+
+            const names = [
+                settings.editedCategories["Food"] ? settings.editedCategories["Food"] : "Food",
+                settings.editedCategories["Automobile"] ? settings.editedCategories["Automobile"] : "Automobile",
+                settings.editedCategories["Entertainment"] ? settings.editedCategories["Entertainment"] : "Entertainment",
+                settings.editedCategories["Clothing"] ? settings.editedCategories["Clothing"] : "Clothing",
+                settings.editedCategories["Healthcare"] ? settings.editedCategories["Healthcare"] : "Healthcare",
+                settings.editedCategories["Travel"] ? settings.editedCategories["Travel"] : "Travel",
+                settings.editedCategories["Shopping"] ? settings.editedCategories["Shopping"] : "Shopping",
+                settings.editedCategories["Personal Care"] ? settings.editedCategories["Personal Care"] : "Personal Care",
+                settings.editedCategories["Investment"] ? settings.editedCategories["Investment"] : "Investment",
+                settings.editedCategories["Gifts & Donations"] ? settings.editedCategories["Gifts & Donations"] : "Gifts & Donations",
+                settings.editedCategories["Bills & Utilities"] ? settings.editedCategories["Bills & Utilities"] : "Bills & Utilities",
+                settings.editedCategories["Others"] ? settings.editedCategories["Others"] : "Others",
+            ];
+
             const data = {
-                labels: utils.categories,
+                labels: names,
                 datasets: [
                     {
                         data: Object.values(allCategoryTotals),

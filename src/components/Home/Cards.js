@@ -237,7 +237,7 @@ const Cards = props => {
                                 <h3 style={cardStyleDesktop} className="card-title">Most Spent on</h3>
                                 <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
-                                    {mostSpentCategory}
+                                    {settings.editedCategories[mostSpentCategory] ? settings.editedCategories[mostSpentCategory] : mostSpentCategory}
                                 </p>
                             </div>
                         </div>

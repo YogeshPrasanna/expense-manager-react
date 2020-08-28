@@ -12,6 +12,21 @@ class SettingsPage extends Component {
     constructor(props) {
         super(props);
 
+        const defaultCategories = {
+            "Food": "",
+            "Automobile": "",
+            "Entertainment": "",
+            "Clothing": "",
+            "Healthcare": "",
+            "Travel": "",
+            "Shopping":"",
+            "Personal Care": "",
+            "Investment": "",
+            "Gifts & Donations": "",
+            "Bills & Utilities": "",
+            "Others": ""
+        }
+
         this.state = {
             font: this.props.settings ? this.props.settings.font : "sans-serif",
             dataSaved: false,
@@ -35,11 +50,29 @@ class SettingsPage extends Component {
                 ? this.props.settings.fromCurrency
                     ? this.props.settings.fromCurrency
                     : "Indian Rupees"
-                : "Indian Rupees"
+                : "Indian Rupees",
+            editedCategories: this.props.settings 
+                ? this.props.settings.editedCategories 
+                    ? {
+                    "Food": this.props.settings.editedCategories["Food"] ? this.props.settings.editedCategories["Food"] : "",
+                    "Automobile": this.props.settings.editedCategories["Automobile"] ? this.props.settings.editedCategories["Automobile"] : "",
+                    "Entertainment": this.props.settings.editedCategories["Entertainment"] ? this.props.settings.editedCategories["Entertainment"] : "",
+                    "Clothing": this.props.settings.editedCategories["Clothing"] ? this.props.settings.editedCategories["Clothing"] : "",
+                    "Healthcare": this.props.settings.editedCategories["Healthcare"] ? this.props.settings.editedCategories["Healthcare"] : "",
+                    "Travel": this.props.settings.editedCategories["Travel"] ? this.props.settings.editedCategories["Travel"] : "",
+                    "Shopping":this.props.settings.editedCategories["Shopping"] ? this.props.settings.editedCategories["Shopping"] : "",
+                    "Personal Care": this.props.settings.editedCategories["Personal Care"] ? this.props.settings.editedCategories["Personal Care"] : "",
+                    "Investment": this.props.settings.editedCategories["Investment"] ? this.props.settings.editedCategories["Investment"] : "",
+                    "Gifts & Donations": this.props.settings.editedCategories["Gifts & Donations"] ? this.props.settings.editedCategories["Gifts & Donations"] : "",
+                    "Bills & Utilities": this.props.settings.editedCategories["Bills & Utilities"] ? this.props.settings.editedCategories["Bills & Utilities"] : "",
+                    "Others": this.props.settings.editedCategories["Others"] ? this.props.settings.editedCategories["Others"] : ""
+                }   : defaultCategories 
+                : defaultCategories
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeEditedCategories = this.handleChangeEditedCategories.bind(this)
     }
 
     handleSubmit(event) {
@@ -52,7 +85,8 @@ class SettingsPage extends Component {
             this.state.currency,
             this.state.travelMode,
             this.state.fromCurrency,
-            this.state.monthLimit
+            this.state.monthLimit,
+            this.state.editedCategories
         );
 
         // reset form once saved
@@ -64,6 +98,17 @@ class SettingsPage extends Component {
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
+    }
+
+    handleChangeEditedCategories(e) {
+        let newEditedCategories = {};
+        newEditedCategories[e.target.name] = e.target.value;
+        this.setState({
+            editedCategories: {
+                ...this.state.editedCategories,
+                ...newEditedCategories
+            }
+        })
     }
 
     componentDidMount() {
@@ -306,7 +351,203 @@ class SettingsPage extends Component {
                                     ) : (
                                         <div />
                                     )}
+
+                                    
                                 </div>
+
+                                <div style={settingsHeader}>Edit Category Names</div>
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Food</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Food"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Food"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Automobile</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Automobile"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Automobile"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+                                        
+
+                                    <div className="form-group row">   
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Entertainment</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Entertainment"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Entertainment"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>    
+
+                                    <div className="form-group row">    
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Clothing</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Clothing"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Clothing"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>    
+
+                                    <div className="form-group row">    
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Healthcare</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Healthcare"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Healthcare"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>   
+
+                                    <div className="form-group row">    
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Travel</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Travel"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Travel"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>   
+
+                                    <div className="form-group row">    
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Shopping</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Shopping"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Shopping"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>    
+
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Personal Care</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Personal Care"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Personal Care"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Investment</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Investment"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Investment"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Gifts & Donations</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Gifts & Donations"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Gifts & Donations"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Bills & Utilities</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Bills & Utilities"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Bills & Utilities"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group row">
+                                        <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
+                                            <span>Others</span>
+                                        </label>
+                                        <div className="col-sm-9 col-xs-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="Others"
+                                                onChange={this.handleChangeEditedCategories.bind(this)}
+                                                value={this.state.editedCategories["Others"]}
+                                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                                            />
+                                        </div>
+                                    </div>
 
                                 {this.state.dataSaved ? (
                                     <span className="bg-success success-msg"> Data saved successfully</span>

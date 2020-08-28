@@ -32,6 +32,8 @@ class MobileExpenseRow extends Component {
 
     render() {
         const lessFont = { fontSize: "15px", paddingRight: "10px", color: "rgba(255,255,255,.45)" };
+        let catName = this.props.settings.editedCategories[this.props.expense.value.category] ? this.props.settings.editedCategories[this.props.expense.value.category] : this.props.expense.value.category;
+
         const nightModeTitle = {
             background: this.props.settings ? (this.props.settings.mode === "night" ? "#2C3034" : "#fff") : "#fff",
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#BBBBBB" : "#212529") : "#212529",
@@ -72,7 +74,7 @@ class MobileExpenseRow extends Component {
                 </label>
                 <div className="content">
                     <p>
-                        {this.props.expense.value.category} - {this.props.expense.value.comments}
+                        {catName} - {this.props.expense.value.comments}
                     </p>
                     <button className="edit-btn edit-btn-mobile" onClick={this.toggleEditPopup.bind(this)}>
                         <i className="fa fa-edit" aria-hidden="true" /> edit

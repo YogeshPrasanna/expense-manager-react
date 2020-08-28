@@ -84,10 +84,42 @@ class App extends Component {
 
                 // get all the settings
                 firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
+                    console.log("DATA :", data)
+
+                    const defaultCategories = {
+                        "Food": "",
+                        "Automobile": "",
+                        "Entertainment": "",
+                        "Clothing": "",
+                        "Healthcare": "",
+                        "Travel": "",
+                        "Shopping":"",
+                        "Personal Care": "",
+                        "Investment": "",
+                        "Gifts & Donations": "",
+                        "Bills & Utilities": "",
+                        "Others": ""
+                    }
+
                     if (data.val() !== null) {
                         this.setState({
                             settings: data.val()
                         });
+
+                        if(!data.val().editedCategories) {
+                            
+
+                            db.doCreateSettingsForUser(
+                                this.state.authUser.uid,
+                                data.val().font,
+                                data.val().mode,
+                                data.val().currency,
+                                data.val().travelMode,
+                                data.val().fromCurrency,
+                                data.val().monthLimit,
+                                defaultCategories
+                            );
+                        }
 
                         if (this.state.settings) {
                             //setting the font family to chart.js
@@ -101,7 +133,8 @@ class App extends Component {
                             "Indian Rupees",
                             "off",
                             "Indian Rupees",
-                            15000
+                            15000,
+                            defaultCategories
                         );
                     }
                 });

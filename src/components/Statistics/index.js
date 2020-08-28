@@ -60,7 +60,7 @@ const StatisticsPage = props => {
                 </div>
                 <div className="row">
                     <div className="col-sm-12 mobileNoPadding" style={marB15}>
-                        <CategoryTotalCard expenses={props.expenses} authUser={props.user} />
+                        <CategoryTotalCard expenses={props.expenses} authUser={props.user} settings={props.settings} />
                     </div>
                 </div>
             </div>

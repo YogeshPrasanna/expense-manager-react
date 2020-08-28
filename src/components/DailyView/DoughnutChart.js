@@ -26,11 +26,11 @@ const DoughnutChart = props => {
         const eachExpense = utils.eachExpense(expenses);
         const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
-        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
-
+        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses, settings.editedCategories);
+        console.log("ALl category totals : ", allCategoryTotals, settings.editedCategories)
         const eachCategory = allCategoryTotals => {
             return Object.keys(allCategoryTotals).map(function (key) {
-                return { key: key, value: allCategoryTotals[key] };
+                return { key: settings.editedCategories[key] ? settings.editedCategories[key] : key, value: allCategoryTotals[key] };
             });
         };
 
@@ -40,7 +40,10 @@ const DoughnutChart = props => {
             })
             .map(el => el.key);
 
-        categoryColors = categoryList.map(el => utils.getCatColor(el));
+        categoryColors = categoryList.map((el) => {
+            let cat = Object.keys(settings.editedCategories).filter(function(key) {return settings.editedCategories[key] === el})[0] || el
+            return utils.getCatColor(cat)
+        });
 
         const data = {
             labels: categoryList,

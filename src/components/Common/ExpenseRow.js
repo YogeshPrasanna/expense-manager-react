@@ -66,7 +66,7 @@ class ExpenseRow extends Component {
         }
 
         const lessFont = { fontSize: "15px", float: "right", marginTop: "5px", color: "rgba(255,255,255,.45)" };
-
+        let catName = this.props.settings.editedCategories[this.props.expense.value.category] ? this.props.settings.editedCategories[this.props.expense.value.category] : this.props.expense.value.category;
         return (
             <tr
                 key={this.props.expenseId}
@@ -93,7 +93,7 @@ class ExpenseRow extends Component {
                     {this.props.expense.value.expense.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                 </td>
                 <td data-th="Category">
-                    {this.props.expense.value.category}{" "}
+                    {catName}{" "}
                     <i
                         className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}
                         style={lessFont}

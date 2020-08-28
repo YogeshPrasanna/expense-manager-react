@@ -39,11 +39,12 @@ const CategoryTotalCard = props => {
     const selectedMonth = props.month;
     const selectedYear = props.year;
     const cards = props.cards;
+    const editedCategories = props.settings.editedCategories;
 
     let allCategoryTotals = null;
     let categoryList = null;
 
-    if (!expenses || !currentUser || !selectedMonth || !selectedYear) {
+    if (!expenses || !currentUser || !selectedMonth || !selectedYear || !editedCategories) {
         return (
             <div>
                 <Loader />
@@ -51,7 +52,7 @@ const CategoryTotalCard = props => {
         );
     }
 
-    if (expenses && currentUser && selectedMonth && selectedYear && cards) {
+    if (expenses && currentUser && selectedMonth && selectedYear && cards && editedCategories) {
         const eachExpense = utils.eachExpense(expenses);
         const usersExpensesInSelectedMonthAndYear = utils.expensesinMonthAndYear(
             eachExpense,
@@ -69,7 +70,9 @@ const CategoryTotalCard = props => {
         };
 
         categoryList = eachCategory(allCategoryTotals).map((el, i) => {
+            console.log(el)
             if (el.value) {
+                let catName = editedCategories[el.key] ? editedCategories[el.key] : el.key;
                 return (
                     <Link
                         to={`/filter-view?category=${
@@ -78,7 +81,7 @@ const CategoryTotalCard = props => {
                         key={i}
                     >
                         <span style={category} className="ttt" key={el.key}>
-                            <div style={utils.categoryName(el.key, "card")}>{el.key}</div>
+                            <div style={utils.categoryName(el.key, "card")}>{catName}</div>
                             <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
                             <div style={categoryExpense}>
                                 {el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}

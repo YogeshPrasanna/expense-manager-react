@@ -172,6 +172,7 @@ class DailyViewPage extends Component {
                                 date={this.state.date.format("MM/DD/YYYY")}
                                 authUser={this.props.user}
                                 cards={this.props.cards}
+                                settings={this.props.settings}
                             />
                         </div>
                         <div className="col-sm-8 mobileNoPadding" style={rightCol}>
