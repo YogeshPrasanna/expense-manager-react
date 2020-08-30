@@ -4,8 +4,6 @@
 
 *_I have stopped support for this application , if you run npm install , you might run into errors for not having latest versions of firebase , hence i advice to download the node modules in this project to run it locally_*
 
-[![full-page.png](https://i.postimg.cc/3RSh2xCS/full-page.png)](https://sad-shirley-6ef62f.netlify.app/)
-
 ## Demo Account
 
 *_In case you need to have a quick look at the app without creating an account, use the below credentials_*
