@@ -4,16 +4,16 @@
 
 *_I have stopped support for this application , if you run npm install , you might run into errors for not having latest versions of firebase , hence i advice to download the node modules in this project to run it locally_*
 
-## Demo Account
+## DEMO Account
 
 *_In case you need to have a quick look at the app without creating an account, use the below credentials_*
 
 [Click Here For Demo](https://sad-shirley-6ef62f.netlify.com/)
 
 `Username : yogi15moto@gmail.com`
-`password: yogesh`
+`password : yogesh`
 
-## Screenshots
+## SCREENSHOTS
 
 #### Mobile Views
 [![Mobile Screens](https://i.postimg.cc/c1jZTXVX/mobile-Views.png)](https://sad-shirley-6ef62f.netlify.com/)
@@ -66,7 +66,7 @@
 #### Calendar Component
 [![Calendar Component](https://i.postimg.cc/DyZ1TZnM/calendar-component.png)](https://sad-shirley-6ef62f.netlify.com/)
 
-## Setup
+## SETUP
 
 #### 1. Setting Up Firebase 
 - Create a firebase account
