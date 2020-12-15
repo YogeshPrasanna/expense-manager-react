@@ -8,7 +8,7 @@
     "chartjs-plugin-labels": "^1.1.0",
     "firebase": "^4.13.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
