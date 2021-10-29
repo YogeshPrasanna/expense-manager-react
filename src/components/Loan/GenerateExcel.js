@@ -3,8 +3,8 @@ import ExportToExcel from "./ExportToExcel";
 import * as utils from "./../Util";
 
 const GenerateExcel = props => {
-    let loans = props.loans;
-    let currentUser = props.authUser;
+    const loans = props.loans;
+    const currentUser = props.authUser;
 
     if (!loans || !currentUser) {
         return (
@@ -18,16 +18,16 @@ const GenerateExcel = props => {
     }
 
     if (loans && currentUser) {
-        let eachExpense = utils.eachExpense(loans);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
-        var excelDataObject = thisUsersExpenses.map(exp => exp.value);
+        const eachExpense = utils.eachExpense(loans);
+        const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+        const excelDataObject = thisUsersExpenses.map(exp => exp.value);
 
-        let exportArea = {
+        const exportArea = {
             backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",
             color: "#DEDA54",
             padding: "10px",
-            borderRadius: "5px",
-            marginTop: "15px"
+            borderRadius: "0",
+            marginTop: window.screen.width > 720 ? "15px" : "0"
         };
 
         return (

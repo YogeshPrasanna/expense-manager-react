@@ -32,10 +32,11 @@ class AddExpenseForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         db.doCreateExpense(
             this.state.uid,
             $(".date").val(),
-            this.state.expense,
+            Math.ceil(this.state.expense * this.props.convertedCurrency),
             this.state.category,
             this.state.comments,
             moment($(".date").val()).day()
@@ -75,6 +76,16 @@ class AddExpenseForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
+            const validationBox = {
+                background: "rgba(0,0,0,0)",
+                color: "#ffecb8",
+                fontSize: "12px",
+                width: "60%",
+                position: "absolute",
+                bottom: "15px",
+                left: "15px"
+            };
+
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -100,6 +111,7 @@ class AddExpenseForm extends Component {
                         <div className="col-sm-10 col-xs-6">
                             <input
                                 className="form-control"
+                                autoFocus
                                 required
                                 type="number"
                                 name="expense"
@@ -121,18 +133,18 @@ class AddExpenseForm extends Component {
                                 onChange={this.handleChange.bind(this)}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             >
-                                <option value="Food">Food</option>
-                                <option value="Automobile">Automobile</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Healthcare">Healthcare</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Shopping">Shopping</option>
-                                <option value="Personal Care">Personal Care</option>
-                                <option value="Investment">Investment</option>
-                                <option value="Gifts & Donations">Gifts & Donations</option>
-                                <option value="Bills & Utilities">Bills & Utilities</option>
-                                <option value="Others">Others</option>
+                                <option value="Food">{this.props.settings.editedCategories["Food"] ? this.props.settings.editedCategories["Food"] : "Food"}</option>
+                                <option value="Automobile">{this.props.settings.editedCategories["Automobile"] ? this.props.settings.editedCategories["Automobile"] : "Automobile"}</option>
+                                <option value="Entertainment">{this.props.settings.editedCategories["Entertainment"] ? this.props.settings.editedCategories["Entertainment"] : "Entertainment"}</option>
+                                <option value="Clothing">{this.props.settings.editedCategories["Clothing"] ? this.props.settings.editedCategories["Clothing"] : "Clothing"}</option>
+                                <option value="Healthcare">{this.props.settings.editedCategories["Healthcare"] ? this.props.settings.editedCategories["Healthcare"] : "Healthcare"}</option>
+                                <option value="Travel">{this.props.settings.editedCategories["Travel"] ? this.props.settings.editedCategories["Travel"] : "Travel"}</option>
+                                <option value="Shopping">{this.props.settings.editedCategories["Shopping"] ? this.props.settings.editedCategories["Shopping"] : "Shopping"}</option>
+                                <option value="Personal Care">{this.props.settings.editedCategories["Personal Care"] ? this.props.settings.editedCategories["Personal Care"] : "Personal Care"}</option>
+                                <option value="Investment">{this.props.settings.editedCategories["Investment"] ? this.props.settings.editedCategories["Investment"] : "Investment"}</option>
+                                <option value="Gifts & Donations">{this.props.settings.editedCategories["Gifts & Donations"] ? this.props.settings.editedCategories["Gifts & Donations"] : "Gifts & Donations"}</option>
+                                <option value="Bills & Utilities">{this.props.settings.editedCategories["Bills & Utilities"] ? this.props.settings.editedCategories["Bills & Utilities"] : "Bills & Utilities"}</option>
+                                <option value="Others">{this.props.settings.editedCategories["Others"] ? this.props.settings.editedCategories["Others"] : "Others"}</option>
                             </select>
                         </div>
                     </div>
@@ -156,11 +168,23 @@ class AddExpenseForm extends Component {
                     {this.state.dataSaved ? (
                         <span className="bg-success success-msg"> Data saved successfully</span>
                     ) : (
-                        <span />
-                    )}
-                    <button className="btn btn-primary float-right" type="submit">
-                        save
-                    </button>
+                            <span />
+                        )}
+                    {this.state.expense > 0 && this.state.date && this.state.category ? (
+                        <button className="btn btn-primary float-right" type="submit">
+                            save
+                        </button>
+                    ) : (
+                            <div>
+                                <div style={validationBox}>
+                                    <div> Expense : should be greater than 0 </div>
+                                    <div> Date : should be selected </div>
+                                </div>
+                                <button className="btn btn-primary float-right" disabled type="submit">
+                                    save
+                            </button>
+                            </div>
+                        )}
                 </form>
             );
         } else {

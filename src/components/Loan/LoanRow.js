@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 import moment from "moment";
+import * as utils from "./../Util";
 
 import EditLoanPopup from "./EditLoanPopup";
 
@@ -17,7 +18,10 @@ class LoanRow extends Component {
 
     // deleting the loan
     handleClick(e) {
-        firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loanId}`).remove();
+        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        if (window.confirm(message)) {
+            firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loanId}`).remove();
+        }
     }
 
     toggleEditPopup(e) {
@@ -61,7 +65,7 @@ class LoanRow extends Component {
         }
 
         const loanStatusStyle = {
-            borderLeft: this.props.loan.value.status === "Pending" ? "25px solid #FFB74D" : "25px solid #689F38",
+            borderLeft: this.props.loan.value.status === "Pending" ? "10px solid #FFB74D" : "10px solid #689F38",
             backgroundImage:
                 this.props.loan.value.status === "Pending"
                     ? "none"
@@ -85,7 +89,8 @@ class LoanRow extends Component {
                     {this.props.loan.value.date} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Amount">
-                    <i className="fa fa-inr" aria-hidden="true" /> {this.props.loan.value.amount}
+                    <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
+                    {this.props.loan.value.amount.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                 </td>
                 <td data-th="loanType">
                     {this.props.loan.value.loanType}

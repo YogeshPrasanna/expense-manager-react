@@ -3,6 +3,8 @@ import { Link, withRouter } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import * as routes from "../../constants/routes";
 
+import * as analytics from "./../../analytics/analytics";
+
 const SignUpPage = ({ history }) => (
     <div>
         <SignUpForm history={history} />
@@ -26,6 +28,11 @@ class SignUpForm extends Component {
         super(props);
 
         this.state = { ...INITIAL_STATE };
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     onSubmit = event => {
@@ -53,7 +60,7 @@ class SignUpForm extends Component {
                             history.push(routes.USER_VERIFICATION);
                         })
                         .catch(function(error) {
-                            console.log("something went wrong: ", error);
+                            alert("something went wrong: ", error);
                         });
                 }
             })

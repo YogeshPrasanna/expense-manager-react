@@ -9,7 +9,12 @@ const EditExpensePopup = props => {
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
                 <div className="addExpenseHeader"> Edit expense </div>
-                <EditExpenseForm user={props.user} expense={props.expense} settings={props.settings} />
+                <EditExpenseForm
+                    user={props.user}
+                    expense={props.expense}
+                    settings={props.settings}
+                    convertedCurrency={props.convertedCurrency}
+                />
                 <button id="closePopup" onClick={props.closePopup}>
                     {" "}
                     X{" "}

@@ -19,7 +19,10 @@ class ExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        if (window.confirm(message)) {
+            firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+        }
     }
 
     toggleEditPopup(e) {
@@ -63,9 +66,13 @@ class ExpenseRow extends Component {
         }
 
         const lessFont = { fontSize: "15px", float: "right", marginTop: "5px", color: "rgba(255,255,255,.45)" };
-
+        let catName = this.props.settings.editedCategories[this.props.expense.value.category] ? this.props.settings.editedCategories[this.props.expense.value.category] : this.props.expense.value.category;
         return (
-            <tr key={this.props.expenseId} id={this.props.expenseId}>
+            <tr
+                key={this.props.expenseId}
+                id={this.props.expenseId}
+                style={utils.categoryName(this.props.expense.value.category, "row")}
+            >
                 <td data-th="No">
                     {this.props.num + 1}
                     {this.state.showEditPopup ? (
@@ -74,6 +81,7 @@ class ExpenseRow extends Component {
                             expense={this.props.expense}
                             closePopup={this.toggleEditPopup.bind(this)}
                             settings={this.props.settings}
+                            convertedCurrency={this.props.convertedCurrency}
                         />
                     ) : null}
                 </td>
@@ -81,10 +89,11 @@ class ExpenseRow extends Component {
                     {this.props.expense.value.date} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Expense">
-                    <i className="fa fa-inr" aria-hidden="true" /> {this.props.expense.value.expense}
+                    <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
+                    {this.props.expense.value.expense.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                 </td>
                 <td data-th="Category">
-                    {this.props.expense.value.category}{" "}
+                    {catName}{" "}
                     <i
                         className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}
                         style={lessFont}

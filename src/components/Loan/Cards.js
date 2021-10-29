@@ -3,10 +3,22 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const Cards = props => {
-    let loans = props.loans;
-    let currentUser = props.authUser;
+    const loans = props.loans;
+    const currentUser = props.authUser;
+    const settings = props.settings;
+    const cards = props.cards;
     let loanToPay = 0;
     let loanToGet = 0;
+
+    const cardStyleDesktop = {
+        "color": "white",
+        "mixBlendMode": "difference"
+    }
+
+    const cardStyleMobile = {
+        "color": "#2C3034",
+    }
+
 
     if (!loans && !currentUser) {
         return (
@@ -28,23 +40,25 @@ const Cards = props => {
     }
 
     return (
-        <div className="row">
-            <div className="col-sm-3">
-                <div className="card card1">
+        <div className="row mobileNoPadding">
+            <div className="col-sm-3 mobileNoPadding">
+                <div className="card card1 mobileNoPadding" style={props.cards.card1}>
                     <div className="card-block">
-                        <h3 className="card-title">You need to repay</h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {loanToPay}
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to repay</h3>
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {loanToPay.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3">
-                <div className="card card2">
+            <div className="col-sm-3 mobileNoPadding">
+                <div className="card card2 mobileNoPadding" style={props.cards.card2}>
                     <div className="card-block">
-                        <h3 className="card-title">You need to get </h3>
-                        <p className="card-text">
-                            <i className="fa fa-inr" aria-hidden="true" /> {loanToGet}
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to get </h3>
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {loanToGet.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>
