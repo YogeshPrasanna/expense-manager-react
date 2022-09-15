@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.7.1",
     "chartjs-plugin-labels": "^1.1.0",
     "firebase": "^4.13.1",
