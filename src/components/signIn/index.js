@@ -16,7 +16,7 @@ import monthMobile from "./../../assets/images/MONTH_MOBILE.png";
 import statsMobile from "./../../assets/images/STATISTICS_MOBILE.png";
 import travel from "./../../assets/images/travel.png";
 
-import firebase from "firebase";
+import firebase from "firebase/compat/app";
 
 const SignInPage = ({ history }) => (
     <div>
