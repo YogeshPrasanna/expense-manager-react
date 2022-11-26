@@ -422,6 +422,19 @@ export const loanTakenOrGivenAmt = (thisUsersLoans, takenOrGiven) => {
     }
 };
 
+// Total pending and settled loan
+export const loanPendingOrSettled = (thisUsersLoans, pendingOrSettled) => {
+    if (thisUsersLoans.length && pendingOrSettled) {
+        let loans = thisUsersLoans.filter(
+            elem => elem.value.status === pendingOrSettled
+        );
+
+        return loans.length ? loans.map(elem => Number(elem.value.amount)).reduce((prev, cur) => prev + cur) : 0;
+    } else {
+        return 0;
+    }
+};
+
 // get all the dates of a particular monthly
 
 export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
