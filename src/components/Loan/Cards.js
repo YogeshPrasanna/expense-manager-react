@@ -11,8 +11,7 @@ const Cards = props => {
     let loanToGet = 0;
 
     const cardStyleDesktop = {
-        "color": "white",
-        "mixBlendMode": "difference"
+        "color": "#3B0918",
     }
 
     const cardStyleMobile = {
@@ -44,7 +43,7 @@ const Cards = props => {
             <div className="col-sm-3 mobileNoPadding">
                 <div className="card card1 mobileNoPadding" style={props.cards.card1}>
                     <div className="card-block">
-                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to repay</h3>
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to <b>repay</b></h3>
                         <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
                             {loanToPay.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
@@ -55,7 +54,7 @@ const Cards = props => {
             <div className="col-sm-3 mobileNoPadding">
                 <div className="card card2 mobileNoPadding" style={props.cards.card2}>
                     <div className="card-block">
-                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to get </h3>
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to <b>get</b> </h3>
                         <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
                             {loanToGet.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
