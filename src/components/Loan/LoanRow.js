@@ -86,7 +86,7 @@ class LoanRow extends Component {
                     ) : null}
                 </td>
                 <td data-th="Date">
-                    {this.props.loan.value.date} <span className="expense-day"> {day || "Sunday"}</span>
+                    {moment(this.props.loan.value.date).format("DD/MM/YYYY")} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Amount">
                     <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}
