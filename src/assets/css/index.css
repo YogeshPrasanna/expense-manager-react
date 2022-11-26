@@ -83,7 +83,6 @@ ul {
     left: 25%;
     right: 25%;
     top: 25%;
-    bottom: 15%;
     margin: auto;
     background: white;
 }
@@ -92,8 +91,7 @@ ul {
     position: absolute;
     left: 25%;
     right: 25%;
-    top: 9% !important;
-    bottom: 12% !important;
+    top: 15% !important;
     margin: auto;
     background: white;
 }

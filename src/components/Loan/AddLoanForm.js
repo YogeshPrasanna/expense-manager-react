@@ -181,9 +181,11 @@ class AddLoanForm extends Component {
                     ) : (
                         <span />
                     )}
-                    <button className="btn btn-primary float-right" type="submit">
-                        save
-                    </button>
+                    <div className="text-right">
+                        <button className="btn btn-primary" type="submit">
+                            save
+                        </button>
+                    </div>
                 </form>
             );
         } else {
