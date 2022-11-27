@@ -80,7 +80,7 @@ class BarChartAllMonths extends Component {
                 legend: {
                     display: true,
                     labels: {
-                        fontColor: "rgb(247, 162, 120)"
+                        fontColor: "#DAF7A6"
                     }
                 },
                 scales: {
