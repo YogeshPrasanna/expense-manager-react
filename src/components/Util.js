@@ -89,6 +89,15 @@ export const totalExpense = expenses => {
     }
 };
 
+// loan Total
+export const totalLoan = loans => {
+    if (loans.length) {
+        return loans.map(elem => Number(elem.value.amount)).reduce((prev, cur) => prev + cur);
+    } else {
+        return 0;
+    }
+};
+
 // most spend day
 export const mostSpentDay = expenses => {
     let monday = 0;
@@ -152,6 +161,13 @@ export const mostSpentDay = expenses => {
     };
 };
 
+// filter taken and given loan
+export const filterGivenOrTaken = (eachLoan, filterType) => {
+    return eachLoan.filter(elem => {
+        return elem.value.loanType === filterType;
+    });
+};
+
 // Total expenses in Each month
 export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser, selectedYear) => {
     let expensesOfAllMonthsInThisYear = [];
@@ -162,6 +178,30 @@ export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, curren
         );
     }
     return expensesOfAllMonthsInThisYear;
+};
+
+// Total given loan in Each month
+export const totalGivenInEachMonthOfThisYear = (loans, eachLoan, currentUser, selectedYear) => {
+    let givenLoanOfAllMonthsInThisYear = [];
+
+    for (var i = 0; i <= 11; i++) {
+        givenLoanOfAllMonthsInThisYear.push(
+            totalLoan(expensesinMonth(eachLoan, currentUser, String(i), selectedYear))
+        );
+    }
+    return givenLoanOfAllMonthsInThisYear;
+};
+
+// Total taken loan in Each month
+export const totalTakenInEachMonthOfThisYear = (loans, eachLoan, currentUser, selectedYear) => {
+    let takenLoanOfAllMonthsInThisYear = [];
+
+    for (var i = 0; i <= 11; i++) {
+        takenLoanOfAllMonthsInThisYear.push(
+            totalLoan(expensesinMonth(eachLoan, currentUser, String(i), selectedYear))
+        );
+    }
+    return takenLoanOfAllMonthsInThisYear;
 };
 
 // Total for each category
@@ -208,8 +248,6 @@ export const calculateTotalForAllCategories = expenses => {
     };
 
     categories.map(category => totalForACategory(expenses, category));
-
-    console.log("category total", categoryTotal)
 
     return categoryTotal;
 };
@@ -430,6 +468,19 @@ export const loanPendingOrSettled = (thisUsersLoans, pendingOrSettled) => {
         );
 
         return loans.length ? loans.map(elem => Number(elem.value.amount)).reduce((prev, cur) => prev + cur) : 0;
+    } else {
+        return 0;
+    }
+};
+
+// Highest pending taken loan
+export const highestTakenAndPendingLoan = (thisUsersLoans) => {
+    if (thisUsersLoans.length) {
+        let loans = thisUsersLoans.filter(
+            elem => elem.value.status === "Pending" && elem.value.loanType === "Taken"
+        );
+
+        return loans.length ? loans.map(elem => Number(elem.value.amount)).reduce((prev, cur) => Math.max(prev, cur)) : 0;
     } else {
         return 0;
     }

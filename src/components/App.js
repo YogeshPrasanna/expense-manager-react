@@ -84,7 +84,6 @@ class App extends Component {
 
                 // get all the settings
                 firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
-                    console.log("DATA :", data)
 
                     const defaultCategories = {
                         "Food": "",
@@ -292,7 +291,8 @@ class App extends Component {
         var patternconfig5 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
         var patternconfig6 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
         var patternconfig7 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
-        var patternconfig8 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig8 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', };
+        var patternconfig9 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c', '#00441b'], y_colors: 'match_x', };  
 
         var pattern = Trianglify({ ...patternconfig });
         var pattern2 = Trianglify({ ...patternconfig2 });
@@ -302,8 +302,10 @@ class App extends Component {
         var pattern6 = Trianglify({ ...patternconfig6 });
         var pattern7 = Trianglify({ ...patternconfig7 });
         var pattern8 = Trianglify({ ...patternconfig8 });
+        var pattern9 = Trianglify({ ...patternconfig9 });
 
         const cards = {
+            card9: { backgroundImage: `url(${pattern9.png()})` },
             card8: { backgroundImage: `url(${pattern8.png()})` },
             card7: { backgroundImage: `url(${pattern7.png()})` },
             card6: { backgroundImage: `url(${pattern6.png()})` },
