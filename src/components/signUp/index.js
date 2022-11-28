@@ -5,6 +5,8 @@ import * as routes from "../../constants/routes";
 
 import * as analytics from "./../../analytics/analytics";
 
+import Loader from "./../Common/Loader";
+
 const SignUpPage = ({ history }) => (
   <div>
     <SignUpForm history={history} />
@@ -32,7 +34,7 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    this.state = { ...INITIAL_STATE, isLoading: false };
   }
 
   componentDidMount() {
@@ -41,6 +43,7 @@ class SignUpForm extends Component {
   }
 
   onSubmit = (event) => {
+    this.setState(byPropKey("isLoading", true));
     const { username, email, passwordOne, passwordTwo } = this.state;
 
     const { history } = this.props;
@@ -87,10 +90,12 @@ class SignUpForm extends Component {
           // create a user in the firebase db too
           db.doCreateUser(authUser.uid, username, email)
             .then(() => {
+              this.setState(byPropKey("isLoading", false));
               this.setState(() => ({ ...INITIAL_STATE }));
               history.push(routes.HOME);
             })
             .catch((error) => {
+              this.setState(byPropKey("isLoading", false));
               this.setState(byPropKey("error", error));
             });
 
@@ -99,16 +104,21 @@ class SignUpForm extends Component {
             authUser
               .sendEmailVerification()
               .then(function () {
+                this.setState(byPropKey("isLoading", false));
                 history.push(routes.USER_VERIFICATION);
               })
               .catch(function (error) {
+                this.setState(byPropKey("isLoading", false));
                 alert("something went wrong: ", error);
               });
           }
         })
         .catch((error) => {
+          this.setState(byPropKey("isLoading", false));
           this.setState(byPropKey("error", error));
         });
+    } else {
+      this.setState(byPropKey("isLoading", false));
     }
 
     event.preventDefault();
@@ -125,6 +135,7 @@ class SignUpForm extends Component {
       validationCP,
       validationEmail,
       validationPassword,
+      isLoading,
     } = this.state;
 
     const isInvalid =
@@ -132,6 +143,15 @@ class SignUpForm extends Component {
       passwordOne === "" ||
       email === "" ||
       username === "";
+
+    let errorMessage = "";
+    if (error) {
+      if (error.code === "auth/email-already-in-use")
+        errorMessage = "Email is already taken";
+      else {
+        errorMessage = "Unable to create an account";
+      }
+    }
 
     return (
       <div className="login-page">
@@ -240,10 +260,13 @@ class SignUpForm extends Component {
             )}
           </div>
 
-          <button type="submit">Sign Up</button>
+          {!isLoading ? <button type="submit">Sign Up</button> : <Loader />}
 
-           
-          {error && <p className="mt-3 mb-0">{error.message}</p>}
+          {error && !isLoading && (
+            <p className="mt-3 mb-0 text-danger">
+              <b>{errorMessage}</b>
+            </p>
+          )}
         </form>
         <p style={StyleInSignUp}>
           Already a user? <Link to={routes.SIGN_IN}>Sign in</Link>
