@@ -89,8 +89,15 @@ class SettingsPage extends Component {
             this.state.editedCategories
         );
 
-        // reset form once saved
-        // this.setState({ font: "Dhurjati", dataSaved: true, mode: "day" });
+        this.props.handler({
+            font: this.state.font,
+            mode: this.state.mode,
+            currency: this.state.currency,
+            travelMode: this.state.travelMode,
+            fromCurrency: this.state.fromCurrency,
+            monthLimit: this.state.monthLimit,
+            editedCategories: this.state.editedCategories,
+        });
     }
 
     handleChange(e) {
