@@ -213,11 +213,12 @@ class EditLoanForm extends Component {
                             <textarea
                                 className={
                                     validationReason
-                                      ? "form-control mb-0 px-3 py-4 is-invalid"
-                                      : "form-control mb-0 px-3 py-4"
+                                      ? "form-control mb-0 px-3 py-2 is-invalid"
+                                      : "form-control mb-0 px-3 py-2"
                                 }
                                 type="text"
                                 name="reason"
+                                rows={4}
                                 maxLength={300}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.reason}
