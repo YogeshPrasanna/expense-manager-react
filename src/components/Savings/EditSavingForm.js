@@ -13,6 +13,8 @@ import * as firebase from "../../firebase/firebase";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
+import { doc, updateDoc } from "firebase/firestore";
+
 class EditSavingForm extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +46,18 @@ class EditSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+        // firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+            // date: this.state.date.format("MM/DD/YYYY"),
+            // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            // goalAmount: this.state.goalAmount,
+            // savingAmount: Math.ceil(this.state.savingAmount),
+            // savingFor: this.state.savingFor,
+            // comments: this.state.comments,
+            // goalAchieved: this.state.goalAchieved,
+            // cardColor: this.state.cardColor
+        // });
+
+        updateDoc(doc(firebase.db, `savingsTable/${this.props.user.uid}/savings`, this.props.savings.key), {
             date: this.state.date.format("MM/DD/YYYY"),
             day: moment(this.state.date.format("MM/DD/YYYY")).day(),
             goalAmount: this.state.goalAmount,
