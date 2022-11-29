@@ -73,7 +73,7 @@ class AddLoanForm extends Component {
         if(!isInvalid) {
             db.doCreateLoan(
                 this.state.uid,
-                $(".date").val(),
+                moment(this.date).format('L'),
                 this.state.amount,
                 this.state.loanType,
                 this.state.reason,
