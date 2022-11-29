@@ -22,7 +22,9 @@ class AddExpenseForm extends Component {
             category: "Food",
             comments: "",
             uid: this.props.user.uid,
-            dataSaved: false
+            dataSaved: false,
+            validationExpense: null,
+            validationComments: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,14 +35,36 @@ class AddExpenseForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        db.doCreateExpense(
-            this.state.uid,
-            $(".date").val(),
-            Math.ceil(this.state.expense * this.props.convertedCurrency),
-            this.state.category,
-            this.state.comments,
-            moment($(".date").val()).day()
-        );
+        const { expense, comments } = this.state;
+        const isInvalid = expense === "" || comments === ""
+
+
+        if (expense === "") {
+            this.setState(
+              byPropKey("validationExpense", "Please enter expense value")
+            );
+        } else {
+            this.setState(byPropKey("validationExpense", null));
+        }
+
+        if (comments === "") {
+            this.setState(
+              byPropKey("validationComments", "Please enter your comments")
+            );
+        } else {
+            this.setState(byPropKey("validationComments", null));
+        }
+
+        if(!isInvalid){
+            db.doCreateExpense(
+                this.state.uid,
+                $(".date").val(),
+                Math.ceil(this.state.expense * this.props.convertedCurrency),
+                this.state.category,
+                this.state.comments,
+                moment(this.date).day(),
+                this.state.status
+            );
         // reset form once saved
         this.setState({
             date: moment(),
@@ -49,9 +73,15 @@ class AddExpenseForm extends Component {
             category: "Food",
             comments: "",
             uid: this.props.user.uid,
-            dataSaved: true
+            dataSaved: true,
+            erroe: null,
+            validationDate: null,
+            validationExpense: null,
+            validationComments: null,
+
         });
     }
+}
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
@@ -67,6 +97,8 @@ class AddExpenseForm extends Component {
     }
 
     render() {
+        const {validationExpense, validationComments} = this.state;
+
         if (this.props.settings) {
             const inputNightMode = {
                 background: "#2c2b2b",
@@ -98,9 +130,11 @@ class AddExpenseForm extends Component {
                                     "form-control date " +
                                     (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
                                 }
+                                dateFormat={"DD/MM/YYYY"}
                                 name="date"
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
+                                onKeyDown={(e) => e.preventDefault()}
                             />
                         </div>
                     </div>
@@ -119,11 +153,12 @@ class AddExpenseForm extends Component {
                                 value={this.state.expense}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationExpense ? (<div className="invalid-feedback err">{validationExpense}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-xs-6 col-form-label">
-                            <span>category</span>
+                            <span>Category</span>
                         </label>
                         <div className="col-sm-10 col-xs-6">
                             <select
@@ -156,12 +191,13 @@ class AddExpenseForm extends Component {
                             <textarea
                                 className="form-control"
                                 type="text"
-                                required
+                                maxLength={300}
                                 name="comments"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.comments}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                         </div>
                     </div>
 
