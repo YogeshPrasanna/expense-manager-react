@@ -11,6 +11,10 @@ import * as firebase from "../../firebase/firebase";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Home/styles/form.css";
 
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value
+})
+
 class EditLoanForm extends Component {
     constructor(props) {
         super(props);
@@ -19,14 +23,17 @@ class EditLoanForm extends Component {
 
         this.state = {
             date: moment(loan.value.date),
-            day: moment(loan.value.date).day,
+            day: moment(loan.value.date).day(),
             amount: loan.value.amount,
             loanType: loan.value.loanType,
             person: loan.value.person,
             reason: loan.value.reason,
             status: loan.value.status,
             uid: this.props.user.uid,
-            dataSaved: false
+            dataSaved: false,
+            validationAmount: null,
+            validationPerson: null,
+            validationReason: null,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,17 +44,47 @@ class EditLoanForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loan.key}`).update({
-            date: this.state.date.format("MM/DD/YYYY"),
-            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            amount: this.state.amount,
-            loanType: this.state.loanType,
-            person: this.state.person,
-            reason: this.state.reason,
-            status: this.state.status
-        });
+        const { amount, person, reason } = this.state;
+        const isInvalid = amount === "" || person === "" || reason === ""
 
-        $("#closePopup").click();
+        if (amount === "") {
+            this.setState(
+              byPropKey("validationAmount", "Please enter loan amount")
+            );
+        } else {
+            this.setState(byPropKey("validationAmount", null));
+        }
+
+        if (person === "") {
+            this.setState(
+              byPropKey("validationPerson", "Please enter person name")
+            );
+        } else {
+            this.setState(byPropKey("validationPerson", null));
+        }
+
+        if (reason === "") {
+            this.setState(
+              byPropKey("validationReason", "Please enter loan reason")
+            );
+        } else {
+            this.setState(byPropKey("validationReason", null));
+        }
+
+        if(!isInvalid) {
+            firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loan.key}`).update({
+                date: this.state.date.format("MM/DD/YYYY"),
+                day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+                amount: this.state.amount,
+                loanType: this.state.loanType,
+                person: this.state.person,
+                reason: this.state.reason,
+                status: this.state.status
+            });
+
+            $("#closePopup").click();
+        }
+        
     }
 
     handleChange(e) {
@@ -70,6 +107,8 @@ class EditLoanForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
+            const { validationAmount, validationPerson, validationReason } = this.state;
+
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -83,8 +122,10 @@ class EditLoanForm extends Component {
                                     (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
                                 }
                                 name="date"
+                                dateFormat={"DD/MM/YYYY"}
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
+                                onKeyDown={(e) => e.preventDefault()}
                             />
                         </div>
                     </div>
@@ -94,14 +135,19 @@ class EditLoanForm extends Component {
                         </label>
                         <div className="col-sm-10 col-xs-6">
                             <input
-                                className="form-control"
-                                required
+                                className={
+                                    validationAmount
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 type="number"
                                 name="amount"
+                                min={0}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.amount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationAmount ? (<div className="invalid-feedback err">{validationAmount}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
@@ -127,14 +173,19 @@ class EditLoanForm extends Component {
                         </label>
                         <div className="col-sm-10 col-xs-6">
                             <input
-                                className="form-control"
-                                required
+                                className={
+                                    validationPerson
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 type="text"
                                 name="person"
+                                maxLength={100}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.person}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationPerson ? (<div className="invalid-feedback err">{validationPerson}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
@@ -160,14 +211,19 @@ class EditLoanForm extends Component {
                         </label>
                         <div className="col-sm-10 col-xs-6">
                             <textarea
-                                className="form-control"
+                                className={
+                                    validationReason
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 type="text"
-                                required
                                 name="reason"
+                                maxLength={300}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.reason}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationReason ? (<div className="invalid-feedback err">{validationReason}</div>) : ("")}
                         </div>
                     </div>
 
