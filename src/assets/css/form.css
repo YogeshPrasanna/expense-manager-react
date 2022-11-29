@@ -31,3 +31,7 @@ form {
 .signout-btn {
     border: 1px solid orange;
 }
+
+.err {
+    color: #ddd;
+}
