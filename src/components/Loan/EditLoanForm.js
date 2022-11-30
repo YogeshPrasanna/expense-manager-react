@@ -14,6 +14,7 @@ import "../Home/styles/form.css";
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value
 })
+import { doc, updateDoc } from "firebase/firestore";
 
 class EditLoanForm extends Component {
     constructor(props) {
@@ -46,6 +47,25 @@ class EditLoanForm extends Component {
 
         const { amount, person, reason } = this.state;
         const isInvalid = amount === "" || person === "" || reason === ""
+        // firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loan.key}`).update({
+            // date: this.state.date.format("MM/DD/YYYY"),
+            // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            // amount: this.state.amount,
+            // loanType: this.state.loanType,
+            // person: this.state.person,
+            // reason: this.state.reason,
+            // status: this.state.status
+        // });
+
+        updateDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loan.key), {
+            date: this.state.date.format("MM/DD/YYYY"),
+            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            amount: this.state.amount,
+            loanType: this.state.loanType,
+            person: this.state.person,
+            reason: this.state.reason,
+            status: this.state.status
+        });
 
         if (amount === "") {
             this.setState(
