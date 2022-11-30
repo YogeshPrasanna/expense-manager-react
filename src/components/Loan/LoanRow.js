@@ -21,7 +21,6 @@ class LoanRow extends Component {
     handleClick(e) {
         var message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
-            //firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loanId}`).remove();
             deleteDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loanId));
         }
     }

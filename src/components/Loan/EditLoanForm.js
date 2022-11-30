@@ -10,11 +10,11 @@ import * as firebase from "../../firebase/firebase";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../Home/styles/form.css";
+import { doc, updateDoc } from "firebase/firestore";
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value
 })
-import { doc, updateDoc } from "firebase/firestore";
 
 class EditLoanForm extends Component {
     constructor(props) {
@@ -47,25 +47,6 @@ class EditLoanForm extends Component {
 
         const { amount, person, reason } = this.state;
         const isInvalid = amount === "" || person === "" || reason === ""
-        // firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loan.key}`).update({
-            // date: this.state.date.format("MM/DD/YYYY"),
-            // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            // amount: this.state.amount,
-            // loanType: this.state.loanType,
-            // person: this.state.person,
-            // reason: this.state.reason,
-            // status: this.state.status
-        // });
-
-        updateDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loan.key), {
-            date: this.state.date.format("MM/DD/YYYY"),
-            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            amount: this.state.amount,
-            loanType: this.state.loanType,
-            person: this.state.person,
-            reason: this.state.reason,
-            status: this.state.status
-        });
 
         if (amount === "") {
             this.setState(
@@ -92,7 +73,7 @@ class EditLoanForm extends Component {
         }
 
         if(!isInvalid) {
-            firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loan.key}`).update({
+            updateDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loan.key), {
                 date: this.state.date.format("MM/DD/YYYY"),
                 day: moment(this.state.date.format("MM/DD/YYYY")).day(),
                 amount: this.state.amount,
@@ -100,7 +81,7 @@ class EditLoanForm extends Component {
                 person: this.state.person,
                 reason: this.state.reason,
                 status: this.state.status
-            });
+            });    
 
             $("#closePopup").click();
         }
