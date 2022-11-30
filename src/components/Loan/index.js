@@ -4,6 +4,7 @@ import LoanTable from "./LoanTable";
 import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
+import BarChartAllMonths from "./BarChartAllMonths";
 
 import * as analytics from "./../../analytics/analytics";
 
@@ -35,14 +36,25 @@ class LoanPage extends Component {
         if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
-                    <div className="row">
-                        <div className="col-sm-12 mobileNoPadding">
+                    <div className="row align-items-center">
+                        <div className="col-sm-3 mobileNoPadding">
                             <Cards
                                 loans={this.props.loans}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
                             />
+                        </div>
+                        <div className="col-sm-9 mobileNoPadding">
+                            <BarChartAllMonths 
+                                loans={this.props.loans} 
+                                authUser={this.props.user} 
+                                settings={this.props.settings} 
+                            />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12 mobileNoPadding">
                             <GenerateExcel
                                 loans={this.props.loans}
                                 authUser={this.props.user}

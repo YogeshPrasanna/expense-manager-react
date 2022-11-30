@@ -203,17 +203,28 @@ class App extends Component {
             height: "100vh"
         };
 
-        var patternconfig = { height: 300, width: 500, cell_size: 35 }; // palette: Trianglify.colorbrewer,
+        var patternconfig = { height: 300, width: 500, cell_size: 75, x_colors: ['#fff7f3', '#fde0dd', '#fcc5c0', '#fa9fb5', '#f768a1', '#dd3497', '#ae017e', '#7a0177', '#49006a'], y_colors: 'match_x', };
+        var patternconfig2 = { height: 300, width: 500, cell_size: 75, x_colors: ['#ffffd9', '#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#253494', '#081d58'], y_colors: 'match_x', }; 
+        var patternconfig3 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig4 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig5 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig6 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig7 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', }; 
+        var patternconfig8 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'], y_colors: 'match_x', };
+        var patternconfig9 = { height: 300, width: 500, cell_size: 75, x_colors: ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c', '#00441b'], y_colors: 'match_x', };  
+
         var pattern = Trianglify({ ...patternconfig });
-        var pattern2 = Trianglify({ ...patternconfig });
-        var pattern3 = Trianglify({ ...patternconfig });
-        var pattern4 = Trianglify({ ...patternconfig });
-        var pattern5 = Trianglify({ ...patternconfig });
-        var pattern6 = Trianglify({ ...patternconfig });
-        var pattern7 = Trianglify({ ...patternconfig });
-        var pattern8 = Trianglify({ ...patternconfig });
+        var pattern2 = Trianglify({ ...patternconfig2 });
+        var pattern3 = Trianglify({ ...patternconfig3 });
+        var pattern4 = Trianglify({ ...patternconfig4 });
+        var pattern5 = Trianglify({ ...patternconfig5 });
+        var pattern6 = Trianglify({ ...patternconfig6 });
+        var pattern7 = Trianglify({ ...patternconfig7 });
+        var pattern8 = Trianglify({ ...patternconfig8 });
+        var pattern9 = Trianglify({ ...patternconfig9 });
 
         const cards = {
+            card9: { backgroundImage: `url(${pattern9.png()})` },
             card8: { backgroundImage: `url(${pattern8.png()})` },
             card7: { backgroundImage: `url(${pattern7.png()})` },
             card6: { backgroundImage: `url(${pattern6.png()})` },

@@ -8,12 +8,7 @@ const GenerateExcel = props => {
 
     if (!loans || !currentUser) {
         return (
-            <div className="loader" id="loader-6">
-                <span />
-                <span />
-                <span />
-                <span />
-            </div>
+            <div className="py-2"></div>
         );
     }
 
