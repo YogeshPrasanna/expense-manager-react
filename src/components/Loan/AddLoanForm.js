@@ -240,11 +240,6 @@ class AddLoanForm extends Component {
                         </div>
                     </div>
 
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
                     <div className="text-right">
                         <button className="btn btn-primary" type="submit">
                             save
