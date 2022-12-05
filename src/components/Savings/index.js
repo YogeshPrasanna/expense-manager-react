@@ -45,8 +45,14 @@ class SavingsPage extends Component {
                                     settings={this.props.settings}
                                 />
                             </div>
-                        ) : (
-                            <Loader />
+                        ) : ( 
+                            
+                            //add message to tell the user that there is no saving insted of loading page
+                            <div className="alert alert-info mb-0 text-center" role="alert">
+                        You haven't create any saving goal , add a saving goal by clicking on the +
+                        button on the bottom right corner of this page
+                    </div>
+
                         )}
                         {/* <SavingsLayout
                             authUser={this.props.user}
