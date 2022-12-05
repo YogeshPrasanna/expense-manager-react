@@ -153,6 +153,8 @@ class AddSavingForm extends Component {
                                 name="date"
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
+                                minDate={moment(). toDate()} //exclude the past date , so user cannot select
+                                
                             />
                         </div>
                     </div>
