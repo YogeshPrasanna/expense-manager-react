@@ -154,7 +154,7 @@ class AddSavingForm extends Component {
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
                                 minDate={moment(). toDate()} //exclude the past date , so user cannot select
-                                
+
                             />
                         </div>
                     </div>
@@ -245,29 +245,8 @@ class AddSavingForm extends Component {
                         </div>
                     </div>
 
-                    <div className="form-group row">
-                        <label className="col-sm-3 col-xs-6 col-form-label">
-                            <span>Goal Achieved</span>
-                        </label>
-                        <div className="col-sm-5 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
-                            <input
-                                type="radio"
-                                name="goalAchieved"
-                                value="yes"
-                                defaultChecked={this.state.goalAchieved === "yes"}
-                                id="switch_left"
-                            />
-                            <label for="switch_left">Achieved</label>
-                            <input
-                                type="radio"
-                                name="goalAchieved"
-                                value="no"
-                                defaultChecked={this.state.goalAchieved === "no"}
-                                id="switch_right"
-                            />
-                            <label for="switch_right">Not Yet</label>{" "}
-                        </div>
-                    </div>
+                    
+
 
                     {this.state.dataSaved ? (
                         <span className="bg-success success-msg"> Data saved successfully</span>
