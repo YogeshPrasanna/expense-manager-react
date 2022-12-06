@@ -13,6 +13,10 @@ import * as firebase from "../../firebase/firebase";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value
+})
+
 class EditSavingForm extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +34,9 @@ class EditSavingForm extends Component {
             cardColor: savings.value.cardColor,
             uid: this.props.user.uid,
             dataSaved: false,
-            displayColorPicker: false
+            displayColorPicker: false,
+            validationGoal: null,
+            validationSaving: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,18 +50,44 @@ class EditSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
-            date: this.state.date.format("MM/DD/YYYY"),
-            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            goalAmount: this.state.goalAmount,
-            savingAmount: Math.ceil(this.state.savingAmount),
-            savingFor: this.state.savingFor,
-            comments: this.state.comments,
-            goalAchieved: this.state.goalAchieved,
-            cardColor: this.state.cardColor
-        });
+        const { goalAmount, savingAmount , date , savingFor } = this.state;
 
-        $("#closePopup").click();
+        //set warning for negative goal amount value
+        if (goalAmount <= 0) {
+            this.setState(
+              byPropKey("validationGoal", "Goal amount must be greater than 0.")
+            );
+        } else {
+            this.setState(byPropKey("validationGoal", null));
+        }
+
+        //set warning for negative saving amount value
+        if (savingAmount <= 0) {
+            this.setState(
+              byPropKey("validationSaving", "Saving amount must be greater than 0")
+            );
+        } else {
+            this.setState(byPropKey("validationSaving", null));
+        }
+
+        if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
+            firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+                date: this.state.date.format("MM/DD/YYYY"),
+                day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+                goalAmount: this.state.goalAmount,
+                savingAmount: Math.ceil(this.state.savingAmount),
+                savingFor: this.state.savingFor,
+                comments: this.state.comments,
+                goalAchieved: this.state.goalAchieved,
+                cardColor: this.state.cardColor
+            });
+
+            $("#closePopup").click();
+        }
+
+        
+
+        
     }
 
     handleClick() {
@@ -133,6 +165,8 @@ class EditSavingForm extends Component {
                 left: "0px"
             };
 
+            const { validationGoal, validationSaving } = this.state;
+
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -180,7 +214,11 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
+                                className={
+                                    validationGoal
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 required
                                 type="number"
                                 name="goalAmount"
@@ -188,6 +226,7 @@ class EditSavingForm extends Component {
                                 value={this.state.goalAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationGoal ? (<div className="invalid-feedback err">{validationGoal}</div>) : ("")} 
                         </div>
                     </div>
                     <div className="form-group row">
@@ -196,7 +235,11 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
+                                className={
+                                    validationSaving
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 required
                                 type="number"
                                 name="savingAmount"
@@ -204,6 +247,7 @@ class EditSavingForm extends Component {
                                 value={this.state.savingAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationSaving ? (<div className="invalid-feedback err">{validationSaving}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
@@ -239,28 +283,10 @@ class EditSavingForm extends Component {
                             />
                         </div>
                     </div>
-
-               
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
-                    {this.state.goalAmount > 0 && this.state.date && this.state.savingFor ? (
-                        <button className="btn btn-primary float-right" type="submit">
+                    <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>
-                    ) : (
-                        <div>
-                            <div style={validationBox}>
-                                <div> Saving : should be greater than 0 </div>
-                                <div> Target Date : should be selected </div>
-                            </div>
-                            <button className="btn btn-primary float-right" disabled type="submit">
-                                save
-                            </button>
-                        </div>
-                    )}
+
                 </form>
             );
         } else {
