@@ -12,6 +12,10 @@ import * as db from "../../firebase/db";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value
+})
+
 class AddSavingForm extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +31,9 @@ class AddSavingForm extends Component {
             cardColor: "#fff",
             uid: this.props.user.uid,
             dataSaved: false,
-            displayColorPicker: false
+            displayColorPicker: false,
+            validationGoal: null,
+            validationSaving: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,30 +47,57 @@ class AddSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        db.doCreateSaving(
-            this.state.uid,
-            this.state.date.format("MM/DD/YYYY"),
-            this.state.goalAmount,
-            Math.ceil(this.state.savingAmount),
-            this.state.savingFor,
-            this.state.comments,
-            this.state.goalAchieved,
-            this.state.cardColor,
-            moment(this.state.date.format("MM/DD/YYYY")).day()
-        );
-        // reset form once saved
-        this.setState({
-            date: moment(),
-            day: moment().day,
-            goalAmount: "",
-            savingAmount: "",
-            savingFor: "Food",
-            comments: "",
-            goalAchieved: "no",
-            cardColor: "#fff",
-            uid: this.props.user.uid,
-            dataSaved: true
-        });
+        const { goalAmount, savingAmount , date , savingFor } = this.state;
+
+        //set warning for negative goal amount value
+        if (goalAmount <= 0) {
+            this.setState(
+              byPropKey("validationGoal", "Goal amount must be greater than 0.")
+            );
+        } else {
+            this.setState(byPropKey("validationGoal", null));
+        }
+
+        //set warning for negative saving amount value
+        if (savingAmount <= 0) {
+            this.setState(
+              byPropKey("validationSaving", "Saving amount must be greater than 0")
+            );
+        } else {
+            this.setState(byPropKey("validationSaving", null));
+        }
+
+
+        if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
+
+            db.doCreateSaving(
+                this.state.uid,
+                this.state.date.format("MM/DD/YYYY"),
+                this.state.goalAmount,
+                Math.ceil(this.state.savingAmount),
+                this.state.savingFor,
+                this.state.comments,
+                this.state.goalAchieved,
+                this.state.cardColor,
+                moment(this.state.date.format("MM/DD/YYYY")).day()
+            );
+            // reset form once saved
+            this.setState({
+                date: moment(),
+                day: moment().day,
+                goalAmount: "",
+                savingAmount: "",
+                savingFor: "Food",
+                comments: "",
+                goalAchieved: "no",
+                cardColor: "#fff",
+                uid: this.props.user.uid,
+                dataSaved: true
+            });
+
+        }
+
+       
     }
 
     handleClick() {
@@ -102,15 +135,7 @@ class AddSavingForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
-            const validationBox = {
-                background: "rgba(0,0,0,0)",
-                color: "#ffecb8",
-                fontSize: "12px",
-                width: "60%",
-                position: "absolute",
-                bottom: "15px",
-                left: "15px"
-            };
+           
 
             const color = {
                 width: "36px",
@@ -137,7 +162,8 @@ class AddSavingForm extends Component {
                 bottom: "0px",
                 left: "0px"
             };
-
+            
+            const { validationGoal, validationSaving } = this.state;
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -186,7 +212,11 @@ class AddSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
+                                className={
+                                    validationGoal
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 required
                                 type="number"
                                 name="goalAmount"
@@ -194,6 +224,7 @@ class AddSavingForm extends Component {
                                 value={this.state.goalAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationGoal ? (<div className="invalid-feedback err">{validationGoal}</div>) : ("")} 
                         </div>
                     </div>
                     <div className="form-group row">
@@ -202,7 +233,11 @@ class AddSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
+                                className={
+                                    validationSaving
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 required
                                 type="number"
                                 name="savingAmount"
@@ -210,6 +245,7 @@ class AddSavingForm extends Component {
                                 value={this.state.savingAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationSaving ? (<div className="invalid-feedback err">{validationSaving}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
@@ -245,30 +281,10 @@ class AddSavingForm extends Component {
                             />
                         </div>
                     </div>
-
-                    
-
-
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
-                    {this.state.goalAmount > 0 && this.state.date && this.state.savingFor ? (
-                        <button className="btn btn-primary float-right" type="submit">
+                    <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>
-                    ) : (
-                        <div>
-                            <div style={validationBox}>
-                                <div> Saving : should be greater than 0 </div>
-                                <div> Target Date : should be selected </div>
-                            </div>
-                            <button className="btn btn-primary float-right" disabled type="submit">
-                                save
-                            </button>
-                        </div>
-                    )}
+ 
                 </form>
             );
         } else {
