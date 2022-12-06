@@ -257,7 +257,7 @@ const NavigationNonAuth = () => {
 const Navigation = ({ authUser, settings }) => {
     return (
         <div>
-            {authUser && authUser.emailVerified && settings ? (
+            {authUser && settings ? (
                 <NavigationAuth settings={settings} />
             ) : (
                     <NavigationNonAuth />

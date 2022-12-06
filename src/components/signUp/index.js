@@ -88,7 +88,7 @@ class SignUpForm extends Component {
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then((authUser) => {
           // create a user in the firebase db too
-          db.doCreateUser(authUser.uid, username, email)
+          db.doCreateUser(authUser.user.uid, username, email)
             .then(() => {
               this.setState(byPropKey("isLoading", false));
               this.setState(() => ({ ...INITIAL_STATE }));

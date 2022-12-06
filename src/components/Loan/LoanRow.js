@@ -4,6 +4,7 @@ import moment from "moment";
 import * as utils from "./../Util";
 
 import EditLoanPopup from "./EditLoanPopup";
+import { deleteDoc, doc } from "firebase/firestore";
 
 class LoanRow extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class LoanRow extends Component {
     handleClick(e) {
         var message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
-            firebase.db.ref(`loanTable/${this.props.user.uid}/${this.props.loanId}`).remove();
+            deleteDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loanId));
         }
     }
 
@@ -86,7 +87,7 @@ class LoanRow extends Component {
                     ) : null}
                 </td>
                 <td data-th="Date">
-                    {this.props.loan.value.date} <span className="expense-day"> {day || "Sunday"}</span>
+                    {moment(this.props.loan.value.date).format("DD/MM/YYYY")} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Amount">
                     <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}

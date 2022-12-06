@@ -7,12 +7,12 @@ const Cards = props => {
     const currentUser = props.authUser;
     const settings = props.settings;
     const cards = props.cards;
-    let loanToPay = 0;
-    let loanToGet = 0;
+    let totalPending = 0;
+    let totalSettled = 0;
+    let highestTaken = 0;
 
     const cardStyleDesktop = {
-        "color": "white",
-        "mixBlendMode": "difference"
+        "color": "#3B0918",
     }
 
     const cardStyleMobile = {
@@ -33,32 +33,46 @@ const Cards = props => {
         const thisUsersLoans = utils.currentUsersExpenses(eachExpense, currentUser);
 
         // You need to get
-        loanToPay = utils.loanTakenOrGivenAmt(thisUsersLoans, "Taken");
+        totalPending = utils.loanPendingOrSettled(thisUsersLoans, "Pending");
 
         // You need to give
-        loanToGet = utils.loanTakenOrGivenAmt(thisUsersLoans, "Given");
+        totalSettled = utils.loanPendingOrSettled(thisUsersLoans, "Settled");
+
+        // Highest taken loan
+        highestTaken = utils.highestTakenAndPendingLoan(thisUsersLoans);
     }
 
     return (
         <div className="row mobileNoPadding">
-            <div className="col-sm-3 mobileNoPadding">
+            <div className="col-sm-12 mobileNoPadding">
                 <div className="card card1 mobileNoPadding" style={props.cards.card1}>
                     <div className="card-block">
-                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to repay</h3>
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">Total <b>pending</b></h3>
                         <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
-                            {loanToPay.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                            {totalPending.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>
             </div>
-            <div className="col-sm-3 mobileNoPadding">
+            <div className="col-sm-12 mobileNoPadding">
                 <div className="card card2 mobileNoPadding" style={props.cards.card2}>
                     <div className="card-block">
-                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">You need to get </h3>
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title">Total <b>settled</b></h3>
                         <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
                             <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
-                            {loanToGet.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                            {totalSettled.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="col-sm-12 mobileNoPadding">
+                <div className="card card9 mobileNoPadding" style={props.cards.card9}>
+                    <div className="card-block">
+                        <h3 style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-title"><b>Highest taken</b> loan</h3>
+                        <p style={window.screen.width > 720 ? cardStyleDesktop : cardStyleMobile} className="card-text">
+                            <i className={`fa ${utils.setCurrencyIcon(settings.currency)}`} aria-hidden="true" />{" "}
+                            {highestTaken.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}
                         </p>
                     </div>
                 </div>
