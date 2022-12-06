@@ -10,6 +10,7 @@ import * as firebase from "../../firebase/firebase";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../Home/styles/form.css";
+import { doc, updateDoc } from "firebase/firestore";
 
 class EditExpenseForm extends Component {
     constructor(props) {
@@ -35,7 +36,14 @@ class EditExpenseForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expense.key}`).update({
+        // firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expense.key}`).update({
+            // date: this.state.date.format("MM/DD/YYYY"),
+            // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            // expense: Math.ceil(this.state.expense * this.props.convertedCurrency),
+            // category: this.state.category,
+            // comments: this.state.comments
+        // });
+        updateDoc(doc(firebase.db, `expenseTable/${this.props.user.uid}/expenses`, this.props.expense.key), {
             date: this.state.date.format("MM/DD/YYYY"),
             day: moment(this.state.date.format("MM/DD/YYYY")).day(),
             expense: Math.ceil(this.state.expense * this.props.convertedCurrency),

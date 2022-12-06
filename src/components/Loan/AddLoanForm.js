@@ -73,7 +73,7 @@ class AddLoanForm extends Component {
         if(!isInvalid) {
             db.doCreateLoan(
                 this.state.uid,
-                $(".date").val(),
+                moment(this.date).format('L'),
                 this.state.amount,
                 this.state.loanType,
                 this.state.reason,
@@ -225,11 +225,12 @@ class AddLoanForm extends Component {
                             <textarea
                                 className={
                                     validationReason
-                                      ? "form-control mb-0 px-3 py-4 is-invalid"
-                                      : "form-control mb-0 px-3 py-4"
+                                      ? "form-control mb-0 px-3 py-2 is-invalid"
+                                      : "form-control mb-0 px-3 py-2"
                                 }
                                 type="text"
                                 name="reason"
+                                rows={4}
                                 maxLength={300}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.reason}
@@ -239,11 +240,6 @@ class AddLoanForm extends Component {
                         </div>
                     </div>
 
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
                     <div className="text-right">
                         <button className="btn btn-primary" type="submit">
                             save

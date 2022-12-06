@@ -5,6 +5,8 @@ import * as utils from "../Util";
 import moment from "moment";
 
 import EditExpensePopup from "./EditExpensePopup";
+import { deleteDoc, doc } from "firebase/firestore";
+
 
 class ExpenseRow extends Component {
     constructor(props) {
@@ -21,7 +23,8 @@ class ExpenseRow extends Component {
     handleClick(e) {
         var message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
-            firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+            //firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
+            deleteDoc(doc(firebase.db, `expenseTable/${this.props.user.uid}/expenses`, this.props.expenseId));
         }
     }
 

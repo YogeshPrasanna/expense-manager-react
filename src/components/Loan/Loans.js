@@ -10,7 +10,7 @@ const Loans = props => {
     if (!loans || !currentUser || !settings) {
         return (
             <tr>
-                <td colSpan="9">
+                <td colSpan={9}>
                     <div className="alert alert-info mb-0 text-center" role="alert">
                         Good that you haven't taken any loans / given any loans , add a loan by clicking on the +
                         button on the bottom right corner of this page
@@ -40,8 +40,8 @@ const Loans = props => {
         } else {
             return (
                 <tr>
-                    <td>
-                        <div className="alert alert-info" role="alert">
+                    <td colSpan={9}>
+                        <div className="alert alert-info mb-0 text-center" role="alert">
                             Good that you haven't made any loans / given any loans , add a loan by clicking on the +
                             Button on the bottom right corner of this page
                         </div>

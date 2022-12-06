@@ -43,7 +43,7 @@ class SignUpForm extends Component {
         auth.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 // create a user in the firebase db too
-                db.doCreateUser(authUser.uid, username, email)
+                db.doCreateUser(authUser.user.uid, username, email)
                     .then(() => {
                         this.setState(() => ({ ...INITIAL_STATE }));
                         history.push(routes.HOME);
