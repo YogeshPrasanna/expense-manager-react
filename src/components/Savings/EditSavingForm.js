@@ -129,15 +129,7 @@ class EditSavingForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
-            const validationBox = {
-                background: "rgba(0,0,0,0)",
-                color: "#ffecb8",
-                fontSize: "12px",
-                width: "60%",
-                position: "absolute",
-                bottom: "15px",
-                left: "15px"
-            };
+          
 
             const color = {
                 width: "36px",
