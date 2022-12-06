@@ -51,6 +51,7 @@ class SavingsCard extends Component {
         $("#closePopup").click();
     }
 
+
     render() {
         const savings = this.props.savings;
         const settings = this.props.settings;
@@ -71,6 +72,8 @@ class SavingsCard extends Component {
             const customInput = {
                 height: "28px"
             };
+
+          
             return (
                 <div className="col-sm-4 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
                     {this.state.showEditPopup ? (
@@ -103,8 +106,14 @@ class SavingsCard extends Component {
                                     .toString()
                                     .replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}{" "}
                                     more to save
-                                    </span>}
-                                    
+                                    </span>
+                                    }
+                               
+                               <div class="progress">
+  <div class="progress-bar bg-info" role="progressbar" style={{width:`${savings.value.savingAmount/savings.value.goalAmount *100}%` ,}} 
+  >{savings.value.savingAmount} / {savings.value.goalAmount}</div>
+</div>
+                                   
                             </div>
                             <div className="data">
                                 <div className="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>
