@@ -11,6 +11,10 @@ import * as db from "../../firebase/db";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value
+});
+
 class AddExpenseForm extends Component {
     constructor(props) {
         super(props);
