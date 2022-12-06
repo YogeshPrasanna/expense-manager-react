@@ -85,6 +85,7 @@ class SavingsCard extends Component {
                         <div className="wrapper" style={{ background: img }}>
                             "
                             <div className="date">
+                                <span>Due to</span>
                                 <span className="day">{moment(savings.value.date).date()}</span>
                                 <span className="month">
                                     {moment(savings.value.date)
@@ -95,7 +96,7 @@ class SavingsCard extends Component {
                             </div>
                             <div className="moreToSaveMsg">
                                 
-                               
+
                                 {(savings.value.savingAmount >= savings.value.goalAmount)
                                 ? <span> Goal is Achieved </span>
                                 : <span>{(savings.value.goalAmount - savings.value.savingAmount)
