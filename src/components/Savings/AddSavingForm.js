@@ -151,9 +151,10 @@ class AddSavingForm extends Component {
                                     (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
                                 }
                                 name="date"
+                                dateFormat={"DD/MM/YYYY"} //change date format to UK
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
-                                minDate={moment(). toDate()} //exclude the past date , so user cannot select
+                                minDate={moment().toDate()} //exclude the past date , so user cannot select
 
                             />
                         </div>
