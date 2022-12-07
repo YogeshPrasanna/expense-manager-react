@@ -44,7 +44,7 @@ const Cards = props => {
         const thisUsersExpensesToday = utils.expensesInDate(
             eachExpense,
             authUser,
-            moment(new Date()).format("MM/DD/YYYY")
+            moment(new Date()).format("DD/MM/YYYY")
         );
         const thisUsersExpensesThisWeek = utils.expensesThisWeek(eachExpense, authUser);
         const thisUsersExpensesThisYear = utils.expensesinCurrentYear(eachExpense, authUser);
@@ -129,9 +129,9 @@ const Cards = props => {
         // const card1 = { backgroundImage: `url(${pattern.png()})` };
         if (window.screen.width > 720) {
             return (
-                <div className="row">
+                <div className="row mobileNoPadding">
                     <div className="col-sm-6 col-md-4 col-lg-3">
-                        <div className="card card1" style={cards.card1}>
+                        <div className="card card1 mobileNoPadding" style={cards.card1}>
                             <div className="card-block">
                                 <h3 style={cardStyleDesktop} className="card-title">Overall Spent</h3>
                                 <p style={cardStyleDesktop} className="card-text">
@@ -187,7 +187,7 @@ const Cards = props => {
                                 <p className="limitText">
                                     {totalExpensesThisMonth > settings.monthLimit ? (
                                         <span>
-                                            Monthly <br /> Limit <br /> exceeded{" "}
+                                            Monthly <br /> Limit <br /> Exceeded{" "}
                                         </span>
                                     ) : (
                                             ""
@@ -234,7 +234,7 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card6" style={cards.card6}>
                             <div className="card-block">
-                                <h3 style={cardStyleDesktop} className="card-title">Most Spent on</h3>
+                                <h3 style={cardStyleDesktop} className="card-title">Most Spent On</h3>
                                 <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {settings.editedCategories[mostSpentCategory] ? settings.editedCategories[mostSpentCategory] : mostSpentCategory}
@@ -245,7 +245,7 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card7" style={cards.card7}>
                             <div className="card-block">
-                                <h3 style={cardStyleDesktop} className="card-title">Most Spent day</h3>
+                                <h3 style={cardStyleDesktop} className="card-title">Most Spent Day</h3>
                                 <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {mostSpentDay}
@@ -256,7 +256,7 @@ const Cards = props => {
                     <div className="col-sm-6 col-md-4 col-lg-3">
                         <div className="card card8" style={cards.card8}>
                             <div className="card-block">
-                                <h3 style={cardStyleDesktop} className="card-title">Least Spent day</h3>
+                                <h3 style={cardStyleDesktop} className="card-title">Least Spent Day</h3>
                                 <p style={cardStyleDesktop} className="card-text">
                                     &nbsp;
                                     {leastSpentDay}
@@ -335,7 +335,7 @@ const Cards = props => {
                                             <p className="limitText">
                                                 {totalExpensesThisMonth > settings.monthLimit ? (
                                                     <span>
-                                                        Monthly <br /> Limit <br /> exceeded{" "}
+                                                        Monthly <br /> Limit <br /> Exceeded{" "}
                                                     </span>
                                                 ) : (
                                                         ""
@@ -381,7 +381,7 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card6 mobileNoPadding" style={cards.card6}>
                                         <div className="card-block">
-                                            <h3 style={cardStyleMobile} className="card-title">Most Spent on</h3>
+                                            <h3 style={cardStyleMobile} className="card-title">Most Spent On</h3>
                                             <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {mostSpentCategory}
@@ -394,7 +394,7 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card7 mobileNoPadding" style={cards.card7}>
                                         <div className="card-block">
-                                            <h3 style={cardStyleMobile} className="card-title">Most Spent day</h3>
+                                            <h3 style={cardStyleMobile} className="card-title">Most Spent Day</h3>
                                             <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {mostSpentDay}
@@ -407,7 +407,7 @@ const Cards = props => {
                                 <div className="col-sm-6 col-md-4 col-lg-3 nopadding mobileNoPadding">
                                     <div className="card card8 mobileNoPadding" style={cards.card8}>
                                         <div className="card-block">
-                                            <h3 style={cardStyleMobile} className="card-title">Least Spent day</h3>
+                                            <h3 style={cardStyleMobile} className="card-title">Least Spent Day</h3>
                                             <p style={cardStyleMobile} className="card-text">
                                                 &nbsp;
                                                 {leastSpentDay}

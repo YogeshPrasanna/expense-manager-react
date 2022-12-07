@@ -9,7 +9,7 @@ const AddExpensePopup = props => {
     return (
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
-                <div className="addExpenseHeader"> Add an expense </div>
+                <div className="addExpenseHeader"> Add An Expense </div>
                 <AddExpenseForm
                     user={props.user}
                     settings={props.settings}

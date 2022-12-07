@@ -87,7 +87,7 @@ class ExpenseTable extends Component {
                                     Comments{" "}
                                     <input
                                         type="text"
-                                        placeholder="  search"
+                                        placeholder="  Search"
                                         style={inputArea}
                                         onChange={this.handelDateChange.bind(this)}
                                     />

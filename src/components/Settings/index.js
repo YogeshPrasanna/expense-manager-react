@@ -201,7 +201,7 @@ class SettingsPage extends Component {
                                             </p>
                                             <hr />
                                             <button classame="btn btn-default" style={test}>
-                                                <Link to={routes.UPDATE_PASSWORD}> update password </Link>
+                                                <Link to={routes.UPDATE_PASSWORD}> Update Password </Link>
                                             </button>
                                         </div>
                                     </div>
@@ -209,7 +209,7 @@ class SettingsPage extends Component {
                             </div>
                         </div>
                         <div className="col-sm-6" style={centerHeight}>
-                            <div style={settingsHeader}> change Your Settings Here </div>
+                            <div style={settingsHeader}> Change Your Settings Here </div>
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group row">
                                     <label className="col-sm-3 col-xs-6 col-form-label" style={white}>
@@ -224,7 +224,7 @@ class SettingsPage extends Component {
                                             style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
                                             <option value="Dhurjati">Dhurjati</option>
-                                            <option value="sans-serif">sans-serif</option>
+                                            <option value="sans-serif">Sans-serif</option>
                                             <option value="Roboto">Roboto</option>
                                             <option value="Ubuntu">Ubuntu</option>
                                             <option value="Exo 2">Exo 2</option>
@@ -562,7 +562,7 @@ class SettingsPage extends Component {
                                     <span />
                                 )}
                                 <button className="btn btn-primary float-right" type="submit">
-                                    save
+                                    Save
                                 </button>
                             </form>
                         </div>

@@ -61,7 +61,7 @@ const NavigationAuth = props => {
                         to={routes.FILTER_VIEW}
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
-                        filter
+                        Filter
                     </Link>
                     <Link
                         className={`nav-link ${window.location.pathname === "/statistics" ? "active" : "inactive"}`}
