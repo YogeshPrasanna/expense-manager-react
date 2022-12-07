@@ -9,7 +9,8 @@ import Loader from "./../Common/Loader";
 import * as db from "../../firebase/db";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./styles/form.css";
+// import "./styles/form.css";
+import "../../assets/css/form.css";
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value

@@ -162,14 +162,14 @@ class DailyViewPage extends Component {
                             </form>
                             <TotalCard
                                 expenses={this.props.expenses}
-                                date={this.state.date.format("MM/DD/YYYY")}
+                                date={this.state.date.format("DD/MM/YYYY")}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                                 cards={this.props.cards}
                             />
                             <CategoryTotalCard
                                 expenses={this.props.expenses}
-                                date={this.state.date.format("MM/DD/YYYY")}
+                                date={this.state.date.format("DD/MM/YYYY")}
                                 authUser={this.props.user}
                                 cards={this.props.cards}
                                 settings={this.props.settings}
@@ -182,14 +182,14 @@ class DailyViewPage extends Component {
                             >
                                 <DoughnutChart
                                     expenses={this.props.expenses}
-                                    date={this.state.date.format("MM/DD/YYYY")}
+                                    date={this.state.date.format("DD/MM/YYYY")}
                                     authUser={this.props.user}
                                     settings={this.props.settings}
                                 />
                             </div>
                             <GenerateExcel
                                 expenses={this.props.expenses}
-                                date={this.state.date.format("MM/DD/YYYY")}
+                                date={this.state.date.format("DD/MM/YYYY")}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                             />
@@ -197,7 +197,7 @@ class DailyViewPage extends Component {
                                 window.screen.width > 720 ? (
                                     <ExpenseTable
                                         expenses={this.props.expenses}
-                                        date={this.state.date.format("MM/DD/YYYY")}
+                                        date={this.state.date.format("DD/MM/YYYY")}
                                         authUser={this.props.user}
                                         settings={this.props.settings}
                                         convertedCurrency={this.state.convertedCurrency}
@@ -206,7 +206,7 @@ class DailyViewPage extends Component {
                                         <MobileExpenseTable
                                             expenses={this.props.expenses}
                                             authUser={this.props.user}
-                                            date={this.state.date.format("MM/DD/YYYY")}
+                                            date={this.state.date.format("DD/MM/YYYY")}
                                             settings={this.props.settings}
                                             convertedCurrency={this.state.convertedCurrency}
                                         />

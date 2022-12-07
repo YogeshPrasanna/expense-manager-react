@@ -317,8 +317,8 @@ class FilterViewPage extends Component {
                                 expenses={this.props.expenses}
                                 expensefrom={this.state.expensefrom}
                                 expenseto={this.state.expenseto}
-                                fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                todate={this.state.todate.format("MM/DD/YYYY")}
+                                fromdate={this.state.fromdate.format("DD/MM/YYYY")}
+                                todate={this.state.todate.format("DD/MM/YYYY")}
                                 category={this.state.category}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
@@ -330,8 +330,8 @@ class FilterViewPage extends Component {
                                 expenses={this.props.expenses}
                                 expensefrom={this.state.expensefrom}
                                 expenseto={this.state.expenseto}
-                                fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                todate={this.state.todate.format("MM/DD/YYYY")}
+                                fromdate={this.state.fromdate.format("DD/MM/YYYY")}
+                                todate={this.state.todate.format("DD/MM/YYYY")}
                                 category={this.state.category}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
@@ -342,8 +342,8 @@ class FilterViewPage extends Component {
                                         expenses={this.props.expenses}
                                         expensefrom={this.state.expensefrom}
                                         expenseto={this.state.expenseto}
-                                        fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                        todate={this.state.todate.format("MM/DD/YYYY")}
+                                        fromdate={this.state.fromdate.format("DD/MM/YYYY")}
+                                        todate={this.state.todate.format("DD/MM/YYYY")}
                                         category={this.state.category}
                                         authUser={this.props.user}
                                         settings={this.props.settings}
@@ -354,8 +354,8 @@ class FilterViewPage extends Component {
                                             expenses={this.props.expenses}
                                             expensefrom={this.state.expensefrom}
                                             expenseto={this.state.expenseto}
-                                            fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                            todate={this.state.todate.format("MM/DD/YYYY")}
+                                            fromdate={this.state.fromdate.format("DD/MM/YYYY")}
+                                            todate={this.state.todate.format("DD/MM/YYYY")}
                                             category={this.state.category}
                                             authUser={this.props.user}
                                             settings={this.props.settings}

@@ -58,7 +58,7 @@ class MobileExpenseRow extends Component {
                 <input type="checkbox" id={`toggle${this.props.expenseId}`} className="toggle" />
                 <label className="title" style={nightModeTitle} for={`toggle${this.props.expenseId}`}>
                     {" "}
-                    <span className="mobile-row-header">{this.props.expense.value.date == moment(new Date()).format("MM/DD/YYYY") ? ` Today \u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0` : this.props.expense.value.date}</span>
+                    <span className="mobile-row-header">{this.props.expense.value.date == moment(new Date()).format("DD/MM/YYYY") ? ` Today \u00A0\u00A0\u00A0\u00A0 \u00A0\u00A0\u00A0\u00A0` : this.props.expense.value.date}</span>
                     <span className="mobile-row-header">
                         <i
                             className={`fa fa-${utils.categoryIcon(this.props.expense.value.category)}`}

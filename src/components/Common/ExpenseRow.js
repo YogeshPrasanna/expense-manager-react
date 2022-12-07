@@ -64,7 +64,7 @@ class ExpenseRow extends Component {
                     day = "Saturday";
                     break;
                 default:
-                    day = "sunday";
+                    day = "Sunday";
             }
         }
 
@@ -89,7 +89,7 @@ class ExpenseRow extends Component {
                     ) : null}
                 </td>
                 <td data-th="Date">
-                    {this.props.expense.value.date} <span className="expense-day"> {day || "Sunday"}</span>
+                    {moment(this.props.expense.value.date).format("DD/MM/YYYY")} <span className="expense-day"> {day || "Sunday"}</span>
                 </td>
                 <td data-th="Expense">
                     <i className={`fa ${utils.setCurrencyIcon(this.props.settings.currency)}`} aria-hidden="true" />{" "}

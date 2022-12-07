@@ -8,7 +8,7 @@ const EditExpensePopup = props => {
     return (
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
-                <div className="addExpenseHeader"> Edit expense </div>
+                <div className="addExpenseHeader"> Edit Expense </div>
                 <EditExpenseForm
                     user={props.user}
                     expense={props.expense}
