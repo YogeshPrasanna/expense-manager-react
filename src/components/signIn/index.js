@@ -16,6 +16,8 @@ import monthMobile from "./../../assets/images/MONTH_MOBILE.png";
 import statsMobile from "./../../assets/images/STATISTICS_MOBILE.png";
 import travel from "./../../assets/images/travel.png";
 
+import Loader from "./../Common/Loader";
+
 import firebase from "firebase/compat/app";
 
 const SignInPage = ({ history }) => (
@@ -32,13 +34,23 @@ const INITIAL_STATE = {
   email: "",
   password: "",
   error: null,
+  validationEmail: null,
+  validationPassword: null,
 };
 
 class SignInForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    this.state = { ...INITIAL_STATE, isLoading: false };
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        props.history.push("/home");
+      } else {
+        props.history.push("/");
+      }
+    });
   }
 
   componentDidMount() {
@@ -47,60 +59,102 @@ class SignInForm extends Component {
   }
 
   callGoogleSignIn = () => {
+    this.setState(byPropKey("isLoading", true));
     const { history } = this.props;
-
     let provider = new firebase.auth.GoogleAuthProvider();
 
     firebase
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
+        this.setState(byPropKey("isLoading", false));
         // This gives you a Google Access Token. You can use it to access the Google API.
         let token = result.credential.accessToken;
-
         // The signed-in user info.
         let user = result.user;
-
         history.push(routes.HOME);
       })
       .catch((error) => {
+        this.setState(byPropKey("isLoading", false));
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
 
         // The email of the user's account used.
         let email = error.email;
-
         // The firebase.auth.AuthCredential type that was used.
         let credential = error.credential;
-
         alert(errorMessage, "Retry !!!");
         // ...
       });
   };
 
   onSubmit = (event) => {
+    this.setState(byPropKey("isLoading", true));
     const { email, password } = this.state;
-
     const { history } = this.props;
+    const isInvalid = email === "" || password === "";
 
-    auth
-      .doSignInWithEmailAndPassword(email.trim(), password)
-      .then((authUser) => {
-        if (authUser) {
-          this.setState(() => ({ ...INITIAL_STATE }));
-          history.push(routes.HOME);
-        }
-      })
-      .catch((error) => {
-        this.setState(byPropKey("error", error));
-      });
+    if (email === "") {
+      this.setState(byPropKey("validationEmail", "Please enter your Email"));
+      this.setState(byPropKey("error", "Please enter your Email"));
+    } else {
+      this.setState(byPropKey("validationEmail", null));
+      this.setState(byPropKey("error", null));
+      if (password === "") {
+        this.setState(
+          byPropKey("validationPassword", "Please enter your Password")
+        );
+        this.setState(byPropKey("error", "Please enter your Password"));
+      } else {
+        this.setState(byPropKey("validationPassword", null));
+        this.setState(byPropKey("error", null));
+      }
+    }
+
+    if (!isInvalid) {
+      auth
+        .doSignInWithEmailAndPassword(email.trim(), password)
+        .then((authUser) => {
+          this.setState(byPropKey("isLoading", false));
+          if (authUser) {
+            this.setState(() => ({ ...INITIAL_STATE }));
+            history.push(routes.HOME);
+          }
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          console.log(errorCode);
+          this.setState(byPropKey("isLoading", false));
+
+          if (errorCode === "auth/wrong-password") {
+            this.setState(
+              byPropKey(
+                "error",
+                "Error Wrong Password Please Enter Correct Password!"
+              )
+            );
+            this.setState(byPropKey("validationPassword", true));
+          } else if (errorCode === "auth/user-not-found") {
+            this.setState(byPropKey("error", "Error User Not Found!"));
+            this.setState(byPropKey("validationEmail", true));
+          } else if (errorCode === "auth/too-many-requests") {
+            this.setState(
+              byPropKey("error", "Error Too Many Requests, Try Again Later!")
+            );
+          } else {
+            this.setState(byPropKey("error", "Error, Unable To Sign In!"));
+          }
+        });
+    } else {
+      this.setState(byPropKey("isLoading", false));
+    }
 
     event.preventDefault();
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error, isLoading } = this.state;
 
     const imgStyle = {
       margin: "25px 35%",
@@ -146,14 +200,14 @@ class SignInForm extends Component {
               <hr />
               <iframe
                 src="https://ghbtns.com/github-btn.html?user=YogeshPrasanna&repo=expense-manager-react&type=star&count=true&size=large"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="0"
                 width="160px"
                 height="30px"
               ></iframe>
               <iframe
                 src="https://ghbtns.com/github-btn.html?user=YogeshPrasanna&repo=expense-manager-react&type=fork&count=true&size=large"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="0"
                 width="158px"
                 height="30px"
@@ -166,44 +220,59 @@ class SignInForm extends Component {
           >
             <div className="login-page">
               <form onSubmit={this.onSubmit} className="form">
+                {this.state.error && (
+                  <h6 className="mb-2" style={{ color: "#dc3545" }}>
+                    <b>{this.state.error}</b>
+                  </h6>
+                )}
                 <input
                   value={email}
-                  onChange={(event) =>
-                    this.setState(byPropKey("email", event.target.value))
-                  }
+                  onChange={(event) => {
+                    this.setState(byPropKey("email", event.target.value));
+                    if (event.target.value !== "") {
+                      this.setState(byPropKey("validationEmail", null));
+                      this.setState(byPropKey("error", null));
+                    }
+                  }}
+                  className={this.state.validationEmail ? "is-invalid" : ""}
                   type="text"
                   placeholder="Email Address"
                 />
                 <input
                   value={password}
-                  onChange={(event) =>
-                    this.setState(byPropKey("password", event.target.value))
-                  }
+                  onChange={(event) => {
+                    this.setState(byPropKey("password", event.target.value));
+                    if (event.target.value !== "") {
+                      this.setState(byPropKey("validationPassword", null));
+                      this.setState(byPropKey("error", null));
+                    }
+                  }}
+                  className={this.state.validationPassword ? "is-invalid" : ""}
                   type="password"
                   placeholder="Password"
                 />
-                <button disabled={isInvalid} type="submit">
-                  Sign In
-                </button>
+                {!isLoading ? (
+                  <>
+                    <button type="submit">Sign In</button>
 
-                <p className="my-3">
-                  <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
-                </p>
+                    <p className="my-3">
+                      <Link to={routes.PASSWORD_FORGET}>Forgot password?</Link>
+                    </p>
 
-                {/* <hr /> */}
-
-                <div
-                  type="button"
-                  onClick={this.callGoogleSignIn}
-                  className="googleSignIn"
-                >
-                  <span className="googleLogo">
-                    <i className="fa fa-google" />
-                  </span>{" "}
-                  Sign in with google
-                </div>
-
-                {error && <p>{error.message}</p>}
+                    <div
+                      type="button"
+                      onClick={this.callGoogleSignIn}
+                      className="googleSignIn"
+                    >
+                      <span className="googleLogo">
+                        <i className="fa fa-google" />
+                      </span>{" "}
+                      Sign in with google
+                    </div>
+                  </>
+                ) : (
+                  <Loader />
+                )}
               </form>
               <SignUpLink />
             </div>
