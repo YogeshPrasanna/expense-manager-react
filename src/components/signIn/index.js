@@ -195,7 +195,7 @@ class SignInForm extends Component {
               </span>
               <hr />
               <p>
-                Sign up to create an account - and start managing your expenses Test 2
+                Sign up to create an account - and start managing your expenses
               </p>
               <hr />
               <iframe
