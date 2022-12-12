@@ -23,6 +23,9 @@ jobs:
           CI: false
       - name: Archive production artifact
         uses: actions/upload-artifact@main
+        with:
+          name: build
+          path: build
   deploy:
     name: Deploy
     needs: build
