@@ -18,7 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build dependencies
-        run: false npm run build
+        run: npm run build
+        env:
+          CI: false
       - name: Archive production artifact
         uses: actions/upload-artifact@main
   deploy:
