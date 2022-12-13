@@ -8,7 +8,7 @@ import "./styles/cards.css";
 import $ from "jquery";
 
 import moment from "moment";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc} from "firebase/firestore";
 
 class SavingsCard extends Component {
     constructor(props) {
