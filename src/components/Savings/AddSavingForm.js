@@ -34,6 +34,7 @@ class AddSavingForm extends Component {
             displayColorPicker: false,
             validationGoal: null,
             validationSaving: null,
+            validationSavingFor: null,
             validationComments: null
         };
 
@@ -67,6 +68,15 @@ class AddSavingForm extends Component {
             );
         } else {
             this.setState(byPropKey("validationSaving", null));
+        }
+
+        //set warning for empty saving for
+        if (savingFor === "" ) {
+            this.setState(
+              byPropKey("validationSavingFor", "Please Enter the purpose of your saving.")
+            );
+        } else {
+            this.setState(byPropKey("validationSavingFor", null));
         }
 
         //set warning for empty comments
@@ -174,7 +184,7 @@ class AddSavingForm extends Component {
                 left: "0px"
             };
             
-            const { validationGoal, validationSaving , validationComments} = this.state;
+            const { validationGoal, validationSaving , validationComments, validationSavingFor } = this.state;
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -266,7 +276,11 @@ class AddSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
+                                className={
+                                    validationSavingFor
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 maxLength={50}
                                 type="text"
                                 name="savingFor"
@@ -274,6 +288,7 @@ class AddSavingForm extends Component {
                                 value={this.state.savingFor}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationSavingFor ? (<div className="invalid-feedback err">{validationSavingFor}</div>) : ("")}
                         </div>
                     </div>
 
@@ -295,8 +310,8 @@ class AddSavingForm extends Component {
                                 value={this.state.comments}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                         </div>
-                        {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                     </div>
                     
                     <button className="btn btn-primary float-right" type="submit">
