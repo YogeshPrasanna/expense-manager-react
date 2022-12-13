@@ -119,10 +119,10 @@ class SavingsCard extends Component {
                                 <div className="content" style={{ borderLeft: `10px solid ${savings.value.cardColor}` }}>
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="form-group row">
-                                            <label className="col-sm-3 col-xs-6 col-form-label" style={customLabel}>
+                                            <label className="col-md-3 col-sm-3 col-xs-3 col-form-label" style={customLabel}>
                                                 <span>Add Saving :</span>
                                             </label>
-                                            <div className="col-sm-4 col-xs-6">
+                                            <div className="col-md-3 col-sm-2 col-xs-2">
                                                 <input
                                                     className="form-control"
                                                     name="addSavingAmount"
@@ -140,9 +140,9 @@ class SavingsCard extends Component {
                                         </div>
                                     </form>
                                     <h1 className="title">
-                                        <a href="#">{savings.value.savingFor}</a>
+                                        <span> {savings.value.savingFor} </span>
                                     </h1>
-                                    <p className="text">{savings.value.comments}</p>
+                                    {/*<p className="text">{savings.value.comments}</p> */}
                                     <label htmlFor="show-menu" className="menu-button">
                                         <span />
                                         <button className="edit-btn" onClick={this.toggleEditPopup.bind(this)}>

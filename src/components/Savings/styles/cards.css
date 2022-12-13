@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
 * {
     box-sizing: border-box;
@@ -125,7 +125,7 @@ h1 {
 }
 
 .img-card .wrapper {
-    /* background: url(https://source.unsplash.com/1600x900/?nature) 20% 1% / cover no-repeat; */
+     background: url(https://source.unsplash.com/1600x900/?nature) 20% 1% / cover no-repeat;
 }
 
 .img-card .date {

@@ -33,7 +33,8 @@ class AddSavingForm extends Component {
             dataSaved: false,
             displayColorPicker: false,
             validationGoal: null,
-            validationSaving: null
+            validationSaving: null,
+            validationComments: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,28 +48,38 @@ class AddSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const { goalAmount, savingAmount , date , savingFor } = this.state;
+        const { goalAmount, savingAmount , date , savingFor , comments } = this.state;
+        const isInvalid = goalAmount === "" || savingAmount === "" || date === "" || savingFor  === "" || comments === ""
 
-        //set warning for negative goal amount value
-        if (goalAmount <= 0) {
+        //set warning for empty goal amount value
+        if (goalAmount === "" ) {
             this.setState(
-              byPropKey("validationGoal", "Goal amount must be greater than 0.")
+              byPropKey("validationGoal", "Please Enter goal Amount.")
             );
         } else {
             this.setState(byPropKey("validationGoal", null));
         }
 
-        //set warning for negative saving amount value
-        if (savingAmount <= 0) {
+        //set warning for empty saving amount value
+        if (savingAmount === "") {
             this.setState(
-              byPropKey("validationSaving", "Saving amount must be greater than 0")
+              byPropKey("validationSaving", "Please enter saving Amount.")
             );
         } else {
             this.setState(byPropKey("validationSaving", null));
         }
 
+        //set warning for empty comments
+        if (comments === "") {
+            this.setState(
+              byPropKey("validationComments", "Please enter some comments or saving description.")
+            );
+        } else {
+            this.setState(byPropKey("validationComments", null));
+        }
 
-        if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
+
+        if (!isInvalid){
 
             db.doCreateSaving(
                 this.state.uid,
@@ -163,7 +174,7 @@ class AddSavingForm extends Component {
                 left: "0px"
             };
             
-            const { validationGoal, validationSaving } = this.state;
+            const { validationGoal, validationSaving , validationComments} = this.state;
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -217,8 +228,8 @@ class AddSavingForm extends Component {
                                       ? "form-control mb-0 px-3 py-4 is-invalid"
                                       : "form-control mb-0 px-3 py-4"
                                 }
-                                required
                                 type="number"
+                                min={0.01}
                                 name="goalAmount"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.goalAmount}
@@ -238,7 +249,8 @@ class AddSavingForm extends Component {
                                       ? "form-control mb-0 px-3 py-4 is-invalid"
                                       : "form-control mb-0 px-3 py-4"
                                 }
-                                required
+                                min={0.01}
+                                step={1}
                                 type="number"
                                 name="savingAmount"
                                 onChange={this.handleChange.bind(this)}
@@ -255,7 +267,7 @@ class AddSavingForm extends Component {
                         <div className="col-sm-9 col-xs-6">
                             <input
                                 className="form-control"
-                                required
+                                maxLength={50}
                                 type="text"
                                 name="savingFor"
                                 onChange={this.handleChange.bind(this)}
@@ -269,17 +281,22 @@ class AddSavingForm extends Component {
                         <label className="col-sm-3 col-xs-6 col-form-label">
                             <span>Comments</span>
                         </label>
-                        <div className="col-sm-9 col-xs-6">
+                        <div className={
+                                    validationComments
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }>
                             <textarea
                                 className="form-control"
                                 type="text"
-                                required
                                 name="comments"
+                                maxLength={50}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.comments}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
                         </div>
+                        {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                     </div>
                     <button className="btn btn-primary float-right" type="submit">
                             save
