@@ -33,6 +33,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
+      - name: 'Create ENV file'
+        run:  |
+          echo "${{secrets.ENV_FILE}}" > .env
       - name: Download artifact
         uses: actions/download-artifact@main
         with:
@@ -43,6 +46,6 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: 1//0gPQpAeeZosXnCgYIARAAGBASNwF-L9IrmpMfrhNry5VmLmXOhKZ_w-UjsY7KZkr9fv7kpT9615hMsDwxZw64JVJa7xL67GWU3SU
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
       
