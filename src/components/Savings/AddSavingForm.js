@@ -250,7 +250,7 @@ class AddSavingForm extends Component {
                                       : "form-control mb-0 px-3 py-4"
                                 }
                                 min={0.01}
-                                step={1}
+                                
                                 type="number"
                                 name="savingAmount"
                                 onChange={this.handleChange.bind(this)}
@@ -281,13 +281,13 @@ class AddSavingForm extends Component {
                         <label className="col-sm-3 col-xs-6 col-form-label">
                             <span>Comments</span>
                         </label>
-                        <div className={
+                        <div className="col-sm-9 col-xs-6">
+                            <textarea
+                                className={
                                     validationComments
                                       ? "form-control mb-0 px-3 py-4 is-invalid"
                                       : "form-control mb-0 px-3 py-4"
-                                }>
-                            <textarea
-                                className="form-control"
+                                }
                                 type="text"
                                 name="comments"
                                 maxLength={50}
@@ -298,6 +298,7 @@ class AddSavingForm extends Component {
                         </div>
                         {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                     </div>
+                    
                     <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>
