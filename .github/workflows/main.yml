@@ -17,6 +17,9 @@ jobs:
         uses: actions/checkout@main
       - name: Install dependencies
         run: npm ci
+      - name: 'Create ENV file'
+        run:  |
+          echo "${{secrets.ENV_FILE}}" > .env
       - name: Build dependencies
         run: npm run build
         env:
@@ -33,9 +36,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
-      - name: 'Create ENV file'
-        run:  |
-          echo "${{secrets.ENV_FILE}}" > .env
       - name: Download artifact
         uses: actions/download-artifact@main
         with:
