@@ -8,6 +8,7 @@ import "./styles/cards.css";
 import $ from "jquery";
 
 import moment from "moment";
+import { deleteDoc, doc } from "firebase/firestore";
 
 class SavingsCard extends Component {
     constructor(props) {
@@ -24,7 +25,8 @@ class SavingsCard extends Component {
     handleClick(e) {
         var message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
-            firebase.db.ref(`savingsTable/${this.props.authUser.uid}/${this.props.savings.key}`).remove();
+            //firebase.db.ref(`savingsTable/${this.props.authUser.uid}/${this.props.savings.key}`).remove();
+            deleteDoc(doc(firebase.db, `savingsTable/${this.props.authUser.uid}/savings`, this.props.savings.key));
         }
     }
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
+import history from "./history";
 import { firebase } from "../firebase/index";
 import { defaults } from "react-chartjs-2";
 import Trianglify from "trianglify";
@@ -28,9 +29,10 @@ import SavingsPage from "./Savings/index";
 import ErrorPage from "./Error/index";
 
 import * as routes from "../constants/routes";
-import * as db from "../firebase/db";
-import * as utils from "./Util";
+import {db} from "../firebase/firebase.js";
+import * as firebasestore from "../firebase/db.js";
 import * as analytics from "./../analytics/analytics";
+import { doc, getDoc, collection, onSnapshot } from "@firebase/firestore";
 
 class App extends Component {
     constructor(props) {
@@ -38,7 +40,6 @@ class App extends Component {
 
         this.state = {
             authUser: null,
-            users: null,
             expenses: null,
             loans: null,
             defaultCategoriesNames: null,
@@ -46,6 +47,17 @@ class App extends Component {
             settings: null,
             savings: null
         };
+
+        this.handler = this.handler.bind(this);
+    }
+
+    handler(settingsData) {
+
+
+        this.setState({
+            settings: settingsData,
+        });
+
     }
 
     componentDidMount() {
@@ -54,7 +66,7 @@ class App extends Component {
         analytics.initGA();
         analytics.logPageView();
 
-        firebase.auth.onAuthStateChanged(authUser => {
+        firebase.auth.onAuthStateChanged(async authUser => {
             authUser
                 ? this.setState({
                     authUser: authUser
@@ -64,28 +76,13 @@ class App extends Component {
                 });
 
             if (this.state.authUser) {
-                // get all the users in the db
-                db.onceGetUsers().then(snapshot => {
-                    this.setState({
-                        users: snapshot.val()
-                    });
-                });
-
-                // get and set expenses in db
-                //  firebase.db
-                //      .ref("expenses")
-                //      .on("value", data => {
-                //          if (data) {
-                //              this.setState({
-                //                  expenses: data.val()
-                //              });
-                //          }
-                //      });
 
                 // get all the settings
-                firebase.db.ref(`settings/${this.state.authUser.uid}`).on("value", data => {
-
-                    const defaultCategories = {
+                console.log("getting settings");
+                
+                const docSettingSnap = await getDoc(doc(db, "settings", this.state.authUser.uid));
+                console.log("settings retreived!");
+                const defaultCategories = {
                         "Food": "",
                         "Automobile": "",
                         "Entertainment": "",
@@ -99,178 +96,101 @@ class App extends Component {
                         "Bills & Utilities": "",
                         "Others": ""
                     }
+                if(docSettingSnap.exists()){
+                    console.log("settings exists");
+                    this.setState({
+                        settings: docSettingSnap.data()
+                    });
 
-                    if (data.val() !== null) {
-                        this.setState({
-                            settings: data.val()
-                        });
+                    if(!docSettingSnap.data().editedCategories) {
+                        
 
-                        if(!data.val().editedCategories) {
-                            
-
-                            db.doCreateSettingsForUser(
-                                this.state.authUser.uid,
-                                data.val().font,
-                                data.val().mode,
-                                data.val().currency,
-                                data.val().travelMode,
-                                data.val().fromCurrency,
-                                data.val().monthLimit,
-                                defaultCategories
-                            );
-                        }
-
-                        if (this.state.settings) {
-                            //setting the font family to chart.js
-                            defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
-                        }
-                    } else {
-                        db.doCreateSettingsForUser(
+                        firebasestore.doCreateSettingsForUser(
                             this.state.authUser.uid,
-                            "sans-serif",
-                            "night",
-                            "Indian Rupees",
-                            "off",
-                            "Indian Rupees",
-                            15000,
+                            docSettingSnap.data().font,
+                            docSettingSnap.data().mode,
+                            docSettingSnap.data().currency,
+                            docSettingSnap.data().travelMode,
+                            docSettingSnap.data().fromCurrency,
+                            docSettingSnap.data().monthLimit,
                             defaultCategories
                         );
                     }
-                });
+
+                    if (this.state.settings) {
+                        //setting the font family to chart.js
+                        defaults.global.defaultFontFamily = this.state.settings.font || "sans-serif";
+                    }
+                } else{
+                    console.log("creating settings");
+                    firebasestore.doCreateSettingsForUser(
+                        this.state.authUser.uid,
+                        "sans-serif",
+                        "night",
+                        "Indian Rupees",
+                        "off",
+                        "Indian Rupees",
+                        15000,
+                        defaultCategories
+                    );
+                }
 
                 // get all the expenses from new table
-                firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
-                    if (data.val() !== null) {
-                        this.setState({
-                            expenses: data.val()
-                        });
-                    } else {
-                        // get and set expenses in db from old expenses table to new expenseTable
-                        firebase.db.ref("expenses").on("value", data => {
-                            if (data.val() !== null) {
-                                const eachExpense = utils.eachExpense(data.val());
-                                const thisUsersExpenses = utils.currentUsersExpenses(eachExpense, this.state.authUser);
 
-                                thisUsersExpenses.map(elem => {
-                                    db.doCreateExpenseTable(
-                                        elem.value.uid,
-                                        elem.value.date,
-                                        elem.value.expense,
-                                        elem.value.category,
-                                        elem.value.comments,
-                                        elem.value.day,
-                                        elem.key
-                                    );
-                                });
-                                thisUsersExpenses.map(elem => {
-                                    firebase.db.ref(`expenses/${elem.key}`).remove();
-                                });
+                const expenseCollection = collection(db, `expenseTable/${this.state.authUser.uid}/expenses`);
+                
+                const unsubscribeExpenseColl = onSnapshot(expenseCollection, (querySnapshot) => {
+                    const allExpenses = {};
+                    querySnapshot.forEach((doc) => {
+                        allExpenses[`${doc.id}`] = doc.data();
+                    });
+                    this.setState({
+                        expenses: allExpenses
+                    });
+                });
 
-                                // need to set empty state once deleting all records in legacy table
-                                // or else it will always be loading
+                // get all the loans from new table
 
-                                this.setState({
-                                    expenses: data.val()
-                                });
-                            }
-                        });
-                    }
+                const loanCollection = collection(db, `loanTable/${this.state.authUser.uid}/loans`);
+                
+                const unsubscribeLoanColl = onSnapshot(loanCollection, (querySnapshot) => {
+                    const allLoans = {};
+                    querySnapshot.forEach((doc) => {
+                        allLoans[`${doc.id}`] = doc.data();
+                    });
+                    this.setState({
+                        loans: allLoans
+                    });
                 });
 
                 // get all the savings from new table
-                firebase.db.ref(`savingsTable/${this.state.authUser.uid}`).on("value", data => {
-                    if (data.val() !== null) {
-                        this.setState({ savings: data.val() });
-                    } else {
-                        this.setState({ savings: data.val() });
-                    }
+
+                const savingsCollection = collection(db, `savingsTable/${this.state.authUser.uid}/savings`);
+                
+                const unsubscribeSavingsColl = onSnapshot(savingsCollection, (querySnapshot) => {
+                    const allSavings = {};
+                    querySnapshot.forEach((doc) => {
+                        allSavings[`${doc.id}`] = doc.data();
+                    });
+                    this.setState({
+                        savings: allSavings
+                    });
                 });
+
 
                 // get all the defaultCategories
-                firebase.db.ref("defaultCategories").on("value", data => {
-                    if (data.val() !== null) {
-                        this.setState({
-                            defaultCategoriesNames: Object.keys(data.val()),
-                            defaultCategoriesColors: Object.values(data.val())
-                        });
-                    }
-                });
-
-                // // get all the loan details
-                // firebase.db.ref("loans").on("value", data => {
-                //     if (data) {
-                //         this.setState({
-                //             loans: data.val()
-                //         });
-                //     }
-                // });
-
-                // get all the expenses from new table
-                firebase.db.ref(`loanTable/${this.state.authUser.uid}`).on("value", data => {
-                    if (data.val() !== null) {
-                        this.setState({
-                            loans: data.val()
-                        });
-                    } else {
-                        // get and set expenses in db from old expenses table to new expenseTable
-                        firebase.db.ref("loans").on("value", data => {
-                            if (data.val() !== null) {
-                                const eachExpense = utils.eachExpense(data.val());
-                                const thisUsersLoans = utils.currentUsersExpenses(eachExpense, this.state.authUser);
-
-                                thisUsersLoans.map(elem => {
-                                    db.doCreateLoanTable(
-                                        elem.value.uid,
-                                        elem.value.date,
-                                        elem.value.amount,
-                                        elem.value.loanType,
-                                        elem.value.reason,
-                                        elem.value.person,
-                                        elem.value.day,
-                                        elem.value.status,
-                                        elem.key
-                                    );
-                                });
-
-                                thisUsersLoans.map(elem => {
-                                    firebase.db.ref(`loans/${elem.key}`).remove();
-                                });
-
-                                // need to set empty state once deleting all records in legacy table
-                                // or else it will always be loading
-
-                                this.setState({
-                                    loans: data.val()
-                                });
-                            }
-                        });
-                    }
-                });
-
-                const expensesRef = firebase.db.ref(`expenseTable/${this.state.authUser.uid}`);
-                expensesRef.on("child_removed", data => {
-                    firebase.db.ref(`expenseTable/${this.state.authUser.uid}`).on("value", data => {
-                        if (data) {
-                            this.setState({
-                                expenses: data.val()
-                            });
-                        }
+                const docDefaultCategoriesSnap = await getDoc(doc(db, "defaultCategories", this.state.authUser.uid));
+                if(docDefaultCategoriesSnap.exists()){
+                    this.setState({
+                        defaultCategoriesNames: Object.keys(docDefaultCategoriesSnap.val()),
+                        defaultCategoriesColors: Object.values(docDefaultCategoriesSnap.val())
                     });
-                });
+                } 
 
-                const loansRef = firebase.db.ref(`loanTable/${this.state.authUser.uid}`);
-                loansRef.on("child_removed", data => {
-                    firebase.db.ref(`loanTable/${this.state.authUser.uid}`).on("value", data => {
-                        if (data) {
-                            this.setState({
-                                loans: data.val()
-                            });
-                        }
-                    });
-                });
+                
             }
 
-            // return authUser ? this.setState(() => { authUser: authUser}) : this.setState(() => ({authUser: null}))
+            
         });
     }
 
@@ -317,7 +237,7 @@ class App extends Component {
         };
 
         return (
-            <Router>
+            <Router history={history}>
                 <div style={bodyStyle}>
                     <Navigation authUser={this.state.authUser} settings={this.state.settings} />
                     <Switch>
@@ -412,7 +332,7 @@ class App extends Component {
                         exact
                         path={routes.SETTINGS_VIEW}
                         component={() => (
-                            <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} />
+                            <SettingsPage user={this.state.authUser} settings={this.state.settings} cards={cards} handler = {this.handler}/>
                         )}
                     />
 

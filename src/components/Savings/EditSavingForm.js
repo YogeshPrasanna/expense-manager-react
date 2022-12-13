@@ -13,9 +13,12 @@ import * as firebase from "../../firebase/firebase";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles/form.css";
 
+import { doc, updateDoc } from "firebase/firestore";
+
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value
 })
+
 
 class EditSavingForm extends Component {
     constructor(props) {
@@ -69,21 +72,42 @@ class EditSavingForm extends Component {
         } else {
             this.setState(byPropKey("validationSaving", null));
         }
+        // firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+            // date: this.state.date.format("MM/DD/YYYY"),
+            // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            // goalAmount: this.state.goalAmount,
+            // savingAmount: Math.ceil(this.state.savingAmount),
+            // savingFor: this.state.savingFor,
+            // comments: this.state.comments,
+            // goalAchieved: this.state.goalAchieved,
+            // cardColor: this.state.cardColor
+        // });
 
-        if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
-            firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
-                date: this.state.date.format("MM/DD/YYYY"),
-                day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-                goalAmount: this.state.goalAmount,
-                savingAmount: Math.ceil(this.state.savingAmount),
-                savingFor: this.state.savingFor,
-                comments: this.state.comments,
-                goalAchieved: this.state.goalAchieved,
-                cardColor: this.state.cardColor
-            });
+        updateDoc(doc(firebase.db, `savingsTable/${this.props.user.uid}/savings`, this.props.savings.key), {
+            date: this.state.date.format("MM/DD/YYYY"),
+            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+            goalAmount: this.state.goalAmount,
+            savingAmount: Math.ceil(this.state.savingAmount),
+            savingFor: this.state.savingFor,
+            comments: this.state.comments,
+            goalAchieved: this.state.goalAchieved,
+            cardColor: this.state.cardColor
+        });
 
-            $("#closePopup").click();
-        }
+        // if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
+        //     firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+        //         date: this.state.date.format("MM/DD/YYYY"),
+        //         day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+        //         goalAmount: this.state.goalAmount,
+        //         savingAmount: Math.ceil(this.state.savingAmount),
+        //         savingFor: this.state.savingFor,
+        //         comments: this.state.comments,
+        //         goalAchieved: this.state.goalAchieved,
+        //         cardColor: this.state.cardColor
+        //     });
+
+        //     $("#closePopup").click();
+        // }
 
         
 
