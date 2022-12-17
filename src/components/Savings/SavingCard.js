@@ -78,7 +78,8 @@ class SavingsCard extends Component {
 
           
             return (
-                <div className="col-sm-4 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
+               
+<div className=" col-xl-4 col-md-4 col-sm-6 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
                     {this.state.showEditPopup ? (
                         <EditSavingPopup
                             user={this.props.authUser}
@@ -159,8 +160,66 @@ class SavingsCard extends Component {
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="mb-4">Target date: {moment(savings.value.date).format("DD/MM/yyyy")}</h6>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-8">
+                                        <h3 class="f-w-300 d-flex align-items-center m-b-0">
+                                         {savings.value.savingFor}</h3>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                        {(savings.value.savingAmount >= savings.value.goalAmount)
+                                ? <p class="m-b-0"> Goal Achieved</p>
+                                : <span> </span>
+                                    }
+                                            
+                                            </div>
+                                            </div>
+                                            <div class="progress m-t-30" style={{height: "7px"}}>
+                                                <div class="progress-bar progress-c-theme" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{width: `${savings.value.savingAmount/savings.value.goalAmount *100}%` , background:"green" }}>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row d-flex align-items-center">
+                                    <div class="col-6 text-left">
+                                        <p class="m-b-0">Saved: RM {savings.value.savingAmount}</p>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <p class="m-b-0">Goal: RM {savings.value.goalAmount}</p>
+                                            </div>
+                                            </div>
+                                                    <div style={{padding: "10px 0 0 0"}}>
+
+                                                    <form onSubmit={this.handleSubmit}>
+                                        <div className="row">
+                                            <div className="col-md-6 col-sm-2 col-xs-2">
+                                                <input
+                                                    className="form-control"
+                                                    name="addSavingAmount"
+                                                    required
+                                                    type="number"
+                                                    placeholder="Add Saving"
+                                                    style={customInput}
+                                                    onChange={this.handleChange.bind(this)}
+                                                />
+                                            </div>
+                                            <div className="col-sm-1 col-xs-2" style={{ padding: "0" }}>
+                                                <button className="save-btn" type="submit">
+                                                    <i className="fa fa-save action-icons" aria-hidden="true" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        </form>
+
+                                                    </div>
+                                                    
+                                                    </div>
+                                                    </div>
                     </div>
                 </div>
+               
+                
             );
         }
     }
