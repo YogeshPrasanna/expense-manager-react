@@ -15,36 +15,36 @@ import Modal from "react-bootstrap/Modal";
 
 import AddExpenseForm from "./AddExpenseForm";
 
-export const NewAddExpenseModal = (props) => {
-  const [open, setOpen] = useState(props.openModal);
+// export const NewAddExpenseModal = (props) => {
+//   const [open, setOpen] = useState(props.openModal);
 
-  console.log(open);
+//   console.log(open);
 
-  return (
-    <>
-      <Modal show={open} onHide={props.closePopup}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <AddExpenseForm
-            user={props.user}
-            settings={props.settings}
-            convertedCurrency={props.convertedCurrency}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.closePopup}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={props.closePopup}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-};
+//   return (
+//     <>
+//       <Modal show={open} onHide={props.closePopup}>
+//         <Modal.Header closeButton>
+//           <Modal.Title>Modal heading</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//           <AddExpenseForm
+//             user={props.user}
+//             settings={props.settings}
+//             convertedCurrency={props.convertedCurrency}
+//           />
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button variant="secondary" onClick={props.closePopup}>
+//             Close
+//           </Button>
+//           <Button variant="primary" onClick={props.closePopup}>
+//             Save Changes
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </>
+//   );
+// };
 
 class HomePage extends Component {
   constructor(props) {
@@ -160,14 +160,14 @@ class HomePage extends Component {
               <Loader />
             )}
           </div>
-          <button
+          {/* <button
             className="addexpense-btn"
             onClick={this.toggleNewModal.bind(this)}
           >
             <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
-          </button>
+          </button> */}
 
-          {this.state.newModal ? (
+          {/* {this.state.newModal ? (
             this.state.convertedCurrency ? (
               <NewAddExpenseModal
                 user={this.props.user}
@@ -181,7 +181,7 @@ class HomePage extends Component {
                 <Loader />
               </div>
             )
-          ) : null}
+          ) : null} */}
 
           {/* Open Form */}
           <button
