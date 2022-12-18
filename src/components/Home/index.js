@@ -13,17 +13,37 @@ import * as analytics from "./../../analytics/analytics";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
+import AddExpenseForm from "./AddExpenseForm";
+
 export const NewAddExpenseModal = (props) => {
   const [open, setOpen] = useState(props.openModal);
-  const nightModePopup = {
-    backgroundColor: props.settings
-      ? props.settings.mode === "night"
-        ? "#857861"
-        : "#fff"
-      : "#fff",
-  };
 
-  return <></>;
+  console.log(open);
+
+  return (
+    <>
+      <Modal show={open} onHide={props.closePopup}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <AddExpenseForm
+            user={props.user}
+            settings={props.settings}
+            convertedCurrency={props.convertedCurrency}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={props.closePopup}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={props.closePopup}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 };
 
 class HomePage extends Component {
