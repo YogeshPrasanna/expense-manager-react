@@ -278,14 +278,30 @@ h1 {
     padding-left: 15px;
 }
 
-.save-btn {
-    background: none;
-    border: none;
+.smallButton {
+    border-radius: 8px;
     cursor: pointer;
+    border:none;
     font-size: 28px;
-    color: lightblue;
     line-height: 1px;
-    padding: 0;
+    width:35px;
+    padding: 3px;
+    margin: 0px 3px 0px 3px;
+}
+
+.save-btn {
+    background: lightblue;
+    color: white;
+}
+
+.edit-btn{
+    background: orange;
+    color: white;
+}
+
+.delete-btn{
+    background: red;
+    color: white;
 }
 
 @media (max-width: 720px) {
@@ -299,5 +315,17 @@ h1 {
 
     #saving-card {
         padding: 0;
+    }
+
+    .newCard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: 0.25rem;
     }
 }

@@ -28,7 +28,7 @@ class AddSavingForm extends Component {
             savingFor: "Food",
             comments: "",
             goalAchieved: "no",
-            cardColor: "#fff",
+            cardColor: "green",
             uid: this.props.user.uid,
             dataSaved: false,
             displayColorPicker: false,
