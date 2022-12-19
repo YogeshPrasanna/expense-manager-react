@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^4.6.2",
     "chart.js": "^2.9.4",
     "chartjs-plugin-labels": "^1.1.0",
     "firebase": "^9.6.11",
@@ -13,6 +13,7 @@
     "multiselect-react-dropdown": "^2.0.25",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
+    "react-bootstrap": "^2.7.0",
     "react-chartjs-2": "^2.11.2",
     "react-color": "^2.19.3",
     "react-datepicker": "^1.8.0",

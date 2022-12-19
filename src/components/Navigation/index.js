@@ -50,6 +50,19 @@ const NavigationAuth = (props) => {
         <div className="wideDiv">
           <Link
             className={`nav-link ${
+              window.location.pathname === "/modalexample"
+                ? "active"
+                : "inactive"
+            }`}
+            to={routes.MODAL_EXAMPLE}
+            style={
+              props.settings.mode === "night" ? nightModeLink : dayModeLink
+            }
+          >
+            Modal Example
+          </Link>
+          <Link
+            className={`nav-link ${
               window.location.pathname === "/home" ? "active" : "inactive"
             }`}
             to={routes.HOME}
