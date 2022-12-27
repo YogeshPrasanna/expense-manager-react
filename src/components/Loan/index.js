@@ -107,9 +107,8 @@ class LoanPage extends Component {
                     </button>
 
                     <Modal show={this.state.showPopup} onHide={this.togglePopup.bind(this)}>
-                        <Modal.Header>
+                        <Modal.Header closeButton>
                         <Modal.Title>Add Loan</Modal.Title>
-                        <CloseButton variant="white" />
                         </Modal.Header> 
                         <Modal.Body>
                         <AddLoanForm user={this.props.user} settings={this.props.settings} />

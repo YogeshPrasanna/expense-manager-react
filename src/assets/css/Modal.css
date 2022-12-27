@@ -1,6 +1,7 @@
 .modal-header {
     background-color: #616161 !important;
     color: white;
+    align-items: center;
 }
 .modal-title {
     text-align: center;
@@ -11,14 +12,15 @@
 .modal-footer {
     background-color: #C0C0C0;
 }
-/* .btn-close {
+.btn-close {
     box-sizing: content-box;
     width: 1em;
     height: 1em;
     padding: .25em;
-    color: white !important;
+    /* color: white !important; */
     background: transparent url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") 50%/1em auto no-repeat;
-    border: 0;
+    border: 5;
+    background-color: rgb(247, 84, 84);
     border-radius: .375rem;
     opacity: .5;
-} */
+}
