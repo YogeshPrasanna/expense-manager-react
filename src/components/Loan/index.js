@@ -34,6 +34,10 @@ class LoanPage extends Component {
         this.setState(change);
     }
 
+    changePage() {
+        console.log()
+    }
+
     filterLoan() {
         if(this.state.search == "" && this.props.loans) {
             return this.props.loans;
@@ -99,6 +103,23 @@ class LoanPage extends Component {
                             />
                         </div>
                     </div>
+                    {/* <div className="row">
+                            <ul class="pagination mx-auto">
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#" onClick={this.changePage()}>1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </div> */}
 
                     <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addLoan">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
