@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import AddLoanPopup from "./AddLoanPopup";
 import LoanTable from "./LoanTable";
 import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 import BarChartAllMonths from "./BarChartAllMonths";
+import { Modal, CloseButton } from "react-bootstrap";
+import AddLoanForm from "./AddLoanForm";
+import '../../assets/css/Modal.css'
 
 import * as analytics from "./../../analytics/analytics";
 
@@ -32,10 +34,6 @@ class LoanPage extends Component {
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
-    }
-
-    changePage() {
-        console.log()
     }
 
     filterLoan() {
@@ -103,36 +101,21 @@ class LoanPage extends Component {
                             />
                         </div>
                     </div>
-                    {/* <div className="row">
-                            <ul class="pagination mx-auto">
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#" onClick={this.changePage()}>1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                                </li>
-                            </ul>
-                        </div> */}
 
                     <button className="addloan-btn" onClick={this.togglePopup.bind(this)} id="addLoan">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
 
-                    {this.state.showPopup ? (
-                        <AddLoanPopup
-                            user={this.props.user}
-                            openModal={this.state.showPopup}
-                            togglePopout={this.togglePopup.bind(this)}
-                            settings={this.props.settings}
-                        />
-                    ) : null}
+                    <Modal show={this.state.showPopup} onHide={this.togglePopup.bind(this)}>
+                        <Modal.Header>
+                        <Modal.Title>Add Loan</Modal.Title>
+                        <CloseButton variant="white" />
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <AddLoanForm user={this.props.user} settings={this.props.settings} />
+                        </Modal.Body>
+                    </Modal>
+                    
                 </div>
             );
         } else {
