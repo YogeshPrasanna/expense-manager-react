@@ -72,18 +72,20 @@ class LoanPage extends Component {
                             />
                         </div>
                     </div>
-                    <div className="row">
-                    <div className="form-group row">
-                        <div className="col-6 col-sm-3">
-                            <input
+                    <div className="row justify-content-end">
+                    {/* <div className="form-group row"> */}
+                        <div className="col-12 col-md-4 mt-2">                           
+                        <input
                                 type="text"
                                 name="search"
                                 maxLength={50}
                                 value={this.state.search}
                                 onChange={this.handleChange.bind(this)}
+                                placeholder="🔍︎ search by person or reason"
+                                className="form-control"
                             />
                         </div>
-                    </div>
+                    {/* </div> */}
                         <div className="col-sm-12 mobileNoPadding">
                             <GenerateExcel
                                 loans={this.props.loans}
