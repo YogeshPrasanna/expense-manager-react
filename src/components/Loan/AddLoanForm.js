@@ -154,7 +154,8 @@ class AddLoanForm extends Component {
                                 }
                                 type="number"
                                 name="amount"
-                                min={0.01}
+                                min={0.1}
+                                step={0.1}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.amount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
