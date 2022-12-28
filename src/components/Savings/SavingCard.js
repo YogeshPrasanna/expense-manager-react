@@ -9,6 +9,8 @@ import $ from "jquery";
 
 import moment from "moment";
 import { deleteDoc, doc, updateDoc} from "firebase/firestore";
+import { Modal } from "react-bootstrap";
+import EditSavingForm from "./EditSavingForm";
 
 class SavingsCard extends Component {
     constructor(props) {
@@ -81,12 +83,16 @@ class SavingsCard extends Component {
                
 <div className=" col-xl-4 col-md-4 col-sm-6 col-xs-12" id="saving-card" style={{ display: "inline-block" }}>
                     {this.state.showEditPopup ? (
-                        <EditSavingPopup
-                            user={this.props.authUser}
-                            savings={this.props.savings}
-                            closePopup={this.toggleEditPopup.bind(this)}
-                            settings={this.props.settings}
-                        />
+                        <Modal show={this.state.showEditPopup} onHide={this.toggleEditPopup.bind(this)}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Edit Saving</Modal.Title>
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <EditSavingForm user={currentUser} savings={savings} settings={settings} />
+                        </Modal.Body>
+                    </Modal>
+
+                        
                     ) : null}
                     {/** 
                     <div className="img-card card-savings" style={{ border: "none" }}>
