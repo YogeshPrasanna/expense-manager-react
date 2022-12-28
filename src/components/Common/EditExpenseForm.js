@@ -155,7 +155,7 @@ class EditExpenseForm extends Component {
                         // required
                         type="number"
                         name="expense"
-                        min={1}
+                        min={0.1}
                         onChange={this.handleChange.bind(this)}
                         value={this.state.expense}
                         style={
