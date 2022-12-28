@@ -208,6 +208,8 @@ class SavingsCard extends Component {
                                                     className="form-control"
                                                     name="addSavingAmount"
                                                     required
+                                                    min = {0.1}
+                                                    step = {0.1}
                                                     type="number"
                                                     placeholder="Add Saving"
                                                     style={customInput}
