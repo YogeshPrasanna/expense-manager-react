@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import AddLoanPopup from "./AddLoanPopup";
 import LoanTable from "./LoanTable";
 import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 import BarChartAllMonths from "./BarChartAllMonths";
+import { Modal } from "react-bootstrap";
+import AddLoanForm from "./AddLoanForm";
+import '../../assets/css/Modal.css'
 
 import * as analytics from "./../../analytics/analytics";
 
@@ -13,6 +15,7 @@ class LoanPage extends Component {
         super(props);
 
         this.state = { showPopup: false };
+        this.state.search = "";
     }
 
     togglePopup() {
@@ -24,6 +27,24 @@ class LoanPage extends Component {
     componentDidMount() {
         analytics.initGA();
         analytics.logPageView();
+    }
+
+    handleChange(e) {
+        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
+        var change = {};
+        change[e.target.name] = e.target.value;
+        this.setState(change);
+    }
+
+    filterLoan() {
+        if(this.state.search == "" && this.props.loans) {
+            return this.props.loans;
+        } else if (this.state.search != "") {
+            var loans = Object.values(this.props.loans)
+            return loans.filter((loan) => {
+                return (loan.person.toLowerCase().includes(this.state.search.toLowerCase()) || loan.reason.toLowerCase().includes(this.state.search.toLowerCase()))
+            });
+        }
     }
 
     render() {
@@ -53,7 +74,20 @@ class LoanPage extends Component {
                             />
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row justify-content-end">
+                    {/* <div className="form-group row"> */}
+                        <div className="col-12 col-md-4 mt-2">                           
+                        <input
+                                type="text"
+                                name="search"
+                                maxLength={50}
+                                value={this.state.search}
+                                onChange={this.handleChange.bind(this)}
+                                placeholder="🔍︎ search by person or reason"
+                                className="form-control"
+                            />
+                        </div>
+                    {/* </div> */}
                         <div className="col-sm-12 mobileNoPadding">
                             <GenerateExcel
                                 loans={this.props.loans}
@@ -61,7 +95,7 @@ class LoanPage extends Component {
                                 settings={this.props.settings}
                             />
                             <LoanTable
-                                loans={this.props.loans}
+                                loans={this.filterLoan()}
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                             />
@@ -72,13 +106,15 @@ class LoanPage extends Component {
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
 
-                    {this.state.showPopup ? (
-                        <AddLoanPopup
-                            user={this.props.user}
-                            closePopup={this.togglePopup.bind(this)}
-                            settings={this.props.settings}
-                        />
-                    ) : null}
+                    <Modal show={this.state.showPopup} onHide={this.togglePopup.bind(this)}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Add Loan</Modal.Title>
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <AddLoanForm user={this.props.user} settings={this.props.settings} />
+                        </Modal.Body>
+                    </Modal>
+                    
                 </div>
             );
         } else {
