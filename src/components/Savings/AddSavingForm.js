@@ -94,8 +94,8 @@ class AddSavingForm extends Component {
             db.doCreateSaving(
                 this.state.uid,
                 this.state.date.format("MM/DD/YYYY"),
-                this.state.goalAmount,
-                Math.ceil(this.state.savingAmount),
+                Number(this.state.goalAmount),
+                Number(this.state.savingAmount),
                 this.state.savingFor,
                 this.state.comments,
                 this.state.goalAchieved,

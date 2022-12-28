@@ -49,7 +49,7 @@ class SavingsCard extends Component {
         event.preventDefault();
         updateDoc(doc(firebase.db, `savingsTable/${this.props.authUser.uid}/savings`, this.props.savings.key), {
             
-            savingAmount: Math.ceil(Number(this.props.savings.value.savingAmount) + Number(this.state.addSavingAmount)),
+            savingAmount: Number(this.props.savings.value.savingAmount) + Number(this.state.addSavingAmount),
             
         });
 
@@ -194,10 +194,10 @@ class SavingsCard extends Component {
                                                     </div>
                                                     <div class="row d-flex align-items-center">
                                     <div class="col-6 text-left">
-                                        <p class="m-b-0" style={{color:`${savings.value.cardColor}`}}>Saved: RM {savings.value.savingAmount}</p>
+                                        <p class="m-b-0" style={{color:`${savings.value.cardColor}`}}>Saved: RM {savings.value.savingAmount.toFixed(2)}</p>
                                         </div>
                                         <div class="col-6 text-right" >
-                                            <p class="m-b-0">Goal: RM {savings.value.goalAmount}</p>
+                                            <p class="m-b-0">Goal: RM {savings.value.goalAmount.toFixed(2)}</p>
                                             </div>
                                             </div>
                                                     

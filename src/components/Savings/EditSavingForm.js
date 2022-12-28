@@ -110,8 +110,8 @@ class EditSavingForm extends Component {
             updateDoc(doc(firebase.db, `savingsTable/${this.props.user.uid}/savings`, this.props.savings.key), {
                 date: this.state.date.format("MM/DD/YYYY"),
                 day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-                goalAmount: this.state.goalAmount,
-                savingAmount: Math.ceil(this.state.savingAmount),
+                goalAmount: Number(this.state.goalAmount),
+                savingAmount: Number(this.state.savingAmount),
                 savingFor: this.state.savingFor,
                 comments: this.state.comments,
                 goalAchieved: this.state.goalAchieved,
