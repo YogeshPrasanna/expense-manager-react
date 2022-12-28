@@ -240,7 +240,7 @@ class AddSavingForm extends Component {
                                 }
                                 type="number"
                                 min = {0.1}
-                                step = {0.01}
+                                step = {0.1}
                                 name="goalAmount"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.goalAmount}
@@ -261,7 +261,7 @@ class AddSavingForm extends Component {
                                       : "form-control mb-0 px-3 py-4"
                                 }
                                 min = {0.1}
-                                step = {0.01}
+                                step = {0.1}
                                 type="number"
                                 name="savingAmount"
                                 onChange={this.handleChange.bind(this)}
