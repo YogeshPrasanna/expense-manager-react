@@ -8,7 +8,7 @@ import "./styles/cards.css";
 import $ from "jquery";
 
 import moment from "moment";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc} from "firebase/firestore";
 
 class SavingsCard extends Component {
     constructor(props) {
@@ -45,9 +45,10 @@ class SavingsCard extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        firebase.db.ref(`savingsTable/${this.props.authUser.uid}/${this.props.savings.key}`).update({
-            savingAmount: Math.ceil(Number(this.props.savings.value.savingAmount) + Number(this.state.addSavingAmount))
+        updateDoc(doc(firebase.db, `savingsTable/${this.props.authUser.uid}/savings`, this.props.savings.key), {
+            
+            savingAmount: Math.ceil(Number(this.props.savings.value.savingAmount) + Number(this.state.addSavingAmount)),
+            
         });
 
         $("#closePopup").click();

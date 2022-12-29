@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
+import history from "./history";
 import { firebase } from "../firebase/index";
 import { defaults } from "react-chartjs-2";
 import Trianglify from "trianglify";
@@ -236,7 +237,7 @@ class App extends Component {
         };
 
         return (
-            <Router>
+            <Router history={history}>
                 <div style={bodyStyle}>
                     <Navigation authUser={this.state.authUser} settings={this.state.settings} />
                     <Switch>
