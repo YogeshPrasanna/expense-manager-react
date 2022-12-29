@@ -97,7 +97,7 @@ class DoughnutChartCategory extends Component {
             };
 
             const options = {
-                legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)" } },
+                legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)", fontStyle: "italic" } },
                 layout: { padding: { left: 0, right: 0, top: 15, bottom: 0 } },
                 cutoutPercentage: 70,
                 plugins: {
@@ -166,7 +166,7 @@ class DoughnutChartCategory extends Component {
             };
 
             const optionsMobile = {
-                legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
+                legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)", fontStyle: "italic" } },
                 layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } },
                 cutoutPercentage: 0,
                 plugins: {
