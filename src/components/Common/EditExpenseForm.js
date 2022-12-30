@@ -156,6 +156,7 @@ class EditExpenseForm extends Component {
                         type="number"
                         name="expense"
                         min={0.1}
+                        step={0.1}
                         onChange={this.handleChange.bind(this)}
                         value={this.state.expense}
                         style={

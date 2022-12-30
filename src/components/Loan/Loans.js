@@ -53,3 +53,4 @@ const Loans = props => {
 };
 
 export default Loans;
+
