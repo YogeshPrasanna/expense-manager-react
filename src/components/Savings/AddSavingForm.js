@@ -204,6 +204,7 @@ class AddSavingForm extends Component {
                                 dateFormat={"DD/MM/YYYY"} //change date format to UK
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
+                                onKeyDown = {(e) => e.preventDefault()}
                                 minDate={moment().toDate()} //exclude the past date , so user cannot select
 
                             />
