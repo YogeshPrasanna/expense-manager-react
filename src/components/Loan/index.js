@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import LoanTable from "./LoanTable";
 import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 import BarChartAllMonths from "./BarChartAllMonths";
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap";
 import AddLoanForm from "./AddLoanForm";
 import "../../assets/css/Modal.css";
 
