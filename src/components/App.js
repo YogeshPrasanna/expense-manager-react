@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import history from "./history";
 import { firebase } from "../firebase/index";
@@ -10,24 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/index.css";
 import "../assets/css/signin.css";
 
-import Navigation from "./Navigation/index";
-//import LandingPage from "./Landing/index";
-import SignUpPage from "./signUp/index";
-import SignInPage from "./signIn/index";
-import ShopPage from "./Shop/index";
-import PasswordForgetPage from "./forgotPassword/index";
-import HomePage from "./Home/index";
-import UpdatePassword from "./Settings/UpdatePassword";
-import MonthViewPage from "./MonthView/index";
-import DailyViewPage from "./DailyView/index";
-import FilterViewPage from "./FilterView/index";
-import UserVerification from "./UserVerification/index";
-import StatisticsPage from "./Statistics/index";
-import LoanPage from "./Loan/index";
-import SettingsPage from "./Settings/index";
-import SavingsPage from "./Savings/index";
-import ErrorPage from "./Error/index";
-
 import ExampleModalClass from "./NewModalExample/index";
 
 import * as routes from "../constants/routes";
@@ -35,6 +17,23 @@ import { db } from "../firebase/firebase.js";
 import * as firebasestore from "../firebase/db.js";
 import * as analytics from "./../analytics/analytics";
 import { doc, getDoc, collection, onSnapshot } from "@firebase/firestore";
+
+const Navigation = React.lazy(() => import("./Navigation/index"));
+const SignUpPage = React.lazy(() => import("./signUp/index"));
+const SignInPage = React.lazy(() => import("./signIn/index"));
+const ShopPage = React.lazy(() => import("./Shop/index"));
+const PasswordForgetPage = React.lazy(() => import("./forgotPassword/index"));
+const HomePage = React.lazy(() => import("./Home/index"));
+const UpdatePassword = React.lazy(() => import("./Settings/UpdatePassword"));
+const MonthViewPage = React.lazy(() => import("./MonthView/index"));
+const DailyViewPage = React.lazy(() => import("./DailyView/index"));
+const FilterViewPage = React.lazy(() => import("./FilterView/index"));
+const UserVerification = React.lazy(() => import("./UserVerification/index"));
+const StatisticsPage = React.lazy(() => import("./Statistics/index"));
+const LoanPage = React.lazy(() => import("./Loan/index"));
+const SettingsPage = React.lazy(() => import("./Settings/index"));
+const SavingsPage = React.lazy(() => import("./Savings/index"));
+const ErrorPage = React.lazy(() => import("./Error/index"));
 
 class App extends Component {
   constructor(props) {
@@ -398,141 +397,142 @@ class App extends Component {
 
     return (
       <Router history={history}>
-        <div style={bodyStyle}>
-          <Navigation
-            authUser={this.state.authUser}
-            settings={this.state.settings}
-          />
-          <Switch>
-            {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
-            <Route
-              exact
-              path={routes.SIGN_UP}
-              component={() => <SignUpPage />}
+        <Suspense fallback={<div>Loading...</div>}>
+          <div style={bodyStyle}>
+            <Navigation
+              authUser={this.state.authUser}
+              settings={this.state.settings}
             />
-            <Route
-              exact
-              path={routes.SIGN_IN}
-              component={() => <SignInPage />}
-            />
-            <Route exact path={routes.SHOP} component={() => <ShopPage />} />
+            <Switch>
+              {/* <Route exact path={routes.LANDING} component={() => <SignInPage />} /> */}
+              <Route
+                exact
+                path={routes.SIGN_UP}
+                component={() => <SignUpPage />}
+              />
+              <Route
+                exact
+                path={routes.SIGN_IN}
+                component={() => <SignInPage />}
+              />
+              <Route exact path={routes.SHOP} component={() => <ShopPage />} />
 
-            <Route
-              exact
-              path={routes.PASSWORD_FORGET}
-              component={() => <PasswordForgetPage />}
-            />
-            <Route
-              exact
-              path={routes.UPDATE_PASSWORD}
-              component={() => <UpdatePassword user={this.state.authUser} />}
-            />
-            <Route
-              exact
-              path={routes.USER_VERIFICATION}
-              component={() => <UserVerification />}
-            />
-            <Route
-              exact
-              path={routes.HOME}
-              component={() => (
-                <HomePage
-                  user={this.state.authUser}
-                  expenses={this.state.expenses}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={routes.MONTH_VIEW}
-              component={() => (
-                <MonthViewPage
-                  user={this.state.authUser}
-                  expenses={this.state.expenses}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
+              <Route
+                exact
+                path={routes.PASSWORD_FORGET}
+                component={() => <PasswordForgetPage />}
+              />
+              <Route
+                exact
+                path={routes.UPDATE_PASSWORD}
+                component={() => <UpdatePassword user={this.state.authUser} />}
+              />
+              <Route
+                exact
+                path={routes.USER_VERIFICATION}
+                component={() => <UserVerification />}
+              />
+              <Route
+                exact
+                path={routes.HOME}
+                component={() => (
+                  <HomePage
+                    user={this.state.authUser}
+                    expenses={this.state.expenses}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={routes.MONTH_VIEW}
+                component={() => (
+                  <MonthViewPage
+                    user={this.state.authUser}
+                    expenses={this.state.expenses}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path={routes.DAILY_VIEW}
-              component={() => (
-                <DailyViewPage
-                  user={this.state.authUser}
-                  expenses={this.state.expenses}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
+              <Route
+                exact
+                path={routes.DAILY_VIEW}
+                component={() => (
+                  <DailyViewPage
+                    user={this.state.authUser}
+                    expenses={this.state.expenses}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path={routes.FILTER_VIEW}
-              component={() => (
-                <FilterViewPage
-                  user={this.state.authUser}
-                  expenses={this.state.expenses}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={routes.STATISTICS_VIEW}
-              component={() => (
-                <StatisticsPage
-                  user={this.state.authUser}
-                  expenses={this.state.expenses}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={routes.LOAN_VIEW}
-              component={() => (
-                <LoanPage
-                  user={this.state.authUser}
-                  loans={this.state.loans}
-                  settings={this.state.settings}
-                  cards={cards}
-                />
-              )}
-            />
+              <Route
+                exact
+                path={routes.FILTER_VIEW}
+                component={() => (
+                  <FilterViewPage
+                    user={this.state.authUser}
+                    expenses={this.state.expenses}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={routes.STATISTICS_VIEW}
+                component={() => (
+                  <StatisticsPage
+                    user={this.state.authUser}
+                    expenses={this.state.expenses}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={routes.LOAN_VIEW}
+                component={() => (
+                  <LoanPage
+                    user={this.state.authUser}
+                    loans={this.state.loans}
+                    settings={this.state.settings}
+                    cards={cards}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path={routes.SETTINGS_VIEW}
-              component={() => (
-                <SettingsPage
-                  user={this.state.authUser}
-                  settings={this.state.settings}
-                  cards={cards}
-                  handler={this.handler}
-                />
-              )}
-            />
+              <Route
+                exact
+                path={routes.SETTINGS_VIEW}
+                component={() => (
+                  <SettingsPage
+                    user={this.state.authUser}
+                    settings={this.state.settings}
+                    cards={cards}
+                    handler={this.handler}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path={routes.SAVINGS_VIEW}
-              component={() => (
-                <SavingsPage
-                  user={this.state.authUser}
-                  savings={this.state.savings}
-                  settings={this.state.settings}
-                />
-              )}
-            />
+              <Route
+                exact
+                path={routes.SAVINGS_VIEW}
+                component={() => (
+                  <SavingsPage
+                    user={this.state.authUser}
+                    savings={this.state.savings}
+                    settings={this.state.settings}
+                  />
+                )}
+              />
 
-            <Route
+              {/* <Route
               exact
               path={routes.MODAL_EXAMPLE}
               component={() => (
@@ -543,11 +543,12 @@ class App extends Component {
                   cards={cards}
                 />
               )}
-            />
+            /> */}
 
-            <Route component={() => <ErrorPage />} />
-          </Switch>
-        </div>
+              <Route component={() => <ErrorPage />} />
+            </Switch>
+          </div>
+        </Suspense>
       </Router>
     );
   }
