@@ -35,7 +35,7 @@ class ExpenseRow extends Component {
 
     render() {
         const conditionForDay = this.props.expense.value.day || moment(this.props.expense.value.date).day();
-        let day = "Sunday";
+        let day = "";
 
         if (conditionForDay) {
             switch (conditionForDay) {
