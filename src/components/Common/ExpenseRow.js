@@ -23,7 +23,6 @@ class ExpenseRow extends Component {
     handleClick(e) {
         let message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
-            //firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
             deleteDoc(doc(firebase.db, `expenseTable/${this.props.user.uid}/expenses`, this.props.expenseId));
         }
     }
@@ -36,13 +35,10 @@ class ExpenseRow extends Component {
 
     render() {
         const conditionForDay = this.props.expense.value.day || moment(this.props.expense.value.date).day();
-        let getDay;
         let day = "Sunday";
 
         if (conditionForDay) {
-            let getDay = conditionForDay;
-
-            switch (getDay) {
+            switch (conditionForDay) {
                 case 0:
                     day = "Sunday";
                     break;

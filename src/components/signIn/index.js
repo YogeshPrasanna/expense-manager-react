@@ -75,21 +75,21 @@ class SignInForm extends Component {
       .then((result) => {
         this.setState(byPropKey("isLoading", false));
         // This gives you a Google Access Token. You can use it to access the Google API.
-        let token = result.credential.accessToken;
+        // let token = result.credential.accessToken;
         // The signed-in user info.
-        let user = result.user;
+        // let user = result.user;
         history.push(routes.HOME);
       })
       .catch((error) => {
         this.setState(byPropKey("isLoading", false));
         // Handle Errors here.
-        let errorCode = error.code;
+        // let errorCode = error.code;
         let errorMessage = error.message;
 
         // The email of the user's account used.
-        let email = error.email;
+        // let email = error.email;
         // The firebase.auth.AuthCredential type that was used.
-        let credential = error.credential;
+        // let credential = error.credential;
         alert(errorMessage, "Retry !!!");
         // ...
       });
@@ -167,13 +167,11 @@ class SignInForm extends Component {
   };
 
   render() {
-    const { email, password, error, isLoading } = this.state;
+    const { email, password, isLoading } = this.state;
 
     const imgStyle = {
       margin: "25px 35%",
     };
-
-    const isInvalid = password === "" || email === "";
 
     const fullHeight = {
       minHeight: "100vh",
@@ -190,7 +188,7 @@ class SignInForm extends Component {
     const homeImgStyle = {
       verticaAlign: "middle",
       borderRadius: "10px",
-      boxShadow: "100px solid red",
+      // boxShadow: "100px solid red",
       boxShadow: "20px 20px rgba(0,0,0,0.4)",
       borderStyle: "none",
       width: "100%",
