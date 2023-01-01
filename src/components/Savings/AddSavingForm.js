@@ -159,172 +159,142 @@ class AddSavingForm extends Component {
 
       const inputDayMode = { background: "#fff", color: "#495057" };
 
-      const color = {
-        width: "36px",
-        height: "14px",
-        borderRadius: "2px",
-        background: `${this.state.cardColor}`,
-      };
-      const swatch = {
-        padding: "5px",
-        background: "#fff",
-        borderRadius: "1px",
-        boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
-        display: "inline-block",
-        cursor: "pointer",
-      };
-      const popover = {
-        position: "absolute",
-        zIndex: "2",
-      };
-      const cover = {
-        position: "fixed",
-        top: "0px",
-        right: "0px",
-        bottom: "0px",
-        left: "0px",
-      };
+           
 
-      const {
-        validationGoal,
-        validationSaving,
-        validationComments,
-        validationSavingFor,
-      } = this.state;
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group row">
-            <label className="col-sm-3 col-xs-6 col-form-label">
-              <span>Target Date</span>
-            </label>
-            <div className="col-sm-9 col-xs-6">
-              <DatePicker
-                className={
-                  "form-control date " +
-                  (this.props.settings.mode === "night"
-                    ? "inputNightMode"
-                    : "inputDayMode")
-                }
-                name="date"
-                dateFormat={"DD/MM/YYYY"} //change date format to UK
-                selected={this.state.date}
-                onChange={this.handelDateChange.bind(this)}
-                minDate={moment().toDate()} //exclude the past date , so user cannot select
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-xs-6 col-form-label">
-              <span>Card Color</span>
-            </label>
-            <div className="col-sm-9 col-xs-6">
-              {/* <SketchPicker color={this.state.cardColor} onChangeComplete={this.handleChangeComplete} /> */}
-              <div style={swatch} onClick={this.handleClick}>
-                <div style={color} />
-              </div>
-              {this.state.displayColorPicker ? (
-                <div style={popover}>
-                  <div style={cover} onClick={this.handleClose} />
-                  <SketchPicker
-                    name="cardColor"
-                    color={this.state.cardColor}
-                    onChange={this.handleColorChange}
-                  />
-                </div>
-              ) : null}
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-3 col-xs-6 col-form-label">
-              <span>Goal Amount</span>
-            </label>
-            <div className="col-sm-9 col-xs-6">
-              <input
-                className={
-                  validationGoal
-                    ? "form-control mb-0 px-3 py-4 is-invalid"
-                    : "form-control mb-0 px-3 py-4"
-                }
-                type="number"
-                min={0.1}
-                step={0.1}
-                name="goalAmount"
-                onChange={this.handleChange.bind(this)}
-                value={this.state.goalAmount}
-                style={
-                  this.props.settings.mode === "night"
-                    ? inputNightMode
-                    : inputDayMode
-                }
-              />
-              {validationGoal ? (
-                <div className="invalid-feedback err">{validationGoal}</div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-3 col-xs-6 col-form-label">
-              <span>Saving Amount</span>
-            </label>
-            <div className="col-sm-9 col-xs-6">
-              <input
-                className={
-                  validationSaving
-                    ? "form-control mb-0 px-3 py-4 is-invalid"
-                    : "form-control mb-0 px-3 py-4"
-                }
-                min={0.1}
-                step={0.1}
-                type="number"
-                name="savingAmount"
-                onChange={this.handleChange.bind(this)}
-                value={this.state.savingAmount}
-                style={
-                  this.props.settings.mode === "night"
-                    ? inputNightMode
-                    : inputDayMode
-                }
-              />
-              {validationSaving ? (
-                <div className="invalid-feedback err">{validationSaving}</div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-3 col-xs-6 col-form-label">
-              <span>Saving For</span>
-            </label>
-            <div className="col-sm-9 col-xs-6">
-              <input
-                className={
-                  validationSavingFor
-                    ? "form-control mb-0 px-3 py-4 is-invalid"
-                    : "form-control mb-0 px-3 py-4"
-                }
-                maxLength={50}
-                type="text"
-                name="savingFor"
-                onChange={this.handleChange.bind(this)}
-                value={this.state.savingFor}
-                style={
-                  this.props.settings.mode === "night"
-                    ? inputNightMode
-                    : inputDayMode
-                }
-              />
-              {validationSavingFor ? (
-                <div className="invalid-feedback err">
-                  {validationSavingFor}
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+            const color = {
+                width: "36px",
+                height: "14px",
+                borderRadius: "2px",
+                background: `${this.state.cardColor}`
+            };
+            const swatch = {
+                padding: "5px",
+                background: "#fff",
+                borderRadius: "1px",
+                boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+                display: "inline-block",
+                cursor: "pointer"
+            };
+            const popover = {
+                position: "absolute",
+                zIndex: "2"
+            };
+            const cover = {
+                position: "fixed",
+                top: "0px",
+                right: "0px",
+                bottom: "0px",
+                left: "0px"
+            };
+            
+            const { validationGoal, validationSaving , validationComments, validationSavingFor } = this.state;
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group row">
+                        <label className="col-sm-3 col-xs-6 col-form-label">
+                            <span>Target Date</span>
+                        </label>
+                        <div className="col-sm-9 col-xs-6">
+                            <DatePicker
+                                className={
+                                    "form-control date " +
+                                    (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
+                                }
+                                name="date"
+                                dateFormat={"DD/MM/YYYY"} //change date format to UK
+                                selected={this.state.date}
+                                onChange={this.handelDateChange.bind(this)}
+                                minDate={moment().toDate()} //exclude the past date , so user cannot select
+
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="" className="col-sm-3 col-xs-6 col-form-label">
+                            <span>Card Color</span>
+                        </label>
+                        <div className="col-sm-9 col-xs-6">
+                            {/* <SketchPicker color={this.state.cardColor} onChangeComplete={this.handleChangeComplete} /> */}
+                            <div style={swatch} onClick={this.handleClick}>
+                                <div style={color} />
+                            </div>
+                            {this.state.displayColorPicker ? (
+                                <div style={popover}>
+                                    <div style={cover} onClick={this.handleClose} />
+                                    <SketchPicker
+                                        name="cardColor"
+                                        color={this.state.cardColor}
+                                        onChange={this.handleColorChange}
+                                    />
+                                </div>
+                            ) : null}
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-3 col-xs-6 col-form-label">
+                            <span>Goal Amount</span>
+                        </label>
+                        <div className="col-sm-9 col-xs-6">
+                            <input
+                                className={
+                                    validationGoal
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                type="number"
+                                min = {0.1}
+                                step = {0.1}
+                                name="goalAmount"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.goalAmount}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                            {validationGoal ? (<div className="invalid-feedback err">{validationGoal}</div>) : ("")} 
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-3 col-xs-6 col-form-label">
+                            <span>Saving Amount</span>
+                        </label>
+                        <div className="col-sm-9 col-xs-6">
+                            <input
+                                className={
+                                    validationSaving
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                min = {0.1}
+                                step = {0.1}
+                                type="number"
+                                name="savingAmount"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.savingAmount}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                            {validationSaving ? (<div className="invalid-feedback err">{validationSaving}</div>) : ("")}
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-3 col-xs-6 col-form-label">
+                            <span>Saving For</span>
+                        </label>
+                        <div className="col-sm-9 col-xs-6">
+                            <input
+                                className={
+                                    validationSavingFor
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                maxLength={50}
+                                type="text"
+                                name="savingFor"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.savingFor}
+                                style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
+                            />
+                            {validationSavingFor ? (<div className="invalid-feedback err">{validationSavingFor}</div>) : ("")}
+                        </div>
+                    </div>
 
           <div className="form-group row">
             <label className="col-sm-3 col-xs-6 col-form-label">
