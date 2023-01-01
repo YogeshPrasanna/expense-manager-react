@@ -112,25 +112,25 @@ export const mostSpentDay = expenses => {
         switch (elem.value.day.toString()) {
             case "0":
                 sunday = sunday + 1;
-                return "";
+                return sunday;
             case "1":
                 monday = monday + 1;
-                return "";
+                return monday;
             case "2":
                 tuesday = tuesday + 1;
-                return "";
+                return monday;
             case "3":
                 wednesday = wednesday + 1;
-                return "";
+                return wednesday;
             case "4":
                 thursday = thursday + 1;
-                return "";
+                return thursday;
             case "5":
                 friday = friday + 1;
-                return "";
+                return friday;
             case "6":
                 saturday = saturday + 1;
-                return "";
+                return saturday;
             default:
                 return "";
         }
