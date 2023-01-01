@@ -21,7 +21,7 @@ class ExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        let message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
             //firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
             deleteDoc(doc(firebase.db, `expenseTable/${this.props.user.uid}/expenses`, this.props.expenseId));
@@ -36,10 +36,11 @@ class ExpenseRow extends Component {
 
     render() {
         const conditionForDay = this.props.expense.value.day || moment(this.props.expense.value.date).day();
+        let getDay;
+        let day = "Sunday";
 
         if (conditionForDay) {
-            var getDay = conditionForDay;
-            var day;
+            let getDay = conditionForDay;
 
             switch (getDay) {
                 case 0:

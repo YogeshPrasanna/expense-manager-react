@@ -25,7 +25,7 @@ class SavingsCard extends Component {
 
   // deleting the saving
   handleClick(e) {
-    var message =
+    let message =
       "Once deleted you cannot get back this record , are you sure you want to delete";
     if (window.confirm(message)) {
       //firebase.db.ref(`savingsTable/${this.props.authUser.uid}/${this.props.savings.key}`).remove();
@@ -47,7 +47,7 @@ class SavingsCard extends Component {
 
   handleChange(e) {
     // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-    var change = {};
+    let change = {};
     change[e.target.name] = e.target.value;
     this.setState(change);
   }

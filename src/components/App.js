@@ -219,7 +219,7 @@ class App extends Component {
       height: "100vh",
     };
 
-    var patternconfig = {
+    let patternconfig = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -236,7 +236,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig2 = {
+    let patternconfig2 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -253,7 +253,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig3 = {
+    let patternconfig3 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -270,7 +270,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig4 = {
+    let patternconfig4 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -287,7 +287,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig5 = {
+    let patternconfig5 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -304,7 +304,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig6 = {
+    let patternconfig6 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -321,7 +321,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig7 = {
+    let patternconfig7 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -338,7 +338,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig8 = {
+    let patternconfig8 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -355,7 +355,7 @@ class App extends Component {
       ],
       y_colors: "match_x",
     };
-    var patternconfig9 = {
+    let patternconfig9 = {
       height: 300,
       width: 500,
       cell_size: 75,
@@ -373,15 +373,15 @@ class App extends Component {
       y_colors: "match_x",
     };
 
-    var pattern = Trianglify({ ...patternconfig });
-    var pattern2 = Trianglify({ ...patternconfig2 });
-    var pattern3 = Trianglify({ ...patternconfig3 });
-    var pattern4 = Trianglify({ ...patternconfig4 });
-    var pattern5 = Trianglify({ ...patternconfig5 });
-    var pattern6 = Trianglify({ ...patternconfig6 });
-    var pattern7 = Trianglify({ ...patternconfig7 });
-    var pattern8 = Trianglify({ ...patternconfig8 });
-    var pattern9 = Trianglify({ ...patternconfig9 });
+    let pattern = Trianglify({ ...patternconfig });
+    let pattern2 = Trianglify({ ...patternconfig2 });
+    let pattern3 = Trianglify({ ...patternconfig3 });
+    let pattern4 = Trianglify({ ...patternconfig4 });
+    let pattern5 = Trianglify({ ...patternconfig5 });
+    let pattern6 = Trianglify({ ...patternconfig6 });
+    let pattern7 = Trianglify({ ...patternconfig7 });
+    let pattern8 = Trianglify({ ...patternconfig8 });
+    let pattern9 = Trianglify({ ...patternconfig9 });
 
     const cards = {
       card9: { backgroundImage: `url(${pattern9.png()})` },

@@ -19,7 +19,7 @@ const GenerateExcel = props => {
     if (expenses && authUser) {
         let eachExpense = utils.eachExpense(expenses);
         let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, authUser);
-        var excelDataObject = thisUsersExpenses.map(exp => exp.value);
+        let excelDataObject = thisUsersExpenses.map(exp => exp.value);
 
         let exportArea = {
             backgroundColor: settings ? (settings.mode === "night" ? "#2C3034" : "#324858") : "#324858",

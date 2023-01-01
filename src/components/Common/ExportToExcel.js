@@ -47,7 +47,7 @@ class ExportToExcel extends Component {
             }
 
             //1st loop is to extract each row
-            for (var i = 0; i < arrData.length; i++) {
+            for (let i = 0; i < arrData.length; i++) {
                 let row = "";
 
                 //2nd loop will extract each column and convert it in string comma-seprated
@@ -72,7 +72,7 @@ class ExportToExcel extends Component {
             fileName += ReportTitle.replace(/ /g, "_");
 
             //Initialize file format you want csv or xls
-            var uri = "data:text/csv;charset=utf-8," + escape(CSV);
+            let uri = "data:text/csv;charset=utf-8," + escape(CSV);
 
             // Now the little tricky part.
             // you can use either>> window.open(uri);

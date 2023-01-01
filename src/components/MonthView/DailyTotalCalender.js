@@ -125,7 +125,7 @@ const DailyTotalCalender = props => {
         });
 
         let printHtml = Object.keys(totals).map((elem, i) => {
-            var listEle = (
+            let listEle = (
                 <li key={i} style={elem === today ? listStyleToday : listStyleDateCells}>
                     <div style={elem === today ? todayDateArea : dateArea}>
                         {" "}

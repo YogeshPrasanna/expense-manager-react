@@ -34,7 +34,7 @@ const LineChartExpenseTimeline = props => {
 
         let allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
         let TotalInThatDay = allDatesInSelectedMonth.map(date => {
-            var expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
+            let expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
             totals[date] =
                 expensesOnThatDate.map(elem => Number(elem.value.expense)).length >= 1
                     ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)
@@ -94,7 +94,7 @@ const LineChartExpenseTimeline = props => {
         const lineArea = settings.mode === "night" ? { background: window.screen.width > 720 ? "#2C3034" : "#2C3034" } : { background: "#dddddd" };
         const headerColor = settings.mode === "night" ? { color: "rgb(237, 211, 130)" } : { color: "inherit" }
         const mobPad15 = { padding: window.screen.width > 720 ? "0" : "15px" };
-        var options = {
+        let options = {
             legend: {
                 display: false,
                 labels: {
@@ -128,7 +128,7 @@ const LineChartExpenseTimeline = props => {
             }
         }
 
-        var optionsDesktop = {
+        let optionsDesktop = {
             legend: {
                 labels: {
                     fontColor: "rgb(247, 162, 120)"

@@ -32,7 +32,7 @@ const LineChartExpenseTimeline = props => {
 
         let allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
         let TotalInThatDay = allDatesInSelectedMonth.map(date => {
-            var expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
+            let expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
             totals[date] =
                 expensesOnThatDate.map(elem => Number(elem.value.expense)).length >= 1
                     ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)

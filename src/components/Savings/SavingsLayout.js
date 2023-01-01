@@ -18,7 +18,7 @@ const SavingsLayout = props => {
         const thisUsersSavings = utils.currentUsersExpenses(eachSaving, currentUser);
 
         if (thisUsersSavings.length) {
-            var abc = thisUsersSavings.map(function (elem, i) {
+            let abc = thisUsersSavings.map(function (elem, i) {
                 return <SavingsCard savings={elem} authUser={currentUser} settings={settings} />;
             });
 

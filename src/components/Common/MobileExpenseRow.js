@@ -18,7 +18,7 @@ class MobileExpenseRow extends Component {
 
     // deleting the expense
     handleClick(e) {
-        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        let message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
             firebase.db.ref(`expenseTable/${this.props.user.uid}/${this.props.expenseId}`).remove();
         }

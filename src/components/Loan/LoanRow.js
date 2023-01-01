@@ -19,7 +19,7 @@ class LoanRow extends Component {
 
     // deleting the loan
     handleClick(e) {
-        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        let message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
             deleteDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loanId));
         }
@@ -34,9 +34,11 @@ class LoanRow extends Component {
     render() {
         const conditionForDay = this.props.loan.value.day || moment(this.props.loan.value.date).day();
 
+        let getDay;
+        let day;
+
         if (conditionForDay) {
-            var getDay = conditionForDay;
-            var day;
+            getDay = conditionForDay;
 
             switch (getDay) {
                 case 0:

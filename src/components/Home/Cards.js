@@ -102,22 +102,22 @@ const Cards = props => {
 
     //mostSpentCategory
     if (settings && cards) {
-        // var patternconfig = {
+        // let patternconfig = {
         //     height: 300,
         //     width: 300,
         //     // palette: Trianglify.colorbrewer,
         //     cell_size: 250
         // };
-        // var pattern = Trianglify({
+        // let pattern = Trianglify({
         //     ...patternconfig
         // });
-        // var pattern2 = Trianglify({ ...patternconfig });
-        // var pattern3 = Trianglify({ ...patternconfig });
-        // var pattern4 = Trianglify({ ...patternconfig });
-        // var pattern5 = Trianglify({ ...patternconfig });
-        // var pattern6 = Trianglify({ ...patternconfig });
-        // var pattern7 = Trianglify({ ...patternconfig });
-        // var pattern8 = Trianglify({ ...patternconfig });
+        // let pattern2 = Trianglify({ ...patternconfig });
+        // let pattern3 = Trianglify({ ...patternconfig });
+        // let pattern4 = Trianglify({ ...patternconfig });
+        // let pattern5 = Trianglify({ ...patternconfig });
+        // let pattern6 = Trianglify({ ...patternconfig });
+        // let pattern7 = Trianglify({ ...patternconfig });
+        // let pattern8 = Trianglify({ ...patternconfig });
 
         // const card8 = { backgroundImage: `url(${pattern8.png()})` };
         // const card7 = { backgroundImage: `url(${pattern7.png()})` };

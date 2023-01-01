@@ -15,7 +15,7 @@ class DoughnutChartCategory extends Component {
     }
 
     handleChange(e) {
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
     }

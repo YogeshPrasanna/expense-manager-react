@@ -20,7 +20,7 @@ class FilterViewPage extends Component {
         const defaultStart = moment(start.valueOf());
 
         function parseURLParams(url) {
-            var queryStart = url.indexOf("?") + 1,
+            let queryStart = url.indexOf("?") + 1,
                 queryEnd = url.indexOf("#") + 1 || url.length + 1,
                 query = url.slice(queryStart, queryEnd - 1),
                 pairs = query.replace(/\+/g, " ").split("&"),
@@ -43,8 +43,8 @@ class FilterViewPage extends Component {
             return parms;
         }
 
-        var urlString = window.location.href;
-        var urlParams = parseURLParams(urlString);
+        let urlString = window.location.href;
+        let urlParams = parseURLParams(urlString);
 
         if (urlParams) {
             if (urlParams.from[0] === "monthpage") {
@@ -104,7 +104,7 @@ class FilterViewPage extends Component {
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value.length === 1 ? "00" : e.target.value;
         this.setState(change);
     }

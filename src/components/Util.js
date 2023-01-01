@@ -146,8 +146,8 @@ export const mostSpentDay = expenses => {
         saturday: saturday
     };
 
-    var sortable = [];
-    for (var day in mostDaysObj) {
+    let sortable = [];
+    for (let day in mostDaysObj) {
         sortable.push([day, mostDaysObj[day]]);
     }
 
@@ -172,7 +172,7 @@ export const filterGivenOrTaken = (eachLoan, filterType) => {
 export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, currentUser, selectedYear) => {
     let expensesOfAllMonthsInThisYear = [];
 
-    for (var i = 0; i <= 11; i++) {
+    for (let i = 0; i <= 11; i++) {
         expensesOfAllMonthsInThisYear.push(
             totalExpense(expensesinMonth(eachExpense, currentUser, String(i), selectedYear))
         );
@@ -184,7 +184,7 @@ export const totalExpensesInEachMonthOfThisYear = (expenses, eachExpense, curren
 export const totalGivenInEachMonthOfThisYear = (loans, eachLoan, currentUser, selectedYear) => {
     let givenLoanOfAllMonthsInThisYear = [];
 
-    for (var i = 0; i <= 11; i++) {
+    for (let i = 0; i <= 11; i++) {
         givenLoanOfAllMonthsInThisYear.push(
             totalLoan(expensesinMonth(eachLoan, currentUser, String(i), selectedYear))
         );
@@ -196,7 +196,7 @@ export const totalGivenInEachMonthOfThisYear = (loans, eachLoan, currentUser, se
 export const totalTakenInEachMonthOfThisYear = (loans, eachLoan, currentUser, selectedYear) => {
     let takenLoanOfAllMonthsInThisYear = [];
 
-    for (var i = 0; i <= 11; i++) {
+    for (let i = 0; i <= 11; i++) {
         takenLoanOfAllMonthsInThisYear.push(
             totalLoan(expensesinMonth(eachLoan, currentUser, String(i), selectedYear))
         );
@@ -239,7 +239,7 @@ export const calculateTotalForAllCategories = expenses => {
     const totalForACategory = function (expenses, category) {
         let temp = expenses.filter(elem => elem.value.category === category).map(el => Number(el.value.expense));
 
-        var category = category;
+        // let category = category;
         if (temp.length) {
             return (categoryTotal[category] = temp.reduce((prev, cur) => prev + cur));
         } else {
@@ -256,8 +256,8 @@ export const calculateTotalForAllCategories = expenses => {
 export const mostSpentCategory = expenses => {
     let categoryTotals = calculateTotalForAllCategories(expenses);
 
-    var sortable = [];
-    for (var cat in categoryTotals) {
+    let sortable = [];
+    for (let cat in categoryTotals) {
         sortable.push([cat, categoryTotals[cat]]);
     }
 
@@ -419,11 +419,11 @@ export const setCurrencyIcon = currency => {
 };
 
 export const filterExpensesByCriteria = (startDate, endDate, category, expenseFrom, expenseTo, thisUsersExpenses) => {
-    var start = new Date(startDate);
-    var end = new Date(endDate);
-    var currentDate = new Date(start);
-    var between = [];
-    var filteredExpenses = [];
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let currentDate = new Date(start);
+    let between = [];
+    let filteredExpenses = [];
 
     while (currentDate <= end) {
         between.push(moment(new Date(currentDate)).format("MM/DD/YYYY"));
@@ -489,19 +489,19 @@ export const highestTakenAndPendingLoan = (thisUsersLoans) => {
 // get all the dates of a particular monthly
 
 export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
-    //var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    var firstDay = new Date(Number(selectedYear), Number(selectedMonth), 1);
-    var lastDay = new Date(Number(selectedYear), Number(selectedMonth) + 1, 0);
+    //let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let firstDay = new Date(Number(selectedYear), Number(selectedMonth), 1);
+    let lastDay = new Date(Number(selectedYear), Number(selectedMonth) + 1, 0);
 
     firstDay = moment(firstDay).format("MM/DD/YYYY");
     lastDay = moment(lastDay).format("MM/DD/YYYY");
 
     // Returns an array of dates between the two dates
-    var getDates = function (startDate, endDate) {
-        var dates = [],
+    let getDates = function (startDate, endDate) {
+        let dates = [],
             currentDate = startDate,
             addDays = function (days) {
-                var date = new Date(this.valueOf());
+                let date = new Date(this.valueOf());
                 date.setDate(date.getDate() + days);
                 return date;
             };
@@ -513,8 +513,8 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
     };
 
     // Usage
-    var dates = getDates(new Date(firstDay), new Date(lastDay));
-    //var datesinSelectedMonth = [];
+    let dates = getDates(new Date(firstDay), new Date(lastDay));
+    //let datesinSelectedMonth = [];
     //dates.map(function (date) {
     //datesinSelectedMonth.push(moment(date).format("MM/DD/YYYY"));
     //});
@@ -524,11 +524,11 @@ export const getAllTheDatesInAMonth = (selectedYear, selectedMonth) => {
 
 // previous 3 and next 3 years
 export const yearsGenereator = () => {
-    var defaultYears = [];
-    var dateVal = new Date();
-    var currentYear = dateVal.getFullYear();
-    var cutOffYears = 4; // using 5 years as cutoff as per reports cutoffyears to keep inline
-    for (var i = currentYear - cutOffYears; i <= currentYear + cutOffYears; i++) {
+    let defaultYears = [];
+    let dateVal = new Date();
+    let currentYear = dateVal.getFullYear();
+    let cutOffYears = 4; // using 5 years as cutoff as per reports cutoffyears to keep inline
+    for (let i = currentYear - cutOffYears; i <= currentYear + cutOffYears; i++) {
         defaultYears.push(i);
     }
 

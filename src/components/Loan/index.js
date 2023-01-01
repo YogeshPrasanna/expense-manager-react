@@ -33,7 +33,7 @@ class LoanPage extends Component {
 
   handleChange(e) {
     // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-    var change = {};
+    let change = {};
     change[e.target.name] = e.target.value;
     this.setState(change);
   }
@@ -42,7 +42,7 @@ class LoanPage extends Component {
     if (this.state.search == "" && this.props.loans) {
       return this.props.loans;
     } else if (this.state.search != "") {
-      var loans = Object.values(this.props.loans);
+      let loans = Object.values(this.props.loans);
       return loans.filter((loan) => {
         return (
           loan.person.toLowerCase().includes(this.state.search.toLowerCase()) ||
