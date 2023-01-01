@@ -289,17 +289,17 @@ h1 {
     margin: 0px 3px 0px 3px;
 }
 
-.save-btn {
+.save-button {
     background: lightblue;
     color: white;
 }
 
-.edit-btn{
+.edit-button{
     background: orange;
     color: white;
 }
 
-.delete-btn{
+.delete-button{
     background: red;
     color: white;
 }

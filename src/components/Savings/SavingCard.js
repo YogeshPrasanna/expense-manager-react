@@ -269,7 +269,7 @@ class SavingsCard extends Component {
                       className="col-6"
                       style={{ display: "flex", padding: "5px 0 0 0" }}
                     >
-                      <button className="smallButton save-btn" type="submit">
+                      <button className="smallButton save-button" type="submit">
                         <i
                           className="fa fa-save action-icons"
                           aria-hidden="true"
@@ -277,7 +277,7 @@ class SavingsCard extends Component {
                       </button>
 
                       <button
-                        className="smallButton edit-btn"
+                        className="smallButton edit-button"
                         onClick={this.toggleEditPopup.bind(this)}
                       >
                         <i
@@ -286,7 +286,7 @@ class SavingsCard extends Component {
                         />
                       </button>
                       <button
-                        className="smallButton delete-btn"
+                        className="smallButton delete-button"
                         onClick={this.handleClick}
                       >
                         <i className="fa fa-trash-o" aria-hidden="true" />
