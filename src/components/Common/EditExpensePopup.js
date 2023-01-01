@@ -5,6 +5,7 @@ const EditExpensePopup = props => {
     const nightModePopup = {
         backgroundColor: props.settings ? (props.settings.mode === "night" ? "#857861" : "#fff") : "#fff"
     };
+
     return (
         <div className="popup">
             <div className="popup_inner" style={nightModePopup}>
@@ -21,6 +22,7 @@ const EditExpensePopup = props => {
                 </button>
             </div>
         </div>
+        
     );
 };
 

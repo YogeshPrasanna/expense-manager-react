@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 import * as utils from "../Util";
-
+import { Modal } from "react-bootstrap";
 import moment from "moment";
 
-import EditExpensePopup from "./EditExpensePopup";
+import EditExpenseForm from "./EditExpenseForm";
 import { deleteDoc, doc } from "firebase/firestore";
 
 
@@ -78,7 +78,7 @@ class ExpenseRow extends Component {
             >
                 <td data-th="No">
                     {this.props.num + 1}
-                    {this.state.showEditPopup ? (
+                    {/* {this.state.showEditPopup ? (
                         <EditExpensePopup
                             user={this.props.user}
                             expense={this.props.expense}
@@ -86,7 +86,18 @@ class ExpenseRow extends Component {
                             settings={this.props.settings}
                             convertedCurrency={this.props.convertedCurrency}
                         />
-                    ) : null}
+                    ) : null} */}
+                    <Modal show={this.state.showEditPopup} onHide={this.toggleEditPopup.bind(this)}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Edit Expense</Modal.Title>
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <EditExpenseForm 
+                            user={this.props.user}
+                            expense={this.props.expense}
+                            settings={this.props.settings} />
+                        </Modal.Body>
+                    </Modal>
                 </td>
                 <td data-th="Date">
                     {moment(this.props.expense.value.date).format("DD/MM/YYYY")} <span className="expense-day"> {day || "Sunday"}</span>

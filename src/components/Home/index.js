@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-
 import ExpenseTable from "./ExpenseTable.js";
-import AddExpensePopup from "./AddExpensePopup";
-import Cards from "./Cards";
 import GenerateExcel from "./GenerateExcel";
+import Cards from "./Cards";
 import Loader from "./../Common/Loader";
-
+import { Modal } from "react-bootstrap";
+import AddExpenseForm from "./AddExpenseForm";
 import MobileExpenseTable from "./MobileExpenseTable";
-
+import "../../assets/css/Modal.css";
 import * as analytics from "./../../analytics/analytics";
 
 class HomePage extends Component {
@@ -62,11 +61,17 @@ class HomePage extends Component {
             this.setState({ convertedCurrency: 1 });
         }
     }
+    handleChange(e) {
+        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
+        var change = {};
+        change[e.target.name] = e.target.value;
+        this.setState(change);
+      }
 
     render() {
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
-            backgroundColor: this.props.settings ? (this.props.settings.mode === "night" ? "#484842" : "auto") : "auto",
+            backgroundColor: this.props.settings ? this.props.settings.mode === "night" ? "#484842" : "auto" : "auto",
             minHeight: "91vh"
         };
 
@@ -81,7 +86,8 @@ class HomePage extends Component {
                             settings={this.props.settings}
                             cards={this.props.cards}
                         />
-
+                
+                    
                         <GenerateExcel
                             expenses={this.props.expenses}
                             authUser={this.props.user}
@@ -106,24 +112,20 @@ class HomePage extends Component {
                         ) : (
                                 <Loader />
                             )}
+                    
                     </div>
                     <button className="addexpense-btn" onClick={this.togglePopup.bind(this)} id="addExpense">
                         <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
                     </button>
-                    {this.state.showPopup ? (
-                        this.state.convertedCurrency ? (
-                            <AddExpensePopup
-                                user={this.props.user}
-                                closePopup={this.togglePopup.bind(this)}
-                                settings={this.props.settings}
-                                convertedCurrency={this.state.convertedCurrency}
-                            />
-                        ) : (
-                                <div style={styleFromSettings}><Loader /></div>
-
-                            )
-                    ) : null}
-                </div>
+                    <Modal show={this.state.showPopup} onHide={this.togglePopup.bind(this)}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Add Expense</Modal.Title>
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <AddExpenseForm user={this.props.user} settings={this.props.settings} />
+                        </Modal.Body>
+                    </Modal>
+                   </div>
             );
         } else {
             return (

@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import $ from "jquery";
 
-import Loader from "./Loader";
+import Loader from "./../Common/Loader";
 
 import * as firebase from "../../firebase/firebase";
 
