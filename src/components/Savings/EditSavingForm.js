@@ -155,7 +155,7 @@ class EditSavingForm extends Component {
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
     }

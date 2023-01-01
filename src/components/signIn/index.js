@@ -38,6 +38,12 @@ const INITIAL_STATE = {
   validationPassword: null,
 };
 
+function isValidEmail(email) {
+  const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRegex.test(email);
+}
+
 class SignInForm extends Component {
   constructor(props) {
     super(props);
@@ -109,6 +115,13 @@ class SignInForm extends Component {
       } else {
         this.setState(byPropKey("validationPassword", null));
         this.setState(byPropKey("error", null));
+      }
+
+      if (!isValidEmail(email)) {
+        this.setState(
+          byPropKey("validationEmail", "Please enter correct Email Address")
+        );
+        this.setState(byPropKey("error", "Please enter correct Email Address"));
       }
     }
 

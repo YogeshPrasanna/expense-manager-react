@@ -18,7 +18,7 @@ class DailyViewPage extends Component {
         super(props);
 
         function parseURLParams(url) {
-            var queryStart = url.indexOf("?") + 1,
+            let queryStart = url.indexOf("?") + 1,
                 queryEnd = url.indexOf("#") + 1 || url.length + 1,
                 query = url.slice(queryStart, queryEnd - 1),
                 pairs = query.replace(/\+/g, " ").split("&"),
@@ -41,8 +41,8 @@ class DailyViewPage extends Component {
             return parms;
         }
 
-        var urlString = window.location.href;
-        var urlParams = parseURLParams(urlString);
+        let urlString = window.location.href;
+        let urlParams = parseURLParams(urlString);
 
         this.state = { date: urlParams ? moment(urlParams.date[0]) : moment(), convertedCurrency: null };
     }
