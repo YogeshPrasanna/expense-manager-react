@@ -103,7 +103,7 @@ class AddLoanForm extends Component {
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
     }
@@ -154,7 +154,8 @@ class AddLoanForm extends Component {
                                 }
                                 type="number"
                                 name="amount"
-                                min={0}
+                                min={0.1}
+                                step={0.1}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.amount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
@@ -192,7 +193,7 @@ class AddLoanForm extends Component {
                                 }
                                 type="text"
                                 name="person"
-                                maxLength={100}
+                                maxLength={50}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.person}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
@@ -230,8 +231,8 @@ class AddLoanForm extends Component {
                                 }
                                 type="text"
                                 name="reason"
-                                rows={4}
-                                maxLength={300}
+                                rows={2}
+                                maxLength={100}
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.reason}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}

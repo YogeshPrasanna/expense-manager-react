@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import * as firebase from "../../firebase/firebase";
 import moment from "moment";
 import * as utils from "./../Util";
-
-import EditLoanPopup from "./EditLoanPopup";
+import { Modal } from "react-bootstrap";
+import EditLoanForm from "./EditLoanForm";
 import { deleteDoc, doc } from "firebase/firestore";
 
 class LoanRow extends Component {
@@ -19,7 +19,7 @@ class LoanRow extends Component {
 
     // deleting the loan
     handleClick(e) {
-        var message = "Once deleted you cannot get back this record , are you sure you want to delete";
+        let message = "Once deleted you cannot get back this record , are you sure you want to delete";
         if (window.confirm(message)) {
             deleteDoc(doc(firebase.db, `loanTable/${this.props.user.uid}/loans`, this.props.loanId));
         }
@@ -34,9 +34,11 @@ class LoanRow extends Component {
     render() {
         const conditionForDay = this.props.loan.value.day || moment(this.props.loan.value.date).day();
 
+        let getDay;
+        let day;
+
         if (conditionForDay) {
-            var getDay = conditionForDay;
-            var day;
+            getDay = conditionForDay;
 
             switch (getDay) {
                 case 0:
@@ -77,14 +79,17 @@ class LoanRow extends Component {
             <tr key={this.props.loanId} id={this.props.loanId} style={loanStatusStyle}>
                 <td data-th="No">
                     {this.props.num + 1}
-                    {this.state.showEditPopup ? (
-                        <EditLoanPopup
+                    <Modal show={this.state.showEditPopup} onHide={this.toggleEditPopup.bind(this)}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Edit Loan</Modal.Title>
+                        </Modal.Header> 
+                        <Modal.Body>
+                        <EditLoanForm 
                             user={this.props.user}
                             loan={this.props.loan}
-                            closePopup={this.toggleEditPopup.bind(this)}
-                            settings={this.props.settings}
-                        />
-                    ) : null}
+                            settings={this.props.settings} />
+                        </Modal.Body>
+                    </Modal>
                 </td>
                 <td data-th="Date">
                     {moment(this.props.loan.value.date).format("DD/MM/YYYY")} <span className="expense-day"> {day || "Sunday"}</span>

@@ -10,6 +10,8 @@ import Loader from "./../Common/Loader";
 import * as analytics from "./../../analytics/analytics";
 import MobileExpenseTable from "./MobileExpenseTable";
 
+import { parseURLParams } from "../DailyView/index.js";
+
 class FilterViewPage extends Component {
     constructor(props) {
         super(props);
@@ -19,32 +21,8 @@ class FilterViewPage extends Component {
         const start = new Date("1/1/" + thisYear);
         const defaultStart = moment(start.valueOf());
 
-        function parseURLParams(url) {
-            var queryStart = url.indexOf("?") + 1,
-                queryEnd = url.indexOf("#") + 1 || url.length + 1,
-                query = url.slice(queryStart, queryEnd - 1),
-                pairs = query.replace(/\+/g, " ").split("&"),
-                parms = {},
-                i,
-                n,
-                v,
-                nv;
-
-            if (query === url || query === "") return;
-
-            for (i = 0; i < pairs.length; i++) {
-                nv = pairs[i].split("=", 2);
-                n = decodeURIComponent(nv[0]);
-                v = decodeURIComponent(nv[1]);
-
-                if (!parms.hasOwnProperty(n)) parms[n] = [];
-                parms[n].push(nv.length === 2 ? v : null);
-            }
-            return parms;
-        }
-
-        var urlString = window.location.href;
-        var urlParams = parseURLParams(urlString);
+        let urlString = window.location.href;
+        let urlParams = parseURLParams(urlString);
 
         if (urlParams) {
             if (urlParams.from[0] === "monthpage") {
@@ -104,7 +82,7 @@ class FilterViewPage extends Component {
 
     handleChange(e) {
         // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value.length === 1 ? "00" : e.target.value;
         this.setState(change);
     }

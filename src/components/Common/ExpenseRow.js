@@ -95,15 +95,6 @@ class ExpenseRow extends Component {
       >
         <td data-th="No">
           {this.props.num + 1}
-          {/* {this.state.showEditPopup ? (
-                        <EditExpensePopup
-                            user={this.props.user}
-                            expense={this.props.expense}
-                            closePopup={this.toggleEditPopup.bind(this)}
-                            settings={this.props.settings}
-                            convertedCurrency={this.props.convertedCurrency}
-                        />
-                    ) : null} */}
           <Modal
             show={this.state.showEditPopup}
             onHide={this.toggleEditPopup.bind(this)}

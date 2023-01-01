@@ -15,7 +15,7 @@ class CategoryTotalCard extends Component {
     }
 
     handleChange(e) {
-        var change = {};
+        let change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
     }
@@ -58,7 +58,7 @@ class CategoryTotalCard extends Component {
         let allCategoryTotals = null;
         let categoryList = null;
 
-        const patternconfig = { height: 300, width: 1500, cell_size: 50 }; // palette: Trianglify.colorbrewer,
+        const patternconfig = { height: 300, width: 1500, cell_size: 90, x_colors: ['#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#b25ea8', '#f53494'], y_colors: 'match_x'}; // palette: Trianglify.colorbrewer,
         const pattern = Trianglify({ ...patternconfig });
         const card4 = { backgroundImage: `url(${pattern.png()})` };
 
@@ -161,7 +161,7 @@ class CategoryTotalCard extends Component {
                         </div>
                     </form>
                     <div className="card-block">
-                        <h3 className="card-title">Each Category</h3>
+                        <h3 className="card-title"><b>Each Category</b></h3>
                         <ul style={pad0}>{categoryList}</ul>
                     </div>
                 </div>

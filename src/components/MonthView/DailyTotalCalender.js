@@ -33,13 +33,13 @@ const DailyTotalCalender = props => {
         let dayEnd = [];
 
         const allDatesInSelectedMonth = utils.getAllTheDatesInAMonth(selectedYear, selectedMonth);
-        const TotalInThatDay = allDatesInSelectedMonth.map(date => {
-            let expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
-            totals[date] =
-                expensesOnThatDate.map(elem => Number(elem.value.expense)).length >= 1
-                    ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)
-                    : 0;
-        });
+        // const TotalInThatDay = allDatesInSelectedMonth.map(date => {
+        //     let expensesOnThatDate = usersExpensesInSelectedMonthAndYear.filter(exp => Number(exp.value.date === date));
+        //     totals[date] =
+        //         expensesOnThatDate.map(elem => Number(elem.value.expense)).length >= 1
+        //             ? expensesOnThatDate.map(elem => Number(elem.value.expense)).reduce((prev, cur) => prev + cur)
+        //             : 0;
+        // });
 
         const today = moment().format("MM/DD/YYYY");
 
@@ -82,7 +82,7 @@ const DailyTotalCalender = props => {
             previDays.push(moment(allDatesInSelectedMonth[0]).subtract(i + 1, 'd').format("MM/DD/YYYY"))
             dayStart.push(i);
         }
-        console.log("%c day start ", "background: red; color: white", previDays)
+        // console.log("%c day start ", "background: red; color: white", previDays)
 
 
         for (
@@ -94,10 +94,10 @@ const DailyTotalCalender = props => {
             dayEnd.push(i);
         }
 
-        console.log("%c day end ", "background: blue; color: white", nextiDays)
+        // console.log("%c day end ", "background: blue; color: white", nextiDays)
 
 
-        console.log(dayStart, dayEnd)
+        // console.log(dayStart, dayEnd)
 
 
         let daysStartGapHtml = dayStart.map(function (elem) {
@@ -125,8 +125,8 @@ const DailyTotalCalender = props => {
         });
 
         let printHtml = Object.keys(totals).map((elem, i) => {
-            var listEle = (
-                <li key={i} style={elem === today ? listStyleToday : listStyleDateCells}>
+            let listEle = (
+                <li key={elem} style={elem === today ? listStyleToday : listStyleDateCells}>
                     <div style={elem === today ? todayDateArea : dateArea}>
                         {" "}
                         {moment(allDatesInSelectedMonth[i]).date()}
@@ -137,7 +137,7 @@ const DailyTotalCalender = props => {
 
             // Links to daily view if total is not 0
             if (totals[elem] != 0) {
-                return <Link to={`/daily-view?date=${elem}`} key={i}>{listEle}</Link>;
+                return <Link to={`/daily-view?date=${elem}`} key={elem}>{listEle}</Link>;
             } else {
                 return listEle;
             }
