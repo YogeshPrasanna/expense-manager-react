@@ -95,7 +95,8 @@ class ExpenseRow extends Component {
                         <EditExpenseForm 
                             user={this.props.user}
                             expense={this.props.expense}
-                            settings={this.props.settings} />
+                            settings={this.props.settings}
+                            convertedCurrency={this.props.convertedCurrency} />
                         </Modal.Body>
                     </Modal>
                 </td>

@@ -62,7 +62,6 @@ class AddExpenseForm extends Component {
       db.doCreateExpense(
         this.state.uid,
         moment(this.date).format('L'),
-        // $(".date").val(),
         Math.ceil(this.state.expense * this.props.convertedCurrency),
         this.state.category,
         this.state.comments,
@@ -110,16 +109,6 @@ class AddExpenseForm extends Component {
       };
 
       const inputDayMode = { background: "#fff", color: "#495057" };
-
-    //   const validationBox = {
-    //     background: "rgba(0,0,0,0)",
-    //     color: "#ffecb8",
-    //     fontSize: "12px",
-    //     width: "60%",
-    //     position: "absolute",
-    //     bottom: "15px",
-    //     left: "15px",
-    //   };
 
       return (
         <form onSubmit={this.handleSubmit}>
@@ -257,7 +246,7 @@ class AddExpenseForm extends Component {
           </div>
           <div className="form-group row">
             <label className="col-sm-2 col-xs-6 col-form-label">
-              <span>Comments</span>
+              <span>Comment</span>
             </label>
             <div className="col-sm-10 col-xs-6">
               <textarea
@@ -284,15 +273,6 @@ class AddExpenseForm extends Component {
               )}
             </div>
           </div>
-
-          {/* {this.state.dataSaved ? (
-            <span className="bg-success success-msg">
-              {" "}
-              Data saved successfully
-            </span>
-          ) : (
-            <span />
-          )} */}
           
           {this.state.expense > 0 && this.state.date && this.state.category ? (
             <div className="text-right">
@@ -302,10 +282,6 @@ class AddExpenseForm extends Component {
         </div>
           ) : (
             <div>
-              {/* <div style={validationBox}>
-                                    <div> Expense : should be greater than 0 </div>
-                                    <div> Date : should be selected </div>
-                                </div> */}
               
               <div className="text-right">
                         <button className="btn btn-primary" type="submit">
