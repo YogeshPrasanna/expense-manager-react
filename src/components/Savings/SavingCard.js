@@ -194,10 +194,10 @@ class SavingsCard extends Component {
                                                     </div>
                                                     <div class="row d-flex align-items-center">
                                     <div class="col-6 text-left">
-                                        <p class="m-b-0" style={{color:`${savings.value.cardColor}`}}>Saved: RM {savings.value.savingAmount.toFixed(2)}</p>
+                                        <p class="m-b-0" style={{color:`${savings.value.cardColor}`}}>Saved: RM {Number(savings.value.savingAmount).toFixed(2)}</p>
                                         </div>
                                         <div class="col-6 text-right" >
-                                            <p class="m-b-0">Goal: RM {savings.value.goalAmount.toFixed(2)}</p>
+                                            <p class="m-b-0">Goal: RM {Number(savings.value.goalAmount).toFixed(2)}</p>
                                             </div>
                                             </div>
                                                     
