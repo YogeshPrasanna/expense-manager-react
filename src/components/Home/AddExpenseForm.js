@@ -12,8 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../../assets/css/form.css";
 
 const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-})
+  [propertyName]: value,
+});
 
 class AddExpenseForm extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class AddExpenseForm extends Component {
     event.preventDefault();
 
     const { expense, comments } = this.state;
-    const isInvalid = expense === "" || comments === ""
+    const isInvalid = expense === "" || comments === "";
 
     if (expense === "") {
       this.setState(
@@ -61,7 +61,7 @@ class AddExpenseForm extends Component {
     if (!isInvalid) {
       db.doCreateExpense(
         this.state.uid,
-        moment(this.date).format('L'),
+        moment(this.date).format("L"),
         Math.ceil(this.state.expense * this.props.convertedCurrency),
         this.state.category,
         this.state.comments,
@@ -94,7 +94,7 @@ class AddExpenseForm extends Component {
 
   handelDateChange(date) {
     this.setState({
-      date: date
+      date: date,
     });
   }
 
@@ -140,12 +140,10 @@ class AddExpenseForm extends Component {
             <div className="col-sm-10 col-xs-6">
               <input
                 className={
-                    validationExpense
-                      ? "form-control mb-0 px-3 py-2 is-invalid"
-                      : "form-control mb-0 px-3 py-2"
+                  validationExpense
+                    ? "form-control mb-0 px-3 py-2 is-invalid"
+                    : "form-control mb-0 px-3 py-2"
                 }
-                //autoFocus
-                // required
                 type="number"
                 name="expense"
                 min={0.1}
@@ -251,9 +249,9 @@ class AddExpenseForm extends Component {
             <div className="col-sm-10 col-xs-6">
               <textarea
                 className={
-                    validationComments
-                      ? "form-control mb-0 px-3 py-2 is-invalid"
-                      : "form-control mb-0 px-3 py-2"
+                  validationComments
+                    ? "form-control mb-0 px-3 py-2 is-invalid"
+                    : "form-control mb-0 px-3 py-2"
                 }
                 type="text"
                 maxLength={50}
@@ -273,21 +271,20 @@ class AddExpenseForm extends Component {
               )}
             </div>
           </div>
-          
+
           {this.state.expense > 0 && this.state.date && this.state.category ? (
             <div className="text-right">
-            <button className="btn btn-primary" type="submit">
+              <button className="btn btn-primary" type="submit">
                 Save
-            </button>
-        </div>
+              </button>
+            </div>
           ) : (
             <div>
-              
               <div className="text-right">
-                        <button className="btn btn-primary" type="submit">
-                            Save
-                        </button>
-                    </div>
+                <button className="btn btn-primary" type="submit">
+                  Save
+                </button>
+              </div>
             </div>
           )}
         </form>
