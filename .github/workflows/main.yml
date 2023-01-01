@@ -17,6 +17,9 @@ jobs:
         uses: actions/checkout@main
       - name: Install dependencies
         run: npm ci
+      - name: 'Create ENV file'
+        run:  |
+          echo "${{secrets.ENV_FILE}}" > .env
       - name: Build dependencies
         run: npm run build
         env:
@@ -43,6 +46,6 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: 1//0gPQpAeeZosXnCgYIARAAGBASNwF-L9IrmpMfrhNry5VmLmXOhKZ_w-UjsY7KZkr9fv7kpT9615hMsDwxZw64JVJa7xL67GWU3SU
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
 
       

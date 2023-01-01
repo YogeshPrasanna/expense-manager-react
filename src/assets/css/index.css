@@ -346,10 +346,11 @@ ul {
     margin-left: 0px !important;
   }
 
-  .mobileNoPadding {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
+    .mobileNoPadding {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden;
+    }
 
   .mobileNoMargin {
     margin: 0 !important;

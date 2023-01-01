@@ -1,11 +1,12 @@
-import React, { Component, useState } from "react";
-import AddLoanPopup from "./AddLoanPopup";
-import AddLoanForm from "./AddLoanForm";
+import React, { Component } from "react";
 import LoanTable from "./LoanTable";
 import GenerateExcel from "./GenerateExcel";
 import Cards from "./Cards";
 import Loader from "./../Common/Loader";
 import BarChartAllMonths from "./BarChartAllMonths";
+import { Modal } from "react-bootstrap";
+import AddLoanForm from "./AddLoanForm";
+import "../../assets/css/Modal.css";
 
 import * as analytics from "./../../analytics/analytics";
 
@@ -35,10 +36,6 @@ class LoanPage extends Component {
     var change = {};
     change[e.target.name] = e.target.value;
     this.setState(change);
-  }
-
-  changePage() {
-    console.log();
   }
 
   filterLoan() {
@@ -87,7 +84,6 @@ class LoanPage extends Component {
             </div>
           </div>
           <div className="row justify-content-end">
-            {/* <div className="form-group row"> */}
             <div className="col-12 col-md-4 mt-2">
               <input
                 type="text"
@@ -99,7 +95,6 @@ class LoanPage extends Component {
                 className="form-control"
               />
             </div>
-            {/* </div> */}
             <div className="col-sm-12 mobileNoPadding">
               <GenerateExcel
                 loans={this.props.loans}
@@ -113,23 +108,6 @@ class LoanPage extends Component {
               />
             </div>
           </div>
-          {/* <div className="row">
-                            <ul class="pagination mx-auto">
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#" onClick={this.changePage()}>1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                                </li>
-                            </ul>
-                        </div> */}
 
           <button
             className="addloan-btn"
@@ -139,20 +117,20 @@ class LoanPage extends Component {
             <i className="fa fa-plus-circle fa-5x" aria-hidden="true" />
           </button>
 
-          {this.state.showPopup ? (
-            // <AddLoanPopup
-            //   user={this.props.user}
-            //   openModal={this.state.showPopup}
-            //   togglePopout={this.togglePopup.bind(this)}
-            //   settings={this.props.settings}
-            // />
-            <TestModal
-              user={this.props.user}
-              openModal={this.state.showPopup}
-              togglePopout={this.togglePopup.bind(this)}
-              settings={this.props.settings}
-            />
-          ) : null}
+          <Modal
+            show={this.state.showPopup}
+            onHide={this.togglePopup.bind(this)}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Add Loan</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <AddLoanForm
+                user={this.props.user}
+                settings={this.props.settings}
+              />
+            </Modal.Body>
+          </Modal>
         </div>
       );
     } else {

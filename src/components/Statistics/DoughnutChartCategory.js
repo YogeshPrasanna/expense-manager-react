@@ -3,8 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import Loader from "../Common/Loader";
 import * as utils from "../Util";
 import "chartjs-plugin-labels";
-
-import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";  
 
 class DoughnutChartCategory extends Component {
     constructor(props) {
@@ -80,21 +79,25 @@ class DoughnutChartCategory extends Component {
                 settings.editedCategories["Bills & Utilities"] ? settings.editedCategories["Bills & Utilities"] : "Bills & Utilities",
                 settings.editedCategories["Others"] ? settings.editedCategories["Others"] : "Others",
             ];
+            const categoryOptions = [];
 
-            const data = {
+            for(let i=0; i<names.length; i++){
+                categoryOptions.push({name: names[i], id: i});
+            }
+            let data = {
                 labels: names,
                 datasets: [
                     {
                         data: Object.values(allCategoryTotals),
                         backgroundColor: utils.categoryColors,
                         hoverBackgroundColor: utils.categoryColors,
-                        borderWidth: 0,
+                        borderWidth: 1,
                     }
                 ]
             };
 
             const options = {
-                legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)" } },
+                legend: { display: true, position: "left", fullWidth: true, reverse: false, labels: { fontColor: "rgb(247, 162, 120)", fontStyle: "italic" } },
                 layout: { padding: { left: 0, right: 0, top: 15, bottom: 0 } },
                 cutoutPercentage: 70,
                 plugins: {
@@ -163,7 +166,7 @@ class DoughnutChartCategory extends Component {
             };
 
             const optionsMobile = {
-                legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)" } },
+                legend: { display: true, position: "left", fullWidth: true, labels: { fontColor: "rgb(247, 162, 120)", fontStyle: "italic" } },
                 layout: { padding: { left: 15, right: 15, top: 15, bottom: 15 } },
                 cutoutPercentage: 0,
                 plugins: {
@@ -235,29 +238,63 @@ class DoughnutChartCategory extends Component {
 
             return (
                 <div style={lineArea}>
-                    <form>
-                        <div className="col-sm-12 col-xs-12">
-                            <select
-                                name="year"
-                                style={monthDropdown}
-                                value={this.state.year}
-                                onChange={this.handleChange.bind(this)}
-                            >
-                                <option value="all">All</option>
-                                {utils.yearsGenereator().map((elem, i) => (
-                                    <option key={i} value={elem}>{elem}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </form>
-                    <Route
+                    <div className="col">
+                        {/* <form>
+                            <div className="col-sm-12 col-xs-12">
+                                <div>
+                                    <p>
+                                        <b style={{ color: settings.mode === "night" ? 'white' : 'black'}}>
+                                            Category Filter
+                                        </b>
+                                    </p>
+                                    <Multiselect 
+                                                options={categoryOptions}
+                                                displayValue="name"
+                                                onRemove={(selectedList, selectedItem) => {
+                                                    let newData = this.state.donutData;
+                                                    newData.datasets[0].data[0] = 0
+                                                    this.setState({
+                                                        ...this.state,
+                                                        donutData: newData 
+                                                    })
+                                                    console.log("bruh")
+                                                    
+                                                }}
+                                            />
+                                </div>
+                            </div>
+                        </form> */}
+                        <form>
+                            <div className="col-sm-12 col-xs-12">
+                                    <div>
+                                        <b style={{ color: settings.mode === "night" ? 'white' : 'black'}}>
+                                            Year Filter
+                                        </b>
+                                        <select
+                                            name="year"
+                                            style={monthDropdown}
+                                            value={this.state.year}
+                                            onChange={this.handleChange.bind(this)}
+                                        >
+                                            <option value="all">All</option>
+                                            {utils.yearsGenereator().map((elem, i) => (
+                                                <option key={i} value={elem}>{elem}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+
+                            
+                    <Route                
                         render={({ history }) => (
                             <Doughnut
                                 data={data}
                                 options={window.screen.width > 720 ? options : optionsMobile}
                                 height={window.screen.width > 720 ? 140 : 270}
                                 responsive={true}
-                                onElementsClick={elems => {
+                                onElementsClick={elems => {  
                                     if (elems.length) {
                                         let clickedLabel = elems[0]._model.label;
                                         if (selectedYear !== "all") {

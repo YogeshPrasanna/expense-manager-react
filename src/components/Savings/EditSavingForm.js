@@ -15,6 +15,11 @@ import "./styles/form.css";
 
 import { doc, updateDoc } from "firebase/firestore";
 
+const byPropKey = (propertyName, value) => () => ({
+    [propertyName]: value
+})
+
+
 class EditSavingForm extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +37,11 @@ class EditSavingForm extends Component {
             cardColor: savings.value.cardColor,
             uid: this.props.user.uid,
             dataSaved: false,
-            displayColorPicker: false
+            displayColorPicker: false,
+            validationGoal: null,
+            validationSaving: null,
+            validationSavingFor: null,
+            validationComments: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,6 +55,45 @@ class EditSavingForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
+        const { goalAmount, savingAmount , date , savingFor , comments } = this.state;
+        const isInvalid = goalAmount === "" || savingAmount === "" || date === "" || savingFor  === "" || comments === ""
+
+        //set warning for empty goal amount value
+        if (goalAmount === "" ) {
+            this.setState(
+              byPropKey("validationGoal", "Please Enter goal Amount.")
+            );
+        } else {
+            this.setState(byPropKey("validationGoal", null));
+        }
+
+        //set warning for empty saving amount value
+        if (savingAmount === "") {
+            this.setState(
+              byPropKey("validationSaving", "Please enter saving Amount.")
+            );
+        } else {
+            this.setState(byPropKey("validationSaving", null));
+        }
+
+        //set warning for empty saving for
+        if (savingFor === "" ) {
+            this.setState(
+              byPropKey("validationSavingFor", "Please Enter the purpose of your saving.")
+            );
+        } else {
+            this.setState(byPropKey("validationSavingFor", null));
+        }
+
+        //set warning for empty comments
+        if (comments === "") {
+            this.setState(
+              byPropKey("validationComments", "Please enter some comments or saving description.")
+            );
+        } else {
+            this.setState(byPropKey("validationComments", null));
+        }
+
         // firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
             // date: this.state.date.format("MM/DD/YYYY"),
             // day: moment(this.state.date.format("MM/DD/YYYY")).day(),
@@ -57,18 +105,40 @@ class EditSavingForm extends Component {
             // cardColor: this.state.cardColor
         // });
 
-        updateDoc(doc(firebase.db, `savingsTable/${this.props.user.uid}/savings`, this.props.savings.key), {
-            date: this.state.date.format("MM/DD/YYYY"),
-            day: moment(this.state.date.format("MM/DD/YYYY")).day(),
-            goalAmount: this.state.goalAmount,
-            savingAmount: Math.ceil(this.state.savingAmount),
-            savingFor: this.state.savingFor,
-            comments: this.state.comments,
-            goalAchieved: this.state.goalAchieved,
-            cardColor: this.state.cardColor
-        });
+        if (!isInvalid){
 
-        $("#closePopup").click();
+            updateDoc(doc(firebase.db, `savingsTable/${this.props.user.uid}/savings`, this.props.savings.key), {
+                date: this.state.date.format("MM/DD/YYYY"),
+                day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+                goalAmount: Number(this.state.goalAmount),
+                savingAmount: Number(this.state.savingAmount),
+                savingFor: this.state.savingFor,
+                comments: this.state.comments,
+                goalAchieved: this.state.goalAchieved,
+                cardColor: this.state.cardColor
+            });
+
+        }
+        
+
+        // if (goalAmount > 0 && savingAmount > 0 && date && savingFor){
+        //     firebase.db.ref(`savingsTable/${this.props.user.uid}/${this.props.savings.key}`).update({
+        //         date: this.state.date.format("MM/DD/YYYY"),
+        //         day: moment(this.state.date.format("MM/DD/YYYY")).day(),
+        //         goalAmount: this.state.goalAmount,
+        //         savingAmount: Math.ceil(this.state.savingAmount),
+        //         savingFor: this.state.savingFor,
+        //         comments: this.state.comments,
+        //         goalAchieved: this.state.goalAchieved,
+        //         cardColor: this.state.cardColor
+        //     });
+
+        //     $("#closePopup").click();
+        // }
+
+        
+
+        
     }
 
     handleClick() {
@@ -110,15 +180,7 @@ class EditSavingForm extends Component {
 
             const inputDayMode = { background: "#fff", color: "#495057" };
 
-            const validationBox = {
-                background: "rgba(0,0,0,0)",
-                color: "#ffecb8",
-                fontSize: "12px",
-                width: "60%",
-                position: "absolute",
-                bottom: "15px",
-                left: "15px"
-            };
+          
 
             const color = {
                 width: "36px",
@@ -146,6 +208,8 @@ class EditSavingForm extends Component {
                 left: "0px"
             };
 
+            const { validationGoal, validationSaving , validationComments, validationSavingFor } = this.state;
+
             return (
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
@@ -159,8 +223,10 @@ class EditSavingForm extends Component {
                                     (this.props.settings.mode === "night" ? "inputNightMode" : "inputDayMode")
                                 }
                                 name="date"
+                                dateFormat={"DD/MM/YYYY"} //change date to UK format
                                 selected={this.state.date}
                                 onChange={this.handelDateChange.bind(this)}
+                                minDate={moment().toDate()} //exclude the past date , so user cannot select
                             />
                         </div>
                     </div>
@@ -191,14 +257,20 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
-                                required
+                                className={
+                                    validationGoal
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                min = {0.1}
+                                step = {0.1}
                                 type="number"
                                 name="goalAmount"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.goalAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationGoal ? (<div className="invalid-feedback err">{validationGoal}</div>) : ("")} 
                         </div>
                     </div>
                     <div className="form-group row">
@@ -207,14 +279,20 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
-                                required
+                                className={
+                                    validationSaving
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                min = {0.1}
+                                step = {0.1}
                                 type="number"
                                 name="savingAmount"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.savingAmount}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationSaving ? (<div className="invalid-feedback err">{validationSaving}</div>) : ("")}
                         </div>
                     </div>
                     <div className="form-group row">
@@ -223,14 +301,19 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <input
-                                className="form-control"
-                                required
+                                className={
+                                    validationSavingFor
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
+                                maxLength={50}
                                 type="text"
                                 name="savingFor"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.savingFor}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationSavingFor ? (<div className="invalid-feedback err">{validationSavingFor}</div>) : ("")}
                         </div>
                     </div>
 
@@ -240,61 +323,25 @@ class EditSavingForm extends Component {
                         </label>
                         <div className="col-sm-9 col-xs-6">
                             <textarea
-                                className="form-control"
+                                className={
+                                    validationComments
+                                      ? "form-control mb-0 px-3 py-4 is-invalid"
+                                      : "form-control mb-0 px-3 py-4"
+                                }
                                 type="text"
-                                required
+                                maxLength={50}
                                 name="comments"
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.comments}
                                 style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                             />
+                            {validationComments ? (<div className="invalid-feedback err">{validationComments}</div>) : ("")}
                         </div>
                     </div>
-
-                    <div className="form-group row">
-                        <label className="col-sm-3 col-xs-6 col-form-label">
-                            <span>Goal Achieved {this.state.goalAchieved} </span>
-                        </label>
-                        <div className="col-sm-5 col-xs-6 switch-field" onChange={this.handleChange.bind(this)}>
-                            <input
-                                type="radio"
-                                name="goalAchieved"
-                                value="yes"
-                                defaultChecked={this.state.goalAchieved === "yes"}
-                                id="switch_left"
-                            />
-                            <label for="switch_left">Achieved</label>
-                            <input
-                                type="radio"
-                                name="goalAchieved"
-                                value="no"
-                                defaultChecked={this.state.goalAchieved === "no"}
-                                id="switch_right"
-                            />
-                            <label for="switch_right">Not Yet</label>{" "}
-                        </div>
-                    </div>
-
-                    {this.state.dataSaved ? (
-                        <span className="bg-success success-msg"> Data saved successfully</span>
-                    ) : (
-                        <span />
-                    )}
-                    {this.state.goalAmount > 0 && this.state.date && this.state.savingFor ? (
-                        <button className="btn btn-primary float-right" type="submit">
+                    <button className="btn btn-primary float-right" type="submit">
                             save
                         </button>
-                    ) : (
-                        <div>
-                            <div style={validationBox}>
-                                <div> Saving : should be greater than 0 </div>
-                                <div> Target Date : should be selected </div>
-                            </div>
-                            <button className="btn btn-primary float-right" disabled type="submit">
-                                save
-                            </button>
-                        </div>
-                    )}
+
                 </form>
             );
         } else {
