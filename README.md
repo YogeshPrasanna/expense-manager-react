@@ -1,5 +1,11 @@
 ## A Simple Expense Manager 💵
 
+UM STUDENT NEW UPDATED SOFTWARE MAINTENANCE AND EVOLUTION PROJECT
+
+New Hosting Link : [Updated Expense Manager](https://expense-manager-43d96.web.app/)
+
+
+
 ## Note
 
 *_I have stopped support for this application in terms of updating the stack and versions, if you run npm install , you might run into errors for not having latest versions of firebase , hence i advice to download the node modules in this project to run it locally_*
