@@ -522,10 +522,10 @@ export const filterExpensesByCriteria = (
   let between = [];
   let filteredExpenses = [];
 
-    while (currentDate <= end) {
-        between.push(moment(new Date(currentDate)).format("MM/DD/YYYY"));
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
+  while (currentDate <= end) {
+    between.push(moment(new Date(currentDate)).format("MM/DD/YYYY"));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
 
   between.forEach(function (elem) {
     return thisUsersExpenses.filter(function (el) {
