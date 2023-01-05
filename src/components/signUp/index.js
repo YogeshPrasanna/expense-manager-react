@@ -79,6 +79,45 @@ class SignUpForm extends Component {
       );
     } else {
       this.setState(byPropKey("validationPassword", null));
+
+      // Check if password meets minimum length requirement
+      if (passwordOne.length < 6) {
+        this.setState(
+          byPropKey(
+            "validationPassword",
+            "The Password Needs to be atleast 6 character"
+          )
+        );
+      } else {
+        this.setState(byPropKey("validationPassword", null));
+      }
+
+      // Check if password has at least one special character
+      const specialCharacters = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+      if (!specialCharacters.test(passwordOne)) {
+        this.setState(
+          byPropKey(
+            "validationPassword",
+            "The Password Needs to have at least one special character"
+          )
+        );
+      } else {
+        this.setState(byPropKey("validationPassword", null));
+      }
+
+      // Check if password has at least one number
+      const numbers = /[0-9]/;
+      if (!numbers.test(passwordOne)) {
+        this.setState(
+          byPropKey(
+            "validationPassword",
+            "The Password Needs to have at least one number"
+          )
+        );
+      } else {
+        this.setState(byPropKey("validationPassword", null));
+      }
+
       if (passwordOne !== passwordTwo) {
         this.setState(
           byPropKey("validationCP", "Confirm Password is not equal to Password")
@@ -146,6 +185,8 @@ class SignUpForm extends Component {
         errorMessage = "Please Verify Your ReCaptcha";
       } else if (error.code === "auth/weak-password") {
         errorMessage = "The password entered is too weak";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "The Email is invalid";
       } else {
         errorMessage = "Unable to create an account";
       }
@@ -213,6 +254,44 @@ class SignUpForm extends Component {
               onChange={(event) => {
                 this.setState(byPropKey("passwordOne", event.target.value));
                 if (event.target.value !== "") {
+                  this.setState(byPropKey("validationPassword", null));
+                }
+                // Check if password meets minimum length requirement
+                if (event.target.value.length < 6) {
+                  this.setState(
+                    byPropKey(
+                      "validationPassword",
+                      "The Password Needs to be atleast 6 character"
+                    )
+                  );
+                } else {
+                  this.setState(byPropKey("validationPassword", null));
+                }
+
+                // Check if password has at least one special character
+                const specialCharacters =
+                  /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+                if (!specialCharacters.test(event.target.value)) {
+                  this.setState(
+                    byPropKey(
+                      "validationPassword",
+                      "The Password Needs to have at least one special character"
+                    )
+                  );
+                } else {
+                  this.setState(byPropKey("validationPassword", null));
+                }
+
+                // Check if password has at least one number
+                const numbers = /[0-9]/;
+                if (!numbers.test(event.target.value)) {
+                  this.setState(
+                    byPropKey(
+                      "validationPassword",
+                      "The Password Needs to have at least one number"
+                    )
+                  );
+                } else {
                   this.setState(byPropKey("validationPassword", null));
                 }
               }}
