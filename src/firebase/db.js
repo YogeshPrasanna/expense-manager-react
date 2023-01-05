@@ -164,16 +164,27 @@ const doCreateSettingsForUser = (
   fromCurrency,
   monthLimit,
   editedCategories
-) =>
-  setDoc(doc(db, "settings", uid), {
-    font: font,
-    mode: mode,
-    currency: currency,
-    travelMode: travelMode,
-    fromCurrency: fromCurrency,
-    monthLimit: monthLimit,
-    editedCategories: editedCategories,
+) => {
+  return new Promise((resolve, reject) => {
+    try {
+      setDoc(doc(db, "settings", uid), {
+        font: font,
+        mode: mode,
+        currency: currency,
+        travelMode: travelMode,
+        fromCurrency: fromCurrency,
+        monthLimit: monthLimit,
+        editedCategories: editedCategories,
+      }).then(() => {
+        getDoc(doc(db, "settings", uid)).then((userSetting) => {
+          resolve(userSetting.data());
+        });
+      });
+    } catch (error) {
+      reject(error);
+    }
   });
+};
 
 //  const expensesRef = db.ref('expenses')
 //     expensesRef.on('child_removed', function (data) {

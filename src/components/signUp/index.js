@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import * as routes from "../../constants/routes";
@@ -6,6 +6,8 @@ import * as routes from "../../constants/routes";
 import * as analytics from "./../../analytics/analytics";
 
 import Loader from "./../Common/Loader";
+
+import ReCAPTCHA from "react-google-recaptcha";
 
 const SignUpPage = ({ history }) => (
   <div>
@@ -24,6 +26,7 @@ const INITIAL_STATE = {
   validationEmail: null,
   validationPassword: null,
   validationCP: null,
+  validationCaptcha: null,
 };
 
 const byPropKey = (propertyName, value) => () => ({
@@ -34,7 +37,7 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE, isLoading: false };
+    this.state = { ...INITIAL_STATE, isLoading: false, reCaptchaToken: "" };
   }
 
   componentDidMount() {
@@ -44,7 +47,8 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     this.setState(byPropKey("isLoading", true));
-    const { username, email, passwordOne, passwordTwo } = this.state;
+    const { username, email, passwordOne, passwordTwo, reCaptchaToken, error } =
+      this.state;
 
     const { history } = this.props;
 
@@ -52,7 +56,8 @@ class SignUpForm extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
       email === "" ||
-      username === "";
+      username === "" ||
+      reCaptchaToken === "";
 
     if (username === "") {
       this.setState(
@@ -83,6 +88,12 @@ class SignUpForm extends Component {
       }
     }
 
+    if (reCaptchaToken) {
+      this.setState(byPropKey("error", null));
+    } else {
+      this.setState(byPropKey("error", { code: "captcha" }));
+    }
+
     if (!isInvalid) {
       auth
         .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -92,26 +103,12 @@ class SignUpForm extends Component {
             .then(() => {
               this.setState(byPropKey("isLoading", false));
               this.setState(() => ({ ...INITIAL_STATE }));
-              history.push(routes.HOME);
+              history.push("/");
             })
             .catch((error) => {
               this.setState(byPropKey("isLoading", false));
               this.setState(byPropKey("error", error));
             });
-
-          if (!authUser.emailVerified) {
-            // send a verification mail to user
-            authUser
-              .sendEmailVerification()
-              .then(function () {
-                this.setState(byPropKey("isLoading", false));
-                history.push(routes.USER_VERIFICATION);
-              })
-              .catch(function (error) {
-                this.setState(byPropKey("isLoading", false));
-                alert("something went wrong: ", error);
-              });
-          }
         })
         .catch((error) => {
           this.setState(byPropKey("isLoading", false));
@@ -136,19 +133,20 @@ class SignUpForm extends Component {
       validationEmail,
       validationPassword,
       isLoading,
+      reCaptchaToken,
     } = this.state;
 
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      username === "";
-
     let errorMessage = "";
+
     if (error) {
-      if (error.code === "auth/email-already-in-use")
+      console.log(error.code);
+      if (error.code === "auth/email-already-in-use") {
         errorMessage = "Email is already taken";
-      else {
+      } else if (error.code === "captcha" && reCaptchaToken === "") {
+        errorMessage = "Please Verify Your ReCaptcha";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage = "The password entered is too weak";
+      } else {
         errorMessage = "Unable to create an account";
       }
     }
@@ -260,8 +258,21 @@ class SignUpForm extends Component {
             )}
           </div>
 
+          <Suspense fallback={<Loader />}>
+            <div className="mb-3 mt-2">
+              <ReCAPTCHA
+                className="g-recaptcha"
+                sitekey={`${process.env.REACT_APP_GOOGLE_RECAPTCHA_CLIENT_API_KEY}`}
+                onChange={(value) => {
+                  this.setState(byPropKey("reCaptchaToken", value));
+                  if (value) {
+                    this.setState(byPropKey("error", null));
+                  }
+                }}
+              />
+            </div>
+          </Suspense>
           {!isLoading ? <button type="submit">Sign Up</button> : <Loader />}
-
           {error && !isLoading && (
             <p className="mt-3 mb-0 text-danger">
               <b>{errorMessage}</b>

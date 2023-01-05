@@ -13,7 +13,7 @@ import "../assets/css/signin.css";
 import ExampleModalClass from "./NewModalExample/index";
 
 import * as routes from "../constants/routes";
-import { db } from "../firebase/firebase.js";
+import { auth, db } from "../firebase/firebase.js";
 import * as firebasestore from "../firebase/db.js";
 import * as analytics from "./../analytics/analytics";
 import { doc, getDoc, collection, onSnapshot } from "@firebase/firestore";
@@ -34,6 +34,7 @@ const LoanPage = React.lazy(() => import("./Loan/index"));
 const SettingsPage = React.lazy(() => import("./Settings/index"));
 const SavingsPage = React.lazy(() => import("./Savings/index"));
 const ErrorPage = React.lazy(() => import("./Error/index"));
+const Welcome = React.lazy(() => import("./signUp/Welcome"));
 
 class App extends Component {
   constructor(props) {
@@ -97,10 +98,15 @@ class App extends Component {
         };
         if (docSettingSnap.exists()) {
           console.log("settings exists");
+
+          console.log(docSettingSnap.data());
+
+          // Set the settings to state
           this.setState({
             settings: docSettingSnap.data(),
           });
 
+          // Check of edited Categories
           if (!docSettingSnap.data().editedCategories) {
             firebasestore.doCreateSettingsForUser(
               this.state.authUser.uid,
@@ -114,23 +120,52 @@ class App extends Component {
             );
           }
 
+          //setting the font family to chart.js
           if (this.state.settings) {
-            //setting the font family to chart.js
             defaults.global.defaultFontFamily =
               this.state.settings.font || "sans-serif";
           }
         } else {
           console.log("creating settings");
-          firebasestore.doCreateSettingsForUser(
-            this.state.authUser.uid,
-            "sans-serif",
-            "night",
-            "Indian Rupees",
-            "off",
-            "Indian Rupees",
-            15000,
-            defaultCategories
-          );
+          firebasestore
+            .doCreateSettingsForUser(
+              this.state.authUser.uid,
+              "sans-serif",
+              "night",
+              "Indian Rupees",
+              "off",
+              "Indian Rupees",
+              15000,
+              defaultCategories
+            )
+            .then((userSetting) => {
+              console.log(userSetting);
+
+              // Set the settings to state
+              this.setState({
+                settings: userSetting,
+              });
+
+              // Check of edited Categories
+              if (!userSetting.editedCategories) {
+                firebasestore.doCreateSettingsForUser(
+                  this.state.authUser.uid,
+                  userSetting.font,
+                  userSetting.mode,
+                  userSetting.currency,
+                  userSetting.travelMode,
+                  userSetting.fromCurrency,
+                  userSetting.monthLimit,
+                  defaultCategories
+                );
+              }
+
+              //setting the font family to chart.js
+              if (this.state.settings) {
+                defaults.global.defaultFontFamily =
+                  this.state.settings.font || "sans-serif";
+              }
+            });
         }
 
         // get all the expenses from new table
@@ -530,6 +565,11 @@ class App extends Component {
                     settings={this.state.settings}
                   />
                 )}
+              />
+              <Route
+                exact
+                path={routes.WELCOME}
+                component={() => <Welcome />}
               />
 
               {/* <Route

@@ -346,11 +346,11 @@ ul {
     margin-left: 0px !important;
   }
 
-    .mobileNoPadding {
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: hidden;
-    }
+  .mobileNoPadding {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
 
   .mobileNoMargin {
     margin: 0 !important;
@@ -907,4 +907,11 @@ i.fa.fa-circle-o {
   border: 0;
   border-radius: 0.375rem;
   opacity: 0.5;
+}
+
+.g-recaptcha {
+  transform: scale(0.89);
+  -webkit-transform: scale(0.89) !important;
+  transform-origin: 0 0 !important;
+  -webkit-transform-origin: 0 0 !important;
 }

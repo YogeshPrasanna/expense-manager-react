@@ -333,14 +333,14 @@ const NavigationNonAuth = () => {
                         Sign In
                     </Link> */}
 
-          <Link
+          {/* <Link
             className={`nav-link ${
               window.location.pathname === "/shop" ? "active" : "inactive"
             }`}
             to={routes.SHOP}
           >
             Shop
-          </Link>
+          </Link> */}
 
           <Link
             className={`nav-link ${
@@ -358,6 +358,8 @@ const NavigationNonAuth = () => {
 };
 
 const Navigation = ({ authUser, settings }) => {
+  console.log(authUser)
+  console.log(settings)
   return (
     <div>
       {authUser && settings ? (
