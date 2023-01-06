@@ -5,19 +5,14 @@ UM STUDENT NEW UPDATED SOFTWARE MAINTENANCE AND EVOLUTION PROJECT
 New Hosting Link : [Updated Expense Manager](https://expense-manager-43d96.web.app/)
 
 
-
-## Note
-
-*_I have stopped support for this application in terms of updating the stack and versions, if you run npm install , you might run into errors for not having latest versions of firebase , hence i advice to download the node modules in this project to run it locally_*
-
 ## DEMO Account
 
 *_In case you need to have a quick look at the app without creating an account, use the below credentials_*
 
 [Click Here For Demo](https://sad-shirley-6ef62f.netlify.com/)
 
-`Username : yogi15moto@gmail.com`
-`password : yogesh`
+`Username : testuser@examplemail.com`
+`password : test123456`
 
 ## SCREENSHOTS
 
@@ -79,22 +74,67 @@ New Hosting Link : [Updated Expense Manager](https://expense-manager-43d96.web.a
 
 - Create a new firebase project 
 
-  [![Add Firebase Project](https://i.postimg.cc/TwvMnjTk/add-Firebase.png)](https://i.postimg.cc/TwvMnjTk/add-Firebase.png)
-  [![Add Firebase Project](https://i.postimg.cc/fL74C3LM/add-project.png)](https://i.postimg.cc/fL74C3LM/add-project.png)
+  [![Add Firebase Project](https://i.postimg.cc/sxvhPQB7/firebase-1.png)](https://i.postimg.cc/sxvhPQB7/firebase-1.png)
+  [![Add Firebase Project](https://i.postimg.cc/QNy58bPb/firebase-2.png)](https://i.postimg.cc/QNy58bPb/firebase-2.png)
+  [![Add Firebase Project](https://i.postimg.cc/NFSrdsTV/firebase-3.png)](https://i.postimg.cc/NFSrdsTV/firebase-3.png)
   
-- Be Sure to Choose Realtime Database , and not firestore
+- From the console, expand 'Build' and select Firestore Database and follow the steps to setup the database
+
+  [![Create Cloud Firestore](https://i.postimg.cc/wjsCvgVB/firestore-1.png)](https://i.postimg.cc/wjsCvgVB/firestore-1.png)
+  [![Create Cloud Firestore](https://i.postimg.cc/jjHBHcB0/firestore-2.png)](https://i.postimg.cc/jjHBHcB0/firestore-2.png)
+  [![Create Cloud Firestore](https://i.postimg.cc/nLb69gRG/firestore-3.png)](https://i.postimg.cc/nLb69gRG/firestore-3.png)  
 
 - change database rules to 
-  [![Change database rules](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)](https://i.postimg.cc/3N3scK4m/firebase-database-rules.png)
+  ```
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /expenseTable/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+      match /savingsTable/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+      match /loanTable/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+      match /settings/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+      match /users/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+      match /defaultCategories/{userId} {
+        allow read, write: if request.auth.uid == userId;
+        match /{document=**} {
+          allow read, write: if request.auth.uid == userId;
+        }
+      }
+    }
+  }
+  ```
   
-- Now lets add the app in firebase
-  [![Adding the app](https://i.postimg.cc/x15nGjnk/add-app1.png)](https://i.postimg.cc/x15nGjnk/add-app1.png)
-  
-- Give Your app a name & hosting is optional
-  [![Give Your app a name](https://i.postimg.cc/9MR2jGTT/adding-firebase1.png)](https://i.postimg.cc/9MR2jGTT/adding-firebase1.png)
+- Now lets add the app in firebase by going to Settings -> Project Settings and clicking on the Web App under 'Your Apps'
+  [![Adding the app](https://i.postimg.cc/DZsDvgdY/add-firebaseapp.png)](https://i.postimg.cc/DZsDvgdY/add-firebaseapp.png)
+  [![Adding the app](https://i.postimg.cc/cCBbYLzR/add-firebaseapp-1.png)](https://i.postimg.cc/cCBbYLzR/add-firebaseapp-1.png)
   
 - Now Lets add the config in ./src/firebase/firebase.js
-  [![lets add the config](https://i.postimg.cc/LXcp4nBW/adding-firebase2.png)](https://i.postimg.cc/LXcp4nBW/adding-firebase2.png)
+  [![lets add the config](https://i.postimg.cc/YqfvGBCt/add-firebaseapp-2.png)](https://i.postimg.cc/YqfvGBCt/add-firebaseapp-2.png)
   
 - OPTIONAL_STEP : If you're hosting this app somewhere make sure the api key comes from .env.local as environment variable, doing this does not expose yor api-key , and do not commit this file to github , add this in .gitignore 
     `# api Keys`
@@ -105,11 +145,8 @@ New Hosting Link : [Updated Expense Manager](https://expense-manager-43d96.web.a
      `REACT_APP_FIREBASE_API_KEY = "your-api-key-here"`
      [![.env.local](https://i.postimg.cc/fLZcGv1q/env-local.png)](https://i.postimg.cc/fLZcGv1q/env-local.png)
   
-- Enable Google Authentication and Email Authentication , Feel Free to add other authentication methods and setup accordingly
-  [![Enable Google Authentication](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)](https://i.postimg.cc/593dFFT3/firebase-enable-auth-methods.png)
-  
-- Setup Email Verification Template
-  [![Setup Email Verification Template](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)](https://i.postimg.cc/pXLNQLtt/firebase-setup-firebase-email-verification-templates.png)
+- From Build -> Authentication, enable Google Authentication and Email Authentication , Feel Free to add other authentication methods and setup accordingly
+  [![Enable Google Authentication](https://i.postimg.cc/dQ5XqL8F/firebase-auth1.png)](https://i.postimg.cc/dQ5XqL8F/firebase-auth1.png)
   
 - Finally we need to set up the API-Key for currency converter , which is needed for travel mode.
     - Head over to [currencyconverterapi.com](https://free.currencyconverterapi.com/)
