@@ -13,3 +13,5 @@ export const STATISTICS_VIEW = "/statistics";
 export const LOAN_VIEW = "/loan";
 export const SETTINGS_VIEW = "/settings";
 export const SAVINGS_VIEW = "/savings";
+export const WELCOME = "/welcome";
+// export const MODAL_EXAMPLE = "/modalexample";
