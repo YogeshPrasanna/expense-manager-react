@@ -8,7 +8,7 @@
 
 *_In case you need to have a quick look at the app without creating an account, use the below credentials_*
 
-[Click Here For Demo](https://sad-shirley-6ef62f.netlify.com/)
+[Click Here For Demo](https://sad-shirley-6ef62f.netlify.app/)
 
 `Username : yogi15moto@gmail.com`
 `password : yogesh`
