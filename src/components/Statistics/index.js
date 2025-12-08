@@ -11,7 +11,7 @@ import * as analytics from "./../../analytics/analytics";
 
 const marB15 = {
     marginBottom: window.screen.width > 720 ? "15px" : "0",
-    marginTop: window.screen.width > 720 ? "0" : "0"
+    marginTop: window.screen.width > 720 ? "0" : "0",
 };
 
 const StatisticsPage = props => {
@@ -23,8 +23,8 @@ const StatisticsPage = props => {
 
     const nmBgForCharts = {
         backgroundColor: props.settings ? (props.settings.mode === "night" ? "#2C3034" : "#EDF0EF") : "#EDF0EF",
-        padding: "10px",
-        // border: window.screen.width > 720 ? "15px solid #484842" : "15px solid #DDDDDD"
+        paddingBottom: "10px",
+         // border: window.screen.width > 720 ? "15px solid #484842" : "15px solid #DDDDDD"
     };
 
     if (props.settings) {

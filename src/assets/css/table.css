@@ -24,13 +24,6 @@
     padding-bottom: 0.5em;
 }
 
-.rwd-table td:before {
-    content: attr(data-th) ": ";
-    font-weight: bold;
-    width: 6.5em;
-    display: inline-block;
-}
-
 @media (min-width: 767px) {
     .rwd-table td:before {
         display: none;
@@ -112,8 +105,7 @@ h1 {
     }
 }
 
-.rwd-table th,
-.rwd-table td:before {
+.rwd-table th {
     color: #dd5;
 }
 
