@@ -1,5 +1,6 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import { auth } from '../../firebase';
+import * as analytics from "./../../analytics/analytics"
 
 
 const style = {
@@ -7,13 +8,18 @@ const style = {
 }
 
 class PasswordForgetPage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.state = {
             email: '',
             sent: false
         }
+    }
+
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
     }
 
     onSubmit = (event) => {
@@ -26,25 +32,25 @@ class PasswordForgetPage extends Component {
             alert(error)
         });
 
-        event.preventDefault();        
+        event.preventDefault();
     }
 
     render() {
         return (
             <div className="login-page">
                 <form onSubmit={this.onSubmit} className="form">
-                        <input
-                            value={this.state.email}
-                            onChange={event => this.setState({
-                                    'email': event.target.value
-                                    })
-                                }
-                            type="text"
-                            placeholder="Email Address"
-                        />
+                    <input
+                        value={this.state.email}
+                        onChange={event => this.setState({
+                            'email': event.target.value
+                        })
+                        }
+                        type="text"
+                        placeholder="Email Address"
+                    />
                     <button type="submit" >reset password</button>
                 </form>
-                {this.state.sent ? 
+                {this.state.sent ?
                     <div className="row">
                         <div className="col-sm-12" style={style}>
                             <div className="alert alert-success" role="alert">
@@ -52,9 +58,9 @@ class PasswordForgetPage extends Component {
                                 <p>Please reset your password - and then login to manage your expenses</p>
                             </div>
                         </div>
-                    </div> : 
-                    <div> </div> 
-                } 
+                    </div> :
+                    <div> </div>
+                }
             </div>
         )
     }

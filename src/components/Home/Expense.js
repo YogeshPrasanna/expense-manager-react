@@ -1,13 +1,11 @@
 import React from "react";
 import ExpenseRow from "../Common/ExpenseRow";
 import Loader from "../Common/Loader";
-import * as utils from "../Util";
 
 const Expense = props => {
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
+    const { expenses, authUser, settings, convertedCurrency } = props;
 
-    if (!expenses || !currentUser) {
+    if (!expenses || !authUser) {
         return (
             <tr>
                 <td>
@@ -35,20 +33,21 @@ const Expense = props => {
         );
     }
 
-    if (expenses && currentUser) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.currentUsersExpenses(eachExpense, currentUser);
+    if (expenses && authUser) {
+        // let eachExpense = utils.eachExpense(expenses);
+        // let thisUsersExpenses = utils.authUsersExpenses(eachExpense, authUser);
 
-        if (thisUsersExpenses.length) {
-            return thisUsersExpenses.map(function(elem, i) {
+        if (expenses.length) {
+            return expenses.map(function(elem, i) {
                 return (
                     <ExpenseRow
-                        user={props.authUser}
+                        user={authUser}
                         expense={elem}
                         num={i}
                         key={i}
-                        expenseId={thisUsersExpenses[i].key}
-                        settings={props.settings}
+                        expenseId={expenses[i].key}
+                        settings={settings}
+                        convertedCurrency={convertedCurrency}
                     />
                 );
             });

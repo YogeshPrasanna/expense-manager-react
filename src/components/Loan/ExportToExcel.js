@@ -117,6 +117,8 @@ class ExportToExcel extends Component {
                 <span onClick={this.print} style={clickIconPrint}>
                     <i className="fa fa-print" /> Print
                 </span>
+
+                <span className="totalRecords">{this.props.excelDataObject.length} records</span>
             </div>
         );
     }

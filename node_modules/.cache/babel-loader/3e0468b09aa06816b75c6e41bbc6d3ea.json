@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nmodule.exports = {};\nmodule.exports.Arc = require('./element.arc');\nmodule.exports.Line = require('./element.line');\nmodule.exports.Point = require('./element.point');\nmodule.exports.Rectangle = require('./element.rectangle');","map":null,"metadata":{},"sourceType":"script"}

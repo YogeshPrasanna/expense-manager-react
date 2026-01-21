@@ -6,7 +6,7 @@ import * as routes from "../../constants/routes";
 
 const NavigationAuth = props => {
     const burgerToggle = () => {
-        let linksEl = document.querySelector(".narrowLinks");
+        const linksEl = document.querySelector(".narrowLinks");
         if (linksEl.style.display === "block") {
             linksEl.style.display = "none";
         } else {
@@ -43,13 +43,6 @@ const NavigationAuth = props => {
                         Home
                     </Link>
                     <Link
-                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
-                        to={routes.ACCOUNT}
-                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
-                    >
-                        Account
-                    </Link>
-                    <Link
                         className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}
                         to={routes.MONTH_VIEW}
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
@@ -83,6 +76,13 @@ const NavigationAuth = props => {
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
                         Loan
+                    </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/savings" ? "active" : "inactive"}`}
+                        to={routes.SAVINGS_VIEW}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Savings
                     </Link>
                     <Link
                         className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
@@ -117,14 +117,6 @@ const NavigationAuth = props => {
                         Home
                     </Link>
                     <Link
-                        className={`nav-link ${window.location.pathname === "/account" ? "active" : "inactive"}`}
-                        to={routes.ACCOUNT}
-                        onClick={burgerToggle}
-                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
-                    >
-                        Account
-                    </Link>
-                    <Link
                         className={`nav-link ${window.location.pathname === "/month-view" ? "active" : "inactive"}`}
                         to={routes.MONTH_VIEW}
                         onClick={burgerToggle}
@@ -156,7 +148,6 @@ const NavigationAuth = props => {
                     >
                         Stats
                     </Link>
-
                     <Link
                         className={`nav-link ${window.location.pathname === "/loan" ? "active" : "inactive"}`}
                         to={routes.LOAN_VIEW}
@@ -164,6 +155,14 @@ const NavigationAuth = props => {
                         style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
                     >
                         Loan
+                    </Link>
+                    <Link
+                        className={`nav-link ${window.location.pathname === "/savings" ? "active" : "inactive"}`}
+                        to={routes.SAVINGS_VIEW}
+                        onClick={burgerToggle}
+                        style={props.settings.mode === "night" ? nightModeLink : dayModeLink}
+                    >
+                        Savings
                     </Link>
                     <Link
                         className={`nav-link ${window.location.pathname === "/settings" ? "active" : "inactive"}`}
@@ -207,6 +206,13 @@ const NavigationNonAuth = () => {
                     </Link> */}
 
                     <Link
+                        className={`nav-link ${window.location.pathname === "/shop" ? "active" : "inactive"}`}
+                        to={routes.SHOP}
+                    >
+                        Shop
+                    </Link>
+
+                    <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
                         to={routes.SIGN_IN}
                     >
@@ -229,6 +235,13 @@ const NavigationNonAuth = () => {
                     </Link> */}
 
                     <Link
+                        className={`nav-link ${window.location.pathname === "/shop" ? "active" : "inactive"}`}
+                        to={routes.SHOP}
+                    >
+                        Shop
+                    </Link>
+
+                    <Link
                         className={`nav-link ${window.location.pathname === "/" ? "active" : "inactive"}`}
                         to={routes.SIGN_IN}
                         onClick={burgerToggle}
@@ -247,8 +260,8 @@ const Navigation = ({ authUser, settings }) => {
             {authUser && authUser.emailVerified && settings ? (
                 <NavigationAuth settings={settings} />
             ) : (
-                <NavigationNonAuth />
-            )}
+                    <NavigationNonAuth />
+                )}
         </div>
     );
 };

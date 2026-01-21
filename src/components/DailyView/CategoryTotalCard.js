@@ -32,36 +32,39 @@ const CategoryTotalCard = props => {
         color: "rgba(255,255,255,.45)"
     };
 
-    let expenses = props.expenses;
-    let currentUser = props.authUser;
-    let dateSelected = props.date;
+    const expenses = props.expenses;
+    const currentUser = props.authUser;
+    const dateSelected = props.date;
+    const cards = props.cards;
+    const editedCategories = props.settings.editedCategories;
 
     let allCategoryTotals = null;
     let categoryList = null;
 
-    if (!expenses || !currentUser || !dateSelected) {
+    if (!expenses || !currentUser || !dateSelected || !editedCategories) {
         return <Loader />;
     }
 
-    if (expenses && currentUser && dateSelected) {
-        let eachExpense = utils.eachExpense(expenses);
-        let thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
+    if (expenses && currentUser && dateSelected && cards && editedCategories) {
+        const eachExpense = utils.eachExpense(expenses);
+        const thisUsersExpenses = utils.expensesInDate(eachExpense, currentUser, dateSelected);
 
-        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses);
+        allCategoryTotals = utils.calculateTotalForAllCategories(thisUsersExpenses, editedCategories);
 
         const eachCategory = allCategoryTotals => {
-            return Object.keys(allCategoryTotals).map(function(key) {
+            return Object.keys(allCategoryTotals).map(function (key) {
                 return { key: key, value: allCategoryTotals[key] };
             });
         };
 
         categoryList = eachCategory(allCategoryTotals).map(el => {
             if (el.value) {
+                let catName = editedCategories[el.key] ? editedCategories[el.key] : el.key;
                 return (
                     <span style={category} className="ttt" key={el.key}>
-                        <div style={utils.categoryName(el.key)}>{el.key}</div>
+                        <div style={utils.categoryName(el.key, "card")}>{catName}</div>
                         <i className={`fa fa-${utils.categoryIcon(el.key)}`} style={lessFont} aria-hidden="true" />
-                        <div style={categoryExpense}>{el.value}</div>
+                        <div style={categoryExpense}>{el.value.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,")}</div>
                     </span>
                 );
             } else {
@@ -72,7 +75,7 @@ const CategoryTotalCard = props => {
 
     return (
         <div className="col-sm-12" style={pad0}>
-            <div className="card card4">
+            <div className="card card4 mobileNoPadding" style={cards.card4}>
                 <div className="card-block">
                     <h3 className="card-title"> Each Category</h3>
                     <ul style={pad0}>{categoryList}</ul>

@@ -4,9 +4,9 @@ import Loader from "../Common/Loader";
 import * as utils from "../Util";
 
 const Loans = props => {
-    let loans = props.loans;
-    let currentUser = props.authUser;
-    let settings = props.settings;
+    const loans = props.loans;
+    const currentUser = props.authUser;
+    const settings = props.settings;
 
     if (!loans || !currentUser || !settings) {
         return (
@@ -43,11 +43,11 @@ const Loans = props => {
     }
 
     if (loans && currentUser && settings) {
-        let eachExpense = utils.eachExpense(loans);
-        let thisUsersLoan = utils.currentUsersExpenses(eachExpense, currentUser);
+        const eachExpense = utils.eachExpense(loans);
+        const thisUsersLoan = utils.currentUsersExpenses(eachExpense, currentUser);
 
         if (thisUsersLoan.length) {
-            return thisUsersLoan.map(function(elem, i) {
+            return thisUsersLoan.map(function (elem, i) {
                 return (
                     <LoanRow
                         user={props.authUser}

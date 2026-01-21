@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 
 const config = {
-    apiKey: "AIzaSyCLgp-lM7vLypzhkakWCt4FD2nh7pd4W08",
+    apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
     authDomain: "expense-manager-react.firebaseapp.com",
     databaseURL: "https://expense-manager-react.firebaseio.com",
     projectId: "expense-manager-react",

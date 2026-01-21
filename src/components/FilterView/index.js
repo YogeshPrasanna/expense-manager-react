@@ -7,6 +7,9 @@ import moment from "moment";
 import GenerateExcel from "./GenerateExcel";
 import Loader from "./../Common/Loader";
 
+import * as analytics from "./../../analytics/analytics";
+import MobileExpenseTable from "./MobileExpenseTable";
+
 class FilterViewPage extends Component {
     constructor(props) {
         super(props);
@@ -16,13 +19,83 @@ class FilterViewPage extends Component {
         const start = new Date("1/1/" + thisYear);
         const defaultStart = moment(start.valueOf());
 
-        this.state = {
-            fromdate: defaultStart,
-            todate: moment(),
-            category: "Food",
-            expensefrom: "00",
-            expenseto: "10000"
-        };
+        function parseURLParams(url) {
+            var queryStart = url.indexOf("?") + 1,
+                queryEnd = url.indexOf("#") + 1 || url.length + 1,
+                query = url.slice(queryStart, queryEnd - 1),
+                pairs = query.replace(/\+/g, " ").split("&"),
+                parms = {},
+                i,
+                n,
+                v,
+                nv;
+
+            if (query === url || query === "") return;
+
+            for (i = 0; i < pairs.length; i++) {
+                nv = pairs[i].split("=", 2);
+                n = decodeURIComponent(nv[0]);
+                v = decodeURIComponent(nv[1]);
+
+                if (!parms.hasOwnProperty(n)) parms[n] = [];
+                parms[n].push(nv.length === 2 ? v : null);
+            }
+            return parms;
+        }
+
+        var urlString = window.location.href;
+        var urlParams = parseURLParams(urlString);
+
+        if (urlParams) {
+            if (urlParams.from[0] === "monthpage") {
+                const selectedMonth = Number(urlParams.selectedMonth[0]) + 1;
+                const selectedYear = Number(urlParams.selectedYear[0]);
+                const urlCategory = urlParams.category[0];
+                //const noOfDaysInMonth = moment(`${selectedMonth}-${selectedYear}`, "YYYY-MM").daysInMonth();
+                const noOfDaysInMonth = moment(`${selectedYear}-${selectedMonth}`, "YYYY-MM").daysInMonth();
+
+                const startDate = moment(`${selectedMonth}/01/${selectedYear}`);
+                const endDate = moment(`${selectedMonth}/${noOfDaysInMonth}/${selectedYear}`);
+
+                this.state = {
+                    fromdate: startDate,
+                    todate: endDate,
+                    category: urlCategory,
+                    expensefrom: "00",
+                    expenseto: "10000",
+                    convertedCurrency: null
+                };
+            } else if (urlParams.from[0] === "yearpage") {
+                const selectedYear =
+                    urlParams.selectedYear[0] === "all"
+                        ? moment(new Date()).get("year")
+                        : Number(urlParams.selectedYear[0]);
+                const urlCategory = urlParams.category[0];
+                //const noOfDaysInMonth = moment(`${selectedMonth}-${selectedYear}`, "YYYY-MM").daysInMonth();
+                const noOfDaysInMonth = moment(`${selectedYear}-12`, "YYYY-MM").daysInMonth();
+
+                const startDate = moment(`01/01/${selectedYear}`);
+                const endDate = moment(`12/${noOfDaysInMonth}/${selectedYear}`);
+
+                this.state = {
+                    fromdate: startDate,
+                    todate: endDate,
+                    category: urlCategory,
+                    expensefrom: "00",
+                    expenseto: "10000",
+                    convertedCurrency: null
+                };
+            }
+        } else {
+            this.state = {
+                fromdate: defaultStart,
+                todate: moment(),
+                category: "Food",
+                expensefrom: "00",
+                expenseto: "10000",
+                convertedCurrency: null
+            };
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleFromDateSelect = this.handleFromDateSelect.bind(this);
@@ -48,6 +121,48 @@ class FilterViewPage extends Component {
         });
     }
 
+    componentDidMount() {
+        analytics.initGA();
+        analytics.logPageView();
+
+        // if travel mode then convert currency else set to 1
+        if (this.props.settings && this.props.settings.travelMode === "on") {
+            function returnCur(cur) {
+                switch (cur) {
+                    case "Indian Rupees":
+                        return "INR";
+                    case "US Dollars":
+                        return "USD";
+                    case "Pounds":
+                        return "EUR";
+                    case "Euro":
+                        return "EUR";
+                    case "Yen":
+                        return "YER";
+                    default:
+                        return "INR";
+                }
+            }
+
+            const fromcur = returnCur(this.props.settings.fromCurrency);
+            const tocur = returnCur(this.props.settings.currency);
+
+            fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromcur}_${tocur}&compact=y&apiKey=${process.env.REACT_APP_FREE_CURRENCY_CONVERTER_API_KEY}`)
+                .then(resp => resp.json()) // Transform the data into json
+                .then(data => {
+                    this.setState({
+                        convertedCurrency: Object.values(data)[0].val
+                    });
+                })
+                .catch(() => {
+                    alert("Some Problem with the currency converter api. Values will Fallback to default currency");
+                    this.setState({ convertedCurrency: 1 });
+                });
+        } else {
+            this.setState({ convertedCurrency: 1 });
+        }
+    }
+
     render() {
         const datePickerHeader = {
             background: "#887657",
@@ -57,12 +172,8 @@ class FilterViewPage extends Component {
             borderRadius: "5px"
         };
 
-        const leftCol = {
-            borderRight: "2px solid rgba(0,0,0,0.2)"
-        };
-
         const form = {
-            padding: "15px 0 0 0"
+            padding: window.screen.width > 720 ? "15px 0 0 0" : "15px"
         };
 
         const pad0 = {
@@ -71,16 +182,16 @@ class FilterViewPage extends Component {
 
         const styleFromSettings = {
             fontFamily: this.props.settings ? this.props.settings.font : "sans-serif",
-            backgroundColor: this.props.settings
-                ? this.props.settings.mode === "night"
-                    ? "#484842"
-                    : "#EDF0EF"
-                : "#EDF0EF",
+            backgroundColor: this.props.settings ? (this.props.settings.mode === "night" ? "#484842" : "auto") : "auto",
             minHeight: "91vh"
         };
 
         const white = {
             color: this.props.settings ? (this.props.settings.mode === "night" ? "#fff" : "#000") : "#000"
+        };
+
+        const rightCol = {
+            paddingLeft: "0"
         };
 
         const inputNightMode = {
@@ -91,13 +202,13 @@ class FilterViewPage extends Component {
 
         const inputDayMode = { background: "#fff", color: "#495057" };
 
-        if (this.props.settings) {
+        if (this.props.settings && this.props.cards) {
             return (
                 <div className="container-fluid" style={styleFromSettings}>
                     <div className="row">
-                        <div className="col-sm-4" style={leftCol}>
+                        <div className="col-sm-4 mobileNoPadding">
                             <form onSubmit={this.handleSubmit} style={form}>
-                                <div style={datePickerHeader}> Filter out your expenses </div>
+                                {/* <div style={datePickerHeader}> Filter out your expenses </div> */}
                                 <div className="form-group row">
                                     <div className="col-sm-6" style={pad0}>
                                         <label className="col-sm-12 col-form-label" style={white}>
@@ -186,18 +297,18 @@ class FilterViewPage extends Component {
                                             onChange={this.handleChange.bind(this)}
                                             style={this.props.settings.mode === "night" ? inputNightMode : inputDayMode}
                                         >
-                                            <option value="Food">Food</option>
-                                            <option value="Automobile">Automobile</option>
-                                            <option value="Entertainment">Entertainment</option>
-                                            <option value="Clothing">Clothing</option>
-                                            <option value="Healthcare">Healthcare</option>
-                                            <option value="Travel">Travel</option>
-                                            <option value="Shopping">Shopping</option>
-                                            <option value="Personal Care">Personal Care</option>
-                                            <option value="Investment">Investment</option>
-                                            <option value="Gifts & Donations">Gifts & Donations</option>
-                                            <option value="Bills & Utilities">Bills & Utilities</option>
-                                            <option value="Others">Others</option>
+                                            <option value="Food">{this.props.settings.editedCategories["Food"] ? this.props.settings.editedCategories["Food"] : "Food"}</option>
+                                            <option value="Automobile">{this.props.settings.editedCategories["Automobile"] ? this.props.settings.editedCategories["Automobile"] : "Automobile"}</option>
+                                            <option value="Entertainment">{this.props.settings.editedCategories["Entertainment"] ? this.props.settings.editedCategories["Entertainment"] : "Entertainment"}</option>
+                                            <option value="Clothing">{this.props.settings.editedCategories["Clothing"] ? this.props.settings.editedCategories["Clothing"] : "Clothing"}</option>
+                                            <option value="Healthcare">{this.props.settings.editedCategories["Healthcare"] ? this.props.settings.editedCategories["Healthcare"] : "Healthcare"}</option>
+                                            <option value="Travel">{this.props.settings.editedCategories["Travel"] ? this.props.settings.editedCategories["Travel"] : "Travel"}</option>
+                                            <option value="Shopping">{this.props.settings.editedCategories["Shopping"] ? this.props.settings.editedCategories["Shopping"] : "Shopping"}</option>
+                                            <option value="Personal Care">{this.props.settings.editedCategories["Personal Care"] ? this.props.settings.editedCategories["Personal Care"] : "Personal Care"}</option>
+                                            <option value="Investment">{this.props.settings.editedCategories["Investment"] ? this.props.settings.editedCategories["Investment"] : "Investment"}</option>
+                                            <option value="Gifts & Donations">{this.props.settings.editedCategories["Gifts & Donations"] ? this.props.settings.editedCategories["Gifts & Donations"] : "Gifts & Donations"}</option>
+                                            <option value="Bills & Utilities">{this.props.settings.editedCategories["Bills & Utilities"] ? this.props.settings.editedCategories["Bills & Utilities"] : "Bills & Utilities"}</option>
+                                            <option value="Others">{this.props.settings.editedCategories["Others"] ? this.props.settings.editedCategories["Others"] : "Others"}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -210,9 +321,11 @@ class FilterViewPage extends Component {
                                 todate={this.state.todate.format("MM/DD/YYYY")}
                                 category={this.state.category}
                                 authUser={this.props.user}
+                                settings={this.props.settings}
+                                cards={this.props.cards}
                             />
                         </div>
-                        <div className="col-sm-8">
+                        <div className="col-sm-8 mobileNoPadding" style={rightCol}>
                             <GenerateExcel
                                 expenses={this.props.expenses}
                                 expensefrom={this.state.expensefrom}
@@ -223,16 +336,35 @@ class FilterViewPage extends Component {
                                 authUser={this.props.user}
                                 settings={this.props.settings}
                             />
-                            <ExpenseTable
-                                expenses={this.props.expenses}
-                                expensefrom={this.state.expensefrom}
-                                expenseto={this.state.expenseto}
-                                fromdate={this.state.fromdate.format("MM/DD/YYYY")}
-                                todate={this.state.todate.format("MM/DD/YYYY")}
-                                category={this.state.category}
-                                authUser={this.props.user}
-                                settings={this.props.settings}
-                            />
+                            {this.state.convertedCurrency ? (
+                                window.screen.width > 720 ? (
+                                    <ExpenseTable
+                                        expenses={this.props.expenses}
+                                        expensefrom={this.state.expensefrom}
+                                        expenseto={this.state.expenseto}
+                                        fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                                        todate={this.state.todate.format("MM/DD/YYYY")}
+                                        category={this.state.category}
+                                        authUser={this.props.user}
+                                        settings={this.props.settings}
+                                        convertedCurrency={this.state.convertedCurrency}
+                                    />
+                                ) : (
+                                        <MobileExpenseTable
+                                            expenses={this.props.expenses}
+                                            expensefrom={this.state.expensefrom}
+                                            expenseto={this.state.expenseto}
+                                            fromdate={this.state.fromdate.format("MM/DD/YYYY")}
+                                            todate={this.state.todate.format("MM/DD/YYYY")}
+                                            category={this.state.category}
+                                            authUser={this.props.user}
+                                            settings={this.props.settings}
+                                            convertedCurrency={this.state.convertedCurrency}
+                                        />
+                                    )
+                            ) : (
+                                    <Loader />
+                                )}
                         </div>
                     </div>
                 </div>

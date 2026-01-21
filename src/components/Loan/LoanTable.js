@@ -7,7 +7,10 @@ const LoanTable = props => {
     const nightMode = { background: props.settings ? (props.settings.mode === "night" ? "#212529" : "auto") : "auto" };
 
     return (
-        <table className="table table-striped table-bordered table-dark rwd-table loan-table" style={nightMode}>
+        <table
+            className="table table-striped table-bordered table-dark rwd-table loan-table mobileNoPadding"
+            style={nightMode}
+        >
             <thead>
                 <tr>
                     <th scope="col">#</th>

@@ -45,7 +45,6 @@ class AddLoanForm extends Component {
             this.state.status
         );
         // reset form once saved
-        console.log("State : ", this.state);
         this.setState({
             date: moment(),
             day: moment().day,
